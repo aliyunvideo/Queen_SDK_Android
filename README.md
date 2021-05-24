@@ -19,12 +19,14 @@ https://help.aliyun.com/document_detail/211047.html
 
 通过阅读本文，您可以根据自身产品项目需要,快速了解如何在第三方sdk中快速接入Queen-sdk渲染处理与计算库。
 
+所有高级功能所需资源素材,请从本工程中assets文件夹进行拷贝
+
 当前项目分类结构与说明如下:</br>
-[Simple-App]:Queen-SDK团队官方推荐的最简化接入示范代码</br>
-[阿里云视频直播sdk]</br>
-[七牛sdk]</br>
-[声网sdk]</br>
-[腾讯sdk]</br>
+[QueenSample_Android]:Queen-SDK团队官方推荐的最简化接入示范代码,所有高级功能所需资源素材,请从本工程中assets文件夹进行拷贝</br>
+[AliLiveSDK4.0.2_Demo_Android]:阿里云视频直播sdk</br>
+[PLDroidMediaStreamingDemo]:七牛直播云sdk</br>
+[声网sdk]://TODO</br>
+[腾讯sdk]://TODO</br>
 
 
 [补充说明]</br>
