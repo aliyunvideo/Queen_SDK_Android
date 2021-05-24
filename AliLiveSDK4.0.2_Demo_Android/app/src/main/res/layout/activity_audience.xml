@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AudienceActivity">
+
+    <FrameLayout
+        android:id="@+id/push_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/tv_room_tittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/color_text_white"
+        android:textSize="@dimen/liveroom_size_text_17"
+        />
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_room_tittle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textSize="@dimen/liveroom_size_text_12"
+        android:textColor="@color/color_text_white"
+        tools:text="开始链接..." />
+
+    <RelativeLayout
+        android:id="@+id/layout_preview"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_background_black_alpha_30"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/btn_preview_switch_camera"
+            android:layout_width="@dimen/liveroom_margin_26"
+            android:layout_height="@dimen/liveroom_margin_23"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="34dp"
+            android:layout_marginTop="@dimen/liveroom_margin_17"
+            android:background="@drawable/camera"
+            tools:ignore="ContentDescription" />
+
+        <FrameLayout
+            android:id="@+id/preview_container"
+            android:layout_width="120dp"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/liveroom_margin_25" />
+
+        <View
+            android:id="@+id/preview_container_border"
+            android:layout_width="120dp"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/liveroom_margin_25"
+            android:background="@drawable/shape_bg_round_corner" />
+
+        <TextView
+            android:id="@+id/btn_preview_apply"
+            android:layout_below="@id/preview_container_border"
+            android:layout_width="197dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/input_send_button"
+            android:drawablePadding="4dp"
+            android:layout_marginTop="@dimen/liveroom_margin_28"
+            android:gravity="center"
+            android:paddingStart="30dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="30dp"
+            android:text="@string/liveroom_ask_link"
+            android:paddingBottom="10dp"
+            android:textColor="@color/color_title_text_black"
+            android:textSize="16dp" />
+
+    </RelativeLayout>
+
+    <com.alilive.alilivesdk_demo.view.WaitingPublishView
+        android:id="@+id/view_waiting_publish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/live_buttonlistview"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="40dp"
+        android:visibility="invisible" />
+
+    <com.alilive.alilivesdk_demo.view.VideoListView
+        android:id="@+id/video_list_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/live_buttonlistview"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="54dp" />
+
+
+
+
+    <com.alilive.alilivesdk_demo.view.AudienceButtonListView
+        android:id="@+id/live_buttonlistview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:layout_marginLeft="46dp"
+        android:layout_alignParentBottom="true" />
+
+    <ImageView
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/liveroom_margin_10"
+        android:layout_marginLeft="@dimen/liveroom_margin_10"
+        android:padding="@dimen/liveroom_margin_10"
+        android:contentDescription="@null"
+        android:src="@drawable/icon_close"/>
+    <com.alilive.alilivesdk_demo.view.DataView
+        android:id="@+id/ll_data"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="254dp"
+        android:layout_height="wrap_content"/>
+    <com.alilive.alilivesdk_demo.view.BeautyView
+        android:id="@+id/live_beauty_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+
+
+    <LinearLayout
+        android:id="@+id/myself_layout"
+        android:layout_width="100dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/live_buttonlistview"
+        android:layout_marginRight="28dp"
+        android:visibility="gone"
+        android:layout_marginBottom="54dp">
+
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="176dp"
+            android:layout_marginTop="30dp">
+
+            <FrameLayout
+                android:id="@+id/myself_container"
+                android:layout_width="90dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="16dp"
+                />
+
+            <View
+                android:layout_width="90dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/shape_bg_round_corner" />
+
+            <ImageView
+                android:id="@+id/btn_switch_camera"
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:background="@color/color_background_black_alpha_30"
+                android:padding="5dp"
+                android:src="@drawable/camera"
+                tools:ignore="ContentDescription"
+                tools:visibility="visible" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_cancle_mic"
+            android:layout_width="94dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/fl_container"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/shape_bg_pkend"
+            android:gravity="center"
+            android:text="@string/cancle_mic"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/color_text_white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</RelativeLayout>

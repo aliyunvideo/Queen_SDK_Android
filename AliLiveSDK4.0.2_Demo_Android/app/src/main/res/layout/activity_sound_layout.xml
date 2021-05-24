@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp">
+
+                <TextView
+                    android:id="@+id/iv_sound_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="9dp"
+                    android:drawableLeft="@drawable/back"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/back"
+                    android:text="@string/liveroom_string_title_back"
+                    android:textColor="#030303"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/back"
+                    android:text="音效"
+                    android:textColor="#030303"
+                    android:textSize="17sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#fafafa"
+                android:gravity="center_vertical"
+                android:paddingLeft="28dp"
+                android:text="音乐设置"
+                android:textColor="#00c1de"
+                android:textSize="12sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/rl_bakground"
+                android:layout_height="46dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="29dp"
+                    android:text="背景音乐"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="22dp"
+                    android:drawableLeft="@drawable/live_right_arrow" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#fafafa"
+                android:gravity="center_vertical"
+                android:paddingLeft="28dp"
+                android:text="耳返"
+                android:textColor="#00c1de"
+                android:textSize="12sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="28dp"
+                    android:text="@string/text_ear_back_switch"
+                    android:textColor="@color/color_text_black" />
+
+                <ImageView
+                    android:id="@+id/switch_ear_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:checked="false"
+                    android:layout_marginRight="24dp"
+                    android:src="@drawable/live_close"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                 />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#eeeeee"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp">
+
+               <ImageView
+                   android:id="@+id/iv_volumreduce"
+                   android:layout_width="28dp"
+                   android:layout_height="28dp"
+                   android:layout_alignParentLeft="true"
+                   android:layout_centerVertical="true"
+                   android:layout_marginLeft="28dp"
+                   android:scaleType="fitXY"
+                   android:src="@drawable/live_volum_no"/>
+
+                <SeekBar
+                    android:id="@+id/seekbar_earback_volume"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/iv_volumreduce"
+                    android:layout_toLeftOf="@+id/iv_volumadd"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:max="100"
+                    android:progress="100" />
+
+                <ImageView
+                    android:id="@+id/iv_volumadd"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="24dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/live_volum"/>
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#fafafa"
+                android:gravity="center_vertical"
+                android:paddingLeft="28dp"
+                android:text="音调"
+                android:textColor="#00c1de"
+                android:textSize="12sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp">
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginRight="24dp"
+                    android:max="100"
+                    android:progress="80" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#fafafa"
+                android:gravity="center_vertical"
+                android:paddingLeft="28dp"
+                android:text="声音效果"
+                android:textColor="#00c1de"
+                android:textSize="12sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="29dp"
+                    android:text="混响效果"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="22dp"
+                    android:text="人声 |"
+                    android:textColor="#888888"
+                    android:drawablePadding="15dp"
+                    android:drawableRight="@drawable/live_right_arrow" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="29dp"
+                    android:text="变声效果"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="22dp"
+                    android:textSize="14sp"
+                    android:text="老人"
+                    android:textColor="#888888"
+                    android:drawablePadding="15dp"
+                    android:drawableRight="@drawable/live_right_arrow" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

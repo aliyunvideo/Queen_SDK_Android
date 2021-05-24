@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PullTestActivity"
+    android:background="@drawable/colour_bg">
+    <FrameLayout
+        android:id="@+id/fl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.alilive.alilivesdk_demo.view.AnchorButtonListView
+        android:id="@+id/live_buttonlistview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/liveroom_margin_22"
+        android:layout_marginBottom="36dp"></com.alilive.alilivesdk_demo.view.AnchorButtonListView>
+
+    <ImageView
+        android:id="@+id/pull_rtc_btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/liveroom_margin_10"
+        android:layout_marginTop="@dimen/liveroom_margin_10"
+        android:contentDescription="@null"
+        android:padding="@dimen/liveroom_margin_10"
+        android:src="@drawable/icon_close" />
+
+    <com.alilive.alilivesdk_demo.view.DataView
+        android:id="@+id/ll_data"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="254dp"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/liveroom_height_size_36"
+        android:layout_below="@id/pull_rtc_btn_close"
+        android:layout_marginLeft="@dimen/liveroom_margin_15"
+        android:layout_marginTop="@dimen/liveroom_margin_25"
+        android:layout_marginRight="@dimen/liveroom_margin_15"
+        android:background="@drawable/shape_bg_search">
+
+        <Button
+            android:id="@+id/pull_rtc_scan_image"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/liveroom_margin_18"
+            android:background="@drawable/scan_icon"></Button>
+
+        <View
+            android:id="@+id/pull_rtc_slipt_line"
+            android:layout_width="@dimen/liveroom_line_width"
+            android:layout_height="19dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/liveroom_margin_9"
+            android:layout_toRightOf="@id/pull_rtc_scan_image"
+            android:background="@color/wheel_white"></View>
+
+        <EditText
+            android:id="@+id/pull_rtc_push_url"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/liveroom_margin_22"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/liveroom_margin_9"
+            android:layout_toRightOf="@id/pull_rtc_slipt_line"
+            android:background="@null"
+            android:hint="@string/liveroom_string_hint_pull_url"
+            android:textColor="@color/wheel_white"
+            android:textColorHint="@color/wheel_white"
+            android:textSize="@dimen/liveroom_size_text_17"></EditText>
+
+        <Button
+            android:id="@+id/pull_rtc_start_btn"
+            android:layout_width="@dimen/liveroom_width_size_64"
+            android:layout_height="match_parent"
+            android:textColor="@color/color_title_text_black"
+            android:background="@drawable/shape_bg_btn_green"
+            android:textSize="@dimen/liveroom_size_text_17"
+            android:layout_alignParentRight="true"
+            android:text="拉流"/>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

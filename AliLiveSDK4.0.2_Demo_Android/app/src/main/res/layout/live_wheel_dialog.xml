@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#609BA6A8" />
+
+    <RelativeLayout
+        android:background="#50C7C7C7"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        >
+        <TextView
+            android:id="@+id/leave_dialg_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="17sp"
+            android:textColor="#4D4D4D"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            />
+
+        <LinearLayout
+            android:id="@+id/leave_dialg_sure"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical|right"
+            >
+            <TextView
+                android:id="@+id/leave_dialg_sure_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:text="完成"
+                android:textColor="#22B8DD"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#609BA6A8" />
+
+
+
+    <LinearLayout
+        android:id="@+id/leave_dialog_pickview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

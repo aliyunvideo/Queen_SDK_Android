@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/color_background_white"
+        android:textSize="@dimen/audioliveroom_size_text_16"
+        android:layout_marginLeft="@dimen/liveroom_margin_28"
+        />
+<!--    <Button-->
+<!--        android:id="@+id/btn_refuse"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="拒绝"/>-->
+<!--    <Button-->
+<!--        android:id="@+id/btn_accept"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="接受"/>-->
+
+    <com.alilive.alilivesdk_demo.view.MicNoticeStatusView
+        android:id="@+id/mic_notice_status_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

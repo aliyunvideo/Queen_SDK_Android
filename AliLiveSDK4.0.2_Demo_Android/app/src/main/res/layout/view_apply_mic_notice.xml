@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_background_black_alpha_30">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/liveroom_height_size_45"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_person_number"
+            android:layout_height="43dp"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/audioliveroom_size_text_16"
+            android:textColor="@color/color_background_white"
+            android:layout_centerInParent="true"
+            android:text="0人申请连麦"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/liveroom_line_width"
+        android:background="@color/wheel_text_color_2"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_apply_mic_notice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

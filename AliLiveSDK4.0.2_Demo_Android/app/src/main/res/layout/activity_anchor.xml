@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl_parent"
+    android:background="@android:color/black"
+    tools:context=".activity.AnchorActivity">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/ll_container_pk"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="80dp"
+        android:visibility="gone"
+        android:background="@color/alivc_color_black">
+        <FrameLayout
+            android:id="@+id/fl_container_pk1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:layout_weight="1"/>
+
+        <FrameLayout
+            android:id="@+id/fl_container_pk2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_pk"
+            android:layout_width="67dp"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/live_pking"
+            android:layout_marginTop="80dp"
+            android:layout_height="23dp"/>
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/push_container"
+        android:layout_width="match_parent"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textSize="@dimen/liveroom_size_text_12"
+        android:textColor="@color/color_background_white"
+        android:text="开始链接..." />
+
+
+    <TextView
+        android:id="@+id/tv_transparent"
+        android:layout_width="match_parent"
+        android:background="@android:color/transparent"
+        android:layout_above="@+id/online_room_view"
+        android:layout_height="match_parent"/>
+
+
+    <RelativeLayout
+        android:id="@+id/ll_notice_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="140dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_notice_number"
+            android:layout_width="68dp"
+            android:layout_height="58dp"
+            android:textSize="@dimen/audioliveroom_size_text_16"
+            android:background="@drawable/shape_bg_connect"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_below="@+id/tv_notice_num"
+            android:textColor="@color/color_background_white"
+            android:text="连麦"/>
+
+          <TextView
+            android:id="@+id/tv_notice_num"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:textSize="16sp"
+            android:text="2"
+            android:gravity="center"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="-12dp"
+            android:background="@drawable/shape_bg_redpoint"
+            android:textColor="@color/color_text_white"/>
+
+    </RelativeLayout>
+
+    <com.alilive.alilivesdk_demo.view.VideoListView
+        android:id="@+id/video_list_view"
+        android:layout_above="@id/ll_notice_number"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="227dp"
+        android:layout_marginTop="30dp"/>
+
+    <com.alilive.alilivesdk_demo.view.ApplyMicNoticeView
+        android:id="@+id/notice_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+
+
+
+    <com.alilive.alilivesdk_demo.view.AnchorButtonListView
+        android:id="@+id/live_buttonlistview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:layout_alignParentBottom="true"
+        />
+
+    <Button
+        android:id="@+id/tv_endpk"
+        android:layout_width="84dp"
+        android:layout_height="30dp"
+        android:text="结束PK"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginBottom="170dp"
+        android:textColor="@color/color_text_white"
+        android:background="@drawable/shape_bg_pkend"/>
+    <com.alilive.alilivesdk_demo.view.OnLineRoomView
+        android:id="@+id/online_room_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:minHeight="200dp"
+        android:visibility="gone"/>
+
+<com.alilive.alilivesdk_demo.view.DataView
+    android:id="@+id/ll_data"
+    android:visibility="gone"
+    android:layout_width="match_parent"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="254dp"
+    android:layout_height="wrap_content"/>
+
+
+
+    <ImageView
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/liveroom_margin_10"
+        android:layout_marginLeft="@dimen/liveroom_margin_10"
+        android:padding="@dimen/liveroom_margin_10"
+        android:contentDescription="@null"
+        android:src="@drawable/icon_close"/>
+
+    <TextView
+        android:id="@+id/tv_room_tittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/liveroom_margin_15"
+        android:layout_marginTop="@dimen/liveroom_margin_15"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/liveroom_size_text_17"
+        android:textColor="#ffffff"/>
+    <com.alilive.alilivesdk_demo.view.AliPushConfigView
+        android:id="@+id/live_configview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+    <com.alilive.alilivesdk_demo.view.AdvancedSoundEffectView
+        android:id="@+id/live_advance_sound_effect"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.alilive.alilivesdk_demo.view.VoiceChangerView
+        android:id="@+id/live_voice_changer"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <com.alilive.alilivesdk_demo.view.BeautyView
+        android:id="@+id/live_beauty_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>

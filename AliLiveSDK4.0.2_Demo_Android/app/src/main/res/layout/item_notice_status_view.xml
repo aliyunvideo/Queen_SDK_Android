@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_mic_status"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingRight="@dimen/liveroom_margin_28">
+
+        <Button
+            android:id="@+id/btn_refuse"
+            android:layout_width="@dimen/liveroom_width_size_62"
+            android:layout_height="@dimen/liveroom_height_size_30"
+            android:background="@drawable/shape_bg_btn_red"
+            android:textSize="@dimen/liveroom_size_text_16"
+            android:textColor="@color/color_text_white"
+            android:text="@string/liveroom_ask_refuse"/>
+
+        <Button
+            android:id="@+id/btn_accept"
+            android:layout_width="@dimen/liveroom_width_size_62"
+            android:layout_height="@dimen/liveroom_height_size_30"
+            android:background="@drawable/shape_bg_btn_green"
+            android:textSize="@dimen/liveroom_size_text_16"
+            android:textColor="@color/color_title_text_black"
+            android:text="@string/liveroom_ask_accept"
+            android:layout_marginLeft="@dimen/liveroom_margin_9"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_mic_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginRight="30dp"
+        android:textSize="@dimen/liveroom_size_text_16"
+        android:textColor="@color/color_background_green"
+        android:text="@string/liveroom_linking"
+        android:visibility="gone"/>
+</RelativeLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="100dp"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="100dp"
+        android:layout_height="176dp"
+        android:layout_marginTop="30dp">
+
+        <FrameLayout
+            android:id="@+id/fl_container"
+            android:layout_width="90dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="16dp" />
+
+        <View
+            android:layout_width="90dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/shape_bg_round_corner" />
+
+        <ImageView
+            android:id="@+id/btn_switch_camera"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:background="@color/color_background_black_alpha_30"
+            android:padding="5dp"
+            android:src="@drawable/camera"
+            android:visibility="invisible"
+            tools:ignore="ContentDescription"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@mipmap/live_gift"
+            android:visibility="invisible"
+            tools:ignore="ContentDescription"
+            tools:visibility="gone" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/btn_exit_video"
+        android:layout_width="94dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/fl_container"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shape_bg_pkend"
+        android:gravity="center"
+        android:text="取消连麦"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/color_text_white"
+        android:textSize="16sp" />
+</LinearLayout>

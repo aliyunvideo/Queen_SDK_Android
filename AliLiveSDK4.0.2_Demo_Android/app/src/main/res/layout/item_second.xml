@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/rl_parent"
+    android:layout_height="46dp">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="28dp"
+        android:text="无效果"
+        android:textSize="15sp"
+        android:textColor="#333333"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/iv_check"
+        android:layout_width="23dp"
+        android:src="@drawable/live_choose"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="28dp"
+        android:visibility="gone"
+        android:layout_height="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/color_background_gray"
+        />
+
+
+</RelativeLayout>
