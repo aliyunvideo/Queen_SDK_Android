@@ -25,8 +25,9 @@ https://help.aliyun.com/document_detail/211047.html
 [QueenSample_Android]:Queen-SDK团队官方推荐的最简化接入示范代码,所有高级功能所需资源素材,请从本工程中assets文件夹进行拷贝</br>
 [AliLiveSDK4.0.2_Demo_Android]:阿里云视频直播sdk</br>
 [PLDroidMediaStreamingDemo]:七牛直播云sdk</br>
+[TRTCSDK]:腾讯实时音视频sdk</br>
 [声网sdk]://TODO</br>
-[腾讯sdk]://TODO</br>
+
 
 
 [补充说明]</br>

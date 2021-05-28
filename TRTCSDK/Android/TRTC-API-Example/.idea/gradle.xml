@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="PLATFORM" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="1.8" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Advanced" />
+            <option value="$PROJECT_DIR$/Advanced/CustomCamera" />
+            <option value="$PROJECT_DIR$/Advanced/JoinMultipleRoom" />
+            <option value="$PROJECT_DIR$/Advanced/LocalRecord" />
+            <option value="$PROJECT_DIR$/Advanced/LocalVideoShare" />
+            <option value="$PROJECT_DIR$/Advanced/PushCDN" />
+            <option value="$PROJECT_DIR$/Advanced/RoomPk" />
+            <option value="$PROJECT_DIR$/Advanced/SEIMessage" />
+            <option value="$PROJECT_DIR$/Advanced/SetAudioEffect" />
+            <option value="$PROJECT_DIR$/Advanced/SetAudioQuality" />
+            <option value="$PROJECT_DIR$/Advanced/SetBackgroundMusic" />
+            <option value="$PROJECT_DIR$/Advanced/SetRenderParams" />
+            <option value="$PROJECT_DIR$/Advanced/SetVideoQuality" />
+            <option value="$PROJECT_DIR$/Advanced/SpeedTest" />
+            <option value="$PROJECT_DIR$/Advanced/StringRoomId" />
+            <option value="$PROJECT_DIR$/Advanced/SwitchRoom" />
+            <option value="$PROJECT_DIR$/Advanced/ThirdBeauty" />
+            <option value="$PROJECT_DIR$/App" />
+            <option value="$PROJECT_DIR$/Basic" />
+            <option value="$PROJECT_DIR$/Basic/AudioCall" />
+            <option value="$PROJECT_DIR$/Basic/Live" />
+            <option value="$PROJECT_DIR$/Basic/ScreenShare" />
+            <option value="$PROJECT_DIR$/Basic/VideoCall" />
+            <option value="$PROJECT_DIR$/Basic/VoiceChatRoom" />
+            <option value="$PROJECT_DIR$/Common" />
+            <option value="$PROJECT_DIR$/Debug" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
