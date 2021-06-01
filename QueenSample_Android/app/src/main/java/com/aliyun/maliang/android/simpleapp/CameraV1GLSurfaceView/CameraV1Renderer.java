@@ -1,8 +1,6 @@
 package com.aliyun.maliang.android.simpleapp.CameraV1GLSurfaceView;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -38,9 +36,21 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
     private  byte[] mCameraBytes;
 
     QueenEngine engine;
-    private FrameGlDrawer mFrameGlDrawer;
+    private FrameGlDrawer mOESFrameGlDrawer;
+    private FrameGlDrawer mTexture2DFrameGlDrawer;
+
+    private long mLastDrawSystemClock = 0L;
+    private long mCurrentDrawTimes = 0L;
+    private long mLastDrawTimes = 0L;
+    private TextView mFpsView = null;
 
     private boolean mTestOutRect = false;
+    // 是否需要Queen将处理后的纹理渲染到当前画布
+    private boolean mUseQueenRenderToScreen = true;
+    // 是否让Queen保持原纹理方向输出
+    private boolean mQueenKeepInputDirection = true;
+    // 是否让Queen使用纹理执行算法
+    private boolean mUseTextureBuffer = false;
 
     public void init(CameraV1GLSurfaceView glSurfaceView, CameraV1 camera, boolean isPreviewStarted, Context context) {
         mContext = context;
@@ -65,7 +75,8 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
             // 使用自定义纹理承载美颜结果纹理
             initWithOutTexture();
         }
-        mFrameGlDrawer = new FrameGlDrawer();
+        mOESFrameGlDrawer = new FrameGlDrawer(true);
+        mTexture2DFrameGlDrawer = new FrameGlDrawer(false);
 
         if(mTestOutRect) {
             int len = mCamera.getPrevieHeight();
@@ -80,7 +91,7 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
 
     private void initCommon() {
         try {
-            engine = new QueenEngine(mContext,true);
+            engine = new QueenEngine(mContext, mUseQueenRenderToScreen);
         } catch (InitializationException e) {
             e.printStackTrace();
         }
@@ -90,13 +101,12 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
 
     private void initWithOutTexture() {
         try {
-            engine = new QueenEngine(mContext,true);
+            engine = new QueenEngine(mContext, true);
         } catch (InitializationException e) {
             e.printStackTrace();
         }
         engine.setInputTexture(mOESTextureId, mCamera.getCameraOutWidth(),mCamera.getCameraOutHeight(),true);
-        mOutTexture = engine.autoGenOutTexture();
-        engine.updateOutTexture(mOutTexture.getTextureId(), mCamera.getCameraOutWidth(),mCamera.getCameraOutHeight());
+        mOutTexture = engine.autoGenOutTexture(mQueenKeepInputDirection);
     }
 
     @Override
@@ -147,13 +157,7 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
             mSurfaceTexture.getTransformMatrix(transformMatrix);
         }
 
-        mCameraBytes = mCamera.getLastUpdateCameraPixels();
-        if (mCameraBytes != null) {
-            // 说明没有新的数据,则不必再去更新人脸引擎去刷新,减少运算消耗
-            //人脸检测数据
-            engine.updateInputDataAndRunAlg(mCameraBytes, ImageFormat.NV21, mCamera.getPrevieWidth(), mCamera.getPrevieHeight(), 0, mCamera.inputAngle, mCamera.outAngle, mCamera.flipAxis);
-            mCamera.releaseData(mCameraBytes);
-        }
+        updateInputDataToQueen();
 
         QueenParamHolder.writeParamToEngine(engine);
 
@@ -162,16 +166,33 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
         int retCode = engine.renderTexture(transformMatrix);
 
         if (retCode == -9 || retCode == -10) {
-            mFrameGlDrawer.draw(transformMatrix, mOESTextureId, true);
+            mOESFrameGlDrawer.draw(transformMatrix, mOESTextureId);
+        } else if (retCode == 0 && !mUseQueenRenderToScreen) {
+            mTexture2DFrameGlDrawer.draw(
+                    mQueenKeepInputDirection ? transformMatrix : null,
+                    mOutTexture.getTextureId());
         }
 
         ++mCurrentDrawTimes;
     }
 
-    private long mLastDrawSystemClock = 0L;
-    private long mCurrentDrawTimes = 0L;
-    private long mLastDrawTimes = 0L;
-    private TextView mFpsView = null;
+
+    private void updateInputDataToQueen() {
+        if (mUseTextureBuffer) {
+            engine.updateInputTextureBufferAndRunAlg(
+                    mCamera.inputAngle, mCamera.outAngle,
+                    mCamera.flipAxis, false);
+        } else {
+            mCameraBytes = mCamera.getLastUpdateCameraPixels();
+            if (mCameraBytes != null) {
+                // 说明没有新的数据,则不必再去更新人脸引擎去刷新,减少运算消耗
+                //人脸检测数据
+                engine.updateInputDataAndRunAlg(mCameraBytes, ImageFormat.NV21, mCamera.getPrevieWidth(), mCamera.getPrevieHeight(), 0, mCamera.inputAngle, mCamera.outAngle, mCamera.flipAxis);
+                mCamera.releaseData(mCameraBytes);
+            }
+        }
+    }
+
     public void setFpsView(TextView textView) {
         mFpsView = textView;
     }
@@ -193,38 +214,16 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
 
                     if(mFpsView != null){
                         mFpsView.setText("fps: " + fps);
+                    } else {
+                        Log.i("queen_sample_fps", "fps: " + fps);
                     }
                     this.sendMessageDelayed(this.obtainMessage(1),480);
                     break;
                 default:
                     break;
-
             }
         }
     };
-
-    /**
-     * 图片美颜处理
-     */
-    public void testPicture()
-    {
-        try {
-            QueenEngine picEngine = new QueenEngine(mContext,true,false);
-            Bitmap imageFace = BitmapFactory.decodeStream(mContext.getAssets().open("face/1.png") );
-            picEngine.setInputBitMap(imageFace);
-            Texture2D outTexture = picEngine.autoGenOutTexture();
-
-            picEngine.updateInputDataAndRunAlg(imageFace);
-
-            picEngine.render();
-            outTexture.saveToFile("/sdcard/xxxxx/aabb.png", Bitmap.CompressFormat.PNG, 100);
-            picEngine.release();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
 
     public boolean initSurfaceTexture() {
         if (mCamera == null || mGLSurfaceView == null) {

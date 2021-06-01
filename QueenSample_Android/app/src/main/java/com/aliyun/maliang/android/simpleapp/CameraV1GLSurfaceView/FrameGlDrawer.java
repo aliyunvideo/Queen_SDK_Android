@@ -16,6 +16,12 @@ public class FrameGlDrawer {
     private int mTextureUniformHandle;
     private int mTextureCoordinateHandle;
     private final int TEXTURE_COORDINATE_DATA_SIZE = 2;
+    private final float[] IDENTITY_MATRIX = new float[] {
+            1.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 1.0f,
+    };
 
     private final static String VETEX_SHADER_CODE =
             "attribute vec2 a_TexCoordinate;" +
@@ -27,7 +33,7 @@ public class FrameGlDrawer {
                     "v_TexCoordinate = (uTransformMatrix * vec4(a_TexCoordinate, 0, 1)).xy;" +
                 "}";
 
-    private final static String FRAGMENT_SHADER_CODE =
+    private final static String OES_FRAGMENT_SHADER_CODE =
             "#extension GL_OES_EGL_image_external : require\n" +
             "precision mediump float;" +
                     "uniform samplerExternalOES u_Texture;" +
@@ -36,11 +42,20 @@ public class FrameGlDrawer {
                         "gl_FragColor = texture2D(u_Texture, v_TexCoordinate);" +
                     "}";
 
+    private final static String TEXTURE2D_FRAGMENT_SHADER_CODE =
+            "precision mediump float;" +
+            "uniform sampler2D u_Texture;" +
+            "varying vec2 v_TexCoordinate;" +
+            "void main() {" +
+            "  gl_FragColor = texture2D(u_Texture, v_TexCoordinate);" +
+            "}";
+
     private final int shaderProgram;
     private final FloatBuffer vertexBuffer;
     private final ShortBuffer drawListBuffer;
     private int mPositionHandle;
     private int mMVPMatrixHandle;
+    private boolean mIsOESTexture;
 
     private static final int COORDINATE_PER_VERTEX = 2;
     private final static float POSITIONS[] = {
@@ -61,8 +76,9 @@ public class FrameGlDrawer {
     private short drawOrder[] = { 0, 1, 2, 1, 3, 2 };
     private final int vertexStride = COORDINATE_PER_VERTEX * 4;
 
-    public FrameGlDrawer()
+    public FrameGlDrawer(boolean isOES)
     {
+        mIsOESTexture = isOES;
         // 分配顶点坐标属性
         ByteBuffer bb = ByteBuffer.allocateDirect(POSITIONS.length * 4);
         bb.order(ByteOrder.nativeOrder());
@@ -84,7 +100,7 @@ public class FrameGlDrawer {
 
         // 编译program
         int vertexShader = loadShader(GLES20.GL_VERTEX_SHADER, VETEX_SHADER_CODE);
-        int fragmentShader = loadShader(GLES20.GL_FRAGMENT_SHADER, FRAGMENT_SHADER_CODE);
+        int fragmentShader = loadShader(GLES20.GL_FRAGMENT_SHADER, isOES ? OES_FRAGMENT_SHADER_CODE : TEXTURE2D_FRAGMENT_SHADER_CODE);
 
         shaderProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(shaderProgram, vertexShader);
@@ -113,8 +129,12 @@ public class FrameGlDrawer {
         }
     }
 
-    public void draw(float[] transformMatrix, int textureId, boolean isOes)
+    public void draw(float[] transformMatrix, int textureId)
     {
+        if (null == transformMatrix) {
+            transformMatrix = IDENTITY_MATRIX;
+        }
+
         GLES20.glUseProgram(shaderProgram);
 
         // 设置坐标信息
@@ -127,7 +147,7 @@ public class FrameGlDrawer {
         mTextureCoordinateHandle = GLES20.glGetAttribLocation(shaderProgram, "a_TexCoordinate");
 
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-        if (isOes) {
+        if (mIsOESTexture) {
             GLES20.glBindTexture(GL_TEXTURE_EXTERNAL_OES, textureId);
         } else {
             GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId);
