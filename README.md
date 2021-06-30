@@ -26,6 +26,7 @@ https://help.aliyun.com/document_detail/211047.html
 [AliLiveSDK4.0.2_Demo_Android]:阿里云视频直播sdk</br>
 [PLDroidMediaStreamingDemo]:七牛直播云sdk</br>
 [TRTCSDK]:腾讯实时音视频sdk</br>
+[librestreaming]:实时滤镜RTMP推流sdk</br>
 [声网sdk]://TODO</br>
 
 
