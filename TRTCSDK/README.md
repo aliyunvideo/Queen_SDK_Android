@@ -1,57 +1,14 @@
-# 腾讯云实时音视频终端组件 TRTC SDK
+# 腾讯云实时音视频终端组件版本
 
-## SDK 下载
-访问 Github 较慢的客户可以考虑使用国内下载地址： [DOWNLOAD](https://cloud.tencent.com/document/product/647/32689) 。
+[简介]</br>
+智能美化特效已集成到腾讯云实时音视频终端组件版本SDK中，接入简单、快速。基于智能视觉算法、海量规模的人脸、人体检测和识别技术，智能美化特效为视频创作者提供移动端的人脸美颜、美型、美妆美化、滤镜贴纸等编辑加工能力，满足直播和视频制作时的美颜特效需求。
 
-| 所属平台 | Zip下载 | Demo运行说明 | SDK集成指引 | API 列表 |
-|:---------:| :--------:|:--------:| :--------:|:--------:|
-| iOS | [下载](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_TRTC_iOS_latest.zip)| [DOC](https://cloud.tencent.com/document/product/647/32396)| [DOC](https://cloud.tencent.com/document/product/647/32173) | [API](https://cloud.tencent.com/document/product/647/32258) |
-| Android | [下载](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_TRTC_Android_latest.zip)| [DOC](https://cloud.tencent.com/document/product/647/32166)| [DOC](https://cloud.tencent.com/document/product/647/32175) | [API](https://cloud.tencent.com/document/product/647/32267) |
-| Win(C++)| [下载](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_TRTC_Win_latest.zip)| [DOC](https://cloud.tencent.com/document/product/647/32397)| [DOC](https://cloud.tencent.com/document/product/647/32178) | [API](https://cloud.tencent.com/document/product/647/32268) |
-| Win(C#)| [下载](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_TRTC_Win_latest.zip)| [DOC](https://cloud.tencent.com/document/product/647/32397)| [DOC](https://cloud.tencent.com/document/product/647/32178) | [API](https://cloud.tencent.com/document/product/647/36776) |
-| Mac| [下载](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_TRTC_Mac_latest.tar.bz2)| [DOC](https://cloud.tencent.com/document/product/647/32396)| [DOC](https://cloud.tencent.com/document/product/647/32176) |[API](https://cloud.tencent.com/document/product/647/32258) |
-| Web | [下载](https://web.sdk.qcloud.com/trtc/webrtc/download/webrtc_latest.zip)| [DOC](https://cloud.tencent.com/document/product/647/32398)| [DOC](https://cloud.tencent.com/document/product/647/16863) |[API](https://cloud.tencent.com/document/product/647/17249) |
-| Electron | [下载](https://web.sdk.qcloud.com/trtc/electron/download/TXLiteAVSDK_TRTC_Electron_latest.zip) | [DOC](https://cloud.tencent.com/document/product/647/38548) | [DOC](https://cloud.tencent.com/document/product/647/38549) |[API](https://cloud.tencent.com/document/product/647/38551) |
-| 微信小程序 | [下载](https://web.sdk.qcloud.com/trtc/miniapp/download/trtc-room.zip) | [DOC](https://cloud.tencent.com/document/product/647/32399) | [DOC](https://cloud.tencent.com/document/product/647/32183) |[API](https://cloud.tencent.com/document/product/647/17018) |
+技术优势 自研的人脸关键点定位技术，涵盖106个基础点位、280个高精度点位，效果真实。 持续优化的智能视觉算法和实时渲染技术，保证自然流畅的使用体验。 持续升级的美颜美型、滤镜贴纸玩法，不断扩充的素材库，创造更多乐趣。 完善的开发者支持，快速响应客户需求，提供优质可靠的服务。
 
-## Version 8.6 @ 2021.05.08
+更多详情与功能体验介绍,参见: https://help.aliyun.com/document_detail/211049.html
 
-**欢迎加入**
-团队技术氛围浓厚，培训体系完善，产品线多样，有经验丰富的“老司机”手把手帮你入门音视频技术。<br>
-北京、西安、上海、深圳、广州均有岗位，如果您对音视频技术感兴趣，欢迎加入我们 [腾讯云 TRTC 研发团队](https://careers.tencent.com/jobdesc.html?postId=1297858141983088640) 。
+[项目说明]</br>
+本项目Demo来自腾讯云实时音视频终端组件版本8.6 @ 2021.05.08,Demo资源名为:PLDroidMediaStreaming,官方下载地址为: https://github.com/tencentyun/TRTCSDK
 
-1. 全平台：优化网络流控算法，进一步提升音视频传输质量。
-1. 全平台：优化切换角色上下麦时音频播放的流畅度。
-1. iOS&Mac Windows：优化音频处理模块，提升了 SPEECH 模式和 DEFAULT 模式的语音质量。
-1. iOS&Mac：优化自定义音频采集在高CPU场景下的适应性。
-1. Mac：增加对苹果 M1 架构的原生支持。
-1. iOS & Android ：支持录屏视频通过辅路进行分享，对齐桌面端版本。
-1. Windows：优化内存分配逻辑，提高稳定性。
-
-
-更早期的版本更新历史请点击  [More](https://cloud.tencent.com/document/product/647/46907)...
-
-## Demo 体验地址
-
-### iOS
-> [APPStore 体验地址](https://itunes.apple.com/cn/app/id1400663224?mt=8)
-![](https://main.qcloudimg.com/raw/fa84e7c632b74483e9dc91dc04a8255e.jpg)
-
-### Android
-> [应用宝体验地址](https://android.myapp.com/myapp/detail.htm?apkName=com.tencent.trtc&ADTAG=mobile)
-![](https://main.qcloudimg.com/raw/913eecbf69577de4e27d9bfe45acf80e.jpg)
-
-### Mac OS
-> [下载后解压体验](https://liteav.sdk.qcloud.com/app/install/TXLiteAVSDK_Mac_Demo.tar.bz2)
-![](https://main.qcloudimg.com/raw/8d146afb3b2dd07d5b5f1ca4432a9411.jpg)
-
-### Windows
-> [下载后安装体验](https://liteav.sdk.qcloud.com/app/install/TXLiteAVSDK_Win_Demo.exe)
-![](https://main.qcloudimg.com/raw/00ec3ebc86902044c51a5487c18dcd0c.jpg)
-
-### 微信小程序
->![](https://main.qcloudimg.com/raw/81662cce932b2500addac28baf6a83b3.jpg)
-
-### Web 网页
-> [Chrome 打开体验](https://web.sdk.qcloud.com/trtc/webrtc/demo/latest/official-demo/index.html)
-![](https://main.qcloudimg.com/raw/56e2bbc928a11bac85e5b78ac171b3bc.jpg)
+[补充说明]</br>
+注:第三方sdk中Demo代码均以第三方官方下载版本Demo为准,相关所有版权均归第三方版本所有,本项目不进行Demo内部的结构变更与功能修改,本项目也不负责维护与更新第三方sdk的Demo.此处各Demo仅用于代码接入展示,不用于其他任何商业途径,一切以Demo本身所属公司或组织为准.
