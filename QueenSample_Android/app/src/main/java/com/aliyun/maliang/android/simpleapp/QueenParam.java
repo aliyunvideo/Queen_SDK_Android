@@ -10,6 +10,9 @@ import java.util.List;
 /**
  * 默认参数
  */
+/**
+ * 默认参数
+ */
 public class QueenParam {
     public static int deFormatParam(float param) {
         return (int) (param * 100);
@@ -20,6 +23,8 @@ public class QueenParam {
     public static class BasicBeautyRecord {
         public boolean enableSkinWhiting = true;
         public float skinWhitingParam = 0.3f; // 美白[0,1]
+        public boolean enableSkinRed = true;
+        public float skinRedParam = 0.3f; // 红润[0,1]
 
         public boolean enableSkinBuffing = true;
         public float skinBuffingParam = 0.6f; // 磨皮[0,1]
@@ -29,14 +34,21 @@ public class QueenParam {
         public float faceBuffingPouchParam = 0.3f; //去眼袋[0,1]
         public float faceBuffingNasolabialFoldsParam = 0.3f; //去法令纹[0,1]
         public float faceBuffingWhiteTeeth = 0.2f; //白牙[0,1]
-        public float faceBuffingLipstick = 0.0f; // 滤镜美妆：口红[0,1]
-        public float faceBuffingBlush = 0.0f; // 滤镜美妆：腮红[0,1]
+        public float faceBuffingBrightenEye = 0.2f; //亮眼[0,1]
+        public float faceBuffingLipstick = 0.15f; // 滤镜美妆：口红[0,1]
+        public boolean enableFaceBuffingLipstick = true; // 滤镜美妆：口红开关
+        public float faceBuffingBlush = 0.15f; // 滤镜美妆：腮红[0,1]
+
+        public float faceBuffingLipstickColorParams = 0.0f; //滤镜美妆：口红色相[-0.5,0.5]
+        public float faceBuffingLipstickGlossParams = 0.0f; //滤镜美妆：口红饱和度[0,1]
+        public float faceBuffingLipstickBrightnessParams = 0.0f; //滤镜美妆：口红明度[0,1]
 
         @Override
         public String toString() {
             return "BasicBeautyRecord{" +
                     "enableSkinWhiting=" + enableSkinWhiting +
                     ", skinWhitingParam=" + skinWhitingParam +
+                    ", skinRedParam=" + skinRedParam +
                     ", enableSkinBuffing=" + enableSkinBuffing +
                     ", skinBuffingParam=" + skinBuffingParam +
                     ", skinSharpenParam=" + skinSharpenParam +
@@ -44,8 +56,13 @@ public class QueenParam {
                     ", faceBuffingPouchParam=" + faceBuffingPouchParam +
                     ", faceBuffingNasolabialFoldsParam=" + faceBuffingNasolabialFoldsParam +
                     ", faceBuffingWhiteTeeth=" + faceBuffingWhiteTeeth +
+                    ", faceBuffingBrightenEye=" + faceBuffingBrightenEye +
                     ", faceBuffingLipstick=" + faceBuffingLipstick +
+                    ", enableFaceBuffingLipstick=" + enableFaceBuffingLipstick +
                     ", faceBuffingBlush=" + faceBuffingBlush +
+                    ", faceBuffingLipstickColorParams=" + faceBuffingLipstickColorParams +
+                    ", faceBuffingLipstickGlossParams=" + faceBuffingLipstickGlossParams +
+                    ", faceBuffingLipstickBrightnessParams=" + faceBuffingLipstickBrightnessParams +
                     '}';
         }
     }
@@ -53,7 +70,7 @@ public class QueenParam {
 
     public static class LUTRecord {
         public boolean lutEnable = false;
-        public String lutPath = "lookups/怀旧色卡.png"; // 滤镜色卡路径
+        public String lutPath; // 滤镜色卡路径
         public float lutParam = 0.8f; // 滤镜强度[0,1]
 
         @Override
@@ -69,7 +86,7 @@ public class QueenParam {
 
     public static class StickerRecord {
         public boolean stickerEnable = false;
-        public String stickerPath = "sticker/tuanzhang"; // 贴纸路径
+        public String stickerPath; // 贴纸路径
         public List<String> usingStickerPathList = new ArrayList<>(); //设置新的贴纸之后需要去掉旧的资源，这里做备份
 
         @Override
@@ -107,6 +124,8 @@ public class QueenParam {
         public float mouthSizeParam     = 0.0f; //嘴唇大小[-1,1]
         public float mouthHighParam     = 0.0f; //唇高[-1,1]
         public float philtrumParam      = 0.0f; //人中[-1,1]
+        public float hairLineParam      = 0.0f; //发际线[-1,1]
+        public float smailParam         = 0.0f; //嘴角上扬(微笑)[0,1]
 
         public static float formatFaceShapeParam(int param) {
             return param / 100.0f;
@@ -141,6 +160,8 @@ public class QueenParam {
                     ", mouthSizeParam=" + mouthSizeParam +
                     ", mouthHighParam=" + mouthHighParam +
                     ", philtrumParam=" + philtrumParam +
+                    ", hairLineParam=" + hairLineParam +
+                    ", smailParam=" + smailParam +
                     '}';
         }
     }
@@ -148,90 +169,7 @@ public class QueenParam {
     static {
         sNoneFaceShapeRecord.enableFaceShape = false;
     }
-    public static FaceShapeRecord sCustomFaceShapeRecord = new FaceShapeRecord();
-    static {
-        sCustomFaceShapeRecord.enableFaceShape = true;
-        sCustomFaceShapeRecord.cutFaceParam = FaceShapeRecord.formatFaceShapeParam(33);
-        sCustomFaceShapeRecord.thinFaceParam = FaceShapeRecord.formatFaceShapeParam(22);
-        sCustomFaceShapeRecord.longFaceParam = FaceShapeRecord.formatReverseParam(17);
-        sCustomFaceShapeRecord.lowerJawParam = FaceShapeRecord.formatReverseParam(7);
-        sCustomFaceShapeRecord.bigEyeParam = FaceShapeRecord.formatFaceShapeParam(33);
-        sCustomFaceShapeRecord.thinNoseParam = FaceShapeRecord.formatFaceShapeParam(30);
-        sCustomFaceShapeRecord.noseTipHeightParam = FaceShapeRecord.formatFaceShapeParam(10);
-        sCustomFaceShapeRecord.mouthWidthParam = FaceShapeRecord.formatReverseParam(18);
-        sCustomFaceShapeRecord.thinMandibleParam = FaceShapeRecord.formatFaceShapeParam(0);
-        sCustomFaceShapeRecord.cutCheekParam = FaceShapeRecord.formatFaceShapeParam(0);
-    }
-    // 优雅
-    public static FaceShapeRecord sGraceFaceShapeRecord = new FaceShapeRecord();
-    static {
-        sGraceFaceShapeRecord.enableFaceShape = true;
-        sGraceFaceShapeRecord.cutFaceParam = FaceShapeRecord.formatFaceShapeParam(33);
-        sGraceFaceShapeRecord.thinFaceParam = FaceShapeRecord.formatFaceShapeParam(22);
-        sGraceFaceShapeRecord.longFaceParam = FaceShapeRecord.formatReverseParam(17);
-        sGraceFaceShapeRecord.lowerJawParam = FaceShapeRecord.formatReverseParam(7);
-        sGraceFaceShapeRecord.bigEyeParam = FaceShapeRecord.formatFaceShapeParam(33);
-        sGraceFaceShapeRecord.thinNoseParam = FaceShapeRecord.formatFaceShapeParam(0);
-        sGraceFaceShapeRecord.mouthWidthParam = FaceShapeRecord.formatReverseParam(18);
-        sGraceFaceShapeRecord.thinMandibleParam = FaceShapeRecord.formatFaceShapeParam(0);
-        sGraceFaceShapeRecord.cutCheekParam = FaceShapeRecord.formatFaceShapeParam(0);
-    }
-    // 精致
-    public static FaceShapeRecord sDelicateShapeRecord = new FaceShapeRecord();
-    static {
-        sDelicateShapeRecord.enableFaceShape = true;
-        sDelicateShapeRecord.cutFaceParam = FaceShapeRecord.formatFaceShapeParam(6);
-        sDelicateShapeRecord.thinFaceParam = FaceShapeRecord.formatFaceShapeParam(22);
-        sDelicateShapeRecord.longFaceParam = FaceShapeRecord.formatReverseParam(10);
-        sDelicateShapeRecord.lowerJawParam = FaceShapeRecord.formatReverseParam(33);
-        sDelicateShapeRecord.bigEyeParam = FaceShapeRecord.formatFaceShapeParam(0);
-        sDelicateShapeRecord.thinNoseParam = FaceShapeRecord.formatFaceShapeParam(0);
-        sDelicateShapeRecord.mouthWidthParam = FaceShapeRecord.formatReverseParam(0);
-        sDelicateShapeRecord.thinMandibleParam = FaceShapeRecord.formatFaceShapeParam(0);
-        sDelicateShapeRecord.cutCheekParam = FaceShapeRecord.formatFaceShapeParam(0);
-    }
-    // 网红
-    public static FaceShapeRecord sWangHongShapeRecord = new FaceShapeRecord();
-    static {
-        sWangHongShapeRecord.enableFaceShape = true;
-        sWangHongShapeRecord.cutFaceParam = FaceShapeRecord.formatFaceShapeParam(33);
-        sWangHongShapeRecord.thinFaceParam = FaceShapeRecord.formatFaceShapeParam(5);
-        sWangHongShapeRecord.longFaceParam = FaceShapeRecord.formatReverseParam(2);
-        sWangHongShapeRecord.lowerJawParam = FaceShapeRecord.formatReverseParam(2);
-        sWangHongShapeRecord.bigEyeParam = FaceShapeRecord.formatFaceShapeParam(16);
-        sWangHongShapeRecord.thinNoseParam = FaceShapeRecord.formatFaceShapeParam(0);
-        sWangHongShapeRecord.mouthWidthParam = FaceShapeRecord.formatReverseParam(12);
-        sWangHongShapeRecord.thinMandibleParam = FaceShapeRecord.formatFaceShapeParam(0);
-        sWangHongShapeRecord.cutCheekParam = FaceShapeRecord.formatFaceShapeParam(0);
-    }
-    // 可爱
-    public static FaceShapeRecord sCuteShapeRecord = new FaceShapeRecord();
-    static {
-        sCuteShapeRecord.enableFaceShape = true;
-        sCuteShapeRecord.cutFaceParam = FaceShapeRecord.formatFaceShapeParam(17);
-        sCuteShapeRecord.thinFaceParam = FaceShapeRecord.formatFaceShapeParam(22);
-        sCuteShapeRecord.longFaceParam = FaceShapeRecord.formatReverseParam(16);
-        sCuteShapeRecord.lowerJawParam = FaceShapeRecord.formatReverseParam(-3);
-        sCuteShapeRecord.bigEyeParam = FaceShapeRecord.formatFaceShapeParam(33);
-        sCuteShapeRecord.thinNoseParam = FaceShapeRecord.formatFaceShapeParam(0);
-        sCuteShapeRecord.mouthWidthParam = FaceShapeRecord.formatReverseParam(-8);
-        sCuteShapeRecord.thinMandibleParam = FaceShapeRecord.formatFaceShapeParam(0);
-        sCuteShapeRecord.cutCheekParam = FaceShapeRecord.formatFaceShapeParam(0);
-    }
-    // 婴儿
-    public static FaceShapeRecord sBabyFaceShapeRecord = new FaceShapeRecord();
-    static {
-        sBabyFaceShapeRecord.enableFaceShape = true;
-        sBabyFaceShapeRecord.cutFaceParam = FaceShapeRecord.formatFaceShapeParam(15);
-        sBabyFaceShapeRecord.thinFaceParam = FaceShapeRecord.formatFaceShapeParam(6);
-        sBabyFaceShapeRecord.longFaceParam = FaceShapeRecord.formatReverseParam(27);
-        sBabyFaceShapeRecord.lowerJawParam = FaceShapeRecord.formatReverseParam(-10);
-        sBabyFaceShapeRecord.bigEyeParam = FaceShapeRecord.formatFaceShapeParam(16);
-        sBabyFaceShapeRecord.thinNoseParam = FaceShapeRecord.formatFaceShapeParam(0);
-        sBabyFaceShapeRecord.mouthWidthParam = FaceShapeRecord.formatReverseParam(-8);
-        sBabyFaceShapeRecord.thinMandibleParam = FaceShapeRecord.formatFaceShapeParam(0);
-        sBabyFaceShapeRecord.cutCheekParam = FaceShapeRecord.formatFaceShapeParam(0);
-    }
+
     public FaceShapeRecord faceShapeRecord = sNoneFaceShapeRecord;
 
     public static class FaceMakeupRecord {
@@ -247,13 +185,6 @@ public class QueenParam {
             }
             makeupBlendType[MakeupType.kMakeupMouth] = BlendType.kBlendSoftLight;
             makeupBlendType[MakeupType.kMakeupHighlight] = BlendType.kBlendOverlay;
-
-//            makeupResourcePath[MakeupType.kMakeupWhole] = "makeup/梅子妆.png";
-//            makeupResourcePath[MakeupType.kMakeupMouth] = "makeup/mouth.png";
-//            makeupResourcePath[MakeupType.kMakeupBlush] = "makeup/blush_黛紫腮红.png";
-//            makeupResourcePath[MakeupType.kMakeupEyeball] = "makeup/eyeball.png";
-//            makeupResourcePath[MakeupType.kMakeupEyeBrow] = "makeup/eye_brow.png";
-//            makeupResourcePath[MakeupType.kMakeupHighlight] = "makeup/highlight.png";
         }
 
         @Override
@@ -267,23 +198,5 @@ public class QueenParam {
         }
     }
     public FaceMakeupRecord faceMakeupRecord = new FaceMakeupRecord();
-
-    public String serialize() {
-        return "";
-    }
-
-    public void deserialize() {
-
-    }
-
-    @Override
-    public String toString() {
-        return "QueenParam{" +
-                "basicBeautyRecord=" + basicBeautyRecord +
-                ", lutRecord=" + lutRecord +
-                ", stickerRecord=" + stickerRecord +
-                ", faceShapeRecord=" + faceShapeRecord +
-                ", faceMakeupRecord=" + faceMakeupRecord +
-                '}';
-    }
 }
+

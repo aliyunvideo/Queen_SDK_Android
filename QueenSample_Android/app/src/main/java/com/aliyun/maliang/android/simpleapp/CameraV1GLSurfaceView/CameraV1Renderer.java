@@ -12,6 +12,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.aliyun.maliang.android.simpleapp.CameraV1;
+import com.aliyun.maliang.android.simpleapp.OnModeStyleAction;
 import com.aliyun.maliang.android.simpleapp.QueenParamHolder;
 import com.taobao.android.libqueen.ImageFormat;
 import com.taobao.android.libqueen.QueenEngine;
@@ -159,6 +160,7 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
 
         updateInputDataToQueen();
 
+        OnModeStyleAction.doActionForKEAI();
         QueenParamHolder.writeParamToEngine(engine);
 
         GLES20.glClearColor(0, 0, 0, 0);
