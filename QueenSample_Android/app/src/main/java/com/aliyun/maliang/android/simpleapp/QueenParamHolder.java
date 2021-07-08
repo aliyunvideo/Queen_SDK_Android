@@ -129,6 +129,20 @@ public class QueenParamHolder {
                     iterator.remove();
                 }
             }
+
+            // AI 抠图
+            //注意: AI抠图与绿幕抠图二者互斥,不能同时生效,开启A功能,需要同时关闭B功能
+            getQueenParam().segmentRecord.enableAiSegment = true;
+            getQueenParam().segmentRecord.enableBlueSegment = false;
+            getQueenParam().segmentRecord.enableGreenSegment = false;
+            // 扣图替换的背景资源图路径,支持动态图,需要官方协议制作
+            getQueenParam().segmentRecord.aiSegmentBackgroundPath = "resPath";
+            getQueenParam().segmentRecord.aiSegmentAsync = false;       // 同步还是异步处理
+
+            // 功能开启时,需要打开相关开关并添加资源
+//            mediaChainEngine.enableBeautyType(BeautyFilterType.kBTBackgroundProcess, getQueenParam().segmentRecord.enableAiSegment);
+//            mediaChainEngine.setAlgAsych(AlgType.kBokehAiSegment, getQueenParam().segmentRecord.aiSegmentAsync);
+//            mediaChainEngine.addMaterial(getQueenParam().segmentRecord.aiSegmentBackgroundPath);
         }
     }
 

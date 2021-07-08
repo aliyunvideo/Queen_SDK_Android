@@ -198,5 +198,54 @@ public class QueenParam {
         }
     }
     public FaceMakeupRecord faceMakeupRecord = new FaceMakeupRecord();
+
+    // AI 抠图
+    public static class SegmentRecord {
+        public boolean enableGreenSegment = false;
+        public boolean enableBlueSegment = false;
+        public String greenSegmentBackgroundPath = "background/xiaomanyao.jpeg";
+        //        public String greenSegmentBackgroundPath = "background/mamba_p.jpg";
+        public float greenSegmentThreshold = 1.0f;
+        public float blueSegmentThreshold = 1.0f;
+        public boolean enableGreenSegmentAutoThreshold = true;
+        public boolean enableBlueSegmentAutoThreshold = true;
+        private static final float MIN_THRESHOLD = 1.0f;
+        private static final float MAX_THRESHOLD = 10.0f;
+
+        public boolean enableAiSegment = false;
+        public boolean aiSegmentAsync = false;
+        public int aiSegmentForegroundPadding = 0;
+
+        public String aiSegmentBackgroundPath;
+        public List<String> usingAiSegmentBackgroundPathList = new ArrayList<>(); //设置新的资源之后需要去掉旧的资源，这里做备份
+
+        public static float formatThresholdParam(int threshold) {
+            return MIN_THRESHOLD + (MAX_THRESHOLD-MIN_THRESHOLD) * threshold / 100.0f;
+        }
+
+        public static int deFormatThresholdParam(float threshold) {
+            return (int) ((threshold - MIN_THRESHOLD) * 100.0f / (MAX_THRESHOLD - MIN_THRESHOLD));
+        }
+
+        public static int formatForegroundPaddingParam(int foregroundPadding) {
+            return (int) (15.0 * foregroundPadding / 100);
+        }
+
+        public static int deFormatForegroundPaddingParam(float foregroundPadding) {
+            return (int) (foregroundPadding * 100.0f / 15);
+        }
+    }
+    public SegmentRecord segmentRecord = new SegmentRecord();
+
+    @Override
+    public String toString() {
+        return "QueenParam{" +
+                "basicBeautyRecord=" + basicBeautyRecord +
+                ", lutRecord=" + lutRecord +
+                ", stickerRecord=" + stickerRecord +
+                ", faceShapeRecord=" + faceShapeRecord +
+                ", faceMakeupRecord=" + faceMakeupRecord +
+                '}';
+    }
 }
 
