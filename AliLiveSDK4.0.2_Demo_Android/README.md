@@ -1,5 +1,11 @@
 # AliLiveSDK4.0.2_Demo_Android
 
+[注意]</br>
+直播推流sdk已在官网渠道升级,内置Queen美颜特效,本project不再更新,请直接使用官网渠道sdk即可同时应用直播+美颜效果.
+
+更多详情与功能体验介绍,参见:
+https://help.aliyun.com/document_detail/61989.html
+
 [简介]</br>
 阿里云视频直播服务（ApsaraVideo Live）是基于领先的内容接入、分发网络和大规模分布式实时转码技术打造的音视频直播平台，提供便捷接入、高清流畅、低延迟、高并发的音视频直播服务。
 
