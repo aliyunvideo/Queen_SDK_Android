@@ -12,13 +12,13 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.aliyun.maliang.android.simpleapp.CameraV1;
-import com.aliyun.maliang.android.simpleapp.OnModeStyleAction;
-import com.aliyun.maliang.android.simpleapp.QueenParamHolder;
+import com.aliyun.maliang.android.simpleapp.queen.QueenEngineHolder;
+import com.aliyun.maliang.android.simpleapp.queen.QueenParamHolder;
+import com.aliyun.maliang.android.simpleapp.queen.QueenRuntime;
 import com.taobao.android.libqueen.ImageFormat;
 import com.taobao.android.libqueen.QueenEngine;
 import com.taobao.android.libqueen.QueenUtil;
 import com.taobao.android.libqueen.Texture2D;
-import com.taobao.android.libqueen.exception.InitializationException;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -92,8 +92,8 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
 
     private void initCommon() {
         try {
-            engine = new QueenEngine(mContext, mUseQueenRenderToScreen);
-        } catch (InitializationException e) {
+            QueenEngineHolder.createQueenEngine(mContext, mUseQueenRenderToScreen);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -102,8 +102,8 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
 
     private void initWithOutTexture() {
         try {
-            engine = new QueenEngine(mContext, true);
-        } catch (InitializationException e) {
+            engine = QueenEngineHolder.createQueenEngine(mContext, true);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         engine.setInputTexture(mOESTextureId, mCamera.getCameraOutWidth(),mCamera.getCameraOutHeight(),true);
@@ -158,10 +158,14 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
             mSurfaceTexture.getTransformMatrix(transformMatrix);
         }
 
+        if (!QueenRuntime.isEnableQueen || engine == null) {
+            mOESFrameGlDrawer.draw(transformMatrix, mOESTextureId);
+            return;
+        }
+
         updateInputDataToQueen();
 
-        OnModeStyleAction.doActionForKEAI();
-        QueenParamHolder.writeParamToEngine(engine);
+        QueenParamHolder.doAcitonForDemo(engine);
 
         GLES20.glClearColor(0, 0, 0, 0);
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
@@ -250,18 +254,28 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
     }
 
     public void release() {
+        releaseGLResource();
+        mCamera.relase();
+        mCamera = null;
+        if (mHandler != null) {
+            mHandler.removeMessages(1);
+        }
+    }
+
+
+    public void releaseGLResource() {
         if (mSurfaceTexture != null) {
             mSurfaceTexture.release();
             mSurfaceTexture = null;
         }
-        mCamera.relase();
-        mCamera = null;
         mOESTextureId = -1;
         if (engine != null) {
-            engine.release();
+            QueenEngineHolder.releaseEngine(engine);
+            engine = null;
         }
-        if (mHandler != null) {
-            mHandler.removeMessages(1);
+        if (mOutTexture != null) {
+            mOutTexture.release();
+            mOutTexture = null;
         }
         QueenParamHolder.relaseQueenParams();
     }

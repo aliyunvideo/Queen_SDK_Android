@@ -1,8 +1,5 @@
 package com.aliyun.maliang.android.simpleapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,15 +16,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.aliyun.maliang.android.simpleapp.CameraV1GLSurfaceView.CameraV1GLSurfaceView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private CameraV1GLSurfaceView mGLSurfaceView;
-    private Button mButton;
     private int mCameraId;
     private CameraV1 mCamera;
     private static String TAG = "CameraV1GLSurfaceViewActivity";
@@ -71,15 +69,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        mButton = new Button(this);
-        mButton.setText("切换");
-        FrameLayout.LayoutParams buttonParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        buttonParams.gravity = Gravity.LEFT | Gravity.TOP;
-        mButton.setLayoutParams(buttonParams);
-        mButton.setOnClickListener(this);
-
-        background.addView(mButton);
         background.addView(mGLSurfaceView);
+
+        CameraRightPanel cameraRightPanel = new CameraRightPanel(this);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        params.gravity = Gravity.RIGHT;
+        cameraRightPanel.setLayoutParams(params);
+        cameraRightPanel.setOnClickListenerProxy(this);
+        background.addView(cameraRightPanel);
+
         setContentView(background);
 
         mOrientationEventListener = new OrientationEventListener(this, SensorManager.SENSOR_DELAY_NORMAL) {
@@ -167,10 +165,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void run() {
                     if (mCamera != null) {
                         mCamera.stopPreview();
+                        mCamera.releaseCamera();
+                        mCamera = null;
                     }
+
+                    mGLSurfaceView.releaseGLResource();
+                    mGLSurfaceView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mGLSurfaceView.onPause();
+                        }
+                    });
                 }
             });
         }
+
         if (mOrientationEventListener != null) {
             mOrientationEventListener.disable();
         }
@@ -204,7 +213,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onDestroy() {
-        Log.i(TAG,"onDestroy");
         mGLSurfaceView.queueEvent(new Runnable() {
             @Override
             public void run() {
@@ -215,7 +223,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
                 mGLSurfaceView.release();
-                mGLSurfaceView = null;
+                mGLSurfaceView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mGLSurfaceView.onPause();
+                        mGLSurfaceView = null;
+                    }
+                });
             }
         });
         isDestroyed = true;

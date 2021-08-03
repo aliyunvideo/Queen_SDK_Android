@@ -2,6 +2,7 @@ package com.aliyun.maliang.android.simpleapp.CameraV1GLSurfaceView;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
+import android.view.SurfaceHolder;
 import android.widget.TextView;
 
 import com.aliyun.maliang.android.simpleapp.CameraV1;
@@ -30,6 +31,12 @@ public class CameraV1GLSurfaceView extends GLSurfaceView {
         if (mRenderer != null) {
             mRenderer.release();
             mRenderer = null;
+        }
+    }
+
+    public void releaseGLResource() {
+        if (mRenderer != null) {
+            mRenderer.releaseGLResource();
         }
     }
 
