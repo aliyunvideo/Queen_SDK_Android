@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
+import android.view.SurfaceHolder;
 
 public class CameraPreviewFrameView extends GLSurfaceView {
     private static final String TAG = "CameraPreviewFrameView";
@@ -78,5 +79,11 @@ public class CameraPreviewFrameView extends GLSurfaceView {
         Log.i(TAG, "initialize");
         mScaleDetector = new ScaleGestureDetector(context, mScaleListener);
         mGestureDetector = new GestureDetector(context, mGestureListener);
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        super.surfaceDestroyed(holder);
+        Log.d(TAG, "CameraPreviewFrameView#surfaceDestroyed");
     }
 }

@@ -131,6 +131,8 @@ public class AVStreamingActivity extends Activity implements
     private int mTimes = 0;
     private boolean mIsPictureStreaming = false;
 
+    private CameraPreviewFrameView mCameraPreviewFrameView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -176,11 +178,20 @@ public class AVStreamingActivity extends Activity implements
     @Override
     protected void onResume() {
         super.onResume();
+        Log.i(TAG, "AVStreamingActivity#onResume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        Log.i(TAG, "AVStreamingActivity#onPause");
+        mCameraPreviewFrameView.queueEvent(new Runnable() {
+            @Override
+            public void run() {
+                releaseQueenEngine();
+            }
+        });
+
     }
 
     @Override
@@ -384,8 +395,8 @@ public class AVStreamingActivity extends Activity implements
      * 初始化推流管理类
      */
     private void initStreamingManager() {
-        CameraPreviewFrameView cameraPreviewFrameView = (CameraPreviewFrameView) findViewById(R.id.cameraPreview_surfaceView);
-        mMediaStreamingManager = new MediaStreamingManager(this, cameraPreviewFrameView, mEncodingConfig.mCodecType);
+        mCameraPreviewFrameView = (CameraPreviewFrameView) findViewById(R.id.cameraPreview_surfaceView);
+        mMediaStreamingManager = new MediaStreamingManager(this, mCameraPreviewFrameView, mEncodingConfig.mCodecType);
 
         // 初始化 MicrophoneStreamingSetting
         MicrophoneStreamingSetting microphoneStreamingSetting = null;
@@ -398,7 +409,7 @@ public class AVStreamingActivity extends Activity implements
         }
         mMediaStreamingManager.prepare(mCameraStreamingSetting, microphoneStreamingSetting, mWatermarkSetting, mProfile);
         mMediaStreamingManager.setAutoRefreshOverlay(true);
-        cameraPreviewFrameView.setListener(this);
+        mCameraPreviewFrameView.setListener(this);
 
         // 设置推流所需监听器
         mMediaStreamingManager.setStreamingSessionListener(mStreamingSessionListener);
@@ -1152,12 +1163,12 @@ public class AVStreamingActivity extends Activity implements
             Log.i(TAG, "onSurfaceCreated");
             mFBO.initialize(AVStreamingActivity.this);
 
-            if (engine != null) {
-                engine.release();
+            releaseQueenEngine();
+            if (null != mBytesBufPool) {
                 mBytesBufPool.clear();
                 mBytesBufPool = null;
-                mOutTexture = null;
             }
+
             try {
                 // 传入Android.content.Context触发引擎的初始化
                 // 第二个参数为true表示直接输出到当前OpenGL的显示区域
@@ -1188,11 +1199,10 @@ public class AVStreamingActivity extends Activity implements
             Log.i(TAG, "onSurfaceDestroyed");
             mFBO.release();
 
-            if (engine != null) {
-                engine.release();
+            releaseQueenEngine();
+            if (null != mBytesBufPool) {
                 mBytesBufPool.clear();
                 mBytesBufPool = null;
-                mOutTexture = null;
             }
         }
 
@@ -1207,6 +1217,9 @@ public class AVStreamingActivity extends Activity implements
          */
         @Override
         public int onDrawFrame(int texId, int width, int height, float[] transformMatrix) {
+            if (null == engine) {
+                return texId;
+            }
             // 设置输入纹理，用于美颜流程的渲染
             // 第四个参数表示输入纹理是否为OES类型的纹理
             engine.setInputTexture(texId, height, width, true);
@@ -1252,6 +1265,7 @@ public class AVStreamingActivity extends Activity implements
     };
 
     private void writeBeautyParams() {
+        engine.enableFacePointDebug(true);
         //美白开关
         engine.enableBeautyType(BeautyFilterType.kSkinWhiting, true);
         //美白参数 [0,1]
@@ -1584,6 +1598,19 @@ public class AVStreamingActivity extends Activity implements
             return (360 + cameraInfo.orientation - mDeviceOrientation) % 360;
         } else {
             return (cameraInfo.orientation + mDeviceOrientation) % 360;
+        }
+    }
+
+    private void releaseQueenEngine() {
+        Log.i(TAG, "AVStreamingActivity#releaseQueenEngine");
+        if (null != mOutTexture) {
+            mOutTexture.release();
+            mOutTexture = null;
+        }
+        if (null != engine) {
+            Log.i(TAG, "AVStreamingActivity#releaseQueenEngine ...");
+            engine.release();
+            engine = null;
         }
     }
 }
