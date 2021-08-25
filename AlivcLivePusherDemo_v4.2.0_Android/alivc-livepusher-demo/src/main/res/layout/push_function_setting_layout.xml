@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/wheel_white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:layout_marginBottom="100dp"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/title_bg_grey_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/push_orientation"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <RadioGroup
+                android:id="@+id/main_orientation"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/portrait"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/left_shape_selector"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="@string/portrait"
+                    android:textSize="@dimen/font_size_28px" />
+
+                <RadioButton
+                    android:id="@+id/home_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/middle_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/homeLeft"
+                    android:textSize="@dimen/font_size_28px" />
+
+                <RadioButton
+                    android:id="@+id/home_right"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/right_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/homeRight"
+                    android:textSize="@dimen/font_size_28px" />
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/landscape_model"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <RadioGroup
+                android:id="@+id/setting_display_mode"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/full"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/left_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/display_mode_full"
+                    android:textSize="@dimen/font_size_28px" />
+
+                <RadioButton
+                    android:id="@+id/fit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/middle_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/display_mode_fit"
+                    android:textSize="@dimen/font_size_28px" />
+
+                <RadioButton
+                    android:id="@+id/cut"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/right_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:checked="true"
+                    android:text="@string/display_mode_cut"
+                    android:textSize="@dimen/font_size_28px" />
+
+            </RadioGroup>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/title_bg_grey_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:text="@string/auto_reconnect"
+                android:textColor="@color/trackGradient"
+                android:textSize="@dimen/font_size_24px"></TextView>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/reconnect_duration"
+                android:layout_marginTop="3dp"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <TextView
+                android:id="@+id/retry_interval_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:text="/ms" />
+
+            <EditText
+                android:id="@+id/retry_interval"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/retry_interval_desc"
+                android:hint="@string/input_desc"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:background="@color/wheel_white"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/font_size_28px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/reconnect_times"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <TextView
+                android:id="@+id/retry_count_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:text="/次" />
+
+            <EditText
+                android:id="@+id/retry_count"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/retry_count_desc"
+                android:hint="@string/input_desc"
+                android:inputType="number"
+                android:background="@color/wheel_white"
+                android:paddingLeft="10dp"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/font_size_28px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="11dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/watermark"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/watermark_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/watermark_setting"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <TextView
+                android:id="@+id/water_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="@string/watermark_setting"
+                android:textColor="@color/text_blue"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="3dp"
+                android:textSize="@dimen/font_size_28px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/title_bg_grey_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:text="@string/mirror_desc"
+                android:textColor="@color/trackGradient"
+                android:textSize="@dimen/font_size_24px"></TextView>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/setting_push_mirror"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/push_mirror_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                android:layout_marginRight="16dp"
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/setting_pre_mirror"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/preview_mirror_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                android:layout_marginRight="16dp"
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/title_bg_grey_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:text="@string/camera_setting"
+                android:textColor="@color/trackGradient"
+                android:textSize="@dimen/font_size_24px"></TextView>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/front_camera"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/camera_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                android:layout_marginRight="16dp"
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/auto_focus"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/autofocus_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                android:layout_marginRight="16dp"
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/title_bg_grey_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:text="@string/beauty_setting"
+                android:textColor="@color/trackGradient"
+                android:textSize="@dimen/font_size_24px"></TextView>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/beauty_enable"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/beautyOn_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                android:layout_marginRight="16dp"
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/title_bg_grey_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:text="@string/image_push"
+                android:textColor="@color/trackGradient"
+                android:textSize="@dimen/font_size_24px"></TextView>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/pause_image"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/pause_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="true"
+                android:textOff=""
+                android:textOn=""
+                android:layout_marginRight="16dp"
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/network_image"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/network_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="true"
+                android:textOff=""
+                android:textOn=""
+                android:layout_marginRight="16dp"
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/title_bg_grey_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:text="@string/image_push"
+                android:textColor="@color/trackGradient"
+                android:textSize="@dimen/font_size_24px"></TextView>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/audio_only_push_streaming"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/audio_only_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                android:layout_marginRight="16dp"
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/video_only_push_streaming"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/video_only_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                android:layout_marginRight="16dp"
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/title_bg_grey_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:text="@string/image_push"
+                android:textColor="@color/trackGradient"
+                android:textSize="@dimen/font_size_24px"></TextView>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/auth_text"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <TextView
+                android:id="@+id/auth_time_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:text="/ms" />
+
+            <EditText
+                android:id="@+id/auth_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/auth_time_desc"
+                android:hint="@string/input_desc"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:background="@color/wheel_white"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/font_size_28px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/privacy_text"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+
+            <EditText
+                android:id="@+id/privacy_key"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="@string/input_desc"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/wheel_white"
+                android:textColorHint="@android:color/darker_gray"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/font_size_28px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/title_bg_grey_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:text="@string/other_func"
+                android:textColor="@color/trackGradient"
+                android:textSize="@dimen/font_size_24px"></TextView>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/asynchronous_interface"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/async_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                android:layout_marginRight="16dp"
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/extern_stream_main"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/extern_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                android:layout_marginRight="16dp"
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="100dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/local_log"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/log_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                android:layout_marginRight="16dp"
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

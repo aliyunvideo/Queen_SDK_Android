@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_margin_261">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/homepage_bg" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="22dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/app_name" />
+    </RelativeLayout>
+
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/view_margin_25"
+        android:layout_marginBottom="20dp"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:rowCount="2">
+        <LinearLayout
+            android:id="@+id/push_enter_layout"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_model_shape"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/player_image" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/push_enter_name_tv"
+                android:textColor="@color/text_color_model_name"
+                android:textSize="@dimen/view_size_text_17" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pull_common_enter_layout"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/bg_model_shape"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rtc_pull_image" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/pull_common_enter_name_tv"
+                android:textColor="@color/text_color_model_name"
+                android:textSize="@dimen/view_size_text_17" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pull_enter_layout"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_model_shape"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/pull_test_image" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/pull_rtc_enter_name_tv"
+                android:textColor="@color/text_color_model_name"
+                android:textSize="@dimen/view_size_text_17" />
+        </LinearLayout>
+    </GridLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/view_margin_36"
+        android:textColor="@color/alivc_version_color"
+        android:textSize="@dimen/view_version_size_text_12" />
+
+</LinearLayout>
