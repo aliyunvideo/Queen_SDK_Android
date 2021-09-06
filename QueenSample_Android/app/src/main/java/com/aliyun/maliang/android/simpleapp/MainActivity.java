@@ -21,18 +21,18 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aliyun.maliang.android.simpleapp.CameraV1GLSurfaceView.CameraV1GLSurfaceView;
+import com.aliyun.maliang.android.simpleapp.SurfaceView.CameraGLSurfaceView;
+import com.aliyun.maliang.android.simpleapp.queen.QueenCameraHelper;
+import com.aliyun.maliang.android.simpleapp.view.CameraRightPanel;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private CameraV1GLSurfaceView mGLSurfaceView;
+    private CameraGLSurfaceView mGLSurfaceView;
     private int mCameraId;
     private CameraV1 mCamera;
     private static String TAG = "CameraV1GLSurfaceViewActivity";
 
     private static final int PERMISSION_REQUEST_CODE = 1000;
-
-    private OrientationEventListener mOrientationEventListener;
 
     private boolean isDestroyed = false;
 
@@ -50,20 +50,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             initGlSurfaceView();
         }
-//        android.util.Log.e("TEST_QUEEN", "===license=" + LicenseHelper.getPackageSignature());
     }
 
     private void initGlSurfaceView() {
         FrameLayout background = new FrameLayout(this);
         background.setLayoutParams(new ViewGroup.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
 
-        mGLSurfaceView = new CameraV1GLSurfaceView(this);
+        mGLSurfaceView = new CameraGLSurfaceView(this);
         mGLSurfaceView.setLayoutParams(new ViewGroup.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         //设置相机前后
         mCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
-//        mCameraId = Camera.CameraInfo.CAMERA_FACING_BACK;
         mCamera = new CameraV1(this);
-        mGLSurfaceView.init(mCamera, false, this);
+        mGLSurfaceView.init(mCamera, this);
 
         if (!mCamera.openCamera(1280,720, mCameraId)) {
             return;
@@ -74,25 +72,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         CameraRightPanel cameraRightPanel = new CameraRightPanel(this);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
         params.gravity = Gravity.RIGHT;
-        cameraRightPanel.setLayoutParams(params);
         cameraRightPanel.setOnClickListenerProxy(this);
-        background.addView(cameraRightPanel);
+        background.addView(cameraRightPanel, params);
+
+        FpsHelper.get().setFpsView(cameraRightPanel.getFpsTextView());
 
         setContentView(background);
 
-        mOrientationEventListener = new OrientationEventListener(this, SensorManager.SENSOR_DELAY_NORMAL) {
-            @Override
-            public void onOrientationChanged(int orientation) {
-                if (mCamera != null) {
-                    if (orientation == OrientationEventListener.ORIENTATION_UNKNOWN) {
-                        return;
-                    }
-                    orientation = (orientation + 45) / 90 * 90;
-
-                    mCamera.setDeviceOrientation(orientation, ActivityUtil.getDegrees(MainActivity.this));
-                }
-            }
-        };
+        QueenCameraHelper.get().initOrientation(this);
     }
 
     @Override
@@ -180,9 +167,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             });
         }
 
-        if (mOrientationEventListener != null) {
-            mOrientationEventListener.disable();
-        }
+        QueenCameraHelper.get().onPause();
     }
 
     @Override
@@ -206,9 +191,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (mGLSurfaceView != null) {
             mGLSurfaceView.onResume();
         }
-        if (mOrientationEventListener != null && mOrientationEventListener.canDetectOrientation()) {
-            mOrientationEventListener.enable();
-        }
+        QueenCameraHelper.get().onResume();
     }
 
     @Override
@@ -233,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         isDestroyed = true;
-
+        FpsHelper.get().release();
         super.onDestroy();
     }
 

@@ -1,10 +1,9 @@
-package com.aliyun.maliang.android.simpleapp.queen;
+package com.aliyun.maliang.android.simpleapp.queen.params;
 
 import com.taobao.android.libqueen.models.BlendType;
 import com.taobao.android.libqueen.models.MakeupType;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -57,31 +56,6 @@ public class QueenParam {
             faceBuffingWrinklesParam = 0.0f; // 祛皱纹[0,1]
             faceBuffingBrightenFaceParam = 0.0f; // 祛暗沉[0,1]
         }
-
-        @Override
-        public String toString() {
-            return "BasicBeautyRecord{" +
-                    "enableSkinWhiting=" + enableSkinWhiting +
-                    ", skinWhitingParam=" + skinWhitingParam +
-                    ", skinRedParam=" + skinRedParam +
-                    ", enableSkinBuffing=" + enableSkinBuffing +
-                    ", skinBuffingParam=" + skinBuffingParam +
-                    ", skinSharpenParam=" + skinSharpenParam +
-                    ", enableFaceBuffing=" + enableFaceBuffing +
-                    ", faceBuffingPouchParam=" + faceBuffingPouchParam +
-                    ", faceBuffingNasolabialFoldsParam=" + faceBuffingNasolabialFoldsParam +
-                    ", faceBuffingWrinklesParam=" + faceBuffingWrinklesParam +
-                    ", faceBuffingBrightenFaceParam=" + faceBuffingBrightenFaceParam +
-                    ", faceBuffingWhiteTeeth=" + faceBuffingWhiteTeeth +
-                    ", faceBuffingBrightenEye=" + faceBuffingBrightenEye +
-                    ", faceBuffingLipstick=" + faceBuffingLipstick +
-                    ", enableFaceBuffingLipstick=" + enableFaceBuffingLipstick +
-                    ", faceBuffingBlush=" + faceBuffingBlush +
-                    ", faceBuffingLipstickColorParams=" + faceBuffingLipstickColorParams +
-                    ", faceBuffingLipstickGlossParams=" + faceBuffingLipstickGlossParams +
-                    ", faceBuffingLipstickBrightnessParams=" + faceBuffingLipstickBrightnessParams +
-                    '}';
-        }
     }
     public BasicBeautyRecord basicBeautyRecord = new BasicBeautyRecord();
 
@@ -89,15 +63,6 @@ public class QueenParam {
         public boolean lutEnable = false;
         public String lutPath; // 滤镜色卡路径
         public float lutParam = 0.8f; // 滤镜强度[0,1]
-
-        @Override
-        public String toString() {
-            return "LUTRecord{" +
-                    "lutEnable=" + lutEnable +
-                    ", lutPath='" + lutPath + '\'' +
-                    ", lutParam=" + lutParam +
-                    '}';
-        }
     }
     public LUTRecord lutRecord = new LUTRecord();
 
@@ -105,14 +70,6 @@ public class QueenParam {
         public boolean stickerEnable = false;
         public String stickerPath; // 贴纸路径
         public static List<String> usingStickerPathList = new ArrayList<>(); //设置新的贴纸之后需要去掉旧的资源，这里做备份
-
-        @Override
-        public String toString() {
-            return "StickerRecord{" +
-                    "stickerEnable=" + stickerEnable +
-                    ", stickerPath='" + stickerPath + '\'' +
-                    '}';
-        }
     }
     public StickerRecord stickerRecord = new StickerRecord();
 
@@ -150,37 +107,6 @@ public class QueenParam {
         public static float formatReverseParam(int param) {
             return param / 100.0f * -1f;
         }
-
-        @Override
-        public String toString() {
-            return "FaceShapeRecord{" +
-                    "enableFaceShape=" + enableFaceShape +
-                    ", cutCheekParam=" + cutCheekParam +
-                    ", cutFaceParam=" + cutFaceParam +
-                    ", thinFaceParam=" + thinFaceParam +
-                    ", longFaceParam=" + longFaceParam +
-                    ", lowerJawParam=" + lowerJawParam +
-                    ", higherJawParam=" + higherJawParam +
-                    ", thinJawParam=" + thinJawParam +
-                    ", thinMandibleParam=" + thinMandibleParam +
-                    ", bigEyeParam=" + bigEyeParam +
-                    ", eyeAngle1Param=" + eyeAngle1Param +
-                    ", canthusParam=" + canthusParam +
-                    ", canthus1Param=" + canthus1Param +
-                    ", eyeAngle2Param=" + eyeAngle2Param +
-                    ", eyeTDAngleParam=" + eyeTDAngleParam +
-                    ", thinNoseParam=" + thinNoseParam +
-                    ", nosewingParam=" + nosewingParam +
-                    ", nasalHeightParam=" + nasalHeightParam +
-                    ", noseTipHeightParam=" + noseTipHeightParam +
-                    ", mouthWidthParam=" + mouthWidthParam +
-                    ", mouthSizeParam=" + mouthSizeParam +
-                    ", mouthHighParam=" + mouthHighParam +
-                    ", philtrumParam=" + philtrumParam +
-                    ", hairLineParam=" + hairLineParam +
-                    ", smailParam=" + smailParam +
-                    '}';
-        }
     }
 
     public FaceShapeRecord faceShapeRecord = new FaceShapeRecord();
@@ -200,16 +126,6 @@ public class QueenParam {
             makeupBlendType[MakeupType.kMakeupMouth] = BlendType.kBlendMultiply;
             makeupBlendType[MakeupType.kMakeupHighlight] = BlendType.kBlendOverlay;
             makeupBlendType[MakeupType.kMakeupWocan] = BlendType.kBlendCurve;
-        }
-
-        @Override
-        public String toString() {
-            return "FaceMakeupRecord{" +
-                    "enableFaceMakeup=" + enableFaceMakeup +
-                    ", makeupResourcePath=" + Arrays.toString(makeupResourcePath) +
-                    ", makeupBlendType=" + Arrays.toString(makeupBlendType) +
-                    ", makeupAlpha=" + Arrays.toString(makeupAlpha) +
-                    '}';
         }
     }
     public FaceMakeupRecord faceMakeupRecord = new FaceMakeupRecord();
@@ -250,15 +166,4 @@ public class QueenParam {
         }
     }
     public SegmentRecord segmentRecord = new SegmentRecord();
-
-    @Override
-    public String toString() {
-        return "QueenParam{" +
-                "basicBeautyRecord=" + basicBeautyRecord +
-                ", lutRecord=" + lutRecord +
-                ", stickerRecord=" + stickerRecord +
-                ", faceShapeRecord=" + faceShapeRecord +
-                ", faceMakeupRecord=" + faceMakeupRecord +
-                '}';
-    }
 }

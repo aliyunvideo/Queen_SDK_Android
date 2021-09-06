@@ -6,20 +6,31 @@
     android:layout_marginRight="@dimen/alivc_common_7"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/textviewFps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/alivc_common_7"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/alivc_common_font_12"
+        />
+
     <ImageView
         android:id="@+id/btnSwitchCamera"
-        android:src="@drawable/queen_camera_switch"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/alivc_common_287"
         android:layout_width="@dimen/camera_medium_icon"
-        android:layout_height="@dimen/camera_medium_icon" />
+        android:layout_height="@dimen/camera_medium_icon"
+        android:layout_centerInParent="true"
+        android:src="@drawable/queen_camera_switch" />
 
     <ImageView
         android:id="@+id/btnSwitchQueen"
         android:src="@drawable/queen_reset"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/alivc_common_237"
         android:layout_width="@dimen/camera_medium_icon"
-        android:layout_height="@dimen/camera_medium_icon" />
+        android:layout_height="@dimen/camera_medium_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btnSwitchCamera"
+        android:layout_marginTop="@dimen/alivc_common_12"
+        />
 
 </RelativeLayout>

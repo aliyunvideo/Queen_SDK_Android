@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">SimpleApp</string>
+    <string name="app_name">QueenDemo</string>
     <string name="alivc_common_no_camera_permission">没有权限使用摄像头，请开启摄像头权限</string>
 </resources>

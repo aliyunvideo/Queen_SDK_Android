@@ -1,15 +1,15 @@
-package com.aliyun.maliang.android.simpleapp;
+package com.aliyun.maliang.android.simpleapp.view;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import com.aliyun.maliang.android.simpleapp.queen.QueenRuntime;
+import com.aliyun.maliang.android.simpleapp.R;
+import com.aliyun.maliang.android.simpleapp.queen.params.QueenRuntime;
 
 public class CameraRightPanel extends FrameLayout implements View.OnClickListener {
 
@@ -17,15 +17,7 @@ public class CameraRightPanel extends FrameLayout implements View.OnClickListene
 
     public CameraRightPanel(Context context) {
         super(context);
-
         initView();
-
-//        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-//                ViewGroup.LayoutParams.WRAP_CONTENT,
-//                ViewGroup.LayoutParams.MATCH_PARENT
-//        );
-//        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-//        setLayoutParams(params);
     }
 
     private void initView() {
@@ -52,6 +44,10 @@ public class CameraRightPanel extends FrameLayout implements View.OnClickListene
                 return true;
             }
         });
+    }
+
+    public TextView getFpsTextView() {
+        return findViewById(R.id.textviewFps);
     }
 
     public void setOnClickListenerProxy(OnClickListener mOnClickListenerProxy) {

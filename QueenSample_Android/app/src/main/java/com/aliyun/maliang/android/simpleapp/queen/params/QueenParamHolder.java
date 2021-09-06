@@ -1,4 +1,4 @@
-package com.aliyun.maliang.android.simpleapp.queen;
+package com.aliyun.maliang.android.simpleapp.queen.params;
 
 import android.text.TextUtils;
 
@@ -36,12 +36,12 @@ public class QueenParamHolder {
         sQueenParam = queenParam;
     }
 
-    public static void doAcitonForDemo(QueenEngine queenEngine) {
+    public static void writeParamToQueenEngine(QueenEngine queenEngine) {
         setQueenParam(QueenParamFactory.getDefaultScenesParam());
-        writeParamToEngine(queenEngine, false);
+        writeParamToEngineInner(queenEngine, false);
     }
 
-    public static void writeParamToEngine(QueenEngine queenEngine, boolean canUseAsyncAlg) {
+    private static void writeParamToEngineInner(QueenEngine queenEngine, boolean canUseAsyncAlg) {
 //        Log.e("lzx_queen", "writeParamToEngine : " + getQueenParam());
         if (null != queenEngine) {
             queenEngine.enableFacePointDebug(QueenRuntime.sFaceDetectDebug);
@@ -173,17 +173,6 @@ public class QueenParamHolder {
     public static void relaseQueenParams() {
         QueenParamFactory.Scenes.resetAllScenes();
         setQueenParam(QueenParamFactory.getDefaultScenesParam());
-
-//        getQueenParam().faceMakeupRecord = new QueenParam.FaceMakeupRecord();
-//        getQueenParam().faceShapeRecord = new QueenParam.FaceShapeRecord();
-//        getQueenParam().lutRecord = new QueenParam.LUTRecord();
-//        getQueenParam().basicBeautyRecord = new QueenParam.BasicBeautyRecord();
-//        getQueenParam().segmentRecord = new QueenParam.SegmentRecord();
-
-//        getQueenParam().stickerRecord.stickerEnable = false;
-//        getQueenParam().stickerRecord = new QueenParam.StickerRecord();
-//        getQueenParam().stickerRecord.usingStickerPathList.clear();
-//        getQueenParam().segmentRecord.usingAiSegmentBackgroundPathList.clear();
     }
 
 }

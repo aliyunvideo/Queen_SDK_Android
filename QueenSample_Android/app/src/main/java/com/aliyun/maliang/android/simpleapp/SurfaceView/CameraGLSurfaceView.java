@@ -1,24 +1,25 @@
-package com.aliyun.maliang.android.simpleapp.CameraV1GLSurfaceView;
+package com.aliyun.maliang.android.simpleapp.SurfaceView;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
-import android.view.SurfaceHolder;
-import android.widget.TextView;
 
 import com.aliyun.maliang.android.simpleapp.CameraV1;
 
-public class CameraV1GLSurfaceView extends GLSurfaceView {
+/**
+ * GLSurfaceView，用于展示相机camera预览
+ */
+public class CameraGLSurfaceView extends GLSurfaceView {
 
-    private CameraV1Renderer mRenderer;
+    private CameraRenderer mRenderer;
 
-    public CameraV1GLSurfaceView(Context context) {
+    public CameraGLSurfaceView(Context context) {
         super(context);
     }
 
-    public void init(CameraV1 camera, boolean isPreviewStarted, Context context) {
+    public void init(CameraV1 camera, Context context) {
         setEGLContextClientVersion(2);
-        mRenderer = new CameraV1Renderer();
-        mRenderer.init(this, camera, isPreviewStarted, context);
+        mRenderer = new CameraRenderer();
+        mRenderer.init(this, camera, context);
         setRenderer(mRenderer);
         setRenderMode(RENDERMODE_WHEN_DIRTY);
     }
@@ -37,12 +38,6 @@ public class CameraV1GLSurfaceView extends GLSurfaceView {
     public void releaseGLResource() {
         if (mRenderer != null) {
             mRenderer.releaseGLResource();
-        }
-    }
-
-    public void setFpsView(TextView textView) {
-        if (mRenderer != null) {
-            mRenderer.setFpsView(textView);
         }
     }
 }

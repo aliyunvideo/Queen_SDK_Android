@@ -3,7 +3,7 @@ package com.aliyun.maliang.android.simpleapp;
 import com.taobao.android.libqueen.models.BlendType;
 import com.taobao.android.libqueen.models.MakeupType;
 
-import static com.aliyun.maliang.android.simpleapp.queen.QueenParamHolder.getQueenParam;
+import static com.aliyun.maliang.android.simpleapp.queen.params.QueenParamHolder.getQueenParam;
 
 public class OnModeStyleAction {
 
