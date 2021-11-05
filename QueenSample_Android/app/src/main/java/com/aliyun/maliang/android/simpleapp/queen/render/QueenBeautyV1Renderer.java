@@ -38,7 +38,10 @@ public class QueenBeautyV1Renderer extends QueenBeautyRenderer {
 
     @Override
     protected void step3Draw1UpdateTextureAndWriteParamToQueenEngine(int textureId, boolean isOesTexture, int width, int height) {
-        engine.setInputTexture(textureId, width, height, isOesTexture);
+        if (engine != null) {
+            engine.setInputTexture(textureId, width, height, isOesTexture);
+        }
+
         QueenParamHolder.writeParamToQueenEngine(engine);
     }
 

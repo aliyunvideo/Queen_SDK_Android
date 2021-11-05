@@ -50,6 +50,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             initGlSurfaceView();
         }
+
+        //com.taobao.android.libqueen.util.ContextManager.setContext(this);
+        //String h5String = LicenseHelper.getPackageSignature();
+        //android.util.Log.e("TEST_QUEEN0", "====md5=" + h5String);
     }
 
     private void initGlSurfaceView() {

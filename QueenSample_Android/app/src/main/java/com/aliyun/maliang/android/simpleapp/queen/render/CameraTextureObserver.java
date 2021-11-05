@@ -17,7 +17,7 @@ public class CameraTextureObserver implements CameraRenderer.ITextureObserver {
     QueenBeautyRenderer mBeautyQueenRender;
 
     public CameraTextureObserver() {
-        mBeautyQueenRender = new QueenBeautyV3Renderer();
+        mBeautyQueenRender = new QueenBeautyV1Renderer();
     }
 
     @Override
