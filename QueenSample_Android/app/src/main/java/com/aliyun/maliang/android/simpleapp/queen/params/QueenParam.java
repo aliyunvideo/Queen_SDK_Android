@@ -1,5 +1,6 @@
 package com.aliyun.maliang.android.simpleapp.queen.params;
 
+import com.taobao.android.libqueen.models.BeautyFilterMode;
 import com.taobao.android.libqueen.models.BlendType;
 import com.taobao.android.libqueen.models.MakeupType;
 
@@ -117,15 +118,27 @@ public class QueenParam {
         public String[] makeupResourcePath = new String[MakeupType.kMakeupMax+1];   // TODO: 此处新增了卧蚕的处理
         public int[] makeupBlendType = new int[MakeupType.kMakeupMax];
         public float[] makeupAlpha = new float[MakeupType.kMakeupMax];
+        public int mMakeupMode = BeautyFilterMode.kBMFaceMakeup_Baseline;
 
         public FaceMakeupRecord() {
             for (int i = 0; i < MakeupType.kMakeupMax; i++) {
                 makeupAlpha[i] = 0.5f;
             }
-            makeupAlpha[MakeupType.kMakeupWhole] = 1.0f;
-            makeupBlendType[MakeupType.kMakeupMouth] = BlendType.kBlendMultiply;
+            makeupAlpha[MakeupType.kMakeupWhole] = 0.85f;
+            makeupAlpha[MakeupType.kMakeupBlush] = 0.8f;
+            makeupAlpha[MakeupType.kMakeupEyeShadow] = 0.7f;
+            makeupAlpha[MakeupType.kMakeupEyeliner] = 0.5f;
+            makeupAlpha[MakeupType.kMakeupEyelash] = 0.5f;
+            makeupAlpha[MakeupType.kMakeupEyeBrow] = 0.6f;
+            makeupAlpha[MakeupType.kMakeupMouth] = 0.5f;
+            makeupAlpha[MakeupType.kMakeupHighlight] = 0.4f;
+
+            makeupBlendType[MakeupType.kMakeupMouth] = BlendType.kBlendLabMix;
+            makeupBlendType[MakeupType.kMakeupEyeBrow] = BlendType.kBlendLabMix;
+            makeupBlendType[MakeupType.kMakeupBlush] = BlendType.kBlendLabMix;
             makeupBlendType[MakeupType.kMakeupHighlight] = BlendType.kBlendOverlay;
             makeupBlendType[MakeupType.kMakeupWocan] = BlendType.kBlendCurve;
+            makeupBlendType[MakeupType.kMakeupEyeball] = BlendType.kBlendLighten;
         }
     }
     public FaceMakeupRecord faceMakeupRecord = new FaceMakeupRecord();

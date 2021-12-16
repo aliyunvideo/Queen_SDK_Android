@@ -117,7 +117,8 @@ public class QueenParamHolder {
             queenEngine.updateFaceShape(FaceShapeType.typeSmile        , getQueenParam().faceShapeRecord.smailParam * QueenParamWeight.FACE_SHAPE_PARAM);
 
             // 美妆
-            queenEngine.enableBeautyType(BeautyFilterType.kMakeup, getQueenParam().faceMakeupRecord.enableFaceMakeup, QueenRuntime.sFaceMakeupDebug);
+            queenEngine.enableBeautyType(BeautyFilterType.kMakeup, getQueenParam().faceMakeupRecord.enableFaceMakeup,
+                    QueenRuntime.sFaceMakeupDebug, getQueenParam().faceMakeupRecord.mMakeupMode);
             if (getQueenParam().faceMakeupRecord.enableFaceMakeup) {
                 for (int makeupType = 0; makeupType < MakeupType.kMakeupMax; makeupType++) {
                     String makeUpResourcePath = getQueenParam().faceMakeupRecord.makeupResourcePath[makeupType];
