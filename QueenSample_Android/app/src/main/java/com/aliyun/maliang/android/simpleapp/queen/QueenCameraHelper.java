@@ -35,6 +35,8 @@ public class QueenCameraHelper {
     }
 
     private QueenCameraHelper() {
+        // 初始化默认的参数
+        setCameraAngles();
     }
 
     public void initOrientation(final Activity activity) {
@@ -84,7 +86,7 @@ public class QueenCameraHelper {
         boolean isAngleChanged = newInputAngle != inputAngle || newOutAngle != outAngle;
         inputAngle = newInputAngle;
         outAngle = newOutAngle;
-        Log.i("CameraV1", "setCameraAngles [inputAngle: " + inputAngle + ", outAngle: " + outAngle + "]");
+        Log.i("QueenCameraHelper", "setCameraAngles [inputAngle: " + inputAngle + ", outAngle: " + outAngle + ", isFront: " + isFrontCamera() + "]");
         setFlipAxis(mInfo);
     }
 
@@ -138,5 +140,16 @@ public class QueenCameraHelper {
 
     public boolean isLandscape() {
         return (inputAngle - outAngle + 360) % 180 == 0;
+    }
+
+    public boolean isFrontCamera() {
+        if (null != mInfo) {
+            return mInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT;
+        }
+        return true;
+    }
+
+    public void setCameraId(int cameraId) {
+        this.mCameraId = cameraId;
     }
 }

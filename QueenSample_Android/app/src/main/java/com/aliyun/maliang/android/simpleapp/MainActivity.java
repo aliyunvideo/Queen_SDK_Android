@@ -5,18 +5,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
-import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CameraGLSurfaceView mGLSurfaceView;
     private int mCameraId;
     private CameraV1 mCamera;
+    private ImageView mCaptureBtn;
     private static String TAG = "CameraV1GLSurfaceViewActivity";
 
     private static final int PERMISSION_REQUEST_CODE = 1000;
@@ -78,6 +79,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         params.gravity = Gravity.RIGHT;
         cameraRightPanel.setOnClickListenerProxy(this);
         background.addView(cameraRightPanel, params);
+
+        mCaptureBtn = new ImageView(this);
+        mCaptureBtn.setOnClickListener(this);
+        mCaptureBtn.setImageResource(R.drawable.icon_camera_small);
+        FrameLayout.LayoutParams captureBtnParams = new FrameLayout.LayoutParams(
+                getResources().getDimensionPixelSize(R.dimen.camera_big_icon),
+                getResources().getDimensionPixelSize(R.dimen.camera_big_icon)
+                );
+        captureBtnParams.bottomMargin = getResources().getDimensionPixelSize(R.dimen.alivc_common_40);
+        captureBtnParams.gravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
+        background.addView(mCaptureBtn, captureBtnParams);
 
         FpsHelper.get().setFpsView(cameraRightPanel.getFpsTextView());
 
@@ -226,7 +238,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switchCamera();
+        if (mCaptureBtn.equals(v)) {
+            captureScreen();
+        } else {
+            switchCamera();
+        }
     }
 
     private void switchCamera() {
@@ -240,5 +256,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mCamera.reOpenPreview(1280,720, mCameraId);
         mGLSurfaceView.reBindCamera(mCamera);
         mCamera.startPreview();
+        QueenCameraHelper.get().setCameraId(mCameraId);
+    }
+
+
+    private void captureScreen() {
+        if (null != mGLSurfaceView) {
+            mGLSurfaceView.queueEvent(new Runnable() {
+                @Override
+                public void run() {
+                    if (null != mCamera) {
+                        final String filePath = FileUtils.makeAlbumPhotoFileName();
+                        boolean ret = mGLSurfaceView.captureFrame(filePath);
+
+                        final String msg = ret ?
+                                "成功保存文件至" + filePath :
+                                "失败-请注意查看是否有文件读写权限";
+
+                        mGLSurfaceView.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (!MainActivity.this.isFinishing()) {
+                                    Toast.makeText(mGLSurfaceView.getContext(), msg, Toast.LENGTH_SHORT).show();
+                                    mGLSurfaceView.getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + filePath)));
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
     }
 }

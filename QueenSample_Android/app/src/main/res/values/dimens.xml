@@ -2,9 +2,12 @@
 <resources>
     <dimen name="alivc_common_7">7dp</dimen>
     <dimen name="alivc_common_12">12dp</dimen>
+    <dimen name="alivc_common_20">20dp</dimen>
+    <dimen name="alivc_common_40">40dp</dimen>
     <dimen name="alivc_common_font_12">12dp</dimen>
     <dimen name="alivc_common_237">237dp</dimen>
     <dimen name="alivc_common_287">287dp</dimen>
     <dimen name="camera_medium_icon">32dp</dimen>
+    <dimen name="camera_big_icon">64dp</dimen>
 
 </resources>

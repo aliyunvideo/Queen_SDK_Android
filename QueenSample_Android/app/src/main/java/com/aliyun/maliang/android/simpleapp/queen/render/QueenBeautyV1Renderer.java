@@ -1,11 +1,12 @@
 package com.aliyun.maliang.android.simpleapp.queen.render;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.util.Log;
 
-import com.aliyun.maliang.android.simpleapp.SurfaceView.CameraRenderer;
+import com.aliyun.maliang.android.simpleapp.FileUtils;
 import com.aliyun.maliang.android.simpleapp.queen.QueenCameraHelper;
 import com.aliyun.maliang.android.simpleapp.queen.params.QueenParamHolder;
-import com.taobao.android.libqueen.ImageFormat;
 import com.taobao.android.libqueen.QueenEngine;
 import com.taobao.android.libqueen.Texture2D;
 
@@ -18,11 +19,13 @@ import com.taobao.android.libqueen.Texture2D;
 public class QueenBeautyV1Renderer extends QueenBeautyRenderer {
 
     private static final String TAG = "QueenBeautyV1Renderer";
+    private Texture2D mOutTexture;
 
     QueenEngine engine;
 
     @Override
     protected void step1ReadyQueenEngine(Context context) {
+        Log.i("QueenBeautyV1Renderer", "step1ReadyQueenEngine@" + Thread.currentThread().getId());
         try {
             // 注意，此处是将纹理直接显示上屏，也就是说由QueenEngine进行绘制显示出来，Queen直接render之后即可看到最后效果
             engine = new QueenEngine(context, true);
@@ -33,13 +36,21 @@ public class QueenBeautyV1Renderer extends QueenBeautyRenderer {
 
     @Override
     protected void step2SetScreenViewport(int left, int bottom, int width, int height) {
+        Log.i("QueenBeautyV1Renderer", "step2SetScreenViewport@" + Thread.currentThread().getId());
         engine.setScreenViewport(left, bottom, width, height);
     }
 
     @Override
     protected void step3Draw1UpdateTextureAndWriteParamToQueenEngine(int textureId, boolean isOesTexture, int width, int height) {
+        Log.i("QueenBeautyV1Renderer", "step3Draw1UpdateTextureAndWriteParamToQueenEngine@" + Thread.currentThread().getId() + "[width: " + width + ", height: " + height + "]");
         if (engine != null) {
             engine.setInputTexture(textureId, width, height, isOesTexture);
+        }
+
+        if (mOutTexture == null) {
+            // 是否让Queen保持原纹理方向输出
+            mOutTexture = engine.autoGenOutTexture(false);
+            Log.i("QueenBeautyV1Renderer", "step3Draw2UpdateBufferToQueenEngine_IF_NEED@" + Thread.currentThread().getId() + " ---1 [w: " + mOutTexture.getSize().x + ", h: " + mOutTexture.getSize().y + "]");
         }
 
         QueenParamHolder.writeParamToQueenEngine(engine);
@@ -68,10 +79,25 @@ public class QueenBeautyV1Renderer extends QueenBeautyRenderer {
 
     @Override
     protected void step4ReleaseQueenEngine() {
+        super.step4ReleaseQueenEngine();
         if (engine != null) {
             engine.release();
             engine = null;
         }
         QueenParamHolder.relaseQueenParams();
+    }
+
+    @Override
+    protected boolean captureFrame(String filePath) {
+        Bitmap outBitmap  = mOutTexture.readToBitmap();
+
+        int rotateAngle = QueenCameraHelper.get().isFrontCamera() ?
+                (360-QueenCameraHelper.get().outAngle) % 360 :
+                (QueenCameraHelper.get().outAngle) % 360;
+        Log.i("QueenBeautyV1Renderer", "captureFrame [w: " + outBitmap.getWidth() + ", h: " + outBitmap.getHeight() +
+                ", inputAngle: " + QueenCameraHelper.get().inputAngle + ", outputAngle: " + QueenCameraHelper.get().outAngle + ", rotateAngle: " + rotateAngle +
+                ", frontCamera: " + QueenCameraHelper.get().isFrontCamera() + "]");
+        outBitmap = FileUtils.bitmapRotateAndFlip(outBitmap, rotateAngle, true, false);
+        return FileUtils.saveToFile(outBitmap, filePath, Bitmap.CompressFormat.PNG, 100);
     }
 }

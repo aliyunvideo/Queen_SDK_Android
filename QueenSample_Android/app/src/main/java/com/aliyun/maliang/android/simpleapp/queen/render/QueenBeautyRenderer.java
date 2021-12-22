@@ -15,6 +15,7 @@ import android.content.Context;
  *
  */
 public class QueenBeautyRenderer {
+    protected boolean mReleased = false;
 
     protected void step1ReadyQueenEngine(Context context) {}
 
@@ -27,8 +28,15 @@ public class QueenBeautyRenderer {
 
     protected int step3Draw3Render(float[] matrix) {return -9;}
 
-    protected void step4ReleaseQueenEngine() {}
+    protected void step4ReleaseQueenEngine() {
+        mReleased = true;
+    }
 
+    protected boolean captureFrame(String filePath) {
+        return false;
+    }
 
-
+    public boolean isReleased() {
+        return mReleased;
+    }
 }

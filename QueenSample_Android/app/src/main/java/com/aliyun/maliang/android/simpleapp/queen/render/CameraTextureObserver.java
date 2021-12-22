@@ -1,6 +1,7 @@
 package com.aliyun.maliang.android.simpleapp.queen.render;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.aliyun.maliang.android.simpleapp.SurfaceView.CameraRenderer;
 import com.aliyun.maliang.android.simpleapp.queen.QueenCameraHelper;
@@ -18,24 +19,33 @@ public class CameraTextureObserver implements CameraRenderer.ITextureObserver {
 
     public CameraTextureObserver() {
         mBeautyQueenRender = new QueenBeautyV1Renderer();
+//        mBeautyQueenRender = new QueenBeautyV3Renderer();
     }
 
     @Override
     public void onTextureCreated(Context context) {
-        // [Queen-STEP1]Queen使用第一步：在纹理ready首次回调时，初始化创建QueenEngine
-        mBeautyQueenRender.step1ReadyQueenEngine(context);
+        if (!mBeautyQueenRender.isReleased()) {
+            // [Queen-STEP1]Queen使用第一步：在纹理ready首次回调时，初始化创建QueenEngine
+            mBeautyQueenRender.step1ReadyQueenEngine(context);
+        }
     }
 
     @Override
     public void onTextureChanged(int left, int bottom, int width, int height) {
-        mBeautyQueenRender.step2SetScreenViewport(left, bottom, width, height);
+        if (!mBeautyQueenRender.isReleased()) {
+            mBeautyQueenRender.step2SetScreenViewport(left, bottom, width, height);
+        }
     }
 
     @Override
     public int onTextureUpdated(int textureId, boolean isOesTexture, float[] matrix, byte[] imageData, int format, int width, int height) {
+        if (mBeautyQueenRender.isReleased()) {
+            return -10000;
+        }
         // 注释：注意，此处由于已知传入的imageData是直接从Camera中获取的原始数据，此处的width/height即是该画面帧数据的宽/高。
         // 而Android的Camera数据，都是旋转90度后的画面，非直接显示看到的正向数据，而纹理是直接显示的画面纹理，
         // 因此，此处为保证与纹理的宽高一致，需要进行旋转，也即w-h调换
+        Log.i("CameraTextureObserver", "CameraTextureObserver#onTextureUpdated@" + Thread.currentThread().getId() + "[width: " + width + ", height: " + height + ", landscape: " +  QueenCameraHelper.get().isLandscape() + "]");
         int w = QueenCameraHelper.get().isLandscape() ? width : height;
         int h = QueenCameraHelper.get().isLandscape() ? height : width;
         mBeautyQueenRender.step3Draw1UpdateTextureAndWriteParamToQueenEngine(textureId, isOesTexture, w, h);
@@ -49,5 +59,14 @@ public class CameraTextureObserver implements CameraRenderer.ITextureObserver {
     @Override
     public void onTextureDestroy() {
         mBeautyQueenRender.step4ReleaseQueenEngine();
+    }
+
+    @Override
+    public boolean captureFrame(String filePath) {
+        if (mBeautyQueenRender.isReleased()) {
+            return false;
+        } else {
+            return mBeautyQueenRender.captureFrame(filePath);
+        }
     }
 }

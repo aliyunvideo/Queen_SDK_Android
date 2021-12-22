@@ -166,12 +166,21 @@ public class CameraRenderer implements GLSurfaceView.Renderer {
         }
     }
 
+    boolean captureFrame(String filePath)
+    {
+        if (mTextureObserver != null) {
+            return mTextureObserver.captureFrame(filePath);
+        }
+        return false;
+    }
 
     public interface ITextureObserver {
         void onTextureCreated(Context context);
         void onTextureChanged(int left, int bottom, int width, int height);
         int onTextureUpdated(int textureId, boolean isOesTexture, float[] matrix, byte[] imageData, int format, int width, int height);
         void onTextureDestroy();
+
+        boolean captureFrame(String filePath);
     }
 
 }
