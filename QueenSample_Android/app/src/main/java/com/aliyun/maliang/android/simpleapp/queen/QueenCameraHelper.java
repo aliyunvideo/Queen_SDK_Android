@@ -1,12 +1,16 @@
 package com.aliyun.maliang.android.simpleapp.queen;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.hardware.SensorManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.OrientationEventListener;
 import android.view.Surface;
+
+import java.lang.ref.WeakReference;
 
 public class QueenCameraHelper {
 
@@ -27,6 +31,9 @@ public class QueenCameraHelper {
      * @reference com.taobao.android.libqueen.models.Flip
      */
     public int flipAxis;
+
+    private Boolean isSystemAutoRotation = null;
+    private WeakReference<Activity> mContext;
 
     private static QueenCameraHelper helperInstance = new QueenCameraHelper();
 
@@ -52,6 +59,7 @@ public class QueenCameraHelper {
                 setDeviceOrientation(activity, orientation, degree);
             }
         };
+        mContext = new WeakReference<>(activity);
     }
 
     //只有4个方向，0是正常方向，其他是顺时针旋转方向
@@ -88,12 +96,32 @@ public class QueenCameraHelper {
         outAngle = newOutAngle;
         Log.i("QueenCameraHelper", "setCameraAngles [inputAngle: " + inputAngle + ", outAngle: " + outAngle + ", isFront: " + isFrontCamera() + "]");
         setFlipAxis(mInfo);
+        if (isAngleChanged || isSystemAutoRotation == null) {
+            // 获取是否开启自动旋转的特性
+            configSystemAutoRotation();
+        }
+    }
+
+    public void configSystemAutoRotation() {
+        try {
+            if (null != mContext && null != mContext.get()) {
+                int accelerometerRotation = Settings.System.getInt(mContext.get().getContentResolver(), Settings.System.ACCELEROMETER_ROTATION);
+                Log.i("QueenCameraHelper", "configSystemAutoRotation [accelerometerRotation: " + accelerometerRotation + "]");
+                isSystemAutoRotation = (1 == accelerometerRotation);
+            }
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private int getOutputAngle(Camera.CameraInfo cameraInfo) {
-        boolean isFont = cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK ? false : true;
-        int angle = isFont ? (360 - mDeviceOrientation) % 360 : mDeviceOrientation % 360;
-        return (angle - mDisplayOrientation + 360) % 360;
+        if (isSystemAutoRotation != null && isSystemAutoRotation) {
+            return 0;
+        } else {
+            boolean isFont = cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK ? false : true;
+            int angle = isFont ? (360 - mDeviceOrientation) % 360 : mDeviceOrientation % 360;
+            return (angle - mDisplayOrientation + 360) % 360;
+        }
     }
 
     private int getInputAngle(Camera.CameraInfo cameraInfo) {
@@ -151,5 +179,9 @@ public class QueenCameraHelper {
 
     public void setCameraId(int cameraId) {
         this.mCameraId = cameraId;
+    }
+
+    public int getCameraId() {
+        return mCameraId;
     }
 }

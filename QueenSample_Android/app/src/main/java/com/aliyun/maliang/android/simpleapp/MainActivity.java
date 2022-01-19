@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mGLSurfaceView = new CameraGLSurfaceView(this);
         mGLSurfaceView.setLayoutParams(new ViewGroup.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         //设置相机前后
-        mCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
+        QueenCameraHelper.get().initOrientation(this);
+        mCameraId = QueenCameraHelper.get().getCameraId();
         mCamera = new CameraV1(this);
         mGLSurfaceView.init(mCamera, this);
 
@@ -94,8 +95,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FpsHelper.get().setFpsView(cameraRightPanel.getFpsTextView());
 
         setContentView(background);
-
-        QueenCameraHelper.get().initOrientation(this);
     }
 
     @Override
