@@ -129,13 +129,13 @@ public class QueenParamFactory {
             // 美妆
             sScenesOnline.faceMakeupRecord.enableFaceMakeup = true;
             sScenesOnline.faceMakeupRecord.mMakeupMode = BeautyFilterMode.kBMFaceMakeup_Baseline;
-            sScenesOnline.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupHighlight] = "makeup/highlight/highlight.2.12.png";
-            sScenesOnline.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupMouth] = "makeup/mouth_zirun/zhenggongse.2.31.png";
-            sScenesOnline.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupBlush] = "makeup/blush/shaonv.2.31.png";
-            sScenesOnline.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeShadow] = "makeup/eyeshadow/yeqiangwei.2.31.png";
-            sScenesOnline.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeliner] = "makeup/eyeliner_292929/wenrou.2.31.png";
-            sScenesOnline.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyelash] = "makeup/eyelash/zhixing.2.31.png";
-            sScenesOnline.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeBrow] = "makeup/eyebrow/liuxingmei.2.31.png";
+            sScenesOnline.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupHighlight] = "makeup/highlight/highlight.2.13.png";
+            sScenesOnline.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupMouth] = "makeup/mouth_wumian/chidousha.3.3.png";
+            sScenesOnline.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupBlush] = "makeup/blush_color4/chayi.2.3.png";
+            sScenesOnline.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeShadow] = "makeup/eyeshadow/fangtangfen.3.3.png";
+            sScenesOnline.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeliner] = "makeup/eyeliner_292929/juanqiao.2.3.png";
+            sScenesOnline.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyelash] = "makeup/eyelash/lingdong.2.3.png";
+            sScenesOnline.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeBrow] = "makeup/eyebrow/biaozhunmei.2.3.png";
 
             // 贴纸20
             sScenesOnline.stickerRecord.stickerEnable = true;
@@ -159,13 +159,13 @@ public class QueenParamFactory {
             // 美妆
             sScenesRecreation.faceMakeupRecord.enableFaceMakeup = true;
             sScenesRecreation.faceMakeupRecord.mMakeupMode = BeautyFilterMode.kBMFaceMakeup_Baseline;
-            sScenesRecreation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupHighlight] = "makeup/highlight/highlight.2.12.png";
-            sScenesRecreation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupMouth] = "makeup/mouth_yaochun/nanguase.2.31.png";
-            sScenesRecreation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupBlush] = "makeup/blush/luori.2.31.png";
-            sScenesRecreation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeShadow] = "makeup/eyeshadow/tianchengse.2.31.png";
-            sScenesRecreation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeliner] = "makeup/eyeliner_292929/qizhi.2.31.png";
-            sScenesRecreation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyelash] = "makeup/eyelash/lingdong.2.31.png";
-            sScenesRecreation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeBrow] = "makeup/eyebrow/juanyanmei.2.31.png";
+            sScenesRecreation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupHighlight] = "makeup/highlight/highlight.2.13.png";
+            sScenesRecreation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupMouth] = "makeup/mouth_wumian/chidousha.3.3.png";
+            sScenesRecreation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupBlush] = "makeup/blush_color4/chayi.2.3.png";
+            sScenesRecreation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeShadow] = "makeup/eyeshadow/fangtangfen.3.3.png";
+            sScenesRecreation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeliner] = "makeup/eyeliner_292929/juanqiao.2.3.png";
+            sScenesRecreation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyelash] = "makeup/eyelash/lingdong.2.3.png";
+            sScenesRecreation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeBrow] = "makeup/eyebrow/biaozhunmei.2.3.png";
 
             // 实景抠像
 //            sScenesRecreation.segmentRecord.enableAiSegment = true;
@@ -194,12 +194,12 @@ public class QueenParamFactory {
             sScenesEducation.faceMakeupRecord.enableFaceMakeup = true;
             sScenesEducation.faceMakeupRecord.mMakeupMode = BeautyFilterMode.kBMFaceMakeup_Baseline;
             sScenesEducation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupHighlight] = "makeup/highlight/highlight.2.12.png";
-            sScenesEducation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupMouth] = "makeup/mouth_wumian/standout.2.31.png";
-            sScenesEducation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupBlush] = "makeup/blush/weixun.2.31.png";
-            sScenesEducation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeShadow] = "makeup/eyeshadow/naichazong.2.31.png";
-            sScenesEducation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeliner] = "makeup/eyeliner_292929/wenrou.2.31.png";
-            sScenesEducation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyelash] = "makeup/eyelash/yesheng.2.31.png";
-            sScenesEducation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeBrow] = "makeup/eyebrow/biaozhunmei.2.31.png";
+            sScenesEducation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupMouth] = "makeup/mouth_yaochun/standout.3.3.png";
+            sScenesEducation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupBlush] = "makeup/blush_color5/shaonv.2.3.png";
+            sScenesEducation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeShadow] = "makeup/eyeshadow/yanfense.3.3.png";
+            sScenesEducation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeliner] = "makeup/eyeliner_292929/qizhi.2.3.png";
+            sScenesEducation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyelash] = "makeup/eyelash/wugu.2.3.png";
+            sScenesEducation.faceMakeupRecord.makeupResourcePath[MakeupType.kMakeupEyeBrow] = "makeup/eyebrow/wanyuemei.2.3.png";
 
             // 贴纸
             sScenesEducation.stickerRecord.stickerEnable = false;
