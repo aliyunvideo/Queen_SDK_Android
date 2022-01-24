@@ -7,11 +7,12 @@
 - 如果不正常，那先确认接入的sdk版本是否对齐License申请的版本
     - 如果版本一致，License不生效，在钉钉技术群咨询
 ##### 是否每次调用渲染的线程不一致
-如果是这个原因，那么通过logcat过滤“QueenDetector”，可以看到提示“<font color=red>调用render的线程与QueenEngine初始化不一致，没有OpenGL上下文，所以渲染会出错或者崩溃</font>”。
+如果是这个原因，那么通过logcat过滤“QueenDetector”，可以看到提示“*调用render的线程与QueenEngine初始化不一致，没有OpenGL上下文，所以渲染会出错或者崩溃*”。
 ##### 是否调用创建QueenEngine的时候，没有OpenGL上下文
-如果是这个原因，那么通过logcat过滤“QueenDetector”，可以看到提示“当前线程没有发现OpenGL上下文。解决方案1：在有OpenGL上下文的线程下创建QueenEngine；解决方案2：withContext参数设置为true，QueenEngine会负责创建OpenGL上下文”。
+如果是这个原因，那么通过logcat过滤“QueenDetector”，可以看到提示“*当前线程没有发现OpenGL上下文。解决方案1：在有OpenGL上下文的线程下创建QueenEngine；解决方案2：withContext参数设置为true，QueenEngine会负责创建OpenGL上下文*”。
 ##### 是否设置的纹理有问题
-1、如果设置的inputTexture是非法的，那么通过logcat过滤“QueenDetector”，可以看到提示“输入的纹理在当前的OpenGL上下文中非法，请确保输入纹理在当前的OpenGL上下文创建”。
+1、如果设置的inputTexture是非法的，那么通过logcat过滤“QueenDetector”，可以看到提示“*输入的纹理在当前的OpenGL上下文中非法，请确保输入纹理在当前的OpenGL上下文创建*”。
+
 2、设置的就是一张纯色的纹理？
 - 在调试窗口显示“渲染输入纹理inputTexture”看看纹理的显示是否符合预期
 ### 妆容、贴纸对不上人脸
@@ -101,4 +102,5 @@ public void handleBitmap(Bitmap inBmp) {
 
 ## 参考
 官方Sample地址：https://github.com/aliyunvideo/Queen_SDK_Android/tree/main/QueenSample_Android
+
 快速接入包接入地址：https://github.com/aliyunvideo/Queen_SDK_Android/blob/main/QuickImportPackage.md
