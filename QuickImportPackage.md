@@ -69,4 +69,4 @@ QueenImportHelper.showDebugLayer(activity);
 ```
 1、执行上述代码之后，可以通过logcat过滤“QueenDetector”，查看具体的接入信息；
 2、打开调试窗口之后，可以通过“加图像”按钮，查看不同的调试帧。
-接入问题分析文档：
+接入问题分析文档：https://github.com/aliyunvideo/Queen_SDK_Android/blob/main/FAQ.md
