@@ -19,16 +19,19 @@
 通过updateInputDataAndRunAlg或者updateInputTextureBufferAndRunAlg方法设置的图像格式和长宽，需要检查一下。
 在调试窗口显示“算法输入图像algInputData”，调整正确的图像格式和长宽，直至符合图像显示预期为止。
 注：如果无法判断怎样是符合预期，可以打开快速预览界面看一下正确的情况。
+
 ![image.png](https://github.com/aliyunvideo/Queen_SDK_Android/blob/main/IMG/alg_inputdata.png)
 ##### inputAngle、flip是否有问题
 通过updateInputDataAndRunAlg或者updateInputTextureBufferAndRunAlg方法设置的inputAngle和flipAxis，需要检查一下。
 在调试窗口显示“算法输入图像经过inputAngle、flip处理”，参考官方Sample设置参数，直至图像的方向向上为止。
 注：如果无法判断怎样是图像方向向上，可以打开快速预览界面看一下正确的情况。
+
 ![image.png](https://github.com/aliyunvideo/Queen_SDK_Android/blob/main/IMG/alginput_angle_flip.png)
 ##### outAngle是否有问题
 通过updateInputDataAndRunAlg或者updateInputTextureBufferAndRunAlg方法设置的outAngle，需要检查一下。
 在调试窗口显示“算法输入图像经过inputAngle、flip、outAngle处理”，参考官方Sample设置参数，直至图像跟预览图像方向一致为止。
 注：如果无法判断怎样是图像方向一致，可以打开快速预览界面看一下正确的情况。
+
 ![image.png](https://github.com/aliyunvideo/Queen_SDK_Android/blob/main/IMG/alginput_angle_flip_outangle.png)
 ### 图像变形
 ##### 图像拉伸
@@ -36,9 +39,13 @@
 ##### 预览画面方向不正确？
 首先要知道一个概念，在调用QueenEngine#autoGenOutTexture的时候参数keepInputDirection，是用于控制outTexture是否要跟inputTexure保持方向一致的。
 1、如果keepInputDirection为true，那么在调试窗口显示“渲染输入纹理inputTexture”和“渲染输出纹理outTexture”，它们的方向是一致的，参考官方Sample将纹理渲染到视窗中即可。
+
 ![image.png](https://github.com/aliyunvideo/Queen_SDK_Android/blob/main/IMG/in_out_texture.png)
+
 2、如果keepInputDirection为false，那么在调试窗口显示“渲染输出纹理outTexture”；画面方向不对，那么参考官方Sample如何获取正确的transformMatrix传入即可。
+
 ![image.png](https://github.com/aliyunvideo/Queen_SDK_Android/blob/main/IMG/outtexture.png)
+
 ### 如何做图片美颜
 参考以下代码，如果处理的Bitmap大小变化，需要销毁QueenEngine，创建新的QueenEngine处理图片。
 ```JAVA
