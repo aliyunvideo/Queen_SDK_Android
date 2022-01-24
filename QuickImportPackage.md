@@ -1,7 +1,8 @@
 # Queen快速接入包使用文档
 ## 概述
 快速接入包用于提升Queen的接入效率。引入最新版本可以保证使用的是最新的素材，同时提供常见接入问题的调试能力和方法。
-注意：Queen原有的集成方式不变，快速接入包只是在Queen的上层封装了快速预览效果和问题分析的能力。
+
+**注意：Queen原有的集成方式不变，快速接入包只是在Queen的上层封装了快速预览效果和问题分析的能力。**
 
 ## 接入
 ### 集成
@@ -68,6 +69,9 @@ QueenImportHelper.initDetector(activity);
 QueenImportHelper.showDebugLayer(activity);
 ```
 1、执行上述代码之后，可以通过logcat过滤“QueenDetector”，查看具体的接入信息；
+
 2、打开调试窗口之后，可以通过“加图像”按钮，查看不同的调试帧。
-接入问题分析文档：https://github.com/aliyunvideo/Queen_SDK_Android/blob/main/FAQ.md
+
+使用方法参考文档：https://github.com/aliyunvideo/Queen_SDK_Android/blob/main/FAQ.md
+
 ![image.png](https://github.com/aliyunvideo/Queen_SDK_Android/blob/main/IMG/in_out_texture.png)
