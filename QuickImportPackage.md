@@ -18,7 +18,7 @@ allprojects {
 ```
 2、在相应Android端SDK包的应用级build.gradle项目文件下，加入依赖项。
 ```Groovy
-implementation 'com.aliyun.maliang.android:queen_quick_import_package:1.9.0'
+implementation 'com.aliyun.maliang.android:queen_quick_import_package:2.0.0'
 ```
 3、在应用的AndroidManifest.xml添加声明。
 ```XML
