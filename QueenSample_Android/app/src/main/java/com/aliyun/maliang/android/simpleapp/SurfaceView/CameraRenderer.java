@@ -5,12 +5,12 @@ import android.graphics.SurfaceTexture;
 import android.opengl.GLSurfaceView;
 import android.util.Log;
 
+import com.aliyun.android.libqueen.ImageFormat;
+import com.aliyun.android.libqueen.QueenUtil;
 import com.aliyun.maliang.android.simpleapp.CameraV1;
 import com.aliyun.maliang.android.simpleapp.FpsHelper;
 import com.aliyun.maliang.android.simpleapp.queen.params.QueenRuntime;
 import com.aliyun.maliang.android.simpleapp.queen.render.CameraTextureObserver;
-import com.taobao.android.libqueen.ImageFormat;
-import com.taobao.android.libqueen.QueenUtil;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;

@@ -1,8 +1,8 @@
 package com.aliyun.maliang.android.simpleapp.queen.params;
 
-import com.taobao.android.libqueen.models.BeautyFilterMode;
-import com.taobao.android.libqueen.models.BlendType;
-import com.taobao.android.libqueen.models.MakeupType;
+import com.aliyun.android.libqueen.models.BeautyFilterMode;
+import com.aliyun.android.libqueen.models.BlendType;
+import com.aliyun.android.libqueen.models.MakeupType;
 
 import java.io.File;
 import java.util.HashMap;

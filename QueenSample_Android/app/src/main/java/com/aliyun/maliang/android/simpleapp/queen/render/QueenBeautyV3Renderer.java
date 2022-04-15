@@ -8,8 +8,8 @@ import com.aliyun.maliang.android.simpleapp.FileUtils;
 import com.aliyun.maliang.android.simpleapp.SurfaceView.FrameTexture2DGlDrawer;
 import com.aliyun.maliang.android.simpleapp.queen.QueenCameraHelper;
 import com.aliyun.maliang.android.simpleapp.queen.params.QueenParamHolder;
-import com.taobao.android.libqueen.QueenEngine;
-import com.taobao.android.libqueen.Texture2D;
+import com.aliyun.android.libqueen.QueenEngine;
+import com.aliyun.android.libqueen.Texture2D;
 
 /**
  * 模拟调用Queen时，并非直接将相机预览OES数据直接进行回调，而是经过处理后，改用Texture2D纹理进行调用。

@@ -7,8 +7,8 @@ import android.util.Log;
 import com.aliyun.maliang.android.simpleapp.FileUtils;
 import com.aliyun.maliang.android.simpleapp.queen.QueenCameraHelper;
 import com.aliyun.maliang.android.simpleapp.queen.params.QueenParamHolder;
-import com.taobao.android.libqueen.QueenEngine;
-import com.taobao.android.libqueen.Texture2D;
+import com.aliyun.android.libqueen.QueenEngine;
+import com.aliyun.android.libqueen.Texture2D;
 
 /**
  * Surface.Renderer，用于相机预览数据的回调

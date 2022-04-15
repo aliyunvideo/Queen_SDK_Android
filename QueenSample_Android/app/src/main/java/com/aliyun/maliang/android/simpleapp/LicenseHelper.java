@@ -11,7 +11,7 @@ public class LicenseHelper {
 
     public static String getPackageSignature() {
         String signature = "";
-        Context context = com.taobao.android.libqueen.util.ContextManager.getContext();
+        Context context = com.aliyun.android.libqueen.util.ContextManager.getContext();
         if (null != context) {
             try {
                 PackageInfo packageInfo = context.getPackageManager().getPackageInfo(

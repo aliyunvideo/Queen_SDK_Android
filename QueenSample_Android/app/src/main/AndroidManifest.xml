@@ -9,12 +9,21 @@
 
     <!--android:requestLegacyExternalStorage="true"-->
     <uses-feature android:name="android.hardware.camera"/>
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.aliyun.alivc_license.licensekey"
+            android:value="xoQuEoYgOHs225cwh634fa27df8d3490e88337161a4d5ee92"/>
+        <meta-data
+            android:name="com.aliyun.alivc_license.licensefile"
+            android:value="assets/AliVideoCert_20220402104703.crt"/>
+
         <activity android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:configChanges="keyboardHidden|screenSize">
