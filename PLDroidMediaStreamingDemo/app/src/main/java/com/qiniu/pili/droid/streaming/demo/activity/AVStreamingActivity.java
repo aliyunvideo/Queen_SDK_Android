@@ -56,12 +56,12 @@ import com.qiniu.pili.droid.streaming.demo.utils.Config;
 import com.qiniu.pili.droid.streaming.demo.utils.Util;
 import com.qiniu.pili.droid.streaming.microphone.AudioMixer;
 import com.qiniu.pili.droid.streaming.microphone.OnAudioMixListener;
-import com.taobao.android.libqueen.ImageFormat;
-import com.taobao.android.libqueen.QueenEngine;
-import com.taobao.android.libqueen.Texture2D;
-import com.taobao.android.libqueen.models.BeautyFilterType;
-import com.taobao.android.libqueen.models.BeautyParams;
-import com.taobao.android.libqueen.models.Flip;
+import com.aliyun.android.libqueen.ImageFormat;
+import com.aliyun.android.libqueen.QueenEngine;
+import com.aliyun.android.libqueen.Texture2D;
+import com.aliyun.android.libqueen.models.BeautyFilterType;
+import com.aliyun.android.libqueen.models.BeautyParams;
+import com.aliyun.android.libqueen.models.Flip;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -1176,6 +1176,7 @@ public class AVStreamingActivity extends Activity implements
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            String sign = LicenseHelper.getPackageSignature();
             setCameraAngles();
         }
 
@@ -1265,7 +1266,7 @@ public class AVStreamingActivity extends Activity implements
     };
 
     private void writeBeautyParams() {
-        engine.enableFacePointDebug(true);
+//        engine.enableFacePointDebug(true);
         //美白开关
         engine.enableBeautyType(BeautyFilterType.kSkinWhiting, true);
         //美白参数 [0,1]
@@ -1294,24 +1295,6 @@ public class AVStreamingActivity extends Activity implements
         engine.setBeautyParam(BeautyParams.kBPLipstickGlossParam, 0.25f);
         // 滤镜美妆：口红明度[0,1]，需配合色相、饱和度使用，参考颜色如下：土红(0.4)、粉红(0.0)、复古红(0.2)、紫红(0.0)、正红(0.0)、橘红(0.0)、紫色(0.0)、橘色(0.0)、黄色(0.0)
         engine.setBeautyParam(BeautyParams.kBPLipstickBrightnessParam, 0.4f);
-
-        //第二个参数是开关，第三个参数是调试开关
-        engine.enableBeautyType(BeautyFilterType.kMakeup, true, false);
-
-        // 设置美妆素材
-        // 第一个参数是美妆类型
-        // 第二个参数是素材文件路径,基于assets的相对路径，如"makeup/蜜桃妆.png"
-        // 第三个参数是素材与人脸的融合类型，第四个参数是保留参数
-        String[] tmp = {"makeup/蜜桃妆.png"};
-        engine.setMakeupImage(com.taobao.android.libqueen.models.MakeupType.kMakeupWhole,
-                tmp,
-                com.taobao.android.libqueen.models.BlendType.kBlendNormal,
-                15);
-        // 设置美妆素材透明度
-        // 第二个参数是透明度，第三个参数是保留参数
-        engine.setMakeupAlpha(com.taobao.android.libqueen.models.MakeupType.kMakeupWhole,
-                0.6f,
-                0.3f);
 
         //基于assets的相对路径，如"sticker/baiyang"
         engine.addMaterial("sticker/5");

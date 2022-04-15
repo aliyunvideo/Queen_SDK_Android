@@ -28,6 +28,14 @@
         android:requestLegacyExternalStorage="true"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.aliyun.alivc_license.licensekey"
+            android:value="xoQuEoYgOHs225cwh634fa27df8d3490e88337161a4d5ee92"/>
+        <meta-data
+            android:name="com.aliyun.alivc_license.licensefile"
+            android:value="assets/AliVideoCert_1649919903756.crt"/>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
