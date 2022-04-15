@@ -11,14 +11,15 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aliyun.android.libqueen.models.BeautyParams;
 import com.example.basic.TRTCBaseActivity;
-import com.taobao.android.libqueen.QueenEngine;
-import com.taobao.android.libqueen.Texture2D;
-import com.taobao.android.libqueen.exception.InitializationException;
-import com.taobao.android.libqueen.models.BeautyFilterType;
-import com.taobao.android.libqueen.models.BlendType;
-import com.taobao.android.libqueen.models.Flip;
-import com.taobao.android.libqueen.models.MakeupType;
+import com.aliyun.android.libqueen.QueenEngine;
+import com.aliyun.android.libqueen.Texture2D;
+import com.aliyun.android.libqueen.exception.InitializationException;
+import com.aliyun.android.libqueen.models.BeautyFilterType;
+import com.aliyun.android.libqueen.models.BlendType;
+import com.aliyun.android.libqueen.models.Flip;
+import com.aliyun.android.libqueen.models.MakeupType;
 import com.tencent.liteav.TXLiteAVCode;
 import com.tencent.rtmp.ui.TXCloudVideoView;
 import com.tencent.trtc.TRTCCloud;
@@ -188,6 +189,10 @@ public class ThirdBeautyActivity extends TRTCBaseActivity implements View.OnClic
                         // 传入Android.content.Context触发引擎的初始化
                         // 第二个参数为true表示直接输出到当前OpenGL的显示区域
                         mQueenEngine = new QueenEngine(ThirdBeautyActivity.this,false);
+
+
+                        String sign = LicenseHelper.getPackageSignature();
+
                     } catch (InitializationException e) {
                         e.printStackTrace();
                     }
@@ -195,6 +200,7 @@ public class ThirdBeautyActivity extends TRTCBaseActivity implements View.OnClic
             }
 
             Texture2D mOutTexture2D = null;
+            boolean mInit = false;
             @Override
             public int onProcessVideoFrame(TRTCCloudDef.TRTCVideoFrame srcFrame, TRTCCloudDef.TRTCVideoFrame dstFrame) {
                 Log.i("Queen",
@@ -210,7 +216,10 @@ public class ThirdBeautyActivity extends TRTCBaseActivity implements View.OnClic
                     mOutTexture2D = mQueenEngine.autoGenOutTexture();
                 }
 
-                QueenParamHolder.writeParamToEngine(mQueenEngine);
+                if (!mInit) {
+                    extraQueenConfig(true);
+                    mInit = true;
+                }
 
                 mQueenEngine.updateInputTextureBufferAndRunAlg(0, 0, Flip.kNone, false);
 
@@ -238,7 +247,7 @@ public class ThirdBeautyActivity extends TRTCBaseActivity implements View.OnClic
         });
 
         mSeekBlurLevel.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            private boolean enableExtraConfig = true;
+            private boolean enableExtraConfig = false;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (mStartPushFlag && fromUser) {
@@ -261,29 +270,40 @@ public class ThirdBeautyActivity extends TRTCBaseActivity implements View.OnClic
     }
 
     private void extraQueenConfig(boolean enable) {
+//        mQueenEngine.enableFacePointDebug(true);
         if (enable) {
-            //美妆
-            mQueenEngine.enableBeautyType(BeautyFilterType.kMakeup, true, false);
-            mQueenEngine.setMakeupImage(MakeupType.kMakeupWhole, new String[]{"makeup/蜜桃妆.png"},
-                    BlendType.kBlendNormal, 15);
-            mQueenEngine.setMakeupAlpha(MakeupType.kMakeupWhole, 0.6f, 0.3f);
 
-            //贴纸
-            mQueenEngine.addMaterial("sticker/baiyang");
+            //美白开关
+            mQueenEngine.enableBeautyType(BeautyFilterType.kSkinWhiting, true);
+            //美白参数 [0,1]
+            mQueenEngine.setBeautyParam(
+                    BeautyParams.kBPSkinWhitening,
+                    0.3f
+            );
+            //磨皮/锐化 开关
+            mQueenEngine.enableBeautyType(BeautyFilterType.kSkinBuffing, true);
+            mQueenEngine.setBeautyParam(BeautyParams.kBPSkinBuffing, 0.6f);
+            mQueenEngine.setBeautyParam(BeautyParams.kBPSkinSharpen, 0.3f);
 
-            //美型
-            QueenParamHolder.getQueenParam().faceShapeRecord = QueenParam.sBabyFaceShapeRecord;
-
-            QueenParamHolder.getQueenParam().lutRecord.lutEnable = true;
-            QueenParamHolder.getQueenParam().lutRecord.lutPath = "lookups/蓝调色卡.png";
+            //高级美颜开关
+            mQueenEngine.enableBeautyType(BeautyFilterType.kFaceBuffing, true);
+            //去法令纹[0,1]
+            mQueenEngine.setBeautyParam(BeautyParams.kBPNasolabialFolds, 1.0f);
+            //去眼袋[0,1]
+            mQueenEngine.setBeautyParam(BeautyParams.kBPPouch, 1.0f);
+            //白牙[0,1]
+            mQueenEngine.setBeautyParam(BeautyParams.kBPWhiteTeeth, 1.0f);
+            //滤镜美妆：口红[0,1]
+            mQueenEngine.setBeautyParam(BeautyParams.kBPLipstick, 1.0f);
+            // 滤镜美妆：口红色相[-0.5,0.5]，需配合饱和度、明度使用，参考颜色如下：土红(-0.125)、粉红(-0.1)、复古红(0.0)、紫红(-0.2)、正红(-0.08)、橘红(0.0)、紫色(-0.42)、橘色(0.125)、黄色(0.25)
+            mQueenEngine.setBeautyParam(BeautyParams.kBPLipstickColorParam, -0.125f);
+            // 滤镜美妆：口红饱和度[0,1]，需配合色相、明度使用，参考颜色如下：土红(0.25)、粉红(0.125)、复古红(1.0)、紫红(0.35)、正红(1.0)、橘红(0.35)、紫色(0.35)、橘色(0.25)、黄色(0.45)
+            mQueenEngine.setBeautyParam(BeautyParams.kBPLipstickGlossParam, 0.25f);
+            // 滤镜美妆：口红明度[0,1]，需配合色相、饱和度使用，参考颜色如下：土红(0.4)、粉红(0.0)、复古红(0.2)、紫红(0.0)、正红(0.0)、橘红(0.0)、紫色(0.0)、橘色(0.0)、黄色(0.0)
+            mQueenEngine.setBeautyParam(BeautyParams.kBPLipstickBrightnessParam, 0.4f);
         } else {
-            mQueenEngine.enableBeautyType(BeautyFilterType.kMakeup, false, false);
-
-            QueenParamHolder.getQueenParam().faceShapeRecord = QueenParam.sNoneFaceShapeRecord;
-
-            mQueenEngine.removeMaterial("sticker/baiyang");
-
-            QueenParamHolder.getQueenParam().lutRecord.lutEnable = false;
+            mQueenEngine.enableBeautyType(BeautyFilterType.kSkinBuffing, false);
+            mQueenEngine.enableBeautyType(BeautyFilterType.kFaceBuffing, false);
         }
     }
 

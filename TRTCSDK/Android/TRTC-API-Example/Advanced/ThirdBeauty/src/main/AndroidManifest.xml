@@ -3,6 +3,14 @@
     package="com.tencent.trtc.thirdbeauty">
 
     <application>
+
+        <meta-data
+            android:name="com.aliyun.alivc_license.licensekey"
+            android:value="xoQuEoYgOHs225cwh634fa27df8d3490e88337161a4d5ee92"/>
+        <meta-data
+            android:name="com.aliyun.alivc_license.licensefile"
+            android:value="assets/AliVideoCert_1649919963754.crt"/>
+
         <activity android:name=".ThirdBeautyActivity"/>
     </application>
 

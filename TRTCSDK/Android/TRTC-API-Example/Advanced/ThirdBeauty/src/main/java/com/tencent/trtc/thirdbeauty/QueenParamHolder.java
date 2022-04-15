@@ -2,12 +2,12 @@ package com.tencent.trtc.thirdbeauty;
 
 import android.text.TextUtils;
 
-import com.taobao.android.libqueen.QueenEngine;
-import com.taobao.android.libqueen.models.BeautyFilterType;
-import com.taobao.android.libqueen.models.BeautyParams;
-import com.taobao.android.libqueen.models.BlendType;
-import com.taobao.android.libqueen.models.FaceShapeType;
-import com.taobao.android.libqueen.models.MakeupType;
+import com.aliyun.android.libqueen.QueenEngine;
+import com.aliyun.android.libqueen.models.BeautyFilterType;
+import com.aliyun.android.libqueen.models.BeautyParams;
+import com.aliyun.android.libqueen.models.BlendType;
+import com.aliyun.android.libqueen.models.FaceShapeType;
+import com.aliyun.android.libqueen.models.MakeupType;
 
 import java.util.Iterator;
 

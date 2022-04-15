@@ -1,7 +1,7 @@
 package com.tencent.trtc.thirdbeauty;
 
-import com.taobao.android.libqueen.models.BlendType;
-import com.taobao.android.libqueen.models.MakeupType;
+import com.aliyun.android.libqueen.models.BlendType;
+import com.aliyun.android.libqueen.models.MakeupType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
