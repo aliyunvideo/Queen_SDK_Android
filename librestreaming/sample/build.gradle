@@ -18,6 +18,14 @@ android {
             abiFilters "armeabi-v7a","arm64-v8a"
         }
     }
+    signingConfigs {
+        debug {
+            storeFile file("github_debug.jks")
+            storePassword "Queen@aliyun"
+            keyAlias "queen_sample"
+            keyPassword "Queen@aliyun"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -44,6 +52,6 @@ dependencies {
     implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
     implementation project(':librestreaming')
 
-    implementation "com.aliyun.maliang.android:queen:1.1.3-official-pro"
+    implementation 'com.aliyun.maliang.android:queen:2.0.0-official-ultimate'
 
 }

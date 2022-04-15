@@ -18,6 +18,7 @@ allprojects {
         jcenter()
         google()
         maven { url "https://maven.aliyun.com/repository/releases" }
+        maven { url "http://mvnrepo.alibaba-inc.com/mvn/repository" }
     }
 }
 ext {

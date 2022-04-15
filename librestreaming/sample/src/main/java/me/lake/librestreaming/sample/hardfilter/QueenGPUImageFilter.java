@@ -3,14 +3,14 @@ package me.lake.librestreaming.sample.hardfilter;
 import android.content.Context;
 import android.opengl.GLES20;
 
-import com.taobao.android.libqueen.QueenEngine;
-import com.taobao.android.libqueen.Texture2D;
-import com.taobao.android.libqueen.exception.InitializationException;
-import com.taobao.android.libqueen.models.BeautyFilterType;
-import com.taobao.android.libqueen.models.BeautyParams;
-import com.taobao.android.libqueen.models.BlendType;
-import com.taobao.android.libqueen.models.FaceShapeType;
-import com.taobao.android.libqueen.models.MakeupType;
+import com.aliyun.android.libqueen.QueenEngine;
+import com.aliyun.android.libqueen.Texture2D;
+import com.aliyun.android.libqueen.exception.InitializationException;
+import com.aliyun.android.libqueen.models.BeautyFilterType;
+import com.aliyun.android.libqueen.models.BeautyParams;
+import com.aliyun.android.libqueen.models.BlendType;
+import com.aliyun.android.libqueen.models.FaceShapeType;
+import com.aliyun.android.libqueen.models.MakeupType;
 
 import java.nio.FloatBuffer;
 
@@ -49,6 +49,8 @@ public class QueenGPUImageFilter extends GPUImageFilter {
         }
         try {
             engine = new QueenEngine(mContext, false);
+
+            String sign = LicenseHelper.getPackageSignature();
         } catch (InitializationException e) {
             e.printStackTrace();
         }
@@ -128,44 +130,37 @@ public class QueenGPUImageFilter extends GPUImageFilter {
 
     // 美颜参数相关配置
     private void doWriteBeautyParam() {
-        engine.enableBeautyType(BeautyFilterType.kSkinWhiting, true);//美白开关
-        engine.setBeautyParam(BeautyParams.kBPSkinWhitening, 0.8f);  //美白 [0,1]
-        engine.setBeautyParam(BeautyParams.kBPSkinRed, 0.8f);  //红润 [0,1]
+        //美白开关
+        engine.enableBeautyType(BeautyFilterType.kSkinWhiting, true);
+        //美白参数 [0,1]
+        engine.setBeautyParam(
+                BeautyParams.kBPSkinWhitening,
+                0.3f
+        );
+        //磨皮/锐化 开关
+        engine.enableBeautyType(BeautyFilterType.kSkinBuffing, true);
+        engine.setBeautyParam(BeautyParams.kBPSkinBuffing, 0.6f);
+        engine.setBeautyParam(BeautyParams.kBPSkinSharpen, 0.3f);
 
-        engine.enableBeautyType(BeautyFilterType.kSkinBuffing, true);//磨皮开关
-        engine.setBeautyParam(BeautyParams.kBPSkinBuffing, 0.8f);  //磨皮 [0,1]
-        engine.setBeautyParam(BeautyParams.kBPSkinSharpen, 0.6f);  //锐化 [0,1]
+        //高级美颜开关
+        engine.enableBeautyType(BeautyFilterType.kFaceBuffing, true);
+        //去法令纹[0,1]
+        engine.setBeautyParam(BeautyParams.kBPNasolabialFolds, 1.0f);
+        //去眼袋[0,1]
+        engine.setBeautyParam(BeautyParams.kBPPouch, 1.0f);
+        //白牙[0,1]
+        engine.setBeautyParam(BeautyParams.kBPWhiteTeeth, 1.0f);
+        //滤镜美妆：口红[0,1]
+        engine.setBeautyParam(BeautyParams.kBPLipstick, 1.0f);
+        // 滤镜美妆：口红色相[-0.5,0.5]，需配合饱和度、明度使用，参考颜色如下：土红(-0.125)、粉红(-0.1)、复古红(0.0)、紫红(-0.2)、正红(-0.08)、橘红(0.0)、紫色(-0.42)、橘色(0.125)、黄色(0.25)
+        engine.setBeautyParam(BeautyParams.kBPLipstickColorParam, -0.125f);
+        // 滤镜美妆：口红饱和度[0,1]，需配合色相、明度使用，参考颜色如下：土红(0.25)、粉红(0.125)、复古红(1.0)、紫红(0.35)、正红(1.0)、橘红(0.35)、紫色(0.35)、橘色(0.25)、黄色(0.45)
+        engine.setBeautyParam(BeautyParams.kBPLipstickGlossParam, 0.25f);
+        // 滤镜美妆：口红明度[0,1]，需配合色相、饱和度使用，参考颜色如下：土红(0.4)、粉红(0.0)、复古红(0.2)、紫红(0.0)、正红(0.0)、橘红(0.0)、紫色(0.0)、橘色(0.0)、黄色(0.0)
+        engine.setBeautyParam(BeautyParams.kBPLipstickBrightnessParam, 0.4f);
 
-        // 滤镜
-        engine.enableBeautyType(BeautyFilterType.kLUT, true);
-        //设置滤镜资源路径，基于assets的相对路径，如“/lookups/lookup_1.png”
-        engine.setFilter("lookups/lz5.png");
-        //滤镜强度
-        engine.setBeautyParam(BeautyParams.kBPLUT, 0.8f);
-
-        // 美型开关，其中第二个参数是功能开关，第三个参数为调试开关
-        engine.enableBeautyType(BeautyFilterType.kFaceShape, true, false);
-        engine.updateFaceShape(FaceShapeType.typeThinFace, 0.88f);
-        engine.updateFaceShape(FaceShapeType.typeBigEye, 0.82f);
-        engine.updateFaceShape(FaceShapeType.typeNosewing, 0.33f);
-        engine.updateFaceShape(FaceShapeType.typeThinNose, 0.88f);
-        engine.updateFaceShape(FaceShapeType.typeThinJaw, 0.3f);
-
-        // 第二个参数是开关，第三个参数是调试开关
-        engine.enableBeautyType(BeautyFilterType.kMakeup, true, false);
-        // 设置美妆素材
-        // 第一个参数是美妆类型
-        // 第二个参数是素材文件路径,基于assets的相对路径，如"/makeup/蜜桃妆.png"
-        // 第三个参数是素材与人脸的融合类型，第四个参数是保留参数
-        String[] path = {"makeup/mitao.png"};
-        engine.setMakeupImage(MakeupType.kMakeupWhole, path, BlendType.kBlendNormal, 15);
-        // 设置美妆素材透明度
-        // 第二个参数是透明度，第三个参数是保留参数
-        engine.setMakeupAlpha(MakeupType.kMakeupWhole, 0.6f, 0.3f);
-
-        // 贴纸12
-        engine.addMaterial("sticker/12");
-
+        //基于assets的相对路径，如"sticker/baiyang"
+        engine.addMaterial("sticker/5");
     }
 
 }

@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.hardware.Camera;
 import android.view.Surface;
 
-import com.taobao.android.libqueen.models.Flip;
+import com.aliyun.android.libqueen.models.Flip;
 
 public class StreamRuntime {
 
