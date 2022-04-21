@@ -1,7 +1,6 @@
 package com.aliyun.maliang.android.simpleapp.queen;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.hardware.SensorManager;

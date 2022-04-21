@@ -4,11 +4,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
-import com.aliyun.maliang.android.simpleapp.FileUtils;
+import com.aliyun.maliang.android.simpleapp.utils.FileUtils;
 import com.aliyun.maliang.android.simpleapp.queen.QueenCameraHelper;
-import com.aliyun.maliang.android.simpleapp.queen.params.QueenParamHolder;
 import com.aliyun.android.libqueen.QueenEngine;
 import com.aliyun.android.libqueen.Texture2D;
+import com.aliyunsdk.queen.param.QueenParamHolder;
 
 /**
  * Surface.Renderer，用于相机预览数据的回调
@@ -16,7 +16,7 @@ import com.aliyun.android.libqueen.Texture2D;
  * 本render用于实现Queen将处理后的纹理渲染到当前画布，适用于，能直接获取到相机数据，且返回相机OES纹理的场景，
  * 处理后的画面数据，直接渲染到当前纹理中
  */
-public class QueenBeautyV1Renderer extends QueenBeautyRenderer {
+public class QueenBeautyV1Renderer extends QueenBaseRenderer {
 
     private static final String TAG = "QueenBeautyV1Renderer";
     private Texture2D mOutTexture;
@@ -24,7 +24,7 @@ public class QueenBeautyV1Renderer extends QueenBeautyRenderer {
     QueenEngine engine;
 
     @Override
-    protected void step1ReadyQueenEngine(Context context) {
+    public void step1ReadyQueenEngine(Context context) {
         Log.i("QueenBeautyV1Renderer", "step1ReadyQueenEngine@" + Thread.currentThread().getId());
         try {
             // 注意，此处是将纹理直接显示上屏，也就是说由QueenEngine进行绘制显示出来，Queen直接render之后即可看到最后效果
@@ -35,13 +35,13 @@ public class QueenBeautyV1Renderer extends QueenBeautyRenderer {
     }
 
     @Override
-    protected void step2SetScreenViewport(int left, int bottom, int width, int height) {
+    public void step2SetScreenViewport(int left, int bottom, int width, int height) {
         Log.i("QueenBeautyV1Renderer", "step2SetScreenViewport@" + Thread.currentThread().getId());
         engine.setScreenViewport(left, bottom, width, height);
     }
 
     @Override
-    protected void step3Draw1UpdateTextureAndWriteParamToQueenEngine(int textureId, boolean isOesTexture, int width, int height) {
+    public void step3Draw1UpdateTextureAndWriteParamToQueenEngine(int textureId, boolean isOesTexture, int width, int height) {
         Log.i("QueenBeautyV1Renderer", "step3Draw1UpdateTextureAndWriteParamToQueenEngine@" + Thread.currentThread().getId() + "[width: " + width + ", height: " + height + "]");
         if (engine != null) {
             engine.setInputTexture(textureId, width, height, isOesTexture);
@@ -53,11 +53,11 @@ public class QueenBeautyV1Renderer extends QueenBeautyRenderer {
             Log.i("QueenBeautyV1Renderer", "step3Draw2UpdateBufferToQueenEngine_IF_NEED@" + Thread.currentThread().getId() + " ---1 [w: " + mOutTexture.getSize().x + ", h: " + mOutTexture.getSize().y + "]");
         }
 
-        QueenParamHolder.writeParamToQueenEngine(engine);
+        QueenParamHolder.writeParamToEngine(engine, false);
     }
 
     @Override
-    protected void step3Draw2UpdateBufferToQueenEngine_IF_NEED(byte[] imageData, int format, int width, int height) {
+    public void step3Draw2UpdateBufferToQueenEngine_IF_NEED(byte[] imageData, int format, int width, int height) {
         // 此处有两种方式，一种用相机返回的当前帧数据bytebuffer直接进行处理, 另一种为，直接采用当前纹理，由QueenEngine内部从纹理中dump出bytebuffer数据进行处理。
         // 第一种方式，可能存在某些sdk回调的当前帧数据和真实当前显示帧画面数据不一致的问题，系对应sdk的bug，非QueenEngine的bug
         // 第二种方式，在个别低端机或特殊机型场景下，不排除会存在dump数据过慢问题，但通常都是在个位数ms级别以内。
@@ -73,12 +73,12 @@ public class QueenBeautyV1Renderer extends QueenBeautyRenderer {
     }
 
     @Override
-    protected int step3Draw3Render(float[] matrix) {
+    public int step3Draw3Render(float[] matrix) {
         return engine.renderTexture(matrix);
     }
 
     @Override
-    protected void step4ReleaseQueenEngine() {
+    public void step4ReleaseQueenEngine() {
         super.step4ReleaseQueenEngine();
         if (engine != null) {
             engine.release();
@@ -88,7 +88,7 @@ public class QueenBeautyV1Renderer extends QueenBeautyRenderer {
     }
 
     @Override
-    protected boolean captureFrame(String filePath) {
+    public boolean captureFrame(String filePath) {
         Bitmap outBitmap  = mOutTexture.readToBitmap();
 
         int rotateAngle = QueenCameraHelper.get().isFrontCamera() ?

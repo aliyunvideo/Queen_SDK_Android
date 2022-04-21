@@ -52,6 +52,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation 'com.aliyun.maliang.android:queen:2.0.0-official-ultimate'
-//    implementation project(':queen')
+    // 此处修改：根据自身项目需要，指定依赖的菜单组件sdk
+    implementation 'com.aliyunsdk.components:queen_menu:2.0.1.full-beta1'
+    // 此处修改：根据自身项目需要，指定依赖的sdk版本
+    implementation 'com.aliyun.maliang.android:queen:2.0.0-official-pro'
 }

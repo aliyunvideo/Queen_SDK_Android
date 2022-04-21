@@ -1,40 +1,29 @@
 package com.aliyun.maliang.android.simpleapp;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.hardware.Camera;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aliyun.maliang.android.simpleapp.SurfaceView.CameraGLSurfaceView;
+import com.aliyun.maliang.android.simpleapp.camera.CameraV1GLSurfaceView;
+import com.aliyun.maliang.android.simpleapp.camera.CameraV1;
 import com.aliyun.maliang.android.simpleapp.queen.QueenCameraHelper;
-import com.aliyun.maliang.android.simpleapp.view.CameraRightPanel;
+import com.aliyun.maliang.android.simpleapp.utils.FpsHelper;
+import com.aliyun.maliang.android.simpleapp.utils.PermissionUtils;
+import com.aliyunsdk.queen.menu.BeautyMenuPanel;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private CameraGLSurfaceView mGLSurfaceView;
+    private CameraV1GLSurfaceView mGLSurfaceView;
     private int mCameraId;
     private CameraV1 mCamera;
-    private ImageView mCaptureBtn;
-    private static String TAG = "CameraV1GLSurfaceViewActivity";
-
-    private static final int PERMISSION_REQUEST_CODE = 1000;
-
     private boolean isDestroyed = false;
 
     @Override
@@ -45,23 +34,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        boolean checkResult = PermissionUtils.checkPermissionsGroup(this, PermissionUtils.PERMISSION_CAMERA);
-        if (!checkResult) {
-            PermissionUtils.requestPermissions(this, PermissionUtils.PERMISSION_CAMERA, PERMISSION_REQUEST_CODE);
-        } else {
+        boolean checkResult = PermissionUtils.checkAndRunPermissionsGroup(this, PermissionUtils.PERMISSION_CAMERA);
+        if (checkResult) {
             initGlSurfaceView();
         }
+    }
 
-        //com.taobao.android.libqueen.util.ContextManager.setContext(this);
-        //String h5String = LicenseHelper.getPackageSignature();
-        //android.util.Log.e("TEST_QUEEN0", "====md5=" + h5String);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        boolean granted = PermissionUtils.onHandlePermissionRequest(this, requestCode, grantResults);
+        if (granted) {
+            initGlSurfaceView();
+        }
     }
 
     private void initGlSurfaceView() {
         FrameLayout background = new FrameLayout(this);
         background.setLayoutParams(new ViewGroup.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
 
-        mGLSurfaceView = new CameraGLSurfaceView(this);
+        mGLSurfaceView = new CameraV1GLSurfaceView(this);
         mGLSurfaceView.setLayoutParams(new ViewGroup.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         //设置相机前后
         QueenCameraHelper.get().initOrientation(this);
@@ -73,89 +67,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+        // 添加相机预览界面
         background.addView(mGLSurfaceView);
 
-        CameraRightPanel cameraRightPanel = new CameraRightPanel(this);
+        // 添加右侧操控栏
+        MainViewRightPanel cameraRightPanel = new MainViewRightPanel(this);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
         params.gravity = Gravity.RIGHT;
         cameraRightPanel.setOnClickListenerProxy(this);
         background.addView(cameraRightPanel, params);
 
-        mCaptureBtn = new ImageView(this);
-        mCaptureBtn.setOnClickListener(this);
-        mCaptureBtn.setImageResource(R.drawable.icon_camera_small);
-        FrameLayout.LayoutParams captureBtnParams = new FrameLayout.LayoutParams(
-                getResources().getDimensionPixelSize(R.dimen.camera_big_icon),
-                getResources().getDimensionPixelSize(R.dimen.camera_big_icon)
-                );
-        captureBtnParams.bottomMargin = getResources().getDimensionPixelSize(R.dimen.alivc_common_40);
-        captureBtnParams.gravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
-        background.addView(mCaptureBtn, captureBtnParams);
-
-        FpsHelper.get().setFpsView(cameraRightPanel.getFpsTextView());
+        // 添加底部菜单栏
+        BeautyMenuPanel beautyMenuPanel = new BeautyMenuPanel(this);
+        final FrameLayout.LayoutParams menuParams = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        menuParams.gravity = Gravity.BOTTOM;
+        background.addView(beautyMenuPanel, menuParams);
 
         setContentView(background);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            boolean isAllGranted = true;
-
-            // 判断是否所有的权限都已经授予了
-            for (int grant : grantResults) {
-                if (grant != PackageManager.PERMISSION_GRANTED) {
-                    isAllGranted = false;
-                    break;
-                }
-            }
-            if (isAllGranted) {
-                initGlSurfaceView();
-            } else {
-                // 弹出对话框告诉用户需要权限的原因, 并引导用户去应用权限管理中手动打开权限按钮
-                showPermissionDialog();
-            }
-        }
-    }
-
-    //系统授权设置的弹框
-    AlertDialog openAppDetDialog = null;
-    private void showPermissionDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.app_name) + "需要访问 \"摄像头\" 和 \"外部存储器\",否则会影响绝大部分功能使用, 请到 \"应用信息 -> 权限\" 中设置！");
-        builder.setPositiveButton("去设置", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent();
-                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                intent.addCategory(Intent.CATEGORY_DEFAULT);
-                intent.setData(Uri.parse("package:" + getPackageName()));
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                startActivity(intent);
-            }
-        });
-        builder.setCancelable(false);
-        builder.setNegativeButton("暂不设置", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //finish();
-            }
-        });
-        if (null == openAppDetDialog) {
-            openAppDetDialog = builder.create();
-        }
-        if (null != openAppDetDialog && !openAppDetDialog.isShowing()) {
-            openAppDetDialog.show();
-        }
-    }
-
-    @Override
     protected void onPause() {
-        Log.i(TAG,"onPause");
         super.onPause();
         if (isDestroyed) {
             return;
@@ -187,7 +122,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onResume() {
-        Log.i(TAG,"onResume");
         super.onResume();
         if (isDestroyed) {
             return;
@@ -237,9 +171,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (mCaptureBtn.equals(v)) {
-            captureScreen();
-        } else {
+        if (v.getId() == R.id.btnSwitchCamera) {
             switchCamera();
         }
     }
@@ -256,34 +188,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mGLSurfaceView.reBindCamera(mCamera);
         mCamera.startPreview();
         QueenCameraHelper.get().setCameraId(mCameraId);
-    }
-
-
-    private void captureScreen() {
-        if (null != mGLSurfaceView) {
-            mGLSurfaceView.queueEvent(new Runnable() {
-                @Override
-                public void run() {
-                    if (null != mCamera) {
-                        final String filePath = FileUtils.makeAlbumPhotoFileName();
-                        boolean ret = mGLSurfaceView.captureFrame(filePath);
-
-                        final String msg = ret ?
-                                "成功保存文件至" + filePath :
-                                "失败-请注意查看是否有文件读写权限";
-
-                        mGLSurfaceView.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (!MainActivity.this.isFinishing()) {
-                                    Toast.makeText(mGLSurfaceView.getContext(), msg, Toast.LENGTH_SHORT).show();
-                                    mGLSurfaceView.getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + filePath)));
-                                }
-                            }
-                        });
-                    }
-                }
-            });
-        }
     }
 }
