@@ -5,14 +5,20 @@
 2、切换到指定sdk分支：git checkout 分支名称 （见下表）</br>
 
 支持厂商列表对应分支名称如下：</br>
+===sdk厂商: 分支名称</br>
 【官方接入指导】：Queen_Sample_App</br>
-【腾讯云直播SDK】：Queen_Tencent_MLVB</br>
+【阿里云直播推流SDK】：Queen_Aliyun_LivePusher</br>
+[【腾讯云直播SDK】](https://cloud.tencent.com/document/product/454/6555)：Queen_Tencent_MLVB</br>
+[【腾讯云RTCSDK】](https://github.com/tencentyun/TRTCSDK)：Queen_Tencent_TRTC</br>
+[【七牛云直播推流SDK】](https://developer.qiniu.com/pili/3718/PLDroidMediaStreaming-quick-start)：Queen_Qiniu_PLDroidMediaStreaming</br>
+
 
 
 </br>
-=========================================================================================
+====================================================================================
 </br>
 
+</br>
 ***[简介]***</br>
 智能美化特效已集成到阿里云Queen SDK中，接入简单、快速。基于智能视觉算法、海量规模的人脸、人体检测和识别技术，智能美化特效为视频创作者提供移动端的人脸美颜、美型、美妆美化、滤镜贴纸等编辑加工能力，满足直播和视频制作时的美颜特效需求。
 
