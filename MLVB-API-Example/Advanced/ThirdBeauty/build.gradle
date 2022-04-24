@@ -31,8 +31,7 @@ dependencies {
     implementation 'com.faceunity:nama:7.3.0'
 
     // 此处修改：根据自身项目需要，指定依赖的菜单组件sdk
-//    implementation 'com.aliyunsdk.components:queen_menu:2.0.1.full-beta1'
-    implementation 'com.aliyunsdk.components:queen_menu:1.0.17-SNAPSHOT'
+    implementation 'com.aliyunsdk.components:queen_menu:2.0.1.full-beta1'
     // 此处修改：根据自身项目需要，指定依赖的sdk版本
-    implementation 'com.aliyun.maliang.android:queen:1.9.0-official-pro'
+    implementation 'com.aliyun.maliang.android:queen:2.0.0-official-full'
 }

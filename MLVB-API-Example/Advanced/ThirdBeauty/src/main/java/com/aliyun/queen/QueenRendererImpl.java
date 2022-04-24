@@ -2,8 +2,8 @@ package com.aliyun.queen;
 
 import android.content.Context;
 
-import com.taobao.android.libqueen.QueenEngine;
-import com.taobao.android.libqueen.Texture2D;
+import com.aliyun.android.libqueen.QueenEngine;
+import com.aliyun.android.libqueen.Texture2D;
 import com.aliyun.queen.utils.QueenCameraHelper;
 import com.aliyunsdk.queen.param.QueenParamHolder;
 
@@ -58,8 +58,6 @@ public class QueenRendererImpl implements IQueenRender {
 
     @Override
     public int onTextureProcess(int textureId, boolean isOesTexture, float[] matrix, int width, int height) {
-//        int w = QueenCameraHelper.get().isLandscape() ? width : height;
-//        int h = QueenCameraHelper.get().isLandscape() ? height : width;
         int w = isOesTexture ? height : width;
         int h = isOesTexture ? width : height;
         engine.setInputTexture(textureId, w, h, isOesTexture);
@@ -71,10 +69,13 @@ public class QueenRendererImpl implements IQueenRender {
             mOutTexture = engine.autoGenOutTexture(true);
         }
 
+        int in = 0;//QueenCameraHelper.get().inputAngle;
+        int out = 0;//QueenCameraHelper.get().outAngle;
+        int flips = 1;//QueenCameraHelper.get().flipAxis;
         // 方式二：根据当前纹理数据到更新
-        engine.updateInputTextureBufferAndRunAlg(QueenCameraHelper.get().inputAngle, QueenCameraHelper.get().outAngle,
-                QueenCameraHelper.get().flipAxis, false);
-
+        engine.updateInputTextureBufferAndRunAlg(in, out, flips, false);
+        // AI 抠图功能开启时，需要设置y轴翻转
+        engine.setSegmentInfoFlipY(true);
         int result = engine.renderTexture(matrix);
         // 处理不成功，则返回原始纹理id
         if (result != 0) {
@@ -101,9 +102,12 @@ public class QueenRendererImpl implements IQueenRender {
             mOutTexture = engine.autoGenOutTexture(true);
         }
 
+        int in = 0;//QueenCameraHelper.get().inputAngle;
+        int out = 0;//QueenCameraHelper.get().outAngle;
+        int flips = 1;//QueenCameraHelper.get().flipAxis;
         // 方式一：根据回调的bytebuffer数据来更新，人脸检测数据
         engine.updateInputDataAndRunAlg(imageData, format, width, height,
-                0, QueenCameraHelper.get().inputAngle, QueenCameraHelper.get().outAngle, QueenCameraHelper.get().flipAxis);
+                0, in, out, flips);
 
         int result = engine.renderTexture(matrix);
         // 处理不成功，则返回原始纹理id

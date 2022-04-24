@@ -15,6 +15,16 @@ android {
             abiFilters "armeabi-v7a", "arm64-v8a"
         }
     }
+
+    signingConfigs {
+        debug {
+            storeFile file("github_debug.jks")
+            storePassword "Queen@aliyun"
+            keyAlias "queen_sample"
+            keyPassword "Queen@aliyun"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
