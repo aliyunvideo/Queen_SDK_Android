@@ -1,4 +1,4 @@
-package com.aliyun.maliang.android.simpleapp.queen;
+package com.aliyun.queen.utils;
 
 import android.app.Activity;
 import android.content.res.Configuration;

@@ -15,18 +15,7 @@ import java.nio.ShortBuffer;
 import static android.opengl.GLES11Ext.GL_TEXTURE_EXTERNAL_OES;
 import static android.opengl.GLES20.glGetError;
 
-public class FrameOesGlDrawer {
-    private final FloatBuffer mCubeTextureCoordinates;
-    private int mTextureUniformHandle;
-    private int mTextureCoordinateHandle;
-    private final int TEXTURE_COORDINATE_DATA_SIZE = 2;
-    private final float[] IDENTITY_MATRIX = new float[] {
-            1.0f, 0.0f, 0.0f, 0.0f,
-            0.0f, 1.0f, 0.0f, 0.0f,
-            0.0f, 0.0f, 1.0f, 0.0f,
-            0.0f, 0.0f, 0.0f, 1.0f,
-    };
-
+public class FrameDrawer {
     private final static String VETEX_SHADER_CODE =
             "attribute vec2 a_TexCoordinate;" +
             "attribute vec4 vPosition;" +
@@ -46,9 +35,27 @@ public class FrameOesGlDrawer {
                         "gl_FragColor = texture2D(u_Texture, v_TexCoordinate);" +
                     "}";
 
-    private final int shaderProgram;
-    private final FloatBuffer vertexBuffer;
-    private final ShortBuffer drawListBuffer;
+    private final static String TEXTURE2D_FRAGMENT_SHADER_CODE =
+            "precision mediump float;" +
+                    "uniform sampler2D u_Texture;" +
+                    "varying vec2 v_TexCoordinate;" +
+                    "void main() {" +
+                    "  gl_FragColor = texture2D(u_Texture, v_TexCoordinate);" +
+                    "}";
+
+    private FloatBuffer mCubeTextureCoordinates;
+    private int mTextureUniformHandle;
+    private int mTextureCoordinateHandle;
+    private final int TEXTURE_COORDINATE_DATA_SIZE = 2;
+    private final float[] IDENTITY_MATRIX = new float[] {
+            1.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 1.0f,
+    };
+    private int shaderProgram;
+    private FloatBuffer vertexBuffer;
+    private ShortBuffer drawListBuffer;
     private int mPositionHandle;
     private int mMVPMatrixHandle;
 
@@ -71,8 +78,26 @@ public class FrameOesGlDrawer {
     private short drawOrder[] = { 0, 1, 2, 1, 3, 2 };
     private final int vertexStride = COORDINATE_PER_VERTEX * 4;
 
-    public FrameOesGlDrawer()
+    // 是否为绘制原始oes纹理
+    private boolean mIsOesDrawer = false;
+
+    public FrameDrawer(boolean isOesDrawer)
     {
+        mIsOesDrawer = isOesDrawer;
+        initGLContext();
+    }
+
+    protected String getVetexShader() { return VETEX_SHADER_CODE; }
+
+    protected String getFragmentShader() {
+        return mIsOesDrawer ? OES_FRAGMENT_SHADER_CODE : TEXTURE2D_FRAGMENT_SHADER_CODE;
+    }
+
+    protected int getBindTextureId() {
+        return mIsOesDrawer ? GL_TEXTURE_EXTERNAL_OES : GLES20.GL_TEXTURE_2D;
+    }
+
+    private void initGLContext() {
         // 分配顶点坐标属性
         ByteBuffer bb = ByteBuffer.allocateDirect(POSITIONS.length * 4);
         bb.order(ByteOrder.nativeOrder());
@@ -92,8 +117,8 @@ public class FrameOesGlDrawer {
         drawListBuffer.position(0);
 
         // 编译program
-        int vertexShader = loadShader(GLES20.GL_VERTEX_SHADER, VETEX_SHADER_CODE);
-        int fragmentShader = loadShader(GLES20.GL_FRAGMENT_SHADER, OES_FRAGMENT_SHADER_CODE);
+        int vertexShader = loadShader(GLES20.GL_VERTEX_SHADER, getVetexShader());
+        int fragmentShader = loadShader(GLES20.GL_FRAGMENT_SHADER, getFragmentShader());
 
         shaderProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(shaderProgram, vertexShader);
@@ -102,7 +127,8 @@ public class FrameOesGlDrawer {
         GLES20.glLinkProgram(shaderProgram);
     }
 
-    public static int loadShader(int type, String shaderCode){
+
+    private int loadShader(int type, String shaderCode){
         int shader = GLES20.glCreateShader(type);
         checkGLError();
 
@@ -115,7 +141,7 @@ public class FrameOesGlDrawer {
         return shader;
     }
 
-    private static void checkGLError() {
+    private void checkGLError() {
         int error = glGetError();
         if (error != 0) {
             throw new RuntimeException("gl error: " + error);
@@ -139,7 +165,7 @@ public class FrameOesGlDrawer {
         mTextureCoordinateHandle = GLES20.glGetAttribLocation(shaderProgram, "a_TexCoordinate");
         mTextureUniformHandle = GLES20.glGetUniformLocation(shaderProgram, "u_Texture");
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-        GLES20.glBindTexture(GL_TEXTURE_EXTERNAL_OES, textureId);
+        GLES20.glBindTexture(getBindTextureId(), textureId);
         GLES20.glUniform1i(mTextureUniformHandle, 0);
 
         mCubeTextureCoordinates.position(0);

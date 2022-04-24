@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.aliyun.maliang.android.simpleapp.camera.CameraV1GLSurfaceView;
 import com.aliyun.maliang.android.simpleapp.camera.CameraV1;
-import com.aliyun.maliang.android.simpleapp.queen.QueenCameraHelper;
+import com.aliyun.queen.utils.QueenCameraHelper;
 import com.aliyun.maliang.android.simpleapp.utils.FpsHelper;
 import com.aliyun.maliang.android.simpleapp.utils.PermissionUtils;
 import com.aliyunsdk.queen.menu.BeautyMenuPanel;

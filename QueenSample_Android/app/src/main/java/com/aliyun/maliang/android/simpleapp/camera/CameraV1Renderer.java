@@ -7,10 +7,8 @@ import android.util.Log;
 
 import com.aliyun.android.libqueen.ImageFormat;
 import com.aliyun.android.libqueen.QueenUtil;
-import com.aliyun.maliang.android.simpleapp.ITextureObserver;
 import com.aliyun.maliang.android.simpleapp.utils.FpsHelper;
 import com.aliyunsdk.queen.param.QueenRuntime;
-import com.aliyun.maliang.android.simpleapp.queen.CameraTextureObserver;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -27,20 +25,22 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
     private Context mContext;
     protected SurfaceTexture mSurfaceTexture;
     private CameraV1GLSurfaceView mGLSurfaceView;
-    private FrameOesGlDrawer mFrameOesGlDrawer;
+    private FrameDrawer mFrameOesDrawer;
+    private FrameDrawer mFrameGlTextureDrawer;
     protected CameraV1 mCamera;
     protected int mOESTextureId = -1;
     protected float[] transformMatrix = null;
     private byte[] mCameraBytes;
 
-    private ITextureObserver mTextureObserver;
+    // 是否需要将Queen的结果直接渲染绘制出来，一般都是不需要的，业务交给Queen处理完后，Queen返回处理完后的纹理id给到业务层，业务自行决定是否绘制或交给其他业务处理，例如RTC、直播sdk等。。
+    // 极简单的业务情况下，才由Queen来直接将渲染后就直接渲染上屏，但这里还是展示两种例子。
+    private boolean mIsRenderDirect2Draw = false;
+    private CameraTextureObserver mTextureObserver;
 
     public void init(CameraV1GLSurfaceView glSurfaceView, CameraV1 camera, Context context) {
         mContext = context;
         mGLSurfaceView = glSurfaceView;
         mCamera = camera;
-
-        mTextureObserver = new CameraTextureObserver();
     }
 
     // Surface创建回调
@@ -51,12 +51,11 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
         // 初始化SurfaceTexture
         initSurfaceTexture();
 
-        // 使用自定义纹理承载美颜结果纹理
-        mFrameOesGlDrawer = new FrameOesGlDrawer();
+        mFrameOesDrawer = new FrameDrawer(true);
+        mFrameGlTextureDrawer = new FrameDrawer(false);
 
-        if (mTextureObserver != null) {
-            mTextureObserver.onTextureCreated(mContext);
-        }
+        mTextureObserver = new CameraTextureObserver(mIsRenderDirect2Draw);
+        mTextureObserver.onTextureCreated(mContext);
     }
 
     // Surface画面大小方向发生改变时的回调，需要同步进行QueenEngine的调整处理.
@@ -108,22 +107,24 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
         }
 
         if (!QueenRuntime.isEnableQueen) {
-            mFrameOesGlDrawer.draw(transformMatrix, mOESTextureId);
+            mFrameOesDrawer.draw(transformMatrix, mOESTextureId);
             return;
         }
 
-        int retCode = -10;
         if (mTextureObserver != null) {
             mCameraBytes = mCamera.getLastUpdateCameraPixels();
             if (mCameraBytes != null) {
-                retCode = mTextureObserver.onTextureUpdated(mOESTextureId, true, transformMatrix, mCameraBytes, ImageFormat.NV21, mCamera.getPrevieWidth(), mCamera.getPrevieHeight());
+                int updateTextureId = mTextureObserver.onTextureUpdated(mOESTextureId, true,
+                        transformMatrix, mCameraBytes, ImageFormat.NV21,
+                        mCamera.getPrevieWidth(), mCamera.getPrevieHeight());
+                if (!mIsRenderDirect2Draw) {
+                    mFrameGlTextureDrawer.draw(transformMatrix, updateTextureId);
+                } else if (updateTextureId == mOESTextureId) {
+                    // 原本由Queen内部负责绘制到到屏幕，但若此处返回了原始纹理id，则说明内部处理失败，需将原始纹理绘出
+                    mFrameOesDrawer.draw(transformMatrix, mOESTextureId);
+                }
                 mCamera.releaseData(mCameraBytes);
             }
-        }
-
-        // 渲染失败，授权证书校验没通过(-9)，或者没有设置任何美颜效果参数(-10)
-        if (retCode == -9 || retCode == -10) {
-            mFrameOesGlDrawer.draw(transformMatrix, mOESTextureId);
         }
     }
 
@@ -165,13 +166,4 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
             mTextureObserver.onTextureDestroy();
         }
     }
-
-    boolean captureFrame(String filePath)
-    {
-        if (mTextureObserver != null) {
-            return mTextureObserver.captureFrame(filePath);
-        }
-        return false;
-    }
-
 }

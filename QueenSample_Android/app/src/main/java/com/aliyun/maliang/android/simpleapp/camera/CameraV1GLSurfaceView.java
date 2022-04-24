@@ -22,13 +22,6 @@ public class CameraV1GLSurfaceView extends GLSurfaceView {
         setRenderMode(RENDERMODE_WHEN_DIRTY);
     }
 
-    public boolean captureFrame(String filePath) {
-        if (null != mRenderer) {
-            return mRenderer.captureFrame(filePath);
-        }
-        return false;
-    }
-
     public void reBindCamera(CameraV1 camera) {
         mRenderer.reBindCamera(camera);
     }
