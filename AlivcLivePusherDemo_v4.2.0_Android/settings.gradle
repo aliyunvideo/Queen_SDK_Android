@@ -1,6 +1,0 @@
-include ':imageutil'
-include ':queenbeauty'
-include ':beautyui'
-include ':beauty'
-include ':alivc-livepusher-demo'
-
