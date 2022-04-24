@@ -1,4 +1,15 @@
 # Queen_SDK_Android
+***[目录说明]***</br>
+本工程接入实现了市面上绝大多数主流直播sdk厂商，以分支的方式进行管理，便于客户对照接入，请根据各自需要，选择并切换相应厂商分支。
+1、checkout代码到本地：git checkout git地址git@github.com:aliyunvideo/Queen_SDK_Android.git
+2、切换到指定sdk分支：git checkout branch_name
+
+支持厂商列表对应分支如下：
+【官方最简单Demo】：Queen_Sample_App
+【腾讯云直播SDK】：Queen_Tencent_MLVB
+
+
+
 
 ***[简介]***</br>
 智能美化特效已集成到阿里云Queen SDK中，接入简单、快速。基于智能视觉算法、海量规模的人脸、人体检测和识别技术，智能美化特效为视频创作者提供移动端的人脸美颜、美型、美妆美化、滤镜贴纸等编辑加工能力，满足直播和视频制作时的美颜特效需求。
