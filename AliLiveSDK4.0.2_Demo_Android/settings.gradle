@@ -1,3 +1,0 @@
-include ':app'
-include ':zxing'
-rootProject.name='AliLiveSDk-demo'
