@@ -12,8 +12,7 @@
 [【腾讯云RTCSDK】](https://github.com/tencentyun/TRTCSDK)：Queen_Tencent_TRTC</br>
 [【七牛云直播推流SDK】](https://developer.qiniu.com/pili/3718/PLDroidMediaStreaming-quick-start)：Queen_Qiniu_PLDroidMediaStreaming</br>
 [【即构实时音视频SDK】](https://doc-zh.zego.im/article/3125)：Queen_Zego_ExpressExample</br>
-
-
+[【librestreaming-SDK】](https://github.com/lakeinchina/librestreaming)：Queen_Third_Librestreaming</br>
 
 
 </br>
