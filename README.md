@@ -6,11 +6,13 @@
 
 支持厂商列表对应分支名称如下：</br>
 ===sdk厂商: 分支名称</br>
-【官方接入指导】：Queen_Sample_App</br>
+【官方接入指导】：Queen_SampleApp</br>
 【阿里云直播推流SDK】：Queen_Aliyun_LivePusher</br>
-[【腾讯云直播SDK】](https://cloud.tencent.com/document/product/454/6555)：Queen_Tencent_MLVB</br>
+[【腾讯云直播SDK】](https://github.com/LiteAVSDK/Live_Android/tree/main/MLVB-API-Example)：Queen_Tencent_MLVB</br>
 [【腾讯云RTCSDK】](https://github.com/tencentyun/TRTCSDK)：Queen_Tencent_TRTC</br>
 [【七牛云直播推流SDK】](https://developer.qiniu.com/pili/3718/PLDroidMediaStreaming-quick-start)：Queen_Qiniu_PLDroidMediaStreaming</br>
+[【即构实时音视频SDK】](https://doc-zh.zego.im/article/3125)：Queen_Zego_ExpressExample</br>
+
 
 
 
