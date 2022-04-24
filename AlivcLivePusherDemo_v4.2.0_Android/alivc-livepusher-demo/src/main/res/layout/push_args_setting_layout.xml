@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="100dp"
+    android:background="@color/wheel_white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/wheel_white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/title_bg_grey_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/resolution_label"
+                android:textColor="@color/trackGradient"
+                android:textSize="@dimen/font_size_24px"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/resolution_seekbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxHeight="5dp"
+                    android:minHeight="5dp"
+                    android:progress="80"
+                    android:theme="@style/SeekBarColor" />
+
+                <TextView
+                    android:id="@+id/resolution_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@string/setting_resolution_540P"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/alivc_color_gry"></View>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/bitrate_control"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/bitrate_control"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:checked="true"
+                android:textOff=""
+                android:textOn=""
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/variable_resolution"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/variable_resolution"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/wheel_white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:text="@string/resolution_label_desc"
+                android:textColor="@color/trackGradient"
+                android:textSize="@dimen/font_size_24px"></TextView>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/title_bg_grey_color" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/advance_config"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/advance_config"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/advance_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/display_mode"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <RadioGroup
+                android:id="@+id/quality_modes"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/resolution_first"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/left_shape_selector"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="@string/quality_resolution_first"
+                    android:textSize="@dimen/font_size_28px" />
+
+                <RadioButton
+                    android:id="@+id/fluency_first"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/middle_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/quality_fluency_first"
+                    android:textSize="@dimen/font_size_28px" />
+
+                <RadioButton
+                    android:id="@+id/custom_mode"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/right_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/quality_custom"
+                    android:textSize="@dimen/font_size_28px" />
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/wheel_white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:text="@string/video_label_desc"
+                android:textColor="@color/trackGradient"
+                android:textSize="@dimen/font_size_24px"></TextView>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/target_bitrate"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <TextView
+                android:id="@+id/kb_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:text="/kbps" />
+
+            <EditText
+                android:id="@+id/target_rate_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/kb_desc"
+                android:background="@color/wheel_white"
+                android:hint="@string/target_rate_value"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/font_size_28px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/min_bitrate"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <TextView
+                android:id="@+id/min_kb_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:text="/kbps" />
+
+            <EditText
+                android:id="@+id/min_rate_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/min_kb_desc"
+                android:background="@color/wheel_white"
+                android:hint="@string/min_rate_value"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/font_size_28px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/initial_bitrate"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <TextView
+                android:id="@+id/initial_kb_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:text="/kbps" />
+
+            <EditText
+                android:id="@+id/init_rate_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/initial_kb_desc"
+                android:background="@color/wheel_white"
+                android:hint="@string/initial_bit_value"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/font_size_28px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/audio_bitrate"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <TextView
+                android:id="@+id/audio_kb_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:text="/kbps" />
+
+            <EditText
+                android:id="@+id/audio_bitrate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/audio_kb_desc"
+                android:background="@color/wheel_white"
+                android:hint="@string/audio_bitrate_value"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/font_size_28px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/wheel_white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/title_bg_grey_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/min_fps"
+                    android:textColor="@color/trackGradient"
+                    android:textSize="@dimen/font_size_24px">
+
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <SeekBar
+                        android:id="@+id/min_fps_seekbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:maxHeight="5dp"
+                        android:minHeight="5dp"
+                        android:progress="0"
+                        android:theme="@style/SeekBarColor" />
+
+                    <TextView
+                        android:id="@+id/min_fps_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="8"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/wheel_white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/title_bg_grey_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/captrue_fps"
+                    android:textColor="@color/trackGradient"
+                    android:textSize="@dimen/font_size_24px">
+
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <SeekBar
+                        android:id="@+id/fps_seekbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:maxHeight="5dp"
+                        android:minHeight="5dp"
+                        android:progress="80"
+                        android:theme="@style/SeekBarColor" />
+
+                    <TextView
+                        android:id="@+id/fps_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="@string/init_fps"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/wheel_white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/title_bg_grey_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/audio_sampling_rate"
+                    android:textColor="@color/trackGradient"
+                    android:textSize="@dimen/font_size_24px">
+
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <SeekBar
+                        android:id="@+id/audio_rate_seekbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:maxHeight="5dp"
+                        android:minHeight="5dp"
+                        android:progress="80"
+                        android:theme="@style/SeekBarColor" />
+
+                    <TextView
+                        android:id="@+id/audio_rate_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="@string/setting_audio_480"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/title_bg_grey_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:text="@string/GOP"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <RadioGroup
+                android:id="@+id/main_gop"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/gop_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/left_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="1s"
+                    android:textSize="@dimen/font_size_28px" />
+
+                <RadioButton
+                    android:id="@+id/gop_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/middle_shape_selector"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="2s"
+                    android:textSize="@dimen/font_size_28px" />
+
+                <RadioButton
+                    android:id="@+id/gop_three"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/middle_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="3s"
+                    android:textSize="@dimen/font_size_28px" />
+
+                <RadioButton
+                    android:id="@+id/gop_four"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/middle_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="4s"
+                    android:textSize="@dimen/font_size_28px" />
+
+                <RadioButton
+                    android:id="@+id/gop_five"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/right_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="5s"
+                    android:textSize="@dimen/font_size_28px" />
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/audio_profile"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <RadioGroup
+                android:id="@+id/audio_profiles"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/audio_profile_lc"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:background="@drawable/left_shape_selector"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="@string/setting_audio_aac_lc"
+                    android:textSize="@dimen/font_size_24px" />
+
+                <RadioButton
+                    android:id="@+id/audio_profile_he"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:background="@drawable/middle_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/setting_audio_aac_he"
+                    android:textSize="@dimen/font_size_24px" />
+
+                <RadioButton
+                    android:id="@+id/audio_profile_hev2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:background="@drawable/middle_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/setting_audio_aac_hev2"
+                    android:textSize="@dimen/font_size_24px" />
+
+                <RadioButton
+                    android:id="@+id/audio_profile_ld"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:background="@drawable/right_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/setting_audio_aac_ld"
+                    android:textSize="@dimen/font_size_24px" />
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:text="@string/sound_track"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <RadioGroup
+                android:id="@+id/main_audio"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/audio_channel_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/left_shape_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/single_track"
+                    android:textSize="@dimen/font_size_28px" />
+
+                <RadioButton
+                    android:id="@+id/audio_channel_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/right_shape_selector"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="@string/dual_track"
+                    android:textSize="@dimen/font_size_28px" />
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/hardware_encode"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/hard_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:checked="true"
+                android:textOff=""
+                android:textOn=""
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="100dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/audio_hardware_encode"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Switch
+                android:id="@+id/audio_hardenc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:checked="false"
+                android:textOff=""
+                android:textOn=""
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/alivc_color_gry"></View>
+        </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

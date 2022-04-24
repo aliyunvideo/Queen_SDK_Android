@@ -1,0 +1,93 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        release {
+            keyAlias 'key0'
+            keyPassword 'livepush'
+            storeFile file('livepush.jks')
+            storePassword 'livepush'
+        }
+        debug {
+            keyAlias 'key0'
+            keyPassword 'livepush'
+            storeFile file('livepush.jks')
+            storePassword 'livepush'
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "3g"
+    }
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
+    defaultConfig {
+        applicationId "com.alivc.live.pusher.demo"
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            debuggable false
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+    }
+    publishNonDefault true
+//    externalNativeBuild {
+//        cmake {
+//        }
+//    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        disable 'MissingTranslation'
+    }
+
+    allprojects {
+        repositories {
+            jcenter()
+            flatDir {
+                dirs 'src/main/libs'
+            }
+        }
+    }
+
+    buildToolsVersion '30.0.3'
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'src/main/libs')
+    implementation fileTree(include: ['*.aar'], dir: 'src/main/libs')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.acker:simplezxing:1.5'
+    implementation 'com.google.code.gson:gson:2.6.2'
+    implementation externalAndroidMultiDex
+    implementation project(':beauty')
+    implementation project(':beautyui')
+    implementation project(':imageutil')
+    implementation project(':queenbeauty')
+    implementation 'com.aliyun.sdk.android:AliyunPlayer:5.4.2.0-full'
+    implementation 'com.aliyun.sdk.android:AlivcArtc:5.4.2.0'
+}
