@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="PLATFORM" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="1.8 (2)" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Advanced" />
+            <option value="$PROJECT_DIR$/Advanced/CustomVideoCapture" />
+            <option value="$PROJECT_DIR$/Advanced/RTCPushAndPlay" />
+            <option value="$PROJECT_DIR$/Advanced/SwitchRenderView" />
+            <option value="$PROJECT_DIR$/Advanced/ThirdBeauty" />
+            <option value="$PROJECT_DIR$/App" />
+            <option value="$PROJECT_DIR$/Basic" />
+            <option value="$PROJECT_DIR$/Basic/LiveLink" />
+            <option value="$PROJECT_DIR$/Basic/LivePK" />
+            <option value="$PROJECT_DIR$/Basic/LivePlay" />
+            <option value="$PROJECT_DIR$/Basic/LivePushCamera" />
+            <option value="$PROJECT_DIR$/Basic/LivePushScreen" />
+            <option value="$PROJECT_DIR$/Common" />
+            <option value="$PROJECT_DIR$/Debug" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MLVB-API-Example.iml" filepath="$PROJECT_DIR$/.idea/modules/MLVB-API-Example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Advanced/MLVB-API-Example.Advanced.iml" filepath="$PROJECT_DIR$/.idea/modules/Advanced/MLVB-API-Example.Advanced.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Advanced/CustomVideoCapture/MLVB-API-Example.Advanced.CustomVideoCapture.iml" filepath="$PROJECT_DIR$/.idea/modules/Advanced/CustomVideoCapture/MLVB-API-Example.Advanced.CustomVideoCapture.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Advanced/RTCPushAndPlay/MLVB-API-Example.Advanced.RTCPushAndPlay.iml" filepath="$PROJECT_DIR$/.idea/modules/Advanced/RTCPushAndPlay/MLVB-API-Example.Advanced.RTCPushAndPlay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Advanced/SwitchRenderView/MLVB-API-Example.Advanced.SwitchRenderView.iml" filepath="$PROJECT_DIR$/.idea/modules/Advanced/SwitchRenderView/MLVB-API-Example.Advanced.SwitchRenderView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Advanced/ThirdBeauty/MLVB-API-Example.Advanced.ThirdBeauty.iml" filepath="$PROJECT_DIR$/.idea/modules/Advanced/ThirdBeauty/MLVB-API-Example.Advanced.ThirdBeauty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/App/MLVB-API-Example.App.iml" filepath="$PROJECT_DIR$/.idea/modules/App/MLVB-API-Example.App.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Basic/MLVB-API-Example.Basic.iml" filepath="$PROJECT_DIR$/.idea/modules/Basic/MLVB-API-Example.Basic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Basic/LiveLink/MLVB-API-Example.Basic.LiveLink.iml" filepath="$PROJECT_DIR$/.idea/modules/Basic/LiveLink/MLVB-API-Example.Basic.LiveLink.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Basic/LivePK/MLVB-API-Example.Basic.LivePK.iml" filepath="$PROJECT_DIR$/.idea/modules/Basic/LivePK/MLVB-API-Example.Basic.LivePK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Basic/LivePlay/MLVB-API-Example.Basic.LivePlay.iml" filepath="$PROJECT_DIR$/.idea/modules/Basic/LivePlay/MLVB-API-Example.Basic.LivePlay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Basic/LivePushCamera/MLVB-API-Example.Basic.LivePushCamera.iml" filepath="$PROJECT_DIR$/.idea/modules/Basic/LivePushCamera/MLVB-API-Example.Basic.LivePushCamera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Basic/LivePushScreen/MLVB-API-Example.Basic.LivePushScreen.iml" filepath="$PROJECT_DIR$/.idea/modules/Basic/LivePushScreen/MLVB-API-Example.Basic.LivePushScreen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Common/MLVB-API-Example.Common.iml" filepath="$PROJECT_DIR$/.idea/modules/Common/MLVB-API-Example.Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Debug/MLVB-API-Example.Debug.iml" filepath="$PROJECT_DIR$/.idea/modules/Debug/MLVB-API-Example.Debug.iml" />
+    </modules>
+  </component>
+</project>

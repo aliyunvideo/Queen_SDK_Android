@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.aliyunsdk.components:queen_menu:1.0.17-SNAPSHOT@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f96aa905a67bcd2f9ea793d1015494bd/queen_menu-1.0.17-SNAPSHOT/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f96aa905a67bcd2f9ea793d1015494bd/queen_menu-1.0.17-SNAPSHOT/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f96aa905a67bcd2f9ea793d1015494bd/queen_menu-1.0.17-SNAPSHOT/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
