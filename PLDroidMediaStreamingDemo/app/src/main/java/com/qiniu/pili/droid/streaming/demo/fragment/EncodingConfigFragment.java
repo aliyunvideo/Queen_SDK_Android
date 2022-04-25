@@ -3,8 +3,9 @@ package com.qiniu.pili.droid.streaming.demo.fragment;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.Nullable;
+import androidx.annotation.IdRes;
+import androidx.annotation.Nullable;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

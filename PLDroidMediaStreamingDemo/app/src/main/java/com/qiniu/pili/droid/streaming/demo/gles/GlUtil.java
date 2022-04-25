@@ -4,8 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
-import android.support.annotation.Nullable;
-import android.support.annotation.RawRes;
+import androidx.annotation.RawRes;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 import java.io.BufferedReader;
