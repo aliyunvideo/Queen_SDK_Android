@@ -7,6 +7,7 @@ import android.util.Log;
 import com.qiniu.pili.droid.streaming.demo.utils.Config;
 import com.qiniu.pili.droid.streaming.demo.R;
 import com.qiniu.pili.droid.streaming.demo.filter.CameraFilterBeauty;
+import com.thirdbeauty.queen.FrameDrawer;
 
 public class FBO {
     private static final String TAG = "FBO";
@@ -14,8 +15,7 @@ public class FBO {
 
     private int mSurfaceWidth;
     private int mSurfaceHeight;
-    private CommonFrameGlDrawer mFrameDrawer;
-    private FrameGlDrawer mOesFrameDrawer;
+    private FrameDrawer mFrameDrawer;
 
     private static int[] mCurveArrays = new int[] {
             R.raw.cross_1, R.raw.cross_2, R.raw.cross_3, R.raw.cross_4, R.raw.cross_5,
@@ -47,8 +47,7 @@ public class FBO {
             mFullScreen.release(false);
         }
 
-        mFrameDrawer = new CommonFrameGlDrawer();
-        mOesFrameDrawer = new FrameGlDrawer();
+        mFrameDrawer = new FrameDrawer(false);
 
         /**
          * Create a new full frame renderer with beauty filter.
@@ -140,10 +139,9 @@ public class FBO {
         if (matrix == null) {
             mFullScreen.drawFrame(texId);
         } else {
-            mFrameDrawer.draw(matrix, texId, false);
-//            mOesFrameDrawer.draw(matrix, texId, true);
+            boolean isOesTexture = matrix == null;
+            mFrameDrawer.draw(matrix, texId, isOesTexture);
         }
-
         // Blit to display.
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0);
         GLES20.glViewport(0, 0, mSurfaceWidth, mSurfaceHeight);

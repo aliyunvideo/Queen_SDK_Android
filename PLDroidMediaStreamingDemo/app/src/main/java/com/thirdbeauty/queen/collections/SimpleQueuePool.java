@@ -1,7 +1,7 @@
-package com.qiniu.pili.droid.streaming.demo.collections;
+package com.thirdbeauty.queen.collections;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;

@@ -15,8 +15,10 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -24,6 +26,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.aliyun.android.libqueen.Texture2D;
 import com.github.angads25.filepicker.controller.DialogSelectionListener;
 import com.github.angads25.filepicker.model.DialogConfigs;
 import com.github.angads25.filepicker.model.DialogProperties;
@@ -44,7 +47,9 @@ import com.qiniu.pili.droid.streaming.SurfaceTextureCallback;
 import com.qiniu.pili.droid.streaming.WatermarkSetting;
 import com.qiniu.pili.droid.streaming.av.common.PLFourCC;
 import com.qiniu.pili.droid.streaming.demo.R;
-import com.qiniu.pili.droid.streaming.demo.collections.SimpleBytesBufPool;
+import com.thirdbeauty.queen.IQueenRender;
+import com.thirdbeauty.queen.QueenRender;
+import com.thirdbeauty.queen.collections.SimpleBytesBufPool;
 import com.qiniu.pili.droid.streaming.demo.fragment.ControlFragment;
 import com.qiniu.pili.droid.streaming.demo.gles.FBO;
 import com.qiniu.pili.droid.streaming.demo.plain.CameraConfig;
@@ -58,7 +63,6 @@ import com.qiniu.pili.droid.streaming.microphone.AudioMixer;
 import com.qiniu.pili.droid.streaming.microphone.OnAudioMixListener;
 import com.aliyun.android.libqueen.ImageFormat;
 import com.aliyun.android.libqueen.QueenEngine;
-import com.aliyun.android.libqueen.Texture2D;
 import com.aliyun.android.libqueen.models.BeautyFilterType;
 import com.aliyun.android.libqueen.models.BeautyParams;
 import com.aliyun.android.libqueen.models.Flip;
@@ -188,7 +192,7 @@ public class AVStreamingActivity extends Activity implements
         mCameraPreviewFrameView.queueEvent(new Runnable() {
             @Override
             public void run() {
-                releaseQueenEngine();
+                mQueenRender.onTextureDestroy();
             }
         });
 
@@ -246,6 +250,17 @@ public class AVStreamingActivity extends Activity implements
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.add(R.id.control_fragment_container, mControlFragment);
         ft.commit();
+
+
+        // 添加底部菜单栏
+        com.aliyunsdk.queen.menu.BeautyMenuPanel beautyMenuPanel = new com.aliyunsdk.queen.menu.BeautyMenuPanel(this);
+        final FrameLayout.LayoutParams menuParams = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        menuParams.gravity = Gravity.BOTTOM;
+        menuParams.bottomMargin = (int)getResources().getDimension(R.dimen.alivc_common_116);
+        ((FrameLayout)findViewById(R.id.control_fragment_container)).addView(beautyMenuPanel, menuParams);
     }
 
     /**
@@ -1143,9 +1158,9 @@ public class AVStreamingActivity extends Activity implements
         }
     };
 
-    private QueenEngine engine;
-    private Texture2D mOutTexture;
     private SimpleBytesBufPool mBytesBufPool;
+    private IQueenRender mQueenRender = new QueenRender.Builder().build();
+
 
     /**
      * 预览视频帧的纹理回调，您可以在这个回调里接入第三方美颜的处理
@@ -1163,20 +1178,13 @@ public class AVStreamingActivity extends Activity implements
             Log.i(TAG, "onSurfaceCreated");
             mFBO.initialize(AVStreamingActivity.this);
 
-            releaseQueenEngine();
             if (null != mBytesBufPool) {
                 mBytesBufPool.clear();
                 mBytesBufPool = null;
             }
 
-            try {
-                // 传入Android.content.Context触发引擎的初始化
-                // 第二个参数为true表示直接输出到当前OpenGL的显示区域
-                engine = new QueenEngine(AVStreamingActivity.this,false);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            String sign = LicenseHelper.getPackageSignature();
+            mQueenRender.onTextureCreate(AVStreamingActivity.this);
+
             setCameraAngles();
         }
 
@@ -1200,7 +1208,7 @@ public class AVStreamingActivity extends Activity implements
             Log.i(TAG, "onSurfaceDestroyed");
             mFBO.release();
 
-            releaseQueenEngine();
+            mQueenRender.onTextureDestroy();
             if (null != mBytesBufPool) {
                 mBytesBufPool.clear();
                 mBytesBufPool = null;
@@ -1218,88 +1226,21 @@ public class AVStreamingActivity extends Activity implements
          */
         @Override
         public int onDrawFrame(int texId, int width, int height, float[] transformMatrix) {
-            if (null == engine) {
-                return texId;
-            }
-            // 设置输入纹理，用于美颜流程的渲染
-            // 第四个参数表示输入纹理是否为OES类型的纹理
-            engine.setInputTexture(texId, height, width, true);
-
-            if (mOutTexture == null) {
-                mOutTexture = engine.autoGenOutTexture();
-            }
-            engine.updateOutTexture(mOutTexture.getTextureId(), height, width);
-
-            writeBeautyParams();
-
+            int retCode = texId;
             if (mBytesBufPool != null) {
                 byte[] cameraData = mBytesBufPool.getLastBuffer();
                 if (cameraData != null) {
-                    // 输入帧图片流
-                    engine.updateInputDataAndRunAlg(cameraData, ImageFormat.NV21,
-                            width,
-                            height,
-                            0, // 用于检测的图像的跨度(以像素为单位),即每行的字节数, 默认情况下设为 0
-                            inputAngle, // 当前输入帧图片需旋转的角度，计算方式参考Sample工程
-                            outAngle, // 算法输出结果所需旋转的角度，计算方式参考Sample工程
-                            flipAxis, // 输出数据的xy轴翻转处理,0为不旋转,1为x轴翻转,2为y轴翻转 (270, 0, 2, 90, 0, 0)
-                            true
-                    );
+                    retCode = mQueenRender.onTextureProcess(texId, true, transformMatrix,
+                            cameraData, ImageFormat.NV21, width, height);
                     // 释放当前帧数据,以便后续循环复用
                     mBytesBufPool.releaseBuffer(cameraData);
                 }
             }
 
-            // 渲染到当前窗口，如证书校验失败或者全部特效功能关闭，则SDK不会执行渲染操作
-            int retCode = engine.renderTexture(transformMatrix);
-
-            // 参考API文档
-            // QUEEN_INVALID_LICENSE(-9)，表示证书校验失败
-            // QUEEN_NO_EFFECT(-10)，表示全部特效功能关闭, 则需要业务方执行渲染，可参考Sample工程
-            if (retCode == -9 || retCode == -10) {
-                // 如果渲染失败,用原始方法
-                return mFBO.drawFrame(texId, width, height, null);
-            } else {
-                return mFBO.drawFrame(mOutTexture.getTextureId(), width, height, transformMatrix);
-            }
+            float[] matrix = retCode == texId ? null : transformMatrix;
+            return mFBO.drawFrame(retCode, width, height, matrix);
         }
     };
-
-    private void writeBeautyParams() {
-//        engine.enableFacePointDebug(true);
-        //美白开关
-        engine.enableBeautyType(BeautyFilterType.kSkinWhiting, true);
-        //美白参数 [0,1]
-        engine.setBeautyParam(
-                BeautyParams.kBPSkinWhitening,
-                0.3f
-        );
-        //磨皮/锐化 开关
-        engine.enableBeautyType(BeautyFilterType.kSkinBuffing, true);
-        engine.setBeautyParam(BeautyParams.kBPSkinBuffing, 0.6f);
-        engine.setBeautyParam(BeautyParams.kBPSkinSharpen, 0.3f);
-
-        //高级美颜开关
-        engine.enableBeautyType(BeautyFilterType.kFaceBuffing, true);
-        //去法令纹[0,1]
-        engine.setBeautyParam(BeautyParams.kBPNasolabialFolds, 1.0f);
-        //去眼袋[0,1]
-        engine.setBeautyParam(BeautyParams.kBPPouch, 1.0f);
-        //白牙[0,1]
-        engine.setBeautyParam(BeautyParams.kBPWhiteTeeth, 1.0f);
-        //滤镜美妆：口红[0,1]
-        engine.setBeautyParam(BeautyParams.kBPLipstick, 1.0f);
-        // 滤镜美妆：口红色相[-0.5,0.5]，需配合饱和度、明度使用，参考颜色如下：土红(-0.125)、粉红(-0.1)、复古红(0.0)、紫红(-0.2)、正红(-0.08)、橘红(0.0)、紫色(-0.42)、橘色(0.125)、黄色(0.25)
-        engine.setBeautyParam(BeautyParams.kBPLipstickColorParam, -0.125f);
-        // 滤镜美妆：口红饱和度[0,1]，需配合色相、明度使用，参考颜色如下：土红(0.25)、粉红(0.125)、复古红(1.0)、紫红(0.35)、正红(1.0)、橘红(0.35)、紫色(0.35)、橘色(0.25)、黄色(0.45)
-        engine.setBeautyParam(BeautyParams.kBPLipstickGlossParam, 0.25f);
-        // 滤镜美妆：口红明度[0,1]，需配合色相、饱和度使用，参考颜色如下：土红(0.4)、粉红(0.0)、复古红(0.2)、紫红(0.0)、正红(0.0)、橘红(0.0)、紫色(0.0)、橘色(0.0)、黄色(0.0)
-        engine.setBeautyParam(BeautyParams.kBPLipstickBrightnessParam, 0.4f);
-
-        //基于assets的相对路径，如"sticker/baiyang"
-        engine.addMaterial("sticker/5");
-
-    }
 
     /**
      * 在图片推流过程中切换图片，仅供 demo 演示，您可以根据产品定义自行实现
@@ -1581,19 +1522,6 @@ public class AVStreamingActivity extends Activity implements
             return (360 + cameraInfo.orientation - mDeviceOrientation) % 360;
         } else {
             return (cameraInfo.orientation + mDeviceOrientation) % 360;
-        }
-    }
-
-    private void releaseQueenEngine() {
-        Log.i(TAG, "AVStreamingActivity#releaseQueenEngine");
-        if (null != mOutTexture) {
-            mOutTexture.release();
-            mOutTexture = null;
-        }
-        if (null != engine) {
-            Log.i(TAG, "AVStreamingActivity#releaseQueenEngine ...");
-            engine.release();
-            engine = null;
         }
     }
 }

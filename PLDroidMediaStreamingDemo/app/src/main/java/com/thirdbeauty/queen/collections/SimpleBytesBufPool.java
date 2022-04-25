@@ -1,4 +1,4 @@
-package com.qiniu.pili.droid.streaming.demo.collections;
+package com.thirdbeauty.queen.collections;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -11,7 +11,7 @@ public class SimpleBytesBufPool {
     private FrameBuffer mOldFrameBuffer;
 
     public SimpleBytesBufPool(int capacity, int byteLength) {
-        mBytesBufQueuePool = new SimpleQueuePool<>(capacity);
+        mBytesBufQueuePool = new SimpleQueuePool<byte[]>(capacity);
         mByteLength = byteLength;
         mLastFrameBuffer = new FrameBuffer();
         mOldFrameBuffer = new FrameBuffer();
