@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="start_publishing" translatable="true">开始推流</string>
+    <string name="stop_publishing">停止推流</string>
+    <string name="start_playing">开始拉流</string>
+    <string name="view_mode">视图模式</string>
+    <string name="mirror">镜像模式</string>
+    <string name="camera">摄像头</string>
+    <string name="camera_selection">摄像头切换</string>
+    <string name="microphone">麦克风</string>
+    <string name="audio">音频</string>
+    <string name="video">视频</string>
+    <string name="refresh">刷新</string>
+    <string name="stop_playing">停止拉流</string>
+    <string name="capture_resolution">采集分辨率</string>
+    <string name="encode_resolution">编码分辨率</string>
+    <string name="fps">视频帧率</string>
+    <string name="bitrate">视频码率</string>
+    <string name="login_room">登录房间</string>
+    <string name="video_for_multiple_users">多人视频通话</string>
+    <string name="Me">（我）</string>
+</resources>

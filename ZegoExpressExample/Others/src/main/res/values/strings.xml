@@ -1,0 +1,115 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" translatable="false">ExpressVideo</string>
+    <string name="publish">Publish</string>
+    <string name="play">play</string>
+    <string name="start_publishing">Start Publishing</string>
+    <string name="start_playing">Start Playing</string>
+    <string name="preview">Preview</string>
+    <string name="play_stream">Play Stream</string>
+    <string name="stop_publishing">stop publishing</string>
+    <string name="stop_playing">Stop Playing</string>
+    <string name="rotate_mode">Rotate Mode</string>
+    <string name="polish">Polish</string>
+    <string name="polish_step">Polish Step</string>
+    <string name="skin_whiten">Skin Whiten</string>
+    <string name="whiten">Whiten</string>
+    <string name="whiten_factor">Whiten Factor</string>
+    <string name="sharpen_factor">Sharpen Factor</string>
+    <string name="sharpen">Sharpen</string>
+    <string name="watermark">Watermark</string>
+    <string name="watermark_file">Watermark File</string>
+    <string name="is_preview_visible">isPreviewVisible</string>
+    <string name="snapshot">Snapshot</string>
+    <string name="take_snapshot">Take Snapshot</string>
+    <string name="beautify">Beautify</string>
+    <string name="choose_file">Choose File</string>
+    <string name="beauty_watermark_snapshot">Watermark,Snapshot</string>
+    <!--Mixer-->
+    <string name="tx_mixer_publish_ok"> Push stream successfully </string>
+    <string name="tx_mixer_publish_request"> requesting push stream </string>
+    <string name="tx_mixer_publish_fail"> Push stream failed, error code is </string>
+    <string name="tx_mixer_stop_publish_ok"> Stop pushing successfully </string>
+    <string name="tx_mixer_hint"> Please select 2 remote streams to participate in mixing </string>
+    <string name="tx_mixer_start_ok"> Start mixing success </string>
+    <string name="tx_mixer_start_fail"> Start mixing failed, error code is </string>
+    <string name="tx_mixer_stop_ok"> Stop mixing success </string>
+    <string name="tx_mixer_stop_fail"> Stop mixing failed with error code </string>
+    <string name="tx_mixer_usage_title"> Instructions for use: </string> 
+    <string name="tx_mixer_usage_content"> This topic requires the use of three devices to experience, of which two devices initiate streaming and another device initiates mixing and watching </string>
+      
+    <string name="tx_mixer_publish"> Initiate push stream </string>  
+    <string name="tx_mixer_stop_publish"> stop pushing stream </string>  
+    <string name="tx_mixer_mix"> Initiate mixed flow </string>  
+    <string name="tx_mixer_auto_mix"> Initiate auto mixed flow </string>
+    <string name="tx_mixer_step1"> 1. Initiate and watch mixed stream </string>   
+    <string name="tx_mixer_step2"> 2. Stop watching mixed stream </string>  
+    <string name="tx_mixer_step3"> 3. Stop mixing flow </string>
+    <string name="start_auto_stream_mixing"> Start Auto Stream Mixing </string>
+    <string name="stop_auto_stream_mixing"> Stop Auto Stream Mixing </string>
+    <string name="stream_mixing">Stream Mixing</string>
+    <string name="auto_stream_mixing">Auto Stream Mixing</string>
+    <string name="start_recording">Start Recording</string>
+    <string name="stop_recording">Stop Recording</string>
+    <string name="play_local_media">Play Local Media</string>
+    <string name="recording">Recording</string>
+    <string name="stop_local_media">Stop Local Media</string>
+    <string name="network_resource">Network Resource</string>
+    <string name="local_resource">Local Resource</string>
+    <string name="repeat">Repeat</string>
+    <string name="enable_aux">Enable Aux</string>
+    <string name="mute_local">Mute Local</string>
+    <string name="pitch">Pitch:</string>
+    <string name="speed">Speed:</string>
+    <string name="media_player">Media Player</string>
+    <string name="sample" translatable="false">sample.mp3</string>
+    <string name="ad" translatable="false">ad.mp4</string>
+    <string name="test" translatable="false">test.mp4</string>
+    <string name="sample_bgm" translatable="false">sample_bgm.mp3</string>
+    <string name="sample_network" translatable="false">sample_network.mp4</string>
+    <string name="camera_zoom_factor">Camera Zoom Factor:</string>
+    <string name="multiple_rooms">Multiple Rooms</string>
+    <string name="traffic_control">TrafficControl</string>
+    <string name="min_video_bitrate">MinVideoBitrate</string>
+    <string name="flow_control">Traffic Control</string>
+    <string name="networkspeed_test">NetworkSpeed Test</string>
+    <string name="downlink">Downlink</string>
+    <string name="uplink">Uplink</string>
+    <string name="expected_downlink_bitrate">Expected Downlink Bitrate</string>
+    <string name="expected_uplink_bitrate">Expected Uplink Bitrate</string>
+    <string name="start_network_speed_test">Start Network Speed Test</string>
+    <string name="performance_monitor">Performance Monitor</string>
+    <string name="start_performance_monitor">Start  Performance Monitor</string>
+    <string name="network_and_performance">Network and Performance</string>
+    <string name="stop_network_speed_test">Stop Network Speed Test</string>
+    <string name="set_publish_stream_encryption_key">Set Publish Stream Encryption Key</string>
+    <string name="set_play_stream_decryption_key">Set Play Stream Decryption Key</string>
+    <string name="security">Security</string>
+    <string name="start_screen_capture">Start Screen Capture</string>
+    <string name="stop_screen_capture">Stop Screen Capture</string>
+    <string name="screen_sharing">Screen Sharing</string>
+    <string name="sei">Supplemental Enhancement Information</string>
+    <string name="EncryptPublishNotice">The secret key used to encrypt the stream when pushing the stream, you can use a string of 16/24/32 characters in length</string>
+    <string name="EncryptPlayNotice">The secret key used for decryption when pulling the stream must be consistent with the push secret key to decrypt and pull the stream successfully</string>
+<!--info-->
+    <string name="info">For more advanced beauty, you can use real-time audio and video and AI vision to realize the beauty function. You can refer to the help document of the ZEGO Developer Center.</string>
+    <string name="document">document</string>
+    <string name="publish_streamID">Publish StreamID</string>
+    <string name="focus_support">Support Focus： </string>
+    <string name="camera_selection">Camera Selection</string>
+    <string name="focus_mode">Focus Mode</string>
+    <string name="exposure_mode">Exposure Mode</string>
+    <string name="camera_focus">Camera Focus</string>
+    <string name="camera_exposure">Camera Exposure</string>
+    <string name="exposure_compensation">Exposure Compensation</string>
+    <string name="encode_resolution">Encode Resolution</string>
+    <string name="capture_resolution">Capture Resolution</string>
+    <string name= "encodeResolutionTitle">Encoding resolution, the user sets the resolution of the video pushed to the remote end, it needs to be set to an even number</string>
+    <string name="captureResolutionTitle">Capture resolution，User settings control the resolution of camera image capture, which needs to be set to an even number</string>
+    <string name="video_fps">Video FPS</string>
+    <string name="video_bitrate">Video Bitrate</string>
+    <string name="enable_effects_beauty">Effects Beauty</string>
+    <string name="beauty_whiten">Whiten[0,100]</string>
+    <string name="beauty_rosy">Rosy[0,100]</string>
+    <string name="beauty_smooth">Smooth[0,100]</string>
+    <string name="beauty_sharpen">Sharpen[0,100]</string>
+</resources>

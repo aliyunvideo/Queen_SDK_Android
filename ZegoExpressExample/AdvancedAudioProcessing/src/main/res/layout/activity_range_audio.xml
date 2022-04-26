@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".rangeaudio.ui.RangeAudioActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <im.zego.commontools.logtools.logLinearLayout
+        android:id="@+id/logView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:id="@+id/roomIDTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="RoomID"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editRoomID"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toEndOf="@id/roomIDTitle"
+                android:layout_toRightOf="@id/roomIDTitle"
+                android:background="@drawable/edit_round"
+                android:padding="5dp"
+                android:text="RangeAudio"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editUserID"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/edit_round"
+                android:padding="5dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/userIDTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toStartOf="@id/editUserID"
+                android:layout_toLeftOf="@id/editUserID"
+                android:text="UserID"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Login Room"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/little_dark_grey"
+            android:text="Team Audio"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:padding="10dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="Range audio mode"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/audioModeSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:entries="@array/audioModeSelection" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="Team ID"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTeamID"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/edit_round"
+                android:padding="5dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/little_dark_grey"
+            android:text="Range Audio"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:padding="10dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="Enable microphone"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/microphoneSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="Enable speaker"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/speakerSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="Receive range"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editRange"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/edit_round"
+                android:inputType="number"
+                android:padding="5dp"
+                android:text="100"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/little_dark_grey"
+            android:text="3D sound effects"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:padding="10dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="3D sound effects"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/sound3DSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/little_dark_grey"
+            android:text="Location information"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:padding="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:text="Position"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:text="front[-100,100]"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/frontValueTextView"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_alignParentRight="true"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <SeekBar
+                android:id="@+id/frontSeekBar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/frontValueTextView"
+                android:max="100"
+                android:min="-100"
+                android:progress="0" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/frontSeekBar"
+                android:layout_marginTop="10dp"
+                android:text="right[-100,100]"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/rightValueTextView"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/frontSeekBar"
+                android:layout_marginLeft="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <SeekBar
+                android:id="@+id/rightSeekBar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/frontSeekBar"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@id/rightValueTextView"
+                android:max="100"
+                android:min="-100"
+                android:progress="0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rightSeekBar"
+                android:layout_marginTop="10dp"
+                android:text="up[-100,100]"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/upValueTextView"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rightSeekBar"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_alignParentRight="true"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <SeekBar
+                android:id="@+id/upSeekBar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rightSeekBar"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@id/upValueTextView"
+                android:max="100"
+                android:min="-100"
+                android:progress="0" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:text="Direction"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:text="front rotate[-180,180]"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/frontRotateTextView"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_alignParentRight="true"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <SeekBar
+                android:id="@+id/frontRotateSeekBar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/frontRotateTextView"
+                android:max="180"
+                android:min="-180"
+                android:progress="0" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/frontRotateSeekBar"
+                android:layout_marginTop="10dp"
+                android:text="right rotate[-180,180]"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/rightRotateTextView"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/frontRotateSeekBar"
+                android:layout_marginLeft="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <SeekBar
+                android:id="@+id/rightRotateSeekBar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/frontRotateSeekBar"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@id/rightRotateTextView"
+                android:max="180"
+                android:min="-180"
+                android:progress="0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rightRotateSeekBar"
+                android:layout_marginTop="10dp"
+                android:text="up rotate[-180,180]"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/upRotateTextView"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rightRotateSeekBar"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_alignParentRight="true"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <SeekBar
+                android:id="@+id/upRotateSeekBar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rightRotateSeekBar"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@id/upRotateTextView"
+                android:max="180"
+                android:min="-180"
+                android:progress="0" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/little_dark_grey"
+            android:text="Mute User"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:padding="10dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <EditText
+                    android:id="@+id/editMuteUserID"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/edit_round"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/isMuteSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="false"
+                    android:layout_alignParentRight="false"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp" />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/little_dark_grey"
+            android:text="User Position"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:padding="10dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/userList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,11 @@
+include ':AdvancedAudioProcessing'
+include ':Others'
+include ':DebugAndConfig'
+include ':CommonTools'
+include ':Quickstart'
+include ':KeyCenter'
+include ':AdvancedStreaming'
+include ':CommonFeatures'
+include ':main' ,
+        ':Scenes',
+        ':AdvancedVideoProcessing'

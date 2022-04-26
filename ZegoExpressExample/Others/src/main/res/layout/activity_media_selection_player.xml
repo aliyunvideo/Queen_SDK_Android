@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".mediaplayer.UI.MediaPlayerSelectionActivity">
+
+    <im.zego.commontools.logtools.logLinearLayout
+    android:id="@+id/logView"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RoomID: 0027 UserID:"
+        android:textSize="12sp"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/userIDEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/black"/>
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mediaList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="URL"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/urlInput"
+            android:layout_width="200dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_round"
+            android:padding="5dp"
+            android:text=""
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/enterButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:layout_marginLeft="10dp"
+            android:paddingHorizontal="20dp"
+            android:text="Enter"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

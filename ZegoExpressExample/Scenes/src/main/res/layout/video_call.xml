@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="im.zego.Scenes.VideoForMultipleUsers.VideoForMultipleUsersActivity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <im.zego.commontools.logtools.logLinearLayout
+        android:id="@+id/logView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/allVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+            <TextView
+                android:id="@+id/roomIDTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RoomID: "
+                android:textSize="16sp"
+                android:layout_alignParentTop="true"
+                android:textColor="@color/black"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/roomID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_toStartOf="@+id/streamIDTitle"
+                android:layout_toLeftOf="@+id/streamIDTitle"
+                android:layout_toEndOf="@+id/roomIDTitle"
+                android:layout_toRightOf="@+id/roomIDTitle"
+                android:text="room1"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/streamIDTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="StreamID: "
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/streamID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/streamIDTitle"
+                android:layout_toRightOf="@+id/streamIDTitle"
+                android:text="stream1"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/userIDTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/roomID"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:text="UserID: "
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/userID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/roomID"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_toStartOf="@+id/userNameTitle"
+                android:layout_toLeftOf="@+id/userNameTitle"
+                android:layout_toEndOf="@+id/userIDTitle"
+                android:layout_toRightOf="@+id/userIDTitle"
+                android:text="12314"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/userNameTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/streamID"
+                android:layout_alignStart="@+id/streamIDTitle"
+                android:layout_alignLeft="@+id/streamIDTitle"
+                android:text="UserName:"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/streamID"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/userNameTitle"
+                android:layout_toRightOf="@+id/userNameTitle"
+                android:text="Mike"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/roomStateTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Room state"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_below="@id/userID"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:id="@+id/roomState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_toRightOf="@id/roomStateTitle"
+                android:layout_toEndOf="@id/roomStateTitle"
+                android:layout_below="@id/userID"/>
+            <Button
+                android:id="@+id/streamListButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="StreamList"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/roomState"
+                android:layout_marginLeft="20dp"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:id="@+id/userListButton"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@id/streamListButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UserList"
+                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+</LinearLayout>
+</androidx.core.widget.NestedScrollView>

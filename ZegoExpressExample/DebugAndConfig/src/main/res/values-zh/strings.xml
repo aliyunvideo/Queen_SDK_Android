@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="log_setting">日志设置</string>
+    <string name="log_path">日志文件路径</string>
+    <string name="log_size">日志文件大小</string>
+    <string name="set_log_config">设置日志配置</string>
+    <string name="log_version_debug">日志、版本号、调试信息</string>
+    <string name="debug_config">日志、版本号、调试信息</string>
+    <string name="share_log">分享日志</string>
+    <string name="save">保存</string>
+</resources>

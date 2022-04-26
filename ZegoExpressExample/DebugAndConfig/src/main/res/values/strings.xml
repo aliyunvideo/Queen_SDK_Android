@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="log_setting">Log Setting</string>
+    <string name="log_path">LogPath</string>
+    <string name="log_size">LogSize</string>
+    <string name="set_log_config">SetLogConfig</string>
+    <string name="debug_config">Log,Version,Debug</string>
+    <string name="log_version_debug">Log,Version,Debug</string>
+    <string name="share_log">Share Log</string>
+    <string name="save">Save</string>
+</resources>

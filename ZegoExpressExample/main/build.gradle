@@ -1,0 +1,79 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "im.zego.express.example.video"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode getAppVersionCode()
+        versionName "2.18.0"
+
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86', 'x86_64'
+        }
+
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("../../../../../buildscripts/config/android/release_key.jks")
+            storePassword "your_keystore_password"
+            keyAlias "your_key_alias"
+            keyPassword "your_key_password"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation project(path:':Scenes')
+    implementation project(path: ':CommonFeatures')
+    implementation project(path: ':AdvancedVideoProcessing')
+    implementation project(path:':AdvancedStreaming')
+    implementation project(path: ':Quickstart')
+    implementation project(path: ':Others')
+    implementation project(path: ':DebugAndConfig')
+    implementation project(path: ':AdvancedAudioProcessing')
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation files('libs/ZegoExpressEngine.jar')
+}
+
+def static getAppVersionCode() {
+    int versionCode = 1
+    if (System.getenv("BUILD_NUMBER") != null) {
+        versionCode = Integer.parseInt(System.getenv("BUILD_NUMBER"))
+    }
+    return versionCode
+}

@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wholeView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="im.zego.h265.H265Activity">
+
+    <LinearLayout
+        android:id="@+id/whole"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <im.zego.commontools.logtools.logLinearLayout
+            android:id="@+id/logView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/splitView"
+                android:layout_width="1dp"
+                android:layout_height="250dp"
+                android:layout_centerHorizontal="true" />
+
+            <TextureView
+                android:id="@+id/previewView"
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toStartOf="@id/splitView"
+                android:layout_toLeftOf="@id/splitView" />
+
+            <TextView
+                android:id="@+id/localPreviewViewTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/localPreviewViewVideoCodecTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/localPreviewViewTextView"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/localPreviewViewResolutionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/localPreviewViewVideoCodecTextView"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/localPreviewViewQualityTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/localPreviewViewResolutionTextView"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:textSize="10sp" />
+
+            <TextureView
+                android:id="@+id/playView"
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toEndOf="@id/splitView"
+                android:layout_toRightOf="@id/splitView" />
+
+            <TextView
+                android:id="@+id/playViewTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/splitView"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/playStreamVideoCodecTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/playViewTextView"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/splitView"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/playStreamResolutionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/playStreamVideoCodecTextView"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/splitView"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/playStreamQualityTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/playStreamResolutionTextView"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/splitView"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/playStreamIDTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/h265StartPlayingButton"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toLeftOf="@+id/playStreamIDEditText"
+                android:text="@string/stream_id"
+                android:textSize="10sp" />
+
+            <EditText
+                android:id="@+id/playStreamIDEditText"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_above="@id/h265StartPlayingButton"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/edit_round"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/h265StartPlayingButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/splitView"
+                android:layout_toRightOf="@id/splitView"
+                android:background="#00000000"
+                android:text="@string/start_playing"
+                android:textColor="#03A9F4"
+                android:textSize="10sp"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginVertical="5dp"
+            android:background="@color/little_dark_grey" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/splitView2"
+                android:layout_width="1dp"
+                android:layout_height="250dp"
+                android:layout_centerHorizontal="true" />
+
+            <TextureView
+                android:id="@+id/playView2"
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toStartOf="@id/splitView2"
+                android:layout_toLeftOf="@id/splitView2" />
+
+            <TextView
+                android:id="@+id/playView2TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/playStream2VideoCodecTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/playView2TextView"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/playStream2ResolutionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/playStream2VideoCodecTextView"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/playStream2QualityTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/playStream2ResolutionTextView"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/playStreamID2TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/h265StartPlaying2Button"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toLeftOf="@+id/playStreamID2EditText"
+                android:text="@string/stream_id"
+                android:textSize="10sp" />
+
+            <EditText
+                android:id="@+id/playStreamID2EditText"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/splitView2"
+                android:layout_above="@id/h265StartPlaying2Button"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/edit_round"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/h265StartPlaying2Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/splitView2"
+                android:layout_toLeftOf="@id/splitView2"
+                android:background="#00000000"
+                android:text="@string/start_playing"
+                android:textColor="#03A9F4"
+                android:textSize="10sp" />
+
+
+            <TextureView
+                android:id="@+id/playView3"
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toEndOf="@id/splitView2"
+                android:layout_toRightOf="@id/splitView2" />
+
+            <TextView
+                android:id="@+id/playView3TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/splitView2"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/playStream3VideoCodecTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/playView3TextView"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/splitView2"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/playStream3ResolutionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/playStream3VideoCodecTextView"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/splitView2"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/playStream3QualityTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/playStream3ResolutionTextView"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/splitView2"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/playStreamID3TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/h265StartPlaying3Button"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toLeftOf="@+id/playStreamID3EditText"
+                android:text="@string/stream_id"
+                android:textSize="10sp" />
+
+            <EditText
+                android:id="@+id/playStreamID3EditText"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_above="@id/h265StartPlaying3Button"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/edit_round"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/h265StartPlaying3Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/splitView2"
+                android:layout_toRightOf="@id/splitView2"
+                android:background="#00000000"
+                android:text="@string/start_playing"
+                android:textColor="#03A9F4"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginVertical="5dp"
+            android:background="@color/little_dark_grey" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/publishingConfigSplitView"
+                android:layout_width="1dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/publishStreamIDTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/publishStreamIDEditText"
+                android:text="@string/stream_id" />
+
+            <EditText
+                android:id="@+id/publishStreamIDEditText"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/publishingConfigSplitView"
+                android:background="@drawable/edit_round"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/publishFPSTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/publishFPSSpinner"
+                android:text="@string/fps" />
+
+            <Spinner
+                android:id="@+id/publishFPSSpinner"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="12dp"
+                android:entries="@array/h265_fps" />
+
+            <TextView
+                android:id="@+id/h265PublishResolutionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/publishStreamIDEditText"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/publishResolutionSpinner"
+                android:text="@string/resolution" />
+
+            <Spinner
+                android:id="@+id/publishResolutionSpinner"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/publishStreamIDEditText"
+                android:layout_marginTop="22dp"
+                android:layout_toLeftOf="@id/publishingConfigSplitView"
+                android:entries="@array/h265_resolution" />
+
+            <TextView
+                android:id="@+id/publishBitrateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/publishFPSSpinner"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/publishBitrateEditText"
+                android:text="@string/bitrate" />
+
+
+            <EditText
+                android:id="@+id/publishBitrateEditText"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/publishFPSSpinner"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="9dp"
+                android:background="@drawable/edit_round"
+                android:enabled="false"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/publishingButton"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/publishingConfigSplitView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="@string/start_publishing" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginVertical="5dp"
+            android:background="@color/little_dark_grey" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/mixStreamConfigSplitView"
+                android:layout_width="1dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/mixStreamFPSTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/mixStreamFPSSpinner"
+                android:text="@string/fps" />
+
+            <Spinner
+                android:id="@+id/mixStreamFPSSpinner"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_toLeftOf="@id/mixStreamConfigSplitView"
+                android:entries="@array/h265_fps" />
+
+            <TextView
+                android:id="@+id/mixStreamResolutionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/mixStreamResolutionSpinner"
+                android:text="@string/resolution" />
+
+            <Spinner
+                android:id="@+id/mixStreamResolutionSpinner"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="12dp"
+                android:entries="@array/h265_resolution" />
+
+            <TextView
+                android:id="@+id/mixStreamH264BitrateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mixStreamFPSSpinner"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/mixStreamH264BitrateEditText"
+                android:text="@string/h264_bitrate" />
+
+            <EditText
+                android:id="@+id/mixStreamH264BitrateEditText"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mixStreamFPSSpinner"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/mixStreamConfigSplitView"
+                android:background="@drawable/edit_round"
+                android:enabled="false"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:id="@+id/mixStreamH265BitrateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mixStreamFPSSpinner"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/mixStreamH265BitrateEditText"
+                android:text="@string/h265_bitrate" />
+
+            <EditText
+                android:id="@+id/mixStreamH265BitrateEditText"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mixStreamResolutionSpinner"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/edit_round"
+                android:enabled="false"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/mixStreamIDH264TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mixStreamH264BitrateEditText"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/mixStreamIDH264EditText"
+                android:text="@string/h264_stream_id"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/mixStreamIDH264EditText"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mixStreamH264BitrateEditText"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/mixStreamConfigSplitView"
+                android:background="@drawable/edit_round"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/mixStreamIDH265TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mixStreamH264BitrateEditText"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/mixStreamIDH265EditText"
+                android:text="@string/h265_stream_id"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/mixStreamIDH265EditText"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mixStreamH264BitrateEditText"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/edit_round"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/mixStreamButton"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mixStreamConfigSplitView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="@string/start_mixing" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

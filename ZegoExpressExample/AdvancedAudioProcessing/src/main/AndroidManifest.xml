@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="im.zego.advancedaudioprocessing">
+
+    <application>
+        <activity android:name=".customaudiocaptureandrendering.CustomAudioCaptureAndRenderingActivity"></activity>
+        <activity android:name=".customaudiocaptureandrendering.CustomAudioCaptureAndRenderingLoginActivity" />
+        <activity android:name=".originalaudiodataacquisition.OriginalAudioDataAcquisitionActivity" />
+        <activity android:name=".audioeffectplayer.AudioEffectPlayerActivity" />
+        <activity android:name=".audio3a.Audio3aActivity" />
+        <activity android:name=".earreturnandchannelsettings.EarReturnandChannelSettingsActivity" />
+        <activity android:name=".voicechange.VoiceChangeActivity" />
+        <activity android:name=".soundlevelandspectrum.ui.SoundLevelAndSpectrumMainActivity" />
+        <activity android:name=".rangeaudio.ui.RangeAudioActivity" />
+    </application>
+
+</manifest>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/grey"
+    tools:context="com.example.debugandconfig.SettingActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.debugandconfig.SettingActivity">
+
+    <TextView
+        android:id="@+id/tokenTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userID"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="token"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <im.zego.commontools.logtools.logLinearLayout
+        android:id="@+id/logView"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:id="@+id/appIDTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="AppID"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/appID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logView"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/logPathTitle"
+        android:layout_toRightOf="@id/logPathTitle"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/userIDTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appID"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="userID"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/userID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appID"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@+id/logPathTitle"
+        android:layout_toRightOf="@id/logPathTitle"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/token"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userID"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@+id/logPathTitle"
+        android:layout_toRightOf="@id/logPathTitle"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/logSettingTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/saveButton"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey"
+        android:padding="10dp"
+        android:text="@string/log_setting"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/logPathTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/log_path"
+        android:textColor="@color/black"
+        android:layout_below="@id/logSettingTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/logPath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logSettingTitle"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@+id/logPathTitle"
+        android:layout_toRightOf="@id/logPathTitle"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+    <TextView
+        android:id="@+id/logSizeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/log_size"
+        android:textColor="@color/black"
+        android:layout_below="@id/logPath"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="15sp"/>
+
+    <EditText
+        android:id="@+id/logSizeEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logPath"
+        android:layout_alignStart="@id/logPath"
+        android:layout_alignLeft="@id/logPath"
+        android:layout_toStartOf="@id/byteText"
+        android:layout_toLeftOf="@id/byteText"
+        android:background="@drawable/edit_round"
+        android:inputType="number"
+        android:padding="5dp"
+        android:text="400000"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/byteText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logPath"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Bytes"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/setLogConfigButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logSizeTitle"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingHorizontal="20dp"
+        android:text="@string/set_log_config" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/token"
+        android:layout_alignParentStart="true"
+        android:paddingHorizontal="20dp"
+        android:text="@string/save"
+        tools:layout_alignParentLeft="true"
+        tools:layout_alignParentRight="true" />
+
+    <Button
+        android:id="@+id/shareLogButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logSizeTitle"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingHorizontal="20dp"
+        android:text="@string/share_log" />
+    <TextView
+        android:id="@+id/versionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Version"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_below="@id/setLogConfigButton"
+        android:background="@color/grey"
+        android:padding="10dp"/>
+    <TextView
+        android:id="@+id/sdkTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/versionTitle"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="15sp"
+        android:text="SDK:"/>
+    <TextView
+        android:id="@+id/sdkVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/sdkTitle"
+        android:layout_toEndOf="@+id/sdkTitle"
+        android:layout_below="@id/versionTitle"
+        android:layout_marginVertical="10dp"
+        android:textColor="@color/black"
+        android:text="83q979"/>
+    <TextView
+        android:id="@+id/demoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/versionTitle"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:text="Demo:"
+        android:layout_toRightOf="@id/sdkVersion"
+        android:layout_toEndOf="@id/sdkVersion"
+        android:layout_marginHorizontal="10dp"/>
+    <TextView
+        android:id="@+id/demoVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/demoTitle"
+        android:layout_toEndOf="@+id/demoTitle"
+        android:layout_below="@id/versionTitle"
+        android:layout_marginVertical="10dp"
+        android:textColor="@color/black"
+        android:text="83q979"/>
+</RelativeLayout>
+</ScrollView>

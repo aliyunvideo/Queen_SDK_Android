@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.others.camera.CameraActivity">
+
+    <im.zego.commontools.logtools.logLinearLayout
+        android:id="@+id/logView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/roomAndUserIDTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logView"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="UserID: RoomID"
+        android:textColor="@color/black"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/supportFocusState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logView"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@id/roomAndUserIDTitle"
+        android:layout_toRightOf="@id/roomAndUserIDTitle"
+        android:text="Support Focus: "
+        android:textColor="@color/black"
+        android:textSize="10sp" />
+
+    <TextureView
+        android:id="@+id/textureView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/roomAndUserIDTitle"
+        android:layout_alignParentBottom="true" />
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="@string/start_publishing"
+        android:textSize="15sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/startButton"
+        android:layout_marginBottom="0dp">
+
+
+        <TextView
+            android:id="@+id/streamIDTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/publish_streamID"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/editStreamID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/streamIDTitle"
+            android:layout_toRightOf="@+id/streamIDTitle"
+            android:background="@drawable/edit_round"
+            android:padding="5dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/cameraSelectionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/streamIDTitle"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/camera_selection"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/cameraSelectionSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/streamIDTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:entries="@array/cameraSelection" />
+
+        <TextView
+            android:id="@+id/cameraFocusTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cameraSelectionTitle"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/camera_focus"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/cameraFocusSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cameraSelectionSpinner"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:id="@+id/cameraExposureTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cameraFocusSwitch"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/camera_exposure"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/cameraExposureSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cameraFocusSwitch"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:id="@+id/exposureModeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cameraExposureSwitch"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/exposure_mode"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/exposureModeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cameraExposureSwitch"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:entries="@array/exposureMode" />
+
+        <TextView
+            android:id="@+id/focusModeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/exposureModeSpinner"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/focus_mode"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/focusModeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/exposureModeSpinner"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:entries="@array/focusMode" />
+
+        <TextView
+            android:id="@+id/zoomFactorTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/focusModeTitle"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/camera_zoom_factor"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/zoomFactorValue"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/focusModeTitle"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/zoomFactorTitle"
+            android:layout_toRightOf="@+id/zoomFactorTitle"
+            android:text="1"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <SeekBar
+            android:id="@+id/zoomSeekBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/focusModeTitle"
+            android:layout_marginTop="15dp"
+            android:layout_toStartOf="@+id/maxZoomFactor"
+            android:layout_toLeftOf="@+id/maxZoomFactor"
+            android:layout_toEndOf="@+id/zoomFactorValue"
+            android:layout_toRightOf="@id/zoomFactorValue" />
+
+        <TextView
+            android:id="@+id/maxZoomFactor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/focusModeTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Max"
+            android:textColor="@color/dark_grey"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/exposureCompensationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/zoomFactorTitle"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/exposure_compensation"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/exposureCompensationValue"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/zoomFactorTitle"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/exposureCompensationTitle"
+            android:layout_toRightOf="@+id/exposureCompensationTitle"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <SeekBar
+            android:id="@+id/exposureCompensationSeekBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/zoomFactorTitle"
+            android:layout_marginTop="15dp"
+            android:layout_toLeftOf="@+id/exposureCompensationRange"
+            android:layout_toStartOf="@+id/exposureCompensationRange"
+            android:layout_toEndOf="@+id/exposureCompensationValue"
+            android:layout_toRightOf="@id/exposureCompensationValue" />
+
+        <TextView
+            android:id="@+id/exposureCompensationRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/zoomFactorTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Range: [-1,1]"
+            android:textColor="@color/dark_grey"
+            android:textSize="15sp" />
+    </RelativeLayout>
+</RelativeLayout>

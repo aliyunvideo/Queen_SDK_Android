@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/user_position_list"
+        android:layout_width="match_parent"
+        android:layout_height="25dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="UserID"
+            android:textColor="#9b9b9b"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/title"
+            android:layout_marginLeft="5dp"
+            android:text=""
+            android:textColor="#9b9b9b"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/content_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:text="0,0,0"
+
+            android:textColor="#9b9b9b"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/content_name"
+            android:layout_marginRight="5dp"
+            android:text="Position"
+            android:textColor="#9b9b9b"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:ignore="SmallSp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

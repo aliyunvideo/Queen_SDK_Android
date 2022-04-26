@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".multiplerooms.MultipleRoomsActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <im.zego.commontools.logtools.logLinearLayout
+        android:id="@+id/logView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="userID:"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+        <TextView
+            android:id="@+id/userIDText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginHorizontal="10dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/roomState1Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Room 1 state"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:layout_marginStart="5dp" />
+        <TextView
+            android:id="@+id/roomState1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/roomState2Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Room 2 state"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:layout_marginStart="5dp" />
+        <TextView
+            android:id="@+id/roomState2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <TextView
+            android:id="@+id/step1Title"
+            android:text="Step1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/step1Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/step1Title"
+            android:layout_toEndOf="@+id/step1Title"
+            android:text="login Room1"
+            android:textColor="@color/dark_grey"
+            android:layout_margin="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="roomID 1"
+            android:layout_margin="10dp"
+            android:textColor="@color/dark_grey"
+            android:layout_below="@id/step1Title"/>
+        <EditText
+            android:id="@+id/room1IDEdit"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_round"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/step1Description"
+            android:layout_alignLeft="@id/step1Description"
+            android:layout_alignStart="@id/step1Description"/>
+        <Button
+            android:id="@+id/loginRoom1Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login Room 1"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/step1Description"
+            android:layout_marginHorizontal="10dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <TextView
+            android:id="@+id/step2Title"
+            android:text="Step2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/step2Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/step2Title"
+            android:layout_toEndOf="@+id/step2Title"
+            android:text="login Room2"
+            android:textColor="@color/dark_grey"
+            android:layout_margin="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="roomID 2"
+            android:layout_margin="10dp"
+            android:textColor="@color/dark_grey"
+            android:layout_below="@id/step2Title"/>
+        <EditText
+            android:id="@+id/room2IDEdit"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_round"
+            android:padding="5dp"
+            android:textSize="15sp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/step2Description"
+            android:layout_alignLeft="@id/step2Description"
+            android:layout_alignStart="@id/step2Description"/>
+        <Button
+            android:id="@+id/loginRoom2Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login Room 2"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/step2Description"
+            android:layout_marginHorizontal="10dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <TextView
+            android:id="@+id/step3Title"
+            android:text="Step3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/step3Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/step3Title"
+            android:layout_toEndOf="@+id/step3Title"
+            android:text="Publish &amp; Play"
+            android:textColor="@color/dark_grey"
+            android:layout_margin="10dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+    <View
+        android:id="@+id/view"
+        android:layout_width="1dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true" />
+    <TextureView
+        android:id="@+id/PreviewView"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="5dp"
+        android:layout_toStartOf="@id/view"
+        android:layout_toLeftOf="@id/view"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_toStartOf="@id/view"
+        android:layout_toLeftOf="@id/view"
+        android:gravity="center"
+        android:text="Preview"
+        android:textColor="@color/black"
+        android:textSize="13sp" />
+
+        <TextureView
+            android:id="@+id/PlayView"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toEndOf="@id/view"
+            android:layout_toRightOf="@id/view" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/view"
+        android:layout_toRightOf="@id/view"
+        android:gravity="center"
+        android:text="Play Stream"
+        android:textColor="@color/black"
+        android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/startPublishButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/stopPublishButton"
+            android:layout_marginHorizontal="10dp"
+            android:layout_toLeftOf="@id/view"
+            android:text="Start" />
+
+        <Button
+            android:id="@+id/stopPublishButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/PreviewView"
+            android:layout_marginHorizontal="10dp"
+            android:layout_toLeftOf="@id/view"
+            android:text="Stop" />
+
+        <Button
+            android:id="@+id/startPlayButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/stopPlayButton"
+            android:layout_toRightOf="@id/view"
+            android:text="Start" />
+
+        <Button
+            android:id="@+id/stopPlayButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/PreviewView"
+            android:layout_toRightOf="@id/view"
+            android:text="Stop" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="StreamID"
+            android:textColor="@color/dark_grey"
+            android:textSize="15sp"
+            android:layout_marginVertical="5dp"
+            android:layout_above="@id/startPublishButton"
+            android:layout_alignLeft="@id/startPublishButton"
+            android:layout_alignStart="@id/startPublishButton"/>
+
+        <EditText
+            android:id="@+id/publishStreamIDEdit"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/startPublishButton"
+            android:layout_alignEnd="@+id/startPublishButton"
+            android:layout_alignRight="@id/startPublishButton"
+            android:background="@drawable/edit_round"
+            android:padding="5dp"
+            android:text="0029"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/publishStreamIDEdit"
+            android:layout_alignStart="@id/startPublishButton"
+            android:layout_alignLeft="@id/startPublishButton"
+            android:layout_marginBottom="15dp"
+            android:text="RoomID"
+            android:textColor="@color/dark_grey"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/publishRoomIDEdit"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/publishStreamIDEdit"
+            android:layout_alignEnd="@+id/startPublishButton"
+            android:layout_alignRight="@id/startPublishButton"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edit_round"
+            android:padding="5dp"
+            android:text="00291"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/playRoomIDEdit"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/publishStreamIDEdit"
+            android:layout_alignEnd="@+id/startPublishButton"
+            android:layout_alignRight="@id/startPlayButton"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edit_round"
+            android:padding="5dp"
+            android:text="00291"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/playRoomLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/startPlayButton"
+            android:layout_alignLeft="@id/startPlayButton"
+            android:layout_alignBottom="@id/playRoomIDEdit"
+            android:layout_marginVertical="5dp"
+            android:text="RoomID"
+            android:textColor="@color/dark_grey"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/playStreamLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/startPlayButton"
+            android:layout_alignStart="@id/startPlayButton"
+            android:layout_alignLeft="@id/startPlayButton"
+            android:layout_marginVertical="5dp"
+            android:text="StreamID"
+            android:textColor="@color/dark_grey"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/playStreamIDEdit"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/startPlayButton"
+            android:layout_alignEnd="@+id/startPlayButton"
+            android:layout_alignRight="@id/startPlayButton"
+            android:background="@drawable/edit_round"
+            android:padding="5dp"
+            android:text="0029"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+</LinearLayout>
+</ScrollView>

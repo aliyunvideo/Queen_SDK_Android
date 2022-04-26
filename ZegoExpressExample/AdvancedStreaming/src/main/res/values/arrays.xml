@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="h265_fps">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+    </string-array>
+    <string-array name="h265_resolution">
+        <item>360x600</item>
+        <item>720x1280</item>
+        <item>1080x1920</item>
+    </string-array>
+</resources>

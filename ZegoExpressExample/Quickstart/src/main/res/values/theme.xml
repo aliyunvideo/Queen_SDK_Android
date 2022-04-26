@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Spinner" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+</resources>

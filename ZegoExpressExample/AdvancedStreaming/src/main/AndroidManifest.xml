@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="im.zego.streammonitoring" >
+
+    <application>
+        <activity android:name="im.zego.lowlatencylive.LowLatencyLive" >
+        </activity>
+        <activity android:name="im.zego.streamByCdn.DirectPublishingToCDNActivity" />
+        <activity android:name="im.zego.streamByCdn.StreamByCdn" />
+        <activity android:name="im.zego.publishingmultiplestreams.ui.PublishingMultipleStreams" />
+        <activity android:name=".StreamMonitoring" />
+        <activity android:name="im.zego.h265.H265LoginActivity" />
+        <activity android:name="im.zego.h265.H265Activity" />
+    </application>
+
+</manifest>

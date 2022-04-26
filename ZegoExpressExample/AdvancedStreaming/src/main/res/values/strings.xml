@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="preview">Preview</string>
+    <string name="play_view">Play View</string>
+    <string name="start_publishing">Start Publishing</string>
+    <string name="start_playing">Start Playing</string>
+    <string name="publish">Publish</string>
+    <string name="play">Play</string>
+    <string name="stop_publishing">Stop Publishing</string>
+    <string name="stop_playing">Stop Playing</string>
+    <string name="publish_main_channel">Publish MainChannel</string>
+    <string name="publish_aux_channel">Publish AuxChannel</string>
+    <string name="play_first_stream">Play First Stream</string>
+    <string name="play_second_stream">Play Second Stream</string>
+    <string name="first_streamID" translatable="false">First StreamID</string>
+    <string name="second_streamID" translatable="false">Second StreamID</string>
+    <string name="publishing_multiple_streams">Publishing Multiple Streams</string>
+    <string name="direct_publishing_to_cdn">Direct Publishing to CDN</string>
+    <string name="publishing_streams_directly_from">Publishing streams directly from the client application to the designated CDN</string>
+    <string name="enable_publish_direct_to_CDN" translatable="false">EnablePublishDirectToCDN</string>
+    <string name="publish_cdn_url">Publish CDN URL</string>
+    <string name="cdn_url" translatable="false">CDN URL</string>
+    <string name="play_stream_from_url">Play Stream From Url</string>
+    <string name="relaying_streams_to_cdns">Relaying Streams to CDNs</string>
+    <string name="forwarding_a_stream_from">Forwarding a stream from ZEGO\'s cloud-based real-time streaming server to the designated CDN</string>
+    <string name="add_publish_cdn_url">Add Publish Cdn Url</string>
+    <string name="add_cdn_url">Add CDN URL</string>
+    <string name="direct_publishing_to_cdn_button">Direct Publishing to CDN ></string>
+    <string name="remove_publish_cdn_url">RemovePublishCdnUrl</string>
+    <string name="remove_success_remind">Remove CDN URL successfully</string>
+    <string name="failure">Failure!</string>
+    <string name="add_success_remind">Add CDN URL successfully</string>
+    <string name="cdn_empty_remind">CDN URL can not be empty!</string>
+    <string name="please_start_publishing_firstly">Please start publishing firstly</string>
+    <string name="please_stop_publishing_firstly">Please stop publishing firstly</string>
+    <string name="please_enable_publish_direct_to_cdn_firstly">Please enable publishing direct to CDN firstly</string>
+    <string name="create_engine">Create Engine</string>
+    <string name="login_room">Login Room</string>
+    <string name="create_zego_engine">Create ZegoExpressEngine</string>
+    <string name="start_publishing_stream">Start Publishing Stream</string>
+    <string name="start_playing_streams">Start Playing Streams</string>
+    <string name="destroy_engine">Destroy Engine</string>
+    <string name="logout_room">Logout Room</string>
+    <string name="creat_engine_success">Create Engine successfully!</string>
+    <string name="destroy_engine_success">Destroy Engine Successfully!</string>
+    <string name="publish_stream_success">Successfully publish stream!</string>
+    <string name="play_stream_success">Successfully play stream!</string>
+    <string name="login_room_success">Successfully login room!</string>
+    <string name="logout_room_success">Successfully logout room!</string>
+    <string name="create_engine_reminder">Please create engine firstly</string>
+    <string name="login_room_reminder">Please Login Room firstly</string>
+    <string name="stop_publishing_success">Successfully stop publishing</string>
+    <string name="stop_playing_success">Successfully stop playing!</string>
+    <string name="stream_by_cdn">Stream By CDN</string>
+    <string name="low_latency_live">Low Latency Live</string>
+    <string name="stream_monitoring">Stream Monitoring</string>
+    <string name="h265">H265</string>
+    <string name="play_stream">Play Stream</string>
+    <string name="stream_id">Stream ID:</string>
+    <string name="fps">FPS:</string>
+    <string name="bitrate">Bitrate:</string>
+    <string name="resolution">Resolution:</string>
+    <string name="h264_bitrate">H264 Bitrate:</string>
+    <string name="h265_bitrate">H265 Bitrate:</string>
+    <string name="h264_stream_id">H264 Stream ID:</string>
+    <string name="h265_stream_id">H265 Stream ID:</string>
+    <string name="start_mixing">Start Mixing</string>
+    <string name="stop_mixing">Stop Mixing</string>
+    <string name="tx_mixer_start_ok"> Start mixing success </string>
+    <string name="tx_mixer_start_fail"> Start mixing failed, error code is </string>
+    <string name="tx_mixer_stop_ok"> Stop mixing success </string>
+    <string name="tx_mixer_stop_fail"> Stop mixing failed with error code </string>
+</resources>

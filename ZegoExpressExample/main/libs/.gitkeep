@@ -1,0 +1,14 @@
+Please put the `ZegoExpressEngine.jar` and other folders which contains `libZegoExpressEngine.so` under this folder.
+
+```tree
+libs
+├── ZegoExpressEngine.jar
+├── arm64-v8a
+│   └── libZegoExpressEngine.so
+├── armeabi-v7a
+│   └── libZegoExpressEngine.so
+├── x86_64
+│   └── libZegoExpressEngine.so
+└── x86
+    └── libZegoExpressEngine.so
+```

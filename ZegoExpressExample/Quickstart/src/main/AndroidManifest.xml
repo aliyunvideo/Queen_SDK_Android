@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="im.zego.quickstart">
+
+    <application>
+        <activity android:name=".Playing" />
+        <activity android:name=".Publishing" />
+        <activity android:name=".CommonUsage" />
+        <activity android:name=".VideoChatLogin" />
+        <activity android:name=".VideoChat" />
+    </application>
+
+</manifest>

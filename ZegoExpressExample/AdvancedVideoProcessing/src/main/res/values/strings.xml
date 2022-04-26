@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">ExpressVideo</string>
+    <string name="start_publishing">Start Publishing</string>
+    <string name="start_playing">Start Playing</string>
+    <string name="preview">Preview</string>
+    <string name="play_stream">Play Stream</string>
+    <string name="hardwareencoder">HardwareEncoder</string>
+    <string name="hardwaredecoder">HardwareDecoder</string>
+    <string name="scalable_video_coding">Scalable Video Coding</string>
+    <string name="stop_publishing">Stop Publishing</string>
+    <string name="stop_playing">Stop Playing</string>
+    <string name="h265_reminder">H265 only supports hardware encoding</string>
+    <string name="publishing_reminder">Hardware Encoder, CodecID, Scalable Video Coding settings can only be modified before publishing</string>
+    <string name="playing_reminder">Hardware Decoder can only be modified before playing</string>
+    <string name="start">Start</string>
+    <string name="encoding_decoding">Encoding &amp; Decoding</string>
+    <string name="custom_video_rendering">Custom Video Rendering</string>
+    <string name="custom_video_capture">Custom Video Capture</string>
+    <string name="video_layer_for_playing">Video layer for playing</string>
+</resources>

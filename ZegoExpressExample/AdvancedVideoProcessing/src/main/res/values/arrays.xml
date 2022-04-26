@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cameraSwitch">
+        <item>Front</item>
+        <item>Back</item>
+    </string-array>
+    <string-array name="mirrorMode">
+        <item>OnlyPreview</item>
+        <item>OnlyPublish</item>
+        <item>Both</item>
+        <item>None</item>
+    </string-array>
+    <string-array name="viewMode">
+        <item>AspectFit</item>
+        <item>AspectFill</item>
+        <item>ScaleToFill</item>
+    </string-array>
+    <string-array name="bufferType">
+        <item>Raw_Data</item>
+        <item>Encoded_Data</item>
+    </string-array>
+    <string-array name="frameFormat">
+        <item>YUV</item>
+        <item>RGB</item>
+    </string-array>
+    <string-array name="CaptureBufferType">
+        <item>Raw_Data</item>
+        <item>GL_Texture_2D</item>
+        <item>Encoded_data</item>
+    </string-array>
+    <string-array name="codecID">
+        <item>ZegoVideoCodecID.SVC</item>
+        <item>ZegoVideoCodecID.H265</item>
+        <item>ZegoVideoCodecID.DEFAULT</item>
+        <item>ZegoVideoCodecID.VP8</item>
+    </string-array>
+    <string-array name="videoLayer">
+        <item>DEFAULT</item>
+        <item>SMALL</item>
+        <item>BIG</item>
+    </string-array>
+</resources>

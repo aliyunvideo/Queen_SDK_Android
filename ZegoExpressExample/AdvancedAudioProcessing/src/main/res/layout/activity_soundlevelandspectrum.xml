@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <im.zego.commontools.logtools.logLinearLayout
+        android:id="@+id/logView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_margin="5dp"
+            android:text="Roomid:   "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:layout_margin="5dp"
+            android:textSize="15sp"
+            android:id="@+id/tv_soundlevelandspectrum_roomid"
+            />
+            <TextView
+                android:id="@+id/roomStateTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Room state"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/roomState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/ll_container">
+
+            <include layout="@layout/activity_soundlevelandspectrum_layout_item"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <Switch
+                    android:textSize="12sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:id="@+id/sw_soundlevelandspectrum_soundlevel_monitor"
+                    android:text="@string/start_soundlevel_monitor" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <Switch
+                    android:textSize="12sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:id="@+id/sw_soundlevelandspectrum_spectrum_monitor"
+                    android:text="@string/start_audio_spectrum_monitor" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

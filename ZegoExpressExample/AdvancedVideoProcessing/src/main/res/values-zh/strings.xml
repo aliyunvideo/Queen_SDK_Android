@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ExpressVideo</string>
+    <string name="start_publishing">开始推流</string>
+    <string name="start_playing">开始拉流</string>
+    <string name="preview">预览</string>
+    <string name="play_stream">拉流</string>
+    <string name="hardwareencoder">硬编码</string>
+    <string name="hardwaredecoder">硬解码</string>
+    <string name="scalable_video_coding">分层视频编码</string>
+    <string name="stop_publishing">停止推流</string>
+    <string name="stop_playing">停止拉流</string>
+    <string name="h265_reminder">H.265只支持硬件编码</string>
+    <string name="publishing_reminder">硬编码，codecID，分层视频编码设置只可以在推流之前更改</string>
+    <string name="playing_reminder">硬解码设置只可在拉流前更改</string>
+    <string name="start">开始</string>
+    <string name="encoding_decoding">视频编解码</string>
+    <string name="custom_video_rendering">自定义视频渲染</string>
+    <string name="custom_video_capture">自定义视频采集</string>
+    <string name="video_layer_for_playing">拉取视频分层</string>
+</resources>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Playing">
+
+    <im.zego.commontools.logtools.logLinearLayout
+        android:id="@+id/logView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"/>
+
+    <TextureView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/logView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:id="@+id/roomIDTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_below="@+id/logView"/>
+
+    <TextView
+        android:id="@+id/userIDTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_margin="5dp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_below="@+id/roomIDTextView"/>
+
+    <TextView
+        android:id="@+id/publishStreamIDTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_margin="5dp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_below="@+id/userIDTextView"/>
+
+    <Button
+        android:id="@+id/stopButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop"
+        android:textSize="15sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_centerHorizontal="true"/>
+
+
+    <TextureView
+        android:id="@+id/playView"
+        android:layout_width="108dp"
+        android:layout_height="192dp"
+        android:layout_below="@id/logView"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"/>
+
+</RelativeLayout>

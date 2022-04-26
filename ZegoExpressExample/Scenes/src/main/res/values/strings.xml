@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name" translatable="false">ExpressVideo</string>
+    <string name="start_publishing" translatable="true">start publishing</string>
+    <string name="stop_publishing">stop publishing</string>
+    <string name="start_playing">start playing</string>
+    <string name="view_mode">View Mode</string>
+    <string name="mirror">Mirror</string>
+    <string name="camera">Camera</string>
+    <string name="camera_selection">Camera Selection</string>
+    <string name="microphone">Microphone</string>
+    <string name="audio">Audio</string>
+    <string name="video">Video</string>
+    <string name="refresh">Refresh</string>
+    <string name="stop_playing">Stop Playing</string>
+    <string name="capture_resolution">Capture Resolution</string>
+    <string name="encode_resolution">Encode Resolution</string>
+    <string name="fps">FPS</string>
+    <string name="bitrate">Bitrate</string>
+    <string name="login_room">Login Room</string>
+    <string name="video_for_multiple_users">Video For Multiple Users</string>
+    <string name="Me">(Me)</string>
+</resources>

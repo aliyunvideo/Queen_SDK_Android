@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="im.zego">
+
+    <application>
+        <activity android:name=".Scenes.VideoForMultipleUsers.VideoForMultipleUsersLogin"></activity>
+        <activity android:name=".Scenes.VideoForMultipleUsers.VideoForMultipleUsersActivity"
+            android:screenOrientation="portrait"/>
+    </application>
+
+</manifest>

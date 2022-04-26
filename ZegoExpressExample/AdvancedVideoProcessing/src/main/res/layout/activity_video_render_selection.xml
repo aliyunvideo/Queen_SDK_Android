@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E3E3E3"
+    android:orientation="vertical"
+    tools:context="im.zego.customrender.ui.ZGVideoRenderTypeUI">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/PublishStreamIDTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:text="Publish StreamID:"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/editPublishStreamID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:background="@drawable/edit_round"
+            android:layout_toRightOf="@id/PublishStreamIDTitle"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:textSize="12sp"
+            android:text="0013" />
+        <TextView
+            android:id="@+id/PlayStreamIDTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="12dp"
+            android:layout_below="@id/PublishStreamIDTitle"
+            android:layout_alignParentLeft="true"
+            android:text="Play StreamID:"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/editPlayStreamID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:background="@drawable/edit_round"
+            android:layout_marginVertical="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@id/editPublishStreamID"
+            android:layout_alignLeft="@id/editPublishStreamID"
+            android:textSize="12sp"
+            android:text="0013" />
+        <TextView
+            android:id="@+id/roomIDTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="22dp"
+            android:layout_below="@id/PlayStreamIDTitle"
+            android:layout_alignParentLeft="true"
+            android:text="RoomID:"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/editRoomID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:background="@drawable/edit_round"
+            android:layout_marginVertical="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@id/editPlayStreamID"
+            android:layout_alignLeft="@id/editPublishStreamID"
+            android:textSize="12sp"
+            android:text="0013" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/FrameTypeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:entries="@array/bufferType"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_below="@id/editRoomID"/>
+        <TextView
+            android:id="@+id/DataFormatTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/roomIDTitle"
+            android:text="Frame Type"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:id="@+id/BufferTypeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/DataFormatTitle"
+            android:text="Frame Format"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"/>
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/FrameFormatButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:entries="@array/frameFormat"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_below="@id/FrameTypeButton"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/startBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/start" />
+</LinearLayout>

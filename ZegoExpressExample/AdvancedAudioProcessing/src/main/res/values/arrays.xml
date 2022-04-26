@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="voicePreset">
+        <item>NONE</item>
+        <item>MEN_TO_CHILD</item>
+        <item>MEN_TO_WOMEN</item>
+        <item>WOMEN_TO_CHILD</item>
+        <item>WOMEN_TO_MEN</item>
+        <item>FOREIGNER</item>
+        <item>OPTIMUS_PRIME</item>
+        <item>ANDROID</item>
+        <item>ETHEREAL</item>
+        <item>MALE_MAGNETIC</item>
+        <item>FEMALE_FRESH</item>
+    </string-array>
+    <string-array name="reverbPreset">
+        <item>NONE</item>
+        <item>SOFT_ROOM</item>
+        <item>LARGE_ROOM</item>
+        <item>CONCER_HALL</item>
+        <item>VALLEY</item>
+        <item>RECORDING_STUDIO</item>
+        <item>BASEMENT</item>
+        <item>KTV</item>
+        <item>POPULAR</item>
+        <item>ROCK </item>
+        <item>VOCAL_CONCERT</item>
+    </string-array>
+    <string-array name="reverbEchoPreset">
+    <item>NONE</item>
+        <item>ROBOT</item>
+        <item>ETHEREAL</item>
+</string-array>
+    <string-array name="captureStereoMode">
+        <item>NONE</item>
+        <item>ALWAYS</item>
+        <item>ADAPTIVE</item>
+    </string-array>
+    <string-array name="AECMode">
+        <item>AGGRESSIVE</item>
+        <item>MEDIUM</item>
+        <item>SOFT</item>
+    </string-array>
+    <string-array name="ANSMode">
+        <item>SOFT</item>
+        <item>MEDIUM</item>
+        <item>AGGRESSIVE</item>
+    </string-array>
+    <string-array name="audioModeSelection">
+        <item>WORLD</item>
+        <item>TEAM</item>
+    </string-array>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.others">
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <application>
+        <activity android:name=".screensharing.ScreenSharingActivity"></activity>
+        <activity android:name=".sei.SEIActivity" />
+        <activity android:name=".security.SecurityActivity" />
+        <activity android:name=".networkandperformance.NetworkAndPerformanceActivity" />
+        <activity android:name=".flowcontrol.FlowControlActivity" />
+        <activity android:name=".multiplerooms.MultipleRoomsActivity" />
+        <activity android:name=".camera.CameraActivity" />
+        <activity android:name=".mediaplayer.UI.MediaPlayerActivity" />
+        <activity android:name=".mediaplayer.UI.MediaPlayerSelectionActivity" />
+        <activity android:name=".recording.RecordingActivity" />
+        <activity android:name=".beautyandwatermarkandsnapshot.BeautyWatermarkSnapshotActivity" />
+        <activity android:name=".effectsbeauty.EffectsBeautyActivity" />
+        <service android:name=".screensharing.CaptureScreenService"
+            android:enabled="true"
+            android:foregroundServiceType="mediaProjection"/>
+        <activity android:name=".streammixing.AutoMixerStartActivity"/>
+    </application>
+
+</manifest>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Playing">
+
+    <im.zego.commontools.logtools.logLinearLayout
+        android:id="@+id/logView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/roomStateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Room state"
+        android:layout_margin="5dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_below="@+id/logView"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/roomState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_toRightOf="@id/roomStateTitle"
+        android:layout_below="@id/logView"
+        android:layout_toEndOf="@id/roomStateTitle" />
+
+    <TextureView
+        android:id="@+id/textureView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/roomStateTitle"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"/>
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/start_playing"
+        android:textSize="15sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/startButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <TextView
+            android:id="@+id/roomIDTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RoomID"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="10dp"/>
+        <EditText
+            android:id="@+id/editRoomID"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/roomIDTitle"
+            android:layout_toEndOf="@id/roomIDTitle"
+            android:text="0003"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:background="@drawable/edit_round"
+            android:padding="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"/>
+        <EditText
+            android:id="@+id/editStreamID"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="0003"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:background="@drawable/edit_round"
+            android:padding="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp" />
+        <TextView
+            android:id="@+id/streamIDTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/play_streamID"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@id/editStreamID"
+            android:layout_margin="10dp"
+            android:layout_toStartOf="@id/editStreamID" />
+        <TextView
+            android:id="@+id/userIDTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UserID"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_below="@id/roomIDTitle"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp" />
+        <EditText
+            android:id="@+id/editUserID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_round"
+            android:layout_below="@id/editStreamID"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:textSize="15sp"
+            android:padding="5dp"
+            android:layout_toRightOf="@+id/userIDTitle"
+            android:layout_toEndOf="@+id/userIDTitle"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="10dp"/>
+
+        <TextView
+            android:id="@+id/viewModeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/view_mode"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_below="@id/userIDTitle"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"/>
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/viewModeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/editUserID"
+            android:entries="@array/viewMode"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="10dp"/>
+        <TextView
+            android:id="@+id/cameraTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/video"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_below="@id/viewModeTitle"
+            android:layout_marginHorizontal="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"/>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/cameraSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viewModeSpinner"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:id="@+id/microphoneTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cameraTitle"
+            android:text="@string/audio"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/microphoneSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cameraSwitch"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,3 @@
+/build
+effects/*
+!effects/README.md

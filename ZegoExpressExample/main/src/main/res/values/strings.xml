@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="video_for_multiple_users">Video for Multiple Users</string>
+    <string name="common_video_config">Common Video Config</string>
+    <string name="custom_video_rendering">Custom Video Rendering</string>
+    <string name="video_rotation">Video Rotation</string>
+    <string name="beautify_watermark_snapshot">Watermark,Snapshot</string>
+    <string name="stream_monitoring">Stream Monitoring</string>
+    <string name="publishing_multiple_streams">Publishing Multiple Streams</string>
+    <string name="stream_by_cdn">Stream By CDN</string>
+    <string name="low_latency_live">Low Latency Live</string>
+    <string name="h265">H265</string>
+    <string name="common_usage">Common Usage</string>
+    <string name="video_chat">Video Chat</string>
+    <string name="publishing">Publishing</string>
+    <string name="playing">Playing</string>
+    <string name="room_message">Room Message</string>
+    <string name="encoding_decoding">Encoding &amp; Decoding</string>
+    <string name="custom_video_capture">Custom Video Capture</string>
+    <string name="quick_start">Quick Start</string>
+    <string name="scenes">Scenes</string>
+    <string name="common_features">Common Features</string>
+    <string name="advanced_streaming">Advanced Streaming</string>
+    <string name="advanced_video_processing">Advanced Video Processing</string>
+    <string name="debug_verbose" translatable="false">Debug Verbose</string>
+    <string name="debug_config">Debug &amp; Config</string>
+    <string name="log_version_debug">Log,Version,Debug</string>
+    <string name="others">Others</string>
+    <string name="stream_mixing">Stream Mixing</string>
+    <string name="recording">Recording</string>
+    <string name="media_player">Media Player</string>
+    <string name="camera">Camera</string>
+    <string name="multiple_rooms">Multiple Rooms</string>
+    <string name="flow_control">Traffic Control</string>
+    <string name="network_and_performance">Network and Performance</string>
+    <string name="security">Security</string>
+    <string name="screen_sharing">Screen Sharing</string>
+    <string name="sei">Supplemental Enhancement Information</string>
+    <string name="voice_change_reverb_stereo">Voice Change, Reverb, Stereo</string>
+    <string name="ear_return_and_channel_settings">Ear Return and Channel Settings</string>
+    <string name="soundlevel_and_audioSpectrum">SoundLevel and AudioSpectrum</string>
+    <string name="aec_ans_agc">AEC, ANS, AGC</string>
+    <string name="audio_effect_player">Audio Effect Player</string>
+    <string name="original_audio_data_acquisition">Original Audio Data Acquisition</string>
+    <string name="custom_audio_capture_and_rendering">Custom Audio Capture and Rendering</string>
+    <string name="advanced_audio_processing">Advanced Audio Processing</string>
+    <string name="range_audio">Range Audio</string>
+    <string name="effects_beauty">Basic Beauty</string>
+</resources>

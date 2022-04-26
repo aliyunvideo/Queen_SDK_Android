@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="create_engine">创建引擎</string>
+    <string name="login_room">登录房间</string>
+    <string name="create_zego_engine">创建ZegoExpressEngine</string>
+    <string name="start_publishing_stream">开始推流</string>
+    <string name="start_playing_streams">开始拉流</string>
+    <string name="creat_engine_success">成功创建引擎</string>
+    <string name="logout_room">登出房间</string>
+    <string name="destroy_engine">销毁引擎</string>
+    <string name="create_engine_reminder">请先创建引擎</string>
+    <string name="start_publishing">开始推流</string>
+    <string name="start_playing">开始拉流</string>
+    <string name="stop_playing">停止拉流</string>
+    <string name="stop_publishing">停止推流</string>
+    <string name="publish_streamID">推流Stream ID</string>
+    <string name="mirror">镜像模式</string>
+    <string name="view_mode">视图模式</string>
+    <string name="camera">摄像头</string>
+    <string name="camera_selection">摄像头切换</string>
+    <string name="microphone">麦克风</string>
+    <string name="video">视频</string>
+    <string name="audio">音频</string>
+    <string name="play_streamID">拉流streamID</string>
+    <string name="publishing">推流</string>
+    <string name="playing">拉流</string>
+    <string name="common_usage">实现流程</string>
+    <string name="video_chat_login">登录房间</string>
+    <string name="video_chat">视频通话</string>
+
+    <string name="room_id_notice">如果要和其他用户进行通话，需要加入到同一个房间里，即保证双方的 RoomID 相同。</string>
+    <string name="user_id_notice">UserID 由开发者自己生成，在相同的 AppID 下必须全局唯一。</string>
+    <string name="stream_id_notice">StreamID 由开发者自己生成，在相同的 AppID 下必须全局唯一。</string>
+</resources>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <SurfaceView
+        android:id="@+id/playView"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/qualityLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:id="@+id/myResolutionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:text="Resolution:"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/playerResolution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/myResolutionTitle"
+            android:layout_toRightOf="@+id/myResolutionTitle"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/videoBitrateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/playerResolution"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:text="Video Send Bitrate:"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/playerBitrate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/playerResolution"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/videoBitrateTitle"
+            android:layout_toRightOf="@+id/videoBitrateTitle"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/videoFpsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/playerBitrate"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:text="Video Send FPS:"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/videoFps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/playerBitrate"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/videoFpsTitle"
+            android:layout_toRightOf="@+id/videoFpsTitle"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/rttTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/videoFps"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:text="RTT:"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/rtt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/videoFps"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/rttTitle"
+            android:layout_toRightOf="@+id/rttTitle"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/delayTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rtt"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:text="Delay:"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/delay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rtt"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/delayTitle"
+            android:layout_toRightOf="@+id/delayTitle"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/lossTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/delay"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:text="Packet Loss:"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/loss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/delay"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/lossTitle"
+            android:layout_toRightOf="@+id/lossTitle"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="#33000000"
+        app:layout_constraintBottom_toBottomOf="@+id/playView"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/viewModeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/view_mode"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/audioTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/audio"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewModeTitle" />
+
+        <TextView
+            android:id="@+id/videoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/video"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/audioTitle" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/viewModeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#33FFFFFF"
+            android:entries="@array/viewMode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/audioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"
+            android:layout_marginTop="8dp"
+            android:checked="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewModeButton" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/videoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"
+            android:checked="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/audioButton" />
+
+        <Button
+            android:id="@+id/playButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/start_playing"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/streamIDTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:gravity="right"
+        android:text="StreamID:"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+    <TextView
+        android:id="@+id/streamID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="123456"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/streamIDTitle"
+        app:layout_constraintStart_toEndOf="@+id/streamIDTitle" />
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="Maria"
+        android:layout_marginStart="3dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playView"
+        android:layout_marginLeft="3dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

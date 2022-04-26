@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".StreamMonitoring">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/roomStateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Room state"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/roomState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <View
+            android:id="@+id/view"
+            android:layout_width="1dp"
+            android:layout_height="250dp"
+            android:layout_centerHorizontal="true" />
+
+        <TextureView
+            android:id="@+id/PreviewView"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toStartOf="@id/view"
+            android:layout_toLeftOf="@id/view"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toStartOf="@id/view"
+            android:layout_toLeftOf="@id/view"
+            android:gravity="center"
+            android:text="Preview"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <TextureView
+            android:id="@+id/PlayView"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toEndOf="@id/view"
+            android:layout_toRightOf="@id/view" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/view"
+            android:layout_toRightOf="@id/view"
+            android:gravity="center"
+            android:text="Play Stream"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/startPublishButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/PreviewView"
+            android:layout_margin="10dp"
+            android:layout_toLeftOf="@id/view"
+            android:text="@string/start_publishing" />
+
+        <Button
+            android:id="@+id/startPlayButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/PreviewView"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@id/view"
+            android:text="@string/start_playing" />
+
+        <TextView
+            android:id="@+id/publishIDTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/PreviewView"
+            android:layout_alignLeft="@id/PreviewView"
+            android:layout_marginVertical="10dp"
+            android:text="Publish StreamID:"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/editPublishStreamID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/PreviewView"
+            android:layout_margin="5dp"
+            android:layout_toLeftOf="@+id/view"
+            android:layout_toRightOf="@id/publishIDTitle"
+            android:background="@drawable/edit_round"
+            android:padding="5dp"
+            android:text="0008"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/playIDTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/PlayView"
+            android:layout_alignLeft="@id/PlayView"
+            android:layout_marginVertical="10dp"
+            android:text="Publish StreamID:"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/editPlayStreamID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/PreviewView"
+            android:layout_alignRight="@id/PlayView"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@id/playIDTitle"
+            android:background="@drawable/edit_round"
+            android:padding="5dp"
+            android:text="0008"
+            android:textSize="12sp" />
+        <RelativeLayout
+            android:id="@+id/playQualityLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_below="@id/textView"
+            android:layout_alignLeft="@id/PreviewView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignStart="@id/PreviewView">
+
+            <TextView
+                android:id="@+id/preMyResolutionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:text="Resolution:"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/publisherResolution"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/preMyResolutionTitle"
+                android:layout_toRightOf="@+id/preMyResolutionTitle"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/preVideoBitrateTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/publisherResolution"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:text="Video Send Bitrate:"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/publisherBitrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/publisherResolution"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/preVideoBitrateTitle"
+                android:layout_toRightOf="@+id/preVideoBitrateTitle"
+                android:text="0kbps"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/preVideoFpsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/publisherBitrate"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:text="Video Send FPS:"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/prevVdeoFps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/publisherBitrate"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/preVideoFpsTitle"
+                android:layout_toRightOf="@+id/preVideoFpsTitle"
+                android:text="0f/s"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/preRttTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/prevVdeoFps"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:text="RTT:"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/publisherRtt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/prevVdeoFps"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/preRttTitle"
+                android:layout_toRightOf="@+id/preRttTitle"
+                android:text="0ms"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/preLossTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/publisherRtt"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:text="Packet Loss:"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/publisherLoss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/publisherRtt"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/preLossTitle"
+                android:layout_toRightOf="@+id/preLossTitle"
+                android:text="0%"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/qualityLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_alignTop="@+id/playQualityLayout"
+            android:layout_toEndOf="@+id/view"
+            android:layout_toRightOf="@+id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/myResolutionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp"
+                android:text="Resolution:"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/playerResolution"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/myResolutionTitle"
+                android:layout_toRightOf="@+id/myResolutionTitle"
+                android:text="100x100"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/videoBitrateTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/playerResolution"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:text="Video Send Bitrate:"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/playerBitrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/playerResolution"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/videoBitrateTitle"
+                android:layout_toRightOf="@+id/videoBitrateTitle"
+                android:text="0kbps"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/videoFpsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/playerBitrate"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:text="Video Send FPS:"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/videoFps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/playerBitrate"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/videoFpsTitle"
+                android:layout_toRightOf="@+id/videoFpsTitle"
+                android:text="0f/s"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/rttTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/videoFps"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:text="RTT:"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/rtt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/videoFps"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/rttTitle"
+                android:layout_toRightOf="@+id/rttTitle"
+                android:text="0ms"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/delayTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rtt"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:text="Delay:"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/delay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rtt"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/delayTitle"
+                android:layout_toRightOf="@+id/delayTitle"
+                android:text="0ms"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/lossTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/delay"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:text="Packet Loss:"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/loss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/delay"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/lossTitle"
+                android:layout_toRightOf="@+id/lossTitle"
+                android:text="12.0%"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <im.zego.commontools.logtools.logLinearLayout
+        android:id="@+id/logView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

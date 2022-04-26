@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.others.streammixing.AutoMixerStartActivity">
+
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+        </LinearLayout>
+
+        <im.zego.commontools.logtools.logLinearLayout
+            android:id="@+id/logView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        </im.zego.commontools.logtools.logLinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="111dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="RoomID:" />
+
+                <TextView
+                    android:id="@+id/tv_auto_mix_room_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:text="XXXX" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/streamListTitle"
+                    android:layout_width="111dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="StreamList(0)" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="8" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:orientation="vertical">
+
+                <ListView
+                    android:id="@+id/streamListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="8" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/label_auto_mix_task_id"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Task ID:" />
+
+                <EditText
+                    android:id="@+id/text_auto_mix_task_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:hint="Task ID of auto mixer task"
+                    android:background="@drawable/edit_round"
+                    android:padding="5dp"
+                    android:layout_alignParentTop="true"/>
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/label_auto_mix_stream_id"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Mixer out:" />
+
+                <EditText
+                    android:id="@+id/text_auto_mix_stream_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:hint="Output of auto mixer task"
+                    android:background="@drawable/edit_round"
+                    android:padding="5dp"
+                    android:layout_alignParentTop="true"/>
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_auto_mix_start"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="ClickStartAutoMix"
+                    android:text="@string/start_auto_stream_mixing" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/label_auto_mix_play_id"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Stream ID:" />
+
+                <EditText
+                    android:id="@+id/text_auto_mix_play_stream_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:hint="Stream id for play"
+                    android:background="@drawable/edit_round"
+                    android:padding="5dp"
+                    android:layout_alignParentTop="true"/>
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/label_auto_mix_play_cdn_url"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="CDN url:" />
+
+                <EditText
+                    android:id="@+id/text_auto_mix_play_cdn_url"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:hint="CDN url for play"
+                    android:background="@drawable/edit_round"
+                    android:padding="5dp"
+                    android:layout_alignParentTop="true"/>
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_auto_mix_play"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="ClickStartPlayAutoMix"
+                    android:text="@string/play_stream" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>

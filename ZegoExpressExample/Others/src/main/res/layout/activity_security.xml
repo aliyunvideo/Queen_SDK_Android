@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".security.SecurityActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <im.zego.commontools.logtools.logLinearLayout
+            android:id="@+id/logView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="5dp">
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RoomID:0032 UserID:"
+                android:textColor="@color/black"
+                android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/userID"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/roomStateTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Room state"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/roomState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+        </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:id="@+id/view"
+            android:layout_width="1dp"
+            android:layout_height="250dp"
+            android:layout_centerHorizontal="true" />
+
+        <TextureView
+            android:id="@+id/Preview"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toStartOf="@id/view"
+            android:layout_toLeftOf="@id/view"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toStartOf="@id/view"
+            android:layout_toLeftOf="@id/view"
+            android:gravity="center"
+            android:text="@string/preview"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <TextureView
+            android:id="@+id/playView"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toEndOf="@id/view"
+            android:layout_toRightOf="@id/view"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/view"
+            android:layout_toRightOf="@id/view"
+            android:gravity="center"
+            android:text="@string/play_stream"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/startPublishButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/Preview"
+            android:layout_marginHorizontal="5dp"
+            android:layout_alignLeft="@id/Preview"
+            android:layout_alignRight="@id/Preview"
+            android:text="@string/start_publishing"
+            android:layout_alignStart="@id/Preview"
+            android:layout_alignEnd="@id/Preview" />
+
+        <Button
+            android:id="@+id/startPlayButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/playView"
+            android:layout_alignLeft="@id/playView"
+            android:layout_marginHorizontal="10dp"
+            android:layout_alignRight="@id/playView"
+            android:text="@string/start_playing"
+            android:layout_alignEnd="@id/playView"
+            android:layout_alignStart="@id/playView" />
+
+        <TextView
+            android:id="@+id/publishStreamTitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/editPublishStreamID"
+            android:layout_alignLeft="@id/Preview"
+            android:layout_marginLeft="10dp"
+            android:text="Publish StreamID"
+            android:textColor="@color/dark_grey"
+            android:textSize="12sp"
+            android:layout_marginStart="5dp"
+            android:layout_alignStart="@id/Preview" />
+
+        <EditText
+            android:id="@+id/editPublishStreamID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_alignLeft="@id/Preview"
+            android:layout_alignRight="@id/Preview"
+            android:layout_above="@id/startPublishButton"
+            android:background="@drawable/edit_round"
+            android:padding="5dp"
+            android:text="0032"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/publishStreamID2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/editPlayStreamID"
+            android:layout_alignLeft="@id/playView"
+            android:layout_marginLeft="5dp"
+            android:text="Play StreamID:"
+            android:textColor="@color/dark_grey"
+            android:textSize="12sp"
+            android:layout_marginStart="10dp"
+            android:layout_alignStart="@id/playView" />
+
+        <EditText
+            android:id="@+id/editPlayStreamID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/startPlayButton"
+            android:layout_alignRight="@id/playView"
+            android:layout_marginHorizontal="5dp"
+            android:layout_alignLeft="@id/playView"
+            android:background="@drawable/edit_round"
+            android:padding="5dp"
+            android:text="0032"
+            android:textSize="12sp"
+            android:layout_alignEnd="@id/playView"
+            android:layout_alignStart="@id/playView" />
+    </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/little_dark_grey"
+            android:layout_marginTop="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+            <TextView
+                android:id="@+id/EncryptPublishNotice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/question"
+                android:text="Publish Encryption Key"
+                android:textColor="@color/dark_grey"
+                android:textSize="12sp"
+                android:layout_marginBottom="3dp"
+                android:layout_gravity="bottom"/>
+            <EditText
+                android:id="@+id/publishEncryptionKeyEdit"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_round"
+                android:padding="5dp"
+                android:textSize="15sp"
+                android:layout_marginHorizontal="10dp"/>
+        </LinearLayout>
+        <Button
+            android:id="@+id/setPublishStreamEncryptionKeyButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/set_publish_stream_encryption_key"
+            android:layout_marginHorizontal="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+            <TextView
+                android:id="@+id/EncryptPlayNotic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/question"
+                android:text="Play Decryption Key"
+                android:textColor="@color/dark_grey"
+                android:textSize="12sp"
+                android:layout_marginBottom="3dp"
+                android:layout_gravity="bottom"/>
+            <EditText
+                android:id="@+id/playDecryptionKeyEdit"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_round"
+                android:padding="5dp"
+                android:textSize="15sp"
+                android:layout_marginHorizontal="10dp"/>
+        </LinearLayout>
+        <Button
+            android:id="@+id/setPlayStreamEncryptionKeyButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/set_play_stream_decryption_key"
+            android:layout_marginHorizontal="10dp"/>
+    </LinearLayout>
+</ScrollView>

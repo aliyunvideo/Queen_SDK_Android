@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="im.zego.customvideorendering">
+
+    <application>
+        <activity android:name="im.zego.encodinganddecoding.EncodingAndDecoding"></activity>
+        <activity android:name="im.zego.customrender.ui.ZGVideoRenderTypeUI" />
+        <activity android:name="im.zego.customrender.ui.VideoRenderPublish" />
+        <activity android:name="im.zego.CustomerVideoCapture.CustomerVideoCaptureActivity"
+            android:hardwareAccelerated="true"/>
+    </application>
+
+</manifest>
