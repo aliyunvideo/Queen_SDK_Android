@@ -59,8 +59,8 @@ public class QueenRendererImpl implements IQueenRender {
 
     @Override
     public int onTextureProcess(int textureId, boolean isOesTexture, float[] matrix, int width, int height) {
-        int w = isOesTexture ? width : height;
-        int h = isOesTexture ? height : width;
+        int w = isOesTexture ? height : width;
+        int h = isOesTexture ? width : height;
         engine.setInputTexture(textureId, w, h, isOesTexture);
 
         QueenParamHolder.writeParamToEngine(engine, false);
@@ -70,9 +70,11 @@ public class QueenRendererImpl implements IQueenRender {
             mOutTexture = engine.autoGenOutTexture(true);
         }
 
+        int in = QueenCameraHelper.get().inputAngle;
+        int out = QueenCameraHelper.get().outAngle;
+        int flip = QueenCameraHelper.get().flipAxis;
         // 方式二：根据当前纹理数据到更新
-        engine.updateInputTextureBufferAndRunAlg(QueenCameraHelper.get().inputAngle, QueenCameraHelper.get().outAngle,
-                QueenCameraHelper.get().flipAxis, false);
+        engine.updateInputTextureBufferAndRunAlg(in, out, flip, false);
 
         int result = engine.renderTexture(matrix);
         // 处理不成功，则返回原始纹理id
@@ -85,8 +87,6 @@ public class QueenRendererImpl implements IQueenRender {
 
     @Override
     public int onTextureProcess(int textureId, boolean isOesTexture, float[] matrix, byte[] imageData, int format, int width, int height) {
-//        int w = QueenCameraHelper.get().isLandscape() ? width : height;
-//        int h = QueenCameraHelper.get().isLandscape() ? height : width;
         // 而Android的Camera数据，都是旋转90度后的画面，非直接显示看到的正向数据，而纹理是直接显示的画面纹理，
         // 因此，此处为保证与纹理的宽高一致，需要进行旋转，也即w-h调换
         int w = isOesTexture ? height : width;
@@ -100,9 +100,12 @@ public class QueenRendererImpl implements IQueenRender {
             mOutTexture = engine.autoGenOutTexture(true);
         }
 
+        int in = QueenCameraHelper.get().inputAngle;
+        int out = QueenCameraHelper.get().outAngle;
+        int flip = QueenCameraHelper.get().flipAxis;
         // 方式一：根据回调的bytebuffer数据来更新，人脸检测数据
         engine.updateInputDataAndRunAlg(imageData, format, width, height,
-                0, QueenCameraHelper.get().inputAngle, QueenCameraHelper.get().outAngle, QueenCameraHelper.get().flipAxis);
+                0, in, out, flip);
 
         int result = engine.renderTexture(matrix);
         // 处理不成功，则返回原始纹理id

@@ -4,6 +4,22 @@ import android.content.Context;
 
 public class QueenRender implements IQueenRender {
 
+    public static final float[] MATRIX_IDENTITY = new float[] {
+            1.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 1.0f,
+    };
+
+    // Texture transformation matrix, the image will be displayed upright
+    public static final float[] MATRIX_FLIP = {
+            1.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, -1.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f, 0.0f,
+            0.0f, 1.0f, 0.0f, 0.0f
+    };
+
+
     private IQueenRender mQueenRenderImpl;
 
     private QueenRender(Builder builder) {

@@ -81,6 +81,10 @@ public class FrameDrawer {
     // 是否为绘制原始oes纹理
     private boolean mIsOesDrawer = false;
 
+    public FrameDrawer() {
+        this(false);
+    }
+
     public FrameDrawer(boolean isOesDrawer)
     {
         mIsOesDrawer = isOesDrawer;
@@ -148,8 +152,17 @@ public class FrameDrawer {
         }
     }
 
-    public void draw(float[] transformMatrix, int textureId)
-    {
+    public void draw(float[] transformMatrix, int textureId) {
+        draw(transformMatrix, textureId, false);
+    }
+
+    public void draw(float[] transformMatrix, int textureId, final boolean isOesTexture) {
+
+        if (isOesTexture != mIsOesDrawer) {
+            mIsOesDrawer = isOesTexture;
+            initGLContext();
+        }
+
         GLES20.glUseProgram(shaderProgram);
 
         if (transformMatrix == null) {
