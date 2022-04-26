@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/activity_privacy_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/about_activity_title_height">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:text="@string/privacy_policy_title"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_large"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/profile_item_divider_height"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:background="@color/gray_lightest"/>
+</LinearLayout>

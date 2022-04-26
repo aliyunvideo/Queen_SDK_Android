@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+
+afterEvaluate {
+    generateReleaseBuildConfig.enabled = false
+    generateDebugBuildConfig.enabled = false
+}
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 660
+        versionName "6.6.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility = 1.8
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    compileOnly 'androidx.appcompat:appcompat:1.1.0'
+
+    // 此处修改：根据自身项目需要，指定依赖的菜单组件sdk
+//    implementation 'com.aliyunsdk.components:queen_menu:2.0.1.full-beta1'
+    // 此处修改：根据自身项目需要，指定依赖的sdk版本
+    implementation 'com.aliyun.maliang.android:queen:2.0.0-official-ultimate'
+}

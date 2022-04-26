@@ -1,0 +1,131 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="nav_title_text">
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="room_tab_title_text">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+
+    <style name="room_list_tab_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/room_tab_height</item>
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="live_message_user_text_style">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="live_room_dialog" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimAmount">0</item>
+    </style>
+
+    <style name="seat_item_dialog" parent="live_room_dialog">
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="product_detail_window">
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
+    <style name="gift_anim_window">
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="live_room_dialog_center_in_window" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:windowBackground">@color/gray_alpha2</item>
+    </style>
+
+    <style name="beauty_action_sheet_button">
+        <item name="android:layout_width">@dimen/live_room_action_sheet_button_width</item>
+        <item name="android:layout_height">@dimen/live_room_action_sheet_button_height</item>
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/action_sheet_button_bg</item>
+    </style>
+
+    <style name="action_sheet_seek_bar">
+        <item name="android:minHeight">@dimen/live_room_action_sheet_seek_bar_height</item>
+        <item name="android:maxHeight">@dimen/live_room_action_sheet_seek_bar_height</item>
+        <item name="android:progressDrawable">@drawable/setting_progress</item>
+        <item name="android:thumb">@drawable/seekbar_thumb</item>
+    </style>
+
+    <style name="action_sheet_beauty_seek_bar" parent="action_sheet_seek_bar">
+        <item name="android:max">10</item>
+    </style>
+
+    <style name="voice_action_sheet_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/live_room_action_sheet_voice_button_text_padding_vertical</item>
+        <item name="android:paddingBottom">@dimen/live_room_action_sheet_voice_button_text_padding_vertical</item>
+        <item name="android:paddingStart">@dimen/live_room_action_sheet_voice_button_text_padding_horizontal</item>
+        <item name="android:paddingEnd">@dimen/live_room_action_sheet_voice_button_text_padding_horizontal</item>
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/action_sheet_button_bg</item>
+    </style>
+
+    <style name="host_in_seat_dialog_item_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/live_host_in_seat_item_height</item>
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="host_in_seat_dialog_item_divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/live_host_in_seat_item_dialog_stroke_width</item>
+        <item name="android:layout_marginStart">@dimen/live_host_in_seat_item_padding</item>
+        <item name="android:layout_marginEnd">@dimen/live_host_in_seat_item_padding</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="CustomMaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="android:textAppearance">?attr/textAppearanceButton</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textStyle">normal</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!--Shape Appearance for medium components like cards, alert dialogs-->
+    <style name="ShapeAppearance.MyTheme.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSize">8dp</item>
+    </style>
+
+</resources>

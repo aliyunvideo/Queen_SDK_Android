@@ -1,0 +1,326 @@
+<resources>
+    <string name="app_name">Agora Live</string>
+    <string name="bugly_app_id"></string>
+
+    <!-- Application -->
+    <string name="title_home">Home</string>
+    <string name="title_rooms">Rooms</string>
+    <string name="title_me">Me</string>
+    <string name="permission_not_granted">Necessary permissions not granted</string>
+
+    <!-- Home Fragment -->
+    <string name="home_category_title_multi">Multi Hosts</string>
+    <string name="home_category_title_single">Solo Host</string>
+    <string name="home_category_title_pk">PK Host-in</string>
+    <string name="home_category_title_virtual_host">Virtual Host</string>
+    <string name="home_category_title_ecommerce">Live Shopping</string>
+
+    <string name="home_category_desp_multi">Invite others to co-host in broadcasting channel</string>
+    <string name="home_category_desp_single">Live streaming by single host</string>
+    <string name="home_category_desp_pk">Merge streams from 2 channels for broadcasting</string>
+    <string name="home_category_desp_virtual_host">Avatar-based simulation for call or broadcasting</string>
+    <string name="home_category_desp_ecommerce">Engage audience and other hosts in online shopping</string>
+
+    <string name="room_list_no_data_hint">Please Create a Room</string>
+    <string name="room_list_fail_to_obtain_data_hint">Loading Data failed, please try later</string>
+    <string name="room_list_network_error_title">Network failure</string>
+    <string name="room_list_network_error_message">The network connection is not available, please try later.</string>
+
+    <!-- My Profile Fragment -->
+    <string name="profile_item_title_avatar">Profile</string>
+    <string name="profile_item_title_nickname">Nickname</string>
+    <string name="modify_user_title">Edit Name</string>
+    <string name="about_title">About</string>
+    <string name="privacy_policy_title">Privacy Policy</string>
+    <string name="privacy_website_link">https://www.agora.io/en/privacy-policy/</string>
+    <string name="terms_service_title">Terms of Services</string>
+    <string name="terms_service_link">https://www.agora.io/en/terms-of-service/</string>
+
+    <string name="disclaimer_title">Test Product Disclaimer</string>
+    <string name="disclaimer_content">&#160;&#160;&#160;&#160;Agora Live ("this product") is a test product provided by Agora. Agora enjoys the copyright and ownership of this product. It is hereby granted free of charge to anyone who obtains a copy of this product and related documentation (hereinafter referred to as "software") to try the software without limitation, including but not limited to trial, copy, modify, merge, publish, distribute, but this product shall not be used For any commercial use, you may not sublicense and/or sell copies of the software.\n\n &#160;&#160;&#160;&#160;This product is provided "as is" without any express warranty, including but not limited to guarantees of suitability, suitability for specific purposes, and non-infringement. Whether it is due to any contract, infringement or other forms of conduct related to this product or the trial of this product or other methods, Agora will not be responsible for any claims, damages or other liabilities.\n\n &#160;&#160;&#160;&#160;You are free to choose whether to try the services provided by this product. If you download, install, or try the services provided in this product, it means that you trust the owner of the product, and Agora shall not be responsible for any form of loss or injury caused by yourself or others when you try the services provided in this product for any reason.</string>
+
+    <string name="sign_up_agora_title">Sign Up Agora.io</string>
+    <string name="sign_up_website_link">https://sso.agora.io/en/signup</string>
+
+    <string name="version_title">Versions</string>
+    <string name="agoralive_version_title">AgoraLive Version</string>
+    <string name="agoralive_release_time_title">Release</string>
+    <string name="agoralive_release_time" translatable="false">2021.07.12</string>
+    <string name="agoralive_media_sdk_version_title">Media SDK Version</string>
+    <string name="agoralive_media_sdk_version">Ver 3.0.1.1</string>
+
+    <!-- Live Prepare Activity -->
+    <string name="live_prepare_hint">Channel Name</string>
+    <string name="go_live_text">Go Live</string>
+    <string name="live_prepare_name_too_long_toast_format">Room name cannot be longer than %d characters</string>
+    <string name="live_prepare_no_room_name">Please enter your room name</string>
+    <string name="no_fu_auth_notice">No FaceUnity authentication found</string>
+
+    <!-- Live -->
+    <string name="live_bottom_edit_hint">Say something &#8230;</string>
+    <string name="live_send_empty_message">Empty messages are not sent</string>
+
+    <string name="live_host_in_room_name_hint">Channel&#160;&#160;</string>
+    <string name="live_host_in_seat_state_open_audience">Become Host</string>
+    <string name="live_host_in_seat_state_open_host">Invite Host</string>zx
+    <string name="live_host_in_seat_state_blocked">Blocked</string>
+
+    <string name="live_system_notification_member_joined">has joined</string>
+    <string name="live_system_notification_member_left">has left</string>
+
+    <string-array name="live_host_in_seat_operations">
+        <item>Mute</item>
+        <item>Unmute</item>
+        <item>Leave</item>
+        <item>Open</item>
+        <item>close</item>
+    </string-array>
+
+    <!-- Virtual Host -->
+    <string name="live_virtual_image_select_title">Select Image</string>
+    <string name="live_virtual_image_select_confirm">Confirm</string>
+    <string name="live_virtual_image_invite">Invite</string>
+    <string name="live_virtual_image_stop_invite">Leave</string>
+    <string name="live_virtual_image_stop_invite_message">Do you want to leave the chat?</string>
+
+    <string name="live_pk_host_remaining_time_hint">PK left:</string>
+
+    <!-- E Commerce -->
+    <string name="product_detail_buy_now">Buy Now</string>
+    <string name="product_promote_title">抢 9 期免息券</string>
+    <string name="product_promote_date">6.11 - 6.18</string>
+    <string name="product_promote_actual_price_title">到手价</string>
+    <string name="product_promote_actual_price">6599</string>
+
+    <string name="product_default_description">Apple iPad Pro 11英寸平板电脑 2020年新款(256G WLAN版/全面屏/A12Z/FaceID/MXDC2CH/A) 深空灰色</string>
+
+    <string name="product_name_1">Lipstick</string>
+    <string name="product_name_2">Rucksack</string>
+    <string name="product_name_3">iPad</string>
+    <string name="product_name_4">Pants</string>
+
+    <string name="product_desp_1">Revlon Super Lustrous Lipstick, High Impact Lipcolor</string>
+    <string name="product_desp_2">Keepall 55 Monogram Eclipse Canvas M40605</string>
+    <string name="product_desp_3">New Apple iPad Pro (12.9-inch, Wi-Fi, 128GB) - Silver </string>
+    <string name="product_desp_4">Men\'s K87 Workwear Pocket Short Sleeve T-Shirt </string>
+
+    <!-- Messages -->
+    <string name="live_message_gift_send">has sent out</string>
+
+    <!-- Action Sheet -->
+    <string name="live_room_setting_action_sheet_title">Setting</string>
+    <string name="live_room_setting_title_resolution">Resolution</string>
+    <string name="live_room_setting_title_framerate">Frame Rate</string>
+    <string name="live_room_setting_title_bitrate">Bitrate</string>
+    <string name="live_room_setting_bitrate_value_format" translatable="false">%d kbps</string>
+    <string name="live_room_setting_bitrate_value_default">Default</string>
+
+    <string name="live_room_beauty_action_sheet_title">Beauty</string>
+    <string name="live_room_beauty_action_sheet_blur">Blur</string>
+    <string name="live_room_beauty_action_sheet_color">Brighten</string>
+    <string name="live_room_beauty_action_sheet_cheek_thinning">Thinning</string>
+    <string name="live_room_beauty_action_sheet_eye_enlarge">Eye</string>
+
+    <string name="live_room_bg_music_action_sheet_title">Background Music</string>
+    <string name="live_room_bg_music_action_sheet_credit_hint">Music:&#160;&#160;</string>
+    <string name="live_room_bg_music_action_sheet_credit_link">https://www.bensound.com</string>
+
+    <string name="live_room_gift_action_sheet_title">Presents</string>
+    <string name="live_room_gift_action_sheet_send">Send</string>
+    <string name="live_room_gift_action_sheet_value_format">(%d Coins)</string>
+
+    <string name="live_room_pk_room_list_title_format">Room List (%d)</string>
+
+    <string-array name="gift_names">
+        <item>Bell</item>
+        <item>Ice Cream</item>
+        <item>Wine</item>
+        <item>Cake</item>
+        <item>Ring</item>
+        <item>Watch</item>
+        <item>Diamond</item>
+        <item>Rocket</item>
+    </string-array>
+
+    <string name="live_room_gift_channel_message">has sent %s a gift</string>
+
+    <string name="live_room_tool_action_sheet_title">Tool</string>
+    <string-array name="live_room_action_sheet_tool_names">
+        <item>Data</item>
+        <item>Speaker</item>
+        <item>EarMonitor</item>
+        <item>Setting</item>
+        <item>Rotate</item>
+        <item>Camera</item>
+    </string-array>
+
+    <string name="live_room_tool_action_sheet_title_setting">setting</string>
+    <string name="live_room_tool_action_sheet_title_data">Data</string>
+    <string name="live_room_tool_action_sheet_title_beauty">Beauty</string>
+    <string name="live_room_tool_action_sheet_title_music">Music</string>
+    <string name="live_room_tool_action_sheet_title_rotate">Rotate</string>
+    <string name="live_room_tool_action_sheet_title_camera">Camera</string>
+    <string name="live_room_tool_action_sheet_title_speaker">Speaker</string>
+    <string name="live_room_tool_action_sheet_title_inear">EarMonitor</string>
+    <string name="live_room_tool_action_sheet_title_apply">Apply</string>
+
+    <string name="live_room_voice_action_sheet_title">Voice</string>
+    <string name="live_room_voice_action_sheet_headphone">Headphone</string>
+    <string name="live_room_voice_action_sheet_loudspeaker">Loudspeaker</string>
+    <string name="live_room_voice_action_sheet_others">Others</string>
+
+    <string name="live_room_host_in_invite_user_list_action_sheet_title">Invite</string>
+    <string name="live_room_all_online_user_action_sheet_title">Member Listing</string>
+    <string name="live_room_host_in_audience_apply_title">Apply</string>
+    <string name="live_room_host_in_audience_apply_message">Do you want to apply to be a host?</string>
+    <string name="live_room_host_in_audience_apply_owner_message">"%s" want to apply seat %d, do you accept？</string>
+    <string name="live_room_host_in_audience_apply_owner_message_simple">"%s" want to be a host, do you accept？</string>
+    <string name="live_room_host_in_invited_by_owner">"%s" invites you to seat %d，do you accept？</string>
+    <string name="live_room_host_in_invited_by_owner_simple">"%s" invites you to be a host， do you accept？</string>
+    <string name="live_room_host_in_invite_rejected">Invitation Rejected</string>
+    <string name="live_room_host_in_invite_rejected_message">Your invitation has been\nrejected by "%s"</string>
+    <string name="live_room_host_in_apply_rejected">Rejected</string>
+    <string name="live_room_host_in_apply_rejected_message">Your application has been\nrejected by "%s"</string>
+
+    <string name="live_room_pk_room_list_button_text">Invite PK</string>
+
+    <string name="live_room_pk_room_receive_pk_request_title">PK Received</string>
+    <string name="live_room_pk_room_receive_pk_request_message">%s invited you to his PK room,\n do you accept?</string>
+
+    <string name="live_room_virtual_image_invited_message">"%s" invites to chat，do you accept？</string>
+
+    <string name="live_room_product_list_title">Product List</string>
+    <string name="live_room_action_sheet_type_unlisted_title">Retired</string>
+    <string name="live_room_action_sheet_type_listed_title">Launched</string>
+    <string name="live_room_action_sheet_product_price_format">￥ %d</string>
+    <string name="live_room_action_sheet_product_action_detail">Detail</string>
+    <string name="live_room_action_sheet_product_action_list">Launch</string>
+    <string name="live_room_action_sheet_product_action_unlisted">Retire</string>
+
+    <string name="live_room_online_user_invite_call_btn">Invite</string>
+    <string name="live_room_online_user_invited_btn">Inviting</string>
+    <string name="live_room_online_user_call_agree">Agree</string>
+    <string name="live_room_online_user_call_reject">Reject</string>
+    <string name="live_room_online_user_tab_all">All Users</string>
+    <string name="live_room_online_user_tab_application">Applications</string>
+
+    <!-- dialog -->
+    <string name="dialog_negative_button">Cancel</string>
+    <string name="dialog_positive_button">Confirm</string>
+    <string name="dialog_positive_button_accept">Accept</string>
+    <string name="dialog_negative_button_refuse">Refuse</string>
+
+    <string name="end_live_streaming_title_owner">End Live Streaming</string>
+    <string name="end_live_streaming_message_owner">Do you want to end this live streaming?</string>
+
+    <string name="finish_broadcast_title_audience">Leave Room</string>
+    <string name="finish_broadcast_message_audience">Do you want to leave this room?</string>
+
+    <string name="dialog_multi_host_open_seat_title">Reopen</string>
+    <string name="dialog_multi_host_open_seat_message">Do you want to reopen this seat?</string>
+
+    <string name="dialog_multi_host_block_seat_title">Block</string>
+    <string name="dialog_multi_host_block_seat_message">Block the seat. If it is taken,\n the user will be forced to leave.</string>
+
+    <string name="dialog_multi_host_mute_title">Mute</string>
+    <string name="dialog_multi_host_mute_message">Forbid "%s" of speaking？</string>
+
+    <string name="dialog_multi_host_unmute_title">Unmute</string>
+    <string name="dialog_multi_host_unmute_message">Allow "%s" to speak？</string>
+
+    <string name="dialog_multi_host_leave_title">Leave</string>
+    <string name="dialog_multi_host_leave_message_owner">Do you want "%s" to leave？</string>
+    <string name="dialog_multi_host_leave_message_host">Do you want to leave？</string>
+
+    <string name="dialog_ecommerce_end_call_title">End Call</string>
+    <string name="dialog_ecommerce_end_call_message">End the call with "%s"?</string>
+    <string name="dialog_ecommerce_end_call_message_and_quit">End the call with "%s",\n and leave this room?</string>
+
+    <string name="dialog_ecommerce_duplicate_call_request">You are already calling</string>
+
+    <string name="dialog_pk_force_quit_title">End PK</string>
+    <string name="dialog_pk_force_quit_message">End PK with "%s",\n and leave this room?</string>
+
+    <!-- Toasts -->
+    <string name="apply_seat_success">Apply Successfully</string>
+    <string name="invite_success">Invite Successfully</string>
+
+    <string name="live_room_pk_room_pk_invitation_accepted">Your PK invitation has been accepted</string>
+    <string name="live_room_pk_room_pk_invitation_rejected">Your PK invitation has been rejected</string>
+
+    <string name="modify_user_name_too_long">User name should not be longer than 15 letters</string>
+    <string name="modify_user_name_empty">User name cannot be empty</string>
+    <string name="modify_user_name_error">Modify user name failed</string>
+
+    <string name="in_ear_monitoring_failed">Please use wired headsets</string>
+
+    <string name="pk_ends">PK Ends</string>
+
+    <string name="agora_app_id_failed">Agora app id not found, please check your network</string>
+
+    <string name="product_list_success">Product has been launched</string>
+    <string name="product_unlist_success">Product is no longer available</string>
+
+    <string name="product_purchase_success">Purchase product success</string>
+    <string name="product_purchase_fail">Purchase product fail</string>
+
+    <string name="cannot_pk_while_calling">You cannot start PK while calling</string>
+    <string name="cannot_pk_while_already_pk_with_someone">You are already in PK with another host</string>
+    <string name="cannot_call_while_pk_with_someone">You cannot start a call with audience because you are already in PK with another host</string>
+
+    <string-array name="random_channel_names">
+        <item>Cheer</item>
+        <item>Vibe</item>
+        <item>Devine</item>
+        <item>Duo</item>
+        <item>Ablaze</item>
+        <item>Amaze</item>
+        <item>Harmony</item>
+        <item>Verse</item>
+        <item>Vigilant</item>
+        <item>Contender</item>
+        <item>Vista</item>
+        <item>Wander</item>
+        <item>Collections</item>
+        <item>Moon</item>
+        <item>Boho</item>
+        <item>Everest</item>
+    </string-array>
+
+    <string-array name="random_surnames">
+        <item>Atkinson</item>
+        <item>Edwards</item>
+        <item>Gibson</item>
+        <item>Holmes</item>
+        <item>Kelvin</item>
+        <item>Lloyd</item>
+        <item>Payne</item>
+        <item>White</item>
+    </string-array>
+
+    <string-array name="random_names">
+        <item>Alexander</item>
+        <item>Halley</item>
+        <item>Rickey</item>
+        <item>Xavior</item>
+        <item>Yolanda</item>
+        <item>Corynn</item>
+        <item>Daniel</item>
+        <item>Kelly</item>
+        <item>Lauren</item>
+    </string-array>
+
+    <string name="button_text_done">Done</string>
+
+    <string name="rtc_stats_format">Downstream Bitrate: %.2f kbps%nDownstream Loss Rate: %.2f%% %nUpstream Bitrate: %.2f kbps%nUpstream Loss Rate: %.2f%%</string>
+
+    <!-- Network status detection -->
+    <string name="network_unavailable">Network is unavailable, please try later</string>
+    <string name="network_switch_to_wifi">You are in WIFI network</string>
+    <string name="network_switch_to_mobile">You are in the mobile network, you may pay for the mobile data usage if you continue.</string>
+
+    <!-- Policies -->
+    <string name="live_prepare_room_restriction">This is a testing product. Please refrain from using it commercially. The max duration per session is 10 minutes, and the max number of participants per channel is 10. </string>
+
+    <string name="official_website">www.agora.io</string>
+</resources>

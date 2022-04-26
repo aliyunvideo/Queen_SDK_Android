@@ -1,0 +1,7 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/blue_dialog"/>
+    <stroke android:color="@android:color/white"
+        android:width="@dimen/live_host_in_seat_item_dialog_stroke_width"/>
+    <corners android:radius="@dimen/live_host_in_seat_item_dialog_corner"/>
+</shape>

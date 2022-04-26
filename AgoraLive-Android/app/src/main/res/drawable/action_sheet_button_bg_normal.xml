@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke android:width="@dimen/live_room_action_sheet_button_border" android:color="@color/gray_light"/>
+    <corners android:radius="@dimen/live_room_action_sheet_button_radius"/>
+    <size android:width="@dimen/switch_width" android:height="@dimen/switch_height"/>
+</shape>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/live_room_action_sheet_text_item_height"
+    android:background="@drawable/action_sheet_list_item_bg_color">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/live_room_setting_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAlignment="gravity"
+        android:gravity="center"
+        android:textColor="@color/action_sheet_list_item_text_color_gray"/>
+</RelativeLayout>

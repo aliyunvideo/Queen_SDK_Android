@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aliyun.queen">
+
+    <application>
+
+        <meta-data
+            android:name="com.aliyun.alivc_license.licensekey"
+            android:value="vofThXfslB0HBFggh0565821d3be04ab18bc0a8984e54f8aa"/>
+        <meta-data
+            android:name="com.aliyun.alivc_license.licensefile"
+            android:value="assets/AliVideoCert_io_agora_vlive.crt"/>
+
+    </application>
+
+
+
+
+</manifest>

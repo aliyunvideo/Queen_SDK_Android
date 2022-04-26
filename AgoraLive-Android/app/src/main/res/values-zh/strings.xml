@@ -1,0 +1,322 @@
+<resources>
+    <string name="app_name">Agora Live</string>
+
+    <!-- Application -->
+    <string name="title_home">主页</string>
+    <string name="title_rooms">房间</string>
+    <string name="title_me">我的</string>
+
+    <string name="permission_not_granted">应用未给予必要权限</string>
+
+    <!-- Home Fragment -->
+    <string name="home_category_title_multi">多人连麦直播</string>
+    <string name="home_category_title_single">单主播直播</string>
+    <string name="home_category_title_pk">视频PK连麦</string>
+    <string name="home_category_title_virtual_host">虚拟主播</string>
+    <string name="home_category_title_ecommerce">电商直播</string>
+
+    <string name="home_category_desp_multi">观众与主播连麦互动</string>
+    <string name="home_category_desp_single">标准单主播直播</string>
+    <string name="home_category_desp_pk">跨直播间主播连\n麦PK互动</string>
+    <string name="home_category_desp_virtual_host">用卡通形象模拟真人进行对话或直播</string>
+    <string name="home_category_desp_ecommerce">通过观众连麦和主播PK的方式带货</string>
+
+    <string name="room_list_no_data_hint">请创建一个房间</string>
+    <string name="room_list_fail_to_obtain_data_hint">暂无数据，请稍候再试</string>
+    <string name="room_list_network_error_title">网络异常</string>
+    <string name="room_list_network_error_message">当前网络连接异常，请稍候再试</string>
+
+    <!-- My Profile Fragment -->
+    <string name="profile_item_title_avatar">设置头像</string>
+    <string name="profile_item_title_nickname">设置昵称</string>
+    <string name="about_title">关于</string>
+    <string name="privacy_policy_title">隐私条例</string>
+    <string name="privacy_website_link">https://www.agora.io/cn/privacy-policy/</string>
+    <string name="terms_service_title">用户协议</string>
+    <string name="terms_service_link">https://www.agora.io/cn/terms-of-service/</string>
+
+    <string name="disclaimer_title">测试产品免责声明</string>
+    <string name="disclaimer_content">&#160;&#160;&#160;&#160;Agora Live（“本产品”）是由Agora提供的一款测试产品，Agora享有本产品的著作权和所有权。特此免费授予获得本产品和相关文档文件（以下简称“软件”）副本的任何人无限制地试用软件的权利，包括但不限于试用，复制，修改，合并，发布，分发，但本产品不得用于任何商业用途，不得再许可和/或出售该软件的副本。\n\n
+
+&#160;&#160;&#160;&#160;本产品按“现状”提供，没有任何形式的明示担保，包括但不限于对适配性、特定目的的适用性和非侵权性的担保。无论是由于与本产品或本产品的试用或其他方式有关的任何合同、侵权或其他形式的行为，Agora均不对任何索赔、损害或其他责任负责。\n\n
+
+&#160;&#160;&#160;&#160;您可以自由选择是否试用本产品提供的服务，如果您下载、安装、试用本产品中所提供的服务，即表明您信任该产品所有人，Agora对任何原因在试用本产品中提供的服务时可能对您自身或他人造成的任何形式的损失和伤害不承担任何责任。</string>
+
+    <string name="sign_up_agora_title">注册声网账号</string>
+    <string name="sign_up_website_link">https://sso.agora.io/cn/signup</string>
+
+    <string name="version_title">版本说明</string>
+    <string name="agoralive_version_title">AgoraLive 版本</string>
+    <string name="agoralive_release_time_title">发布时间</string>
+    <string name="agoralive_media_sdk_version_title">媒体SDK版本</string>
+
+    <string name="modify_user_title">输入名字</string>
+
+    <!-- Live Prepare Activity -->
+    <string name="live_prepare_hint">直播间名字</string>
+    <string name="go_live_text">开始直播</string>
+    <string name="live_prepare_name_too_long_toast_format">房间名称不能超过%d个字符</string>
+    <string name="live_prepare_no_room_name">请输入您的房间名称</string>
+    <string name="no_fu_auth_notice">没有找到相芯美颜的授权信息</string>
+
+    <!-- Live -->
+    <string name="live_bottom_edit_hint">说点什么 &#8230;</string>
+    <string name="live_send_empty_message">您不能发空的消息</string>
+
+    <string name="live_host_in_room_name_hint">房间&#160;&#160;</string>
+    <string name="live_host_in_seat_state_open_audience">申请上麦</string>
+    <string name="live_host_in_seat_state_open_host">邀请上麦</string>
+    <string name="live_host_in_seat_state_blocked">封麦</string>
+
+    <string name="live_system_notification_member_joined">进入房间</string>
+    <string name="live_system_notification_member_left">离开房间</string>
+
+    <string-array name="live_host_in_seat_operations">
+        <item>禁麦</item>
+        <item>解禁</item>
+        <item>下麦</item>
+        <item>解封</item>
+        <item>封麦</item>
+    </string-array>
+
+    <!-- Virtual Host -->
+    <string name="live_virtual_image_select_title">请选择一个形象</string>
+    <string name="live_virtual_image_select_confirm">确定</string>
+    <string name="live_virtual_image_invite">邀请上麦</string>
+    <string name="live_virtual_image_stop_invite">终止连麦</string>
+    <string name="live_virtual_image_stop_invite_message">您确定要终止连麦么？</string>
+
+    <string name="live_pk_host_remaining_time_hint">PK剩余:</string>
+
+    <!-- E Commerce -->
+    <string name="product_detail_buy_now">立即购买</string>
+    <string name="product_promote_title">抢 9 期免息券</string>
+    <string name="product_promote_date">6.11 - 6.18</string>
+    <string name="product_promote_actual_price_title">到手价</string>
+    <string name="product_promote_actual_price">6599</string>
+
+    <string name="product_default_description">Apple iPad Pro 11英寸平板电脑 2020年新款(256G WLAN版/全面屏/A12Z/FaceID/MXDC2CH/A) 深空灰色</string>
+    <string name="product_name_1">口红</string>
+    <string name="product_name_2">背包</string>
+    <string name="product_name_3">iPad</string>
+    <string name="product_name_4">裤子</string>
+
+    <string name="product_desp_1">烈焰幻魅唇膏16# (SCARLET GOUGE) 3g TF黑管口红</string>
+    <string name="product_desp_2">Supreme x Louis Vuitton LV Shoulder Bag 17SS 大号斜挎包</string>
+    <string name="product_desp_3">苹果 iPad Pro (12.9英寸, WLAN, 64GB) - Silver </string>
+    <string name="product_desp_4">花花公子衬衫男短袖，夏季</string>
+
+    <!-- Messages -->
+    <string name="live_message_gift_send">向主播赠送了一个</string>
+
+    !-- Action Sheet -->
+    <string name="live_room_setting_action_sheet_title">设置</string>
+    <string name="live_room_setting_title_resolution">分辨率</string>
+    <string name="live_room_setting_title_framerate">帧率</string>
+    <string name="live_room_setting_title_bitrate">码率</string>
+    <string name="live_room_setting_bitrate_value_default">默认</string>
+
+    <string name="live_room_beauty_action_sheet_title">美颜</string>
+    <string name="live_room_beauty_action_sheet_blur">磨皮</string>
+    <string name="live_room_beauty_action_sheet_color">美白</string>
+    <string name="live_room_beauty_action_sheet_cheek_thinning">瘦脸</string>
+    <string name="live_room_beauty_action_sheet_eye_enlarge">大眼</string>
+
+    <string name="live_room_bg_music_action_sheet_title">背景音乐</string>
+    <string name="live_room_bg_music_action_sheet_credit_hint">音乐:&#160;&#160;</string>
+
+    <string name="live_room_gift_action_sheet_title">礼物</string>
+    <string name="live_room_gift_action_sheet_send">赠送</string>
+    <string name="live_room_gift_action_sheet_value_format">(%d金币)</string>
+
+    <string name="live_room_pk_room_list_title_format">房间列表(%d)</string>
+
+    <string-array name="gift_names">
+        <item>铃铛</item>
+        <item>冰激凌</item>
+        <item>红酒</item>
+        <item>蛋糕</item>
+        <item>戒指</item>
+        <item>手表</item>
+        <item>钻石</item>
+        <item>火箭</item>
+    </string-array>
+
+    <string name="live_room_gift_channel_message">赠送给 %s 一个</string>
+
+    <string name="live_room_tool_action_sheet_title">工具</string>
+
+    <string-array name="live_room_action_sheet_tool_names">
+        <item>实时数据</item>
+        <item>麦克风</item>
+        <item>耳返</item>
+        <item>设置</item>
+        <item>翻转</item>
+        <item>摄像头</item>
+    </string-array>
+
+    <string name="live_room_tool_action_sheet_title_setting">设置</string>
+    <string name="live_room_tool_action_sheet_title_data">数据</string>
+    <string name="live_room_tool_action_sheet_title_beauty">美颜</string>
+    <string name="live_room_tool_action_sheet_title_music">音乐</string>
+    <string name="live_room_tool_action_sheet_title_rotate">翻转</string>
+    <string name="live_room_tool_action_sheet_title_camera">摄像头</string>
+    <string name="live_room_tool_action_sheet_title_speaker">麦克风</string>
+    <string name="live_room_tool_action_sheet_title_inear">耳返</string>
+    <string name="live_room_tool_action_sheet_title_apply">申请上麦</string>
+
+    <string name="live_room_voice_action_sheet_title">声音</string>
+    <string name="live_room_voice_action_sheet_headphone">耳机</string>
+    <string name="live_room_voice_action_sheet_loudspeaker">音箱</string>
+    <string name="live_room_voice_action_sheet_others">其它设备</string>
+
+    <string name="live_room_host_in_invite_user_list_action_sheet_title">邀请上麦</string>
+    <string name="live_room_all_online_user_action_sheet_title">在线用户</string>
+    <string name="live_room_host_in_audience_apply_title">申请上麦</string>
+    <string name="live_room_host_in_audience_apply_message">您是否申请上麦?</string>
+    <string name="live_room_host_in_audience_apply_owner_message">"%s" 申请上麦位%d，是否接受？</string>
+    <string name="live_room_host_in_audience_apply_owner_message_simple">"%s" 申请上麦，是否接受？</string>
+    <string name="live_room_host_in_invited_by_owner">"%s" 邀请你上麦位%d， 是否接受？</string>
+    <string name="live_room_host_in_invited_by_owner_simple">"%s" 邀请你上麦，是否接受？</string>
+    <string name="live_room_host_in_invite_rejected">邀请被拒绝</string>
+    <string name="live_room_host_in_invite_rejected_message">您的邀请已被 "%s" 拒绝</string>
+    <string name="live_room_host_in_apply_rejected">申请被拒绝</string>
+    <string name="live_room_host_in_apply_rejected_message">您的申请已被 "%s" 拒绝</string>
+
+    <string name="live_room_virtual_image_invited_message">"%s" 邀请你上麦，是否接受？</string>
+
+    <string name="live_room_online_user_invite_call_btn">邀请</string>
+    <string name="live_room_online_user_invited_btn">正在邀请</string>
+    <string name="live_room_online_user_call_agree">同意</string>
+    <string name="live_room_online_user_call_reject">拒绝</string>
+    <string name="live_room_online_user_tab_all">全部</string>
+    <string name="live_room_online_user_tab_application">连麦申请</string>
+
+    <!-- dialog -->
+    <string name="dialog_negative_button">取消</string>
+    <string name="dialog_positive_button">确定</string>
+    <string name="dialog_positive_button_accept">接受</string>
+    <string name="dialog_negative_button_refuse">拒绝</string>
+
+    <string name="end_live_streaming_title_owner">结束直播</string>
+    <string name="end_live_streaming_message_owner">是否结束直播?</string>
+
+    <string name="finish_broadcast_title_audience">离开房间</string>
+    <string name="finish_broadcast_message_audience">是否想要离开房间?</string>
+
+    <string name="dialog_multi_host_open_seat_title">解封</string>
+    <string name="dialog_multi_host_open_seat_message">解封此麦位?</string>
+
+    <string name="dialog_multi_host_block_seat_title">封麦</string>
+    <string name="dialog_multi_host_block_seat_message">将关闭该麦位，如果该位置上有用户, 将下麦该用户</string>
+
+    <string name="dialog_multi_host_mute_title">禁麦</string>
+    <string name="dialog_multi_host_mute_message">禁止"%s"发言？</string>
+
+    <string name="dialog_multi_host_unmute_title">解禁</string>
+    <string name="dialog_multi_host_unmute_message">解除 "%s" 禁言？</string>
+
+    <string name="dialog_multi_host_leave_title">下麦</string>
+    <string name="dialog_multi_host_leave_message_owner">确认 "%s" 下麦？</string>
+    <string name="dialog_multi_host_leave_message_host">确定下麦？</string>
+
+    <string name="dialog_ecommerce_duplicate_call_request">您已经连麦了</string>
+
+    <string name="live_room_pk_room_list_button_text">邀请PK</string>
+    <string name="live_room_pk_room_receive_pk_request_title">PK邀请</string>
+    <string name="live_room_pk_room_receive_pk_request_message">%s 邀请你去他的PK房间,\n 是否同意?</string>
+
+    <string name="live_room_product_list_title">商品列表</string>
+    <string name="live_room_action_sheet_type_unlisted_title">未上架</string>
+    <string name="live_room_action_sheet_type_listed_title">已上架</string>
+    <string name="live_room_action_sheet_product_action_detail">去看看</string>
+    <string name="live_room_action_sheet_product_action_list">上架</string>
+    <string name="live_room_action_sheet_product_action_unlisted">下架</string>
+
+    <string name="dialog_ecommerce_end_call_title">终止连麦</string>
+    <string name="dialog_ecommerce_end_call_message">终止与 “%s” 的连麦？</string>
+    <string name="dialog_ecommerce_end_call_message_and_quit">终止与 “%s” 的连麦,\n并退出直播间？</string>
+
+    <string name="dialog_pk_force_quit_title">终止PK</string>
+    <string name="dialog_pk_force_quit_message">终止与 “%s” 的PK,\n并退出直播间？</string>
+
+    <!-- Toasts -->
+    <string name="apply_seat_success">上麦成功</string>
+    <string name="invite_success">邀请成功</string>
+
+    <string name="live_room_pk_room_pk_invitation_accepted">对方已同意你的PK邀请</string>
+    <string name="live_room_pk_room_pk_invitation_rejected">对方拒绝了你的PK邀请</string>
+
+    <string name="modify_user_name_too_long">用户名不能超过15个字符</string>
+    <string name="modify_user_name_empty">用户名不能为空</string>
+    <string name="modify_user_name_error">修改用户名失败</string>
+
+    <string name="in_ear_monitoring_failed">请插入有线耳机</string>
+
+    <string name="pk_ends">PK 结束</string>
+
+    <string name="agora_app_id_failed">未获取正确的 Agora app id, 请检查你的网络状况</string>
+
+    <string name="product_list_success">商品已上架</string>
+    <string name="product_unlist_success">商品已下架</string>
+    <string name="product_purchase_success">商品购买成功</string>
+    <string name="product_purchase_fail">商品购买失败</string>
+
+    <string name="cannot_pk_while_calling">您不能在连麦时发起PK</string>
+    <string name="cannot_pk_while_already_pk_with_someone">您已经处于 PK 模式中</string>
+    <string name="cannot_call_while_pk_with_someone">您正处于 PK 模式中，不能邀请观众连麦</string>
+
+    <string-array name="random_channel_names">
+        <item>陌上花开等你来</item>
+        <item>天天爱你</item>
+        <item>我爱你们</item>
+        <item>有人可以</item>
+        <item>风情万种</item>
+        <item>强势归来</item>
+        <item>哈哈哈</item>
+        <item>聊聊</item>
+        <item>美人舞江山</item>
+        <item>最美的回忆</item>
+        <item>遇见你</item>
+        <item>最长情的告白</item>
+        <item>全力以赴</item>
+        <item>简单点</item>
+        <item>早上好</item>
+        <item>春风十里不如你</item>
+    </string-array>
+
+    <string-array name="random_surnames">
+        <item>赵</item>
+        <item>钱</item>
+        <item>孙</item>
+        <item>李</item>
+        <item>周</item>
+        <item>吴</item>
+        <item>郑</item>
+        <item>王</item>
+    </string-array>
+
+    <string-array name="random_names">
+        <item>富贵</item>
+        <item>国强</item>
+        <item>建国</item>
+        <item>林</item>
+        <item>麒麟</item>
+        <item>宝强</item>
+        <item>强</item>
+        <item>相如</item>
+        <item>欢喜</item>
+    </string-array>
+
+    <string name="button_text_done">完成</string>
+
+    <string name="rtc_stats_format">接收码率: %.2f kbps%n接收丢包率: %.2f%% %n发送码率: %.2f kbps%n发送丢包率: %.2f%% </string>
+
+    <!-- Network status detection -->
+    <string name="network_unavailable">网络不给力，请稍候再试</string>
+    <string name="network_switch_to_wifi">您已处于 WIFI 网络</string>
+    <string name="network_switch_to_mobile">当前处于非 WIFI 网络, 您可能需要支付移动网络数据费用</string>
+
+    <!-- Policies -->
+    <string name="live_prepare_room_restriction">本应用为测试产品，请勿商用。单次直播最长10分钟，每个频道最多10人。</string>
+</resources>

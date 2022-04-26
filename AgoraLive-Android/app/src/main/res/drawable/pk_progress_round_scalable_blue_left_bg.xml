@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/blue_dialog"/>
+    <corners
+        android:topLeftRadius="@dimen/live_pk_progress_layout_corner"
+        android:bottomLeftRadius="@dimen/live_pk_progress_layout_corner"/>
+</shape>

@@ -1,0 +1,221 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="text_size_small">12dp</dimen>
+    <dimen name="text_size_medium">14dp</dimen>
+    <dimen name="text_size_normal">16dp</dimen>
+    <dimen name="text_size_large">20dp</dimen>
+
+    <!-- Application -->
+    <dimen name="nav_bar_height">60dp</dimen>
+    <dimen name="nav_icon_size">32dp</dimen>
+    <dimen name="start_broadcast_btn_size">84dp</dimen>
+
+    <dimen name="room_list_item_corner">12dp</dimen>
+    <dimen name="room_list_item_padding">8dp</dimen>
+    <dimen name="room_list_item_name_width">72dp</dimen>
+    <dimen name="room_list_item_name_height">42dp</dimen>
+    <dimen name="room_list_item_text_padding_big">6dp</dimen>
+    <dimen name="room_list_item_text_padding_small">2dp</dimen>
+
+    <!-- Home Fragment -->
+    <dimen name="home_title_height">32dp</dimen>
+    <dimen name="text_content_padding">18dp</dimen>
+    <dimen name="text_line_padding">8dp</dimen>
+    <dimen name="home_category_title_width">114dp</dimen>
+
+    <!-- Room Fragment -->
+    <dimen name="room_tab_item_width">120dp</dimen>
+    <dimen name="room_tab_height">48dp</dimen>
+    <dimen name="room_tab_item_selected_indicator_height">2dp</dimen>
+    <dimen name="room_list_exception_icon_size">164dp</dimen>
+    <dimen name="room_list_rect_corner">8dp</dimen>
+
+    <!-- My profile Fragment -->
+    <dimen name="profile_background_height">252dp</dimen>
+    <dimen name="profile_item_height">54dp</dimen>
+    <dimen name="profile_item_divider_height">1dp</dimen>
+    <dimen name="profile_portrait_background_size">102dp</dimen>
+    <dimen name="profile_portrait_size">96dp</dimen>
+    <dimen name="profile_user_nickname_margin">22dp</dimen>
+    <dimen name="modify_user_name_title_height">42dp</dimen>
+    <dimen name="modify_user_name_done_btn_width">62dp</dimen>
+    <dimen name="modify_user_name_done_btn_height">28dp</dimen>
+    <dimen name="modify_user_name_done_btn_corner">4dp</dimen>
+    <dimen name="about_activity_title_height">54dp</dimen>
+
+    <!-- Live Prepare -->
+    <dimen name="live_prepare_content_padding">24dp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="bottom_btn_size">44dp</dimen>
+    <dimen name="prepare_padding">10dp</dimen>
+    <dimen name="bottom_action_margin_bottom">48dp</dimen>
+    <dimen name="start_broadcast_btn_padding">24dp</dimen>
+    <dimen name="bottom_btn_padding">24dp</dimen>
+    <dimen name="prepare_edit_corner">10dp</dimen>
+    <dimen name="live_prepare_caution_corner">6dp</dimen>
+    <dimen name="live_prepare_policy_padding">6dp</dimen>
+    <dimen name="live_prepare_policy_sign_size">32dp</dimen>
+    <dimen name="live_prepare_policy_caution_size">16dp</dimen>
+
+    <!-- Live -->
+    <dimen name="live_component_base_height">40dp</dimen>
+    <dimen name="live_name_pad_height">40dp</dimen>
+    <dimen name="live_name_pad_max_width">128dp</dimen>
+    <dimen name="live_name_pad_corner">20dp</dimen>
+    <dimen name="live_name_pad_icon_padding">2dp</dimen>
+    <dimen name="live_message_list_height">260dp</dimen>
+    <dimen name="live_message_text_padding_horizontal">16dp</dimen>
+    <dimen name="live_message_text_padding_vertical">12dp</dimen>
+    <dimen name="live_message_text_margin">8dp</dimen>
+    <dimen name="live_message_edit_height">58dp</dimen>
+
+    <dimen name="live_stats_close_button_size">32dp</dimen>
+
+    <dimen name="live_participant_layout_height">32dp</dimen>
+    <dimen name="live_participant_count_width">68dp</dimen>
+    <dimen name="live_participant_count_height">22dp</dimen>
+    <dimen name="live_participant_text_margin_end">12dp</dimen>
+    <dimen name="live_participant_margin_start">8dp</dimen>
+    <dimen name="live_participant_margin_end">4dp</dimen>
+
+    <dimen name="live_bottom_layout_height">42dp</dimen>
+    <dimen name="live_bottom_btn_margin">14dp</dimen>
+    <dimen name="live_bottom_edit_padding">12dp</dimen>
+
+    <dimen name="live_host_in_top_layout_height">140dp</dimen>
+    <dimen name="live_host_in_owner_video_size">108dp</dimen>
+    <dimen name="live_host_in_owner_video_radius">6dp</dimen>
+    <dimen name="live_host_in_room_name_max_width">128dp</dimen>
+    <dimen name="live_rect_corner">4dp</dimen>
+    <dimen name="live_host_in_seat_item_number_size">20dp</dimen>
+    <dimen name="live_host_in_seat_item_margin">8dp</dimen>
+    <dimen name="live_host_in_seat_item_operation_size">38dp</dimen>
+    <dimen name="live_host_in_seat_item_more_btn_size">28dp</dimen>
+    <dimen name="live_host_in_seat_item_voice_indicate_width">20dp</dimen>
+    <dimen name="live_host_in_seat_item_voice_indicate_height">18dp</dimen>
+
+    <dimen name="live_host_in_seat_item_dialog_width">64dp</dimen>
+    <dimen name="live_host_in_seat_item_dialog_corner">8dp</dimen>
+    <dimen name="live_host_in_seat_item_dialog_stroke_width">2px</dimen>
+    <dimen name="live_host_in_seat_item_dialog_triangle_size">14dp</dimen>
+    <dimen name="live_host_in_seat_item_dialog_triangle_margin">12dp</dimen>
+    <dimen name="live_host_in_seat_item_height">38dp</dimen>
+    <dimen name="live_host_in_seat_item_option_height">116dp</dimen>
+    <dimen name="live_host_in_seat_item_padding">4dp</dimen>
+
+    <dimen name="live_pk_remaining_time_layout_height">28dp</dimen>
+    <dimen name="live_pk_remaining_time_text_margin">4dp</dimen>
+
+    <dimen name="live_pk_start_button_size">76dp</dimen>
+    <dimen name="live_pk_layout_height">304dp</dimen>
+    <dimen name="live_pk_progress_layout_height">32dp</dimen>
+    <dimen name="live_pk_progress_layout_margin_top">16dp</dimen>
+    <dimen name="live_pk_progress_layout_corner">4dp</dimen>
+    <dimen name="live_pk_progress_layout_countdown_margin_end">8dp</dimen>
+    <dimen name="live_pk_progress_layout_padding">1dp</dimen>
+    <dimen name="live_pk_progress_text_margin">12dp</dimen>
+    <dimen name="live_pk_video_layout_margin_top">32dp</dimen>
+    <dimen name="live_pk_video_layout_height">224dp</dimen>
+    <dimen name="live_pk_video_layout_enter_other_room_btn_size">28dp</dimen>
+    <dimen name="live_pk_video_layout_other_host_name_margin_start">24dp</dimen>
+    <dimen name="live_pk_video_layout_other_host_name_margin_bottom">24dp</dimen>
+    <dimen name="live_pk_vs_icon_size">42dp</dimen>
+    <dimen name="live_pk_result_icon_size">130dp</dimen>
+
+    <dimen name="switch_width">42dp</dimen>
+    <dimen name="switch_height">28dp</dimen>
+    <dimen name="switch_thumb_size">24dp</dimen>
+
+    <dimen name="virtual_image_close_btn_size">40dp</dimen>
+    <dimen name="virtual_image_margin">32dp</dimen>
+    <dimen name="virtual_image_option_radius">8dp</dimen>
+    <dimen name="virtual_image_invite_btn_width">92dp</dimen>
+
+    <dimen name="ecommerce_remote_video_layout_width">130dp</dimen>
+    <dimen name="ecommerce_remote_video_layout_height">170dp</dimen>
+    <dimen name="ecommerce_remote_video_width">120dp</dimen>
+    <dimen name="ecommerce_remote_video_height">160dp</dimen>
+    <dimen name="ecommerce_remote_video_close_btn_size">20dp</dimen>
+
+    <dimen name="product_detail_back_size">36dp</dimen>
+    <dimen name="product_detail_back_margin_top">32dp</dimen>
+
+    <dimen name="notification_point_size">6dp</dimen>
+    <dimen name="notification_point_margin">4dp</dimen>
+
+    <!-- Action Sheets -->
+    <dimen name="live_room_action_sheet_margin">24dp</dimen>
+    <dimen name="live_room_action_sheet_text_margin">16dp</dimen>
+    <dimen name="live_room_action_sheet_corner">10dp</dimen>
+    <dimen name="live_room_action_sheet_text_item_height">48dp</dimen>
+    <dimen name="live_room_action_sheet_item_divider_height">1dp</dimen>
+    <dimen name="live_room_action_arrow_size">30dp</dimen>
+    <dimen name="live_room_action_sheet_progress_item_height">96dp</dimen>
+    <dimen name="live_room_setting_sheet_height">243dp</dimen>
+    <dimen name="live_room_setting_sheet_content_height">194dp</dimen>
+    <dimen name="live_room_setting_progress_height">20dp</dimen>
+
+    <dimen name="live_room_action_sheet_beauty_height">329dp</dimen>
+    <dimen name="live_room_action_sheet_seek_bar_item_height">64dp</dimen>
+    <dimen name="live_room_action_sheet_beauty_title_width">72dp</dimen>
+    <dimen name="live_room_action_sheet_button_width">68dp</dimen>
+    <dimen name="live_room_action_sheet_button_height">38dp</dimen>
+    <dimen name="live_room_action_sheet_button_radius">28dp</dimen>
+    <dimen name="live_room_action_sheet_button_border">1dp</dimen>
+    <dimen name="live_room_action_sheet_seek_bar_height">3dp</dimen>
+    <dimen name="live_room_action_sheet_seek_bar_radius">2dp</dimen>
+
+    <dimen name="live_room_bg_music_action_sheet_height">540dp</dimen>
+    <dimen name="live_room_bg_music_action_sheet_icon_size">28dp</dimen>
+    <dimen name="live_room_bg_music_action_sheet_item_height">52dp</dimen>
+    <dimen name="live_room_bg_music_action_sheet_credit_height">38dp</dimen>
+
+    <dimen name="live_room_gift_action_sheet_height">418dp</dimen>
+    <dimen name="live_room_gift_action_sheet_send_btn_width">86dp</dimen>
+    <dimen name="live_room_gift_action_sheet_icon_size">64dp</dimen>
+    <dimen name="live_room_gift_action_sheet_item_bg_corner">6dp</dimen>
+    <dimen name="live_room_gift_action_sheet_item_padding">8dp</dimen>
+
+    <dimen name="live_room_action_sheet_tool_icon_size">54dp</dimen>
+    <dimen name="live_room_action_sheet_tool_icon_margin">6dp</dimen>
+
+    <dimen name="live_room_action_sheet_voice_button_text_padding_vertical">14dp</dimen>
+    <dimen name="live_room_action_sheet_voice_button_text_padding_horizontal">16dp</dimen>
+
+    <dimen name="live_room_invite_audience_action_sheet_max_height">540dp</dimen>
+
+    <dimen name="live_room_product_action_sheet_type_title_width">84dp</dimen>
+    <dimen name="live_room_product_action_sheet_type_title_height">52dp</dimen>
+    <dimen name="live_room_product_action_sheet_type_title_margin">58dp</dimen>
+    <dimen name="live_room_product_action_sheet_product_item_bg_corner">4dp</dimen>
+    <dimen name="live_room_product_action_sheet_product_item_padding">10dp</dimen>
+    <dimen name="live_room_product_action_sheet_product_item_height">108dp</dimen>
+    <dimen name="live_room_product_action_sheet_product_item_content_padding">12dp</dimen>
+    <dimen name="live_room_product_action_sheet_product_item_icon_size">66dp</dimen>
+    <dimen name="live_room_product_action_sheet_product_item_margin">8dp</dimen>
+    <dimen name="live_room_product_action_sheet_product_item_text_height">38dp</dimen>
+    <dimen name="live_room_product_action_sheet_product_item_action_width">68dp</dimen>
+
+    <dimen name="product_detail_round_rect_corner">8dp</dimen>
+    <dimen name="product_detail_promote_line_height">64dp</dimen>
+    <dimen name="product_detail_round_price_layout_size">140dp</dimen>
+    <dimen name="product_detail_round_price_layout_stroke_width">3dp</dimen>
+    <dimen name="product_detail_round_price_layout_margin_bottom">32dp</dimen>
+    <dimen name="product_detail_action_bottom_height">72dp</dimen>
+
+    <dimen name="product_detail_buy_btn_width">124dp</dimen>
+    <dimen name="product_detail_buy_btn_height">48dp</dimen>
+    <dimen name="product_detail_buy_btn_corner">24dp</dimen>
+    <dimen name="product_detail_promote_date_corner">24dp</dimen>
+
+    <!-- Dialogs -->
+    <dimen name="dialog_width">282dp</dimen>
+    <dimen name="dialog_height">150dp</dimen>
+    <dimen name="dialog_corner_size">12dp</dimen>
+    <dimen name="dialog_text_area_height">100dp</dimen>
+    <dimen name="dialog_button_height">49dp</dimen>
+    <dimen name="dialog_message_padding">12dp</dimen>
+</resources>

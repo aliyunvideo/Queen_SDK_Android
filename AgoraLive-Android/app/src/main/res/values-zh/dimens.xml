@@ -1,0 +1,4 @@
+<resources>
+    <!-- Home Fragment -->
+    <dimen name="home_category_title_width">128dp</dimen>
+</resources>

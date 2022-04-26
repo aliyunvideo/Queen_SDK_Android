@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/round_top_corner_white_bg">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/live_room_action_sheet_tool_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/live_room_action_sheet_text_item_height"
+        android:textAlignment="gravity"
+        android:gravity="center"
+        android:text="@string/live_room_tool_action_sheet_title"
+        android:textSize="@dimen/text_size_normal"
+        android:textColor="@color/gray_darkest"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/live_room_action_sheet_item_divider_height"
+        android:layout_marginStart="@dimen/live_room_action_sheet_margin"
+        android:layout_marginEnd="@dimen/live_room_action_sheet_margin"
+        android:background="@color/gray_lightest"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/live_room_action_sheet_tool_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/live_room_action_sheet_margin"
+        android:layout_marginEnd="@dimen/live_room_action_sheet_margin"
+        android:layout_marginTop="@dimen/live_room_action_sheet_text_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+</LinearLayout>

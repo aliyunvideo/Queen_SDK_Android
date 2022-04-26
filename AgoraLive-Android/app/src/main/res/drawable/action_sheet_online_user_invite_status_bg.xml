@@ -1,0 +1,5 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:drawable="@drawable/action_sheet_online_user_invite_status_bg_normal"/>
+    <item android:state_activated="true" android:drawable="@drawable/action_sheet_online_user_invite_status_bg_activated"/>
+    <item android:state_activated="false" android:drawable="@drawable/action_sheet_online_user_invite_status_bg_normal"/>
+</selector>

@@ -1,0 +1,8 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="@dimen/product_detail_buy_btn_corner"/>
+    <gradient android:startColor="@color/product_buy_now_bg_start_color"
+        android:endColor="@color/product_buy_now_bg_end_color"
+        android:angle="0"/>
+    <size android:width="@dimen/product_detail_buy_btn_width"
+        android:height="@dimen/product_detail_buy_btn_height"/>
+</shape>

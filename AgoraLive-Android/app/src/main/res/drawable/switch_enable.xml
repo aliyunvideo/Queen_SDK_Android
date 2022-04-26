@@ -1,0 +1,5 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/switch_background_enable" android:gravity="center"/>
+    <item android:drawable="@drawable/circle_white"
+        android:gravity="end" android:right="2dp" android:top="2dp" android:bottom="2dp"/>
+</layer-list>

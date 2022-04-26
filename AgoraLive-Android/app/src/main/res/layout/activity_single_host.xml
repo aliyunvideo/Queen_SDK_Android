@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_alpha">
+
+    <FrameLayout
+        android:id="@+id/single_live_video_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:id="@+id/single_live_top_participant_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin">
+        <io.agora.vlive.ui.components.LiveHostNameLayout
+            android:id="@+id/single_live_name_pad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+        <io.agora.vlive.ui.components.LiveRoomUserLayout
+            android:id="@+id/single_live_participant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <io.agora.vlive.ui.components.bottomLayout.LiveBottomButtonLayout
+        android:id="@+id/single_live_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/live_bottom_layout_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin"/>
+
+    <io.agora.vlive.ui.components.LiveRoomMessageList
+        android:id="@+id/message_list"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/live_message_list_height"
+        android:layout_above="@id/single_live_bottom_layout"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin"/>
+
+    <io.agora.vlive.ui.components.LiveMessageEditLayout
+        android:id="@+id/message_edit_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/live_message_edit_height"
+        android:paddingTop="@dimen/live_message_text_margin"
+        android:paddingBottom="@dimen/live_message_text_margin"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+
+    <io.agora.vlive.ui.components.RtcStatsView
+        android:id="@+id/single_host_rtc_stats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/single_live_top_participant_layout"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:background="@drawable/color_round_rect_gray_light"
+        android:visibility="gone"/>
+</RelativeLayout>

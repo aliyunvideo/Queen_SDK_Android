@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black_alpha">#33000000</color>
+
+    <color name="gray_alpha2">#af232323</color>
+    <color name="gray_alpha">#65232323</color>
+    <color name="gray">#878787</color>
+    <color name="gray_darkest">#656565</color>
+    <color name="gray_normal">#f3f3f3</color>
+    <color name="gray_light">#a3a3a3</color>
+    <color name="gray_lighter">#cccccc</color>
+    <color name="gray_lightest">#efefef</color>
+    <color name="gray_transparent">#14000000</color>
+
+    <color name="default_text_color_light">#c4c4c4</color>
+
+    <color name="blue_dialog">#0088EB</color>
+    <color name="blue_original">#00AFF4</color>
+    <color name="blue_alpha">#aa00AFF4</color>
+    <color name="blue_light">#01F0F9FF</color>
+    <color name="blue_cancel">#BDE3FF</color>
+    <color name="blue_background">#FAFAFA</color>
+
+    <color name="red">#FF007D</color>
+
+    <color name="color_error">#fd3e3f</color>
+
+    <color name="transparent_70_per">#4D000000</color>
+
+    <color name="virtual_image_top">#9ED5FF</color>
+    <color name="virtual_image_bottom">#F3FAFF</color>
+
+    <color name="product_orange_start">#FFFF4B00</color>
+    <color name="product_orange_end">#FFFF8763</color>
+
+    <color name="product_purple_start">#FF6E3588</color>
+    <color name="product_purple_end">#FFFF087D</color>
+
+    <color name="product_round_purple_start">#FF972985</color>
+    <color name="product_round_purple_end">#FFEB0F7F</color>
+
+    <color name="product_buy_now_bg_start_color">#FFFF4B00</color>
+    <color name="product_buy_now_bg_end_color">#FFFF8200</color>
+
+    <color name="new_message_hint_color">#FFFF097E</color>
+
+    <color name="blue_600">#0087ff</color>
+
+</resources>

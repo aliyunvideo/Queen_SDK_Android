@@ -1,0 +1,8 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient android:startColor="@color/product_round_purple_start"
+        android:endColor="@color/product_round_purple_end"
+        android:angle="0"/>
+    <stroke android:color="@android:color/white"
+        android:width="@dimen/product_detail_round_price_layout_stroke_width"/>
+</shape>

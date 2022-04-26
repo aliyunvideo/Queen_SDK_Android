@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/live_room_gift_action_sheet_height"
+    android:orientation="vertical"
+    android:background="@drawable/round_top_corner_white_bg">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/live_room_action_sheet_gift_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/live_room_action_sheet_text_item_height"
+        android:textAlignment="gravity"
+        android:gravity="center"
+        android:text="@string/live_room_gift_action_sheet_title"
+        android:textSize="@dimen/text_size_normal"
+        android:textColor="@color/gray_darkest"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/live_room_action_sheet_item_divider_height"
+        android:layout_marginStart="@dimen/live_room_action_sheet_margin"
+        android:layout_marginEnd="@dimen/live_room_action_sheet_margin"
+        android:background="@color/gray_lightest"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/live_room_action_sheet_gift_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/live_room_action_sheet_margin"
+        android:layout_marginEnd="@dimen/live_room_action_sheet_margin"
+        android:layout_marginTop="@dimen/live_room_action_sheet_text_margin" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/live_room_action_sheet_gift_send_btn"
+        android:layout_width="@dimen/live_room_gift_action_sheet_send_btn_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/live_room_action_sheet_text_margin"
+        android:textAlignment="gravity"
+        android:gravity="center"
+        android:text="@string/live_room_gift_action_sheet_send"
+        android:textSize="@dimen/text_size_normal"
+        android:textColor="@color/live_action_button_text_color"
+        android:background="@drawable/live_action_button_bg"/>
+</LinearLayout>

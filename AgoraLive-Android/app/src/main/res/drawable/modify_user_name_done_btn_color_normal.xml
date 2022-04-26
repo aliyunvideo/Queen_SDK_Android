@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/blue_original"/>
+    <corners android:radius="@dimen/modify_user_name_done_btn_corner"/>
+</shape>

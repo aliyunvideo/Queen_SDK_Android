@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_activated="true" android:drawable="@drawable/action_sheet_gift_item_bg_selected"/>
+    <item android:state_activated="false" android:drawable="@android:color/transparent"/>
+</selector>

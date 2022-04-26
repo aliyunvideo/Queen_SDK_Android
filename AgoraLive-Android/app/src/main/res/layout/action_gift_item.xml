@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/live_room_action_sheet_text_margin"
+    android:paddingTop="@dimen/live_room_gift_action_sheet_item_padding"
+    android:paddingBottom="@dimen/live_room_gift_action_sheet_item_padding"
+    android:background="@drawable/action_sheet_gift_item_bg">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/live_room_action_sheet_gift_item_icon"
+        android:layout_width="@dimen/live_room_gift_action_sheet_icon_size"
+        android:layout_height="@dimen/live_room_gift_action_sheet_icon_size"
+        android:layout_gravity="center_horizontal"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/live_room_action_sheet_gift_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/black"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/live_room_action_sheet_gift_item_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/text_size_small"/>
+</LinearLayout>

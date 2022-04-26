@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/live_host_in_seat_item_dialog_width"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/live_host_in_seat_item_option_height"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/live_host_in_seat_item_dialog_triangle_size"
+        android:background="@drawable/host_in_seat_dialog">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/seat_item_dialog_op1"
+            style="@style/host_in_seat_dialog_item_text"/>
+
+        <View style="@style/host_in_seat_dialog_item_divider"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/seat_item_dialog_op2"
+            style="@style/host_in_seat_dialog_item_text"/>
+
+        <View style="@style/host_in_seat_dialog_item_divider"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/seat_item_dialog_op3"
+            style="@style/host_in_seat_dialog_item_text"/>
+    </LinearLayout>
+    <io.agora.vlive.ui.components.UpTriangleView
+        android:id="@+id/seat_item_popup_triangle"
+        android:layout_width="@dimen/live_host_in_seat_item_dialog_triangle_size"
+        android:layout_height="@dimen/live_host_in_seat_item_dialog_triangle_size"
+        android:layout_marginTop="@dimen/live_host_in_seat_item_dialog_stroke_width"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/live_host_in_seat_item_dialog_triangle_margin"/>
+</RelativeLayout>

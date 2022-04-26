@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/live_room_bg_music_action_sheet_item_height"
+    android:background="@drawable/action_sheet_list_item_bg_color">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/live_room_action_sheet_user_list_item_icon"
+        android:layout_width="@dimen/live_room_bg_music_action_sheet_icon_size"
+        android:layout_height="@dimen/live_room_bg_music_action_sheet_icon_size"
+        android:layout_marginStart="@dimen/live_room_action_sheet_margin"
+        android:scaleType="fitXY"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/live_room_action_sheet_user_list_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/live_room_action_sheet_user_list_item_icon"
+        android:layout_marginStart="@dimen/activity_vertical_margin"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/text_size_medium"
+        android:textColor="@color/action_sheet_list_item_text_color_black"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/live_room_action_sheet_user_list_item_invite_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/live_room_action_sheet_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:paddingStart="@dimen/text_content_padding"
+        android:paddingEnd="@dimen/text_content_padding"
+        android:paddingTop="@dimen/text_line_padding"
+        android:paddingBottom="@dimen/text_line_padding"
+        android:textAlignment="gravity"
+        android:gravity="center"
+        android:text="@string/live_room_host_in_invite_user_list_action_sheet_title"
+        android:textColor="@color/blue_original"
+        android:background="@drawable/action_sheet_button_bg_normal"/>
+</RelativeLayout>
