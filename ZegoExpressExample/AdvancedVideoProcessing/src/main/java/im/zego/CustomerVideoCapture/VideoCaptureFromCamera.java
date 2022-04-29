@@ -1,7 +1,9 @@
 package im.zego.CustomerVideoCapture;
 
+import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
+import android.icu.text.UFormat;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -9,6 +11,11 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.TextureView;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+
+import com.aliyun.android.libqueen.QueenEngine;
+import com.aliyun.android.libqueen.QueenUtil;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -19,6 +26,10 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import im.zego.CustomerVideoCapture.queen.IQueenRender;
+import im.zego.CustomerVideoCapture.queen.QueenRender;
+import im.zego.CustomerVideoCapture.queen.surface.GLESTextureView;
+import im.zego.CustomerVideoCapture.queen.surface.SampleRender;
 import im.zego.zegoexpress.ZegoExpressEngine;
 import im.zego.zegoexpress.constants.ZegoPublishChannel;
 import im.zego.zegoexpress.constants.ZegoVideoFrameFormat;
@@ -36,7 +47,7 @@ import im.zego.zegoexpress.entity.ZegoVideoFrameParam;
  *  * Use memory copy to transfer data, that is, YUV format.
  *  
  */
-public class VideoCaptureFromCamera extends ZegoVideoCaptureCallback implements Camera.PreviewCallback, TextureView.SurfaceTextureListener {
+public class VideoCaptureFromCamera extends ZegoVideoCaptureCallback {
     private static final String TAG = "VideoCaptureFromCamera";
     private static final int CAMERA_STOP_TIMEOUT_MS = 7000;
 
@@ -58,14 +69,15 @@ public class VideoCaptureFromCamera extends ZegoVideoCaptureCallback implements 
     // No rotation by default
     int mRotation = 0;
 
-    private TextureView mView = null;
-    private SurfaceTexture mTexture = null;
+    private GLESTextureView mTextureView = null;
+
+    private IQueenRender mQueenRender;
 
     // Arbitrary queue depth.  Higher number means more memory allocated & held,
     // lower number means more sensitivity to processing time in the client (and
     // potentially stalling the capturer if it runs out of buffers to write to).
-    private static final int NUMBER_OF_CAPTURE_BUFFERS = 3;
-    private final Set<byte[]> queuedBuffers = new HashSet<byte[]>();
+//    private static final int NUMBER_OF_CAPTURE_BUFFERS = 3;
+//    private final Set<byte[]> queuedBuffers = new HashSet<byte[]>();
     private int mFrameSize = 0;
 
     private HandlerThread mThread = null;
@@ -152,21 +164,10 @@ public class VideoCaptureFromCamera extends ZegoVideoCaptureCallback implements 
     // Set display view
     @Override
     public void setView(final View view) {
-        if (mView != null) {
-            if (mView.getSurfaceTextureListener().equals(this)) {
-                mView.setSurfaceTextureListener(null);
-            }
-            mView = null;
-            mTexture = null;
-        }
-        mView = (TextureView) view;
-        if (mView != null) {
-            // 设置SurfaceTexture相关回调监听
-            // Set SurfaceTexture related callback listener
-            mView.setSurfaceTextureListener(VideoCaptureFromCamera.this);
-            if (mView.isAvailable()) {
-                mTexture = mView.getSurfaceTexture();
-            }
+        mTextureView = (GLESTextureView) view;
+        if (mTextureView != null) {
+            mTextureView.setSurfaceObserver(mTextureSurfaceListener);
+            mTextureView.setRenderCallback(mQueenRenderCallback);
         }
     }
 
@@ -357,6 +358,8 @@ public class VideoCaptureFromCamera extends ZegoVideoCaptureCallback implements 
 
         parms.setPreviewSize(640, 480);
 
+        parms.setPreviewFormat(ImageFormat.NV21);
+
         // 获取camera支持的帧率范围，并设置预览帧率范围
         // Get the frame rate range supported by the camera and set the preview frame rate range
         List<int[]> supported = parms.getSupportedPreviewFpsRange();
@@ -380,7 +383,7 @@ public class VideoCaptureFromCamera extends ZegoVideoCaptureCallback implements 
 
         // 不启用提高MediaRecorder录制摄像头视频性能的功能，可能会导致在某些手机上预览界面变形的问题
         // Failure to enable the function that improves the performance of the MediaRecorder to record camera video may cause distortions in the preview interface on some phones
-        parms.setRecordingHint(false);
+//        parms.setRecordingHint(false);
 
         // 设置camera的对焦模式
         // Set the camera's focus mode
@@ -416,8 +419,6 @@ public class VideoCaptureFromCamera extends ZegoVideoCaptureCallback implements 
         mHeight = actualParm.getPreviewSize().height;
         Log.i(TAG, "[WARNING] vcap: focus mode " + actualParm.getFocusMode());
 
-        createPool();
-
         int result;
         if (mCamInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
             result = (mCamInfo.orientation + mRotation) % 360;
@@ -431,20 +432,6 @@ public class VideoCaptureFromCamera extends ZegoVideoCaptureCallback implements 
         return 0;
     }
 
-    // 为camera分配内存存放采集数据
-    // Allocate memory for camera to store collected data
-    private void createPool() {
-        queuedBuffers.clear();
-        mFrameSize = mWidth * mHeight * 3 / 2;
-        for (int i = 0; i < NUMBER_OF_CAPTURE_BUFFERS; ++i) {
-            final ByteBuffer buffer = ByteBuffer.allocateDirect(mFrameSize);
-            queuedBuffers.add(buffer.array());
-            // 减少camera预览时的内存占用
-            // Reduce memory usage during camera preview
-            mCam.addCallbackBuffer(buffer.array());
-        }
-    }
-
     // 启动camera
     //start camera
     private int startCamOnCameraThread() {
@@ -454,20 +441,14 @@ public class VideoCaptureFromCamera extends ZegoVideoCaptureCallback implements 
             return 0;
         }
 
-        if (mTexture == null) {
-            return -1;
-        }
-
         try {
-
-            mCam.setPreviewTexture(mTexture);
+            mCam.setPreviewTexture(mTextureView.getPreviewTexture());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // 在打开摄像头预览前先分配一个buffer地址，目的是为了后面内存复用
-        // Before opening the camera preview, first allocate a buffer address, the purpose is to reuse memory later
-        mCam.setPreviewCallbackWithBuffer(this);
+        mTextureView.configCameraPreview(mCam);
+
         // 启动camera预览
         // Start camera preview
         mCam.startPreview();
@@ -498,7 +479,6 @@ public class VideoCaptureFromCamera extends ZegoVideoCaptureCallback implements 
             mCam.stopPreview();
             mCam.setPreviewCallbackWithBuffer(null);
         }
-        queuedBuffers.clear();
         return 0;
     }
 
@@ -554,91 +534,110 @@ public class VideoCaptureFromCamera extends ZegoVideoCaptureCallback implements 
     ByteBuffer byteBuffer;
 
     // 预览视频帧回调
-    // Preview video frame callback
-    @Override
-    public void onPreviewFrame(byte[] data, Camera camera) {
-        checkIsOnCameraThread();
-        if (!isCameraRunning.get()) {
-            Log.e(TAG, "onPreviewFrame: Camera is stopped");
-            return;
+    private SampleRender.IRenderCallback mQueenRenderCallback = new SampleRender.IRenderCallback() {
+
+        @Override
+        public void onSurfaceCreatedGL() {
+            startCapture();
+
+            mQueenRender = new QueenRender.Builder().setDraw2Screen(true).build();
+            if (mQueenRender != null) {
+                mQueenRender.onTextureCreate(mTextureView.getContext());
+            }
         }
 
-        if (!queuedBuffers.contains(data)) {
-            // |data| is an old invalid buffer.
-            return;
-        }
-        final ZegoExpressEngine zegoExpressEngine = ZegoExpressEngine.getEngine();
-        if (zegoExpressEngine == null) {
-            return;
+        @Override
+        public void onSurfaceChangedGL(int width, int height) {
+            if (mQueenRender != null)
+                mQueenRender.onTextureSizeChanged(0, 0, width, height);
         }
 
-        // 使用采集视频帧信息构造VideoCaptureFormat
-        // Constructing VideoCaptureFormat using captured video frame information
-        ZegoVideoFrameParam param = new ZegoVideoFrameParam();
-        param.width = mWidth;
-        param.height = mHeight;
-        param.strides[0] = mWidth;
-        param.strides[1] = mWidth;
-        param.format = ZegoVideoFrameFormat.NV21;
-        if(mFront==Camera.CameraInfo.CAMERA_FACING_FRONT) {
-            param.rotation = 270;
-        }else if(mFront== Camera.CameraInfo.CAMERA_FACING_BACK){
-            param.rotation = 90;
+        @Override
+        public void onSurfaceDestroyGL() {
+            if (mQueenRender != null)
+                mQueenRender.onTextureDestroy();
         }
 
-        long now;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            now = SystemClock.elapsedRealtime();
-        } else {
-            now = TimeUnit.MILLISECONDS.toMillis(SystemClock.elapsedRealtime());
+        @Override
+        public int onDrawFramGL(byte[] data, float[] matrix) {
+
+            // TODO:
+            int oesTextureId = mTextureView.getPreviewOESTextureId();
+
+            int ret = oesTextureId;//mQueenRender.onTextureProcess(oesTextureId, true, matrix, mWidth, mHeight);
+
+            final ZegoExpressEngine zegoExpressEngine = ZegoExpressEngine.getEngine();
+            if (zegoExpressEngine == null || data == null) {
+                return ret;
+            }
+
+            // 使用采集视频帧信息构造VideoCaptureFormat
+            // Constructing VideoCaptureFormat using captured video frame information
+            ZegoVideoFrameParam param = new ZegoVideoFrameParam();
+            param.width = mWidth;
+            param.height = mHeight;
+            param.strides[0] = mWidth;
+            param.strides[1] = mWidth;
+            param.format = ZegoVideoFrameFormat.NV21;
+            if(mFront==Camera.CameraInfo.CAMERA_FACING_FRONT) {
+                param.rotation = 270;
+            }else if(mFront== Camera.CameraInfo.CAMERA_FACING_BACK){
+                param.rotation = 90;
+            }
+
+            long now;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                now = SystemClock.elapsedRealtime();
+            } else {
+                now = TimeUnit.MILLISECONDS.toMillis(SystemClock.elapsedRealtime());
+            }
+            // 将采集的数据传给ZEGO SDK
+            // Pass the collected data to ZEGO SDK
+            if (byteBuffer == null) {
+                byteBuffer = ByteBuffer.allocateDirect(data.length);
+            }
+            byteBuffer.put(data);
+            byteBuffer.flip();
+
+
+            if (zegoExpressEngine != null) {
+//            int ret = mQueenRender.onTextureProcess(byteBuffer.array(), ImageFormat.NV21, mWidth, mHeight);
+//                zegoExpressEngine.sendCustomVideoCaptureRawData(byteBuffer, data.length, param, now);
+            }
+
+            return ret;
         }
-        // 将采集的数据传给ZEGO SDK
-        // Pass the collected data to ZEGO SDK
-        if (byteBuffer == null) {
-            byteBuffer = ByteBuffer.allocateDirect(data.length);
+    };
+
+    private TextureView.SurfaceTextureListener mTextureSurfaceListener = new TextureView.SurfaceTextureListener() {
+        @Override
+        public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
+            // 启动采集
+            // start collect
+//            startCapture();
+            // 不能使用 restartCam ，因为切后台时再切回时，isCameraRunning 已经被置为 false
+            //restartCam();
         }
-        byteBuffer.put(data);
-        byteBuffer.flip();
 
-
-        if (zegoExpressEngine != null) {
-            zegoExpressEngine.sendCustomVideoCaptureRawData(byteBuffer, data.length, param, now);
+        @Override
+        public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+            // 视图size变化时重启camera
+            // Restart the camera when the view size changes
+            restartCam();
         }
-        // 实现camera预览时的内存复用
-        // Memory reuse during camera preview
-        camera.addCallbackBuffer(data);
-    }
 
-    // TextureView.SurfaceTextureListener 回调
-    @Override
-    public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-        mTexture = surface;
-        // 启动采集
-        // start collect
-        startCapture();
-        // 不能使用 restartCam ，因为切后台时再切回时，isCameraRunning 已经被置为 false
-        //restartCam();
-    }
+        @Override
+        public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+            // 停止采集
+            // stop collect
+            stopCapture();
 
-    @Override
-    public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
-        mTexture = surface;
-        // 视图size变化时重启camera
-        // Restart the camera when the view size changes
-        restartCam();
-    }
+            return true;
+        }
 
-    @Override
-    public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
-        mTexture = null;
-        // 停止采集
-        // stop collect
-        stopCapture();
-        return true;
-    }
+        @Override
+        public void onSurfaceTextureUpdated(SurfaceTexture surface) {
 
-    @Override
-    public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-
-    }
+        }
+    };
 }

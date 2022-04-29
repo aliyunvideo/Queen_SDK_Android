@@ -7,8 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.TextureView;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,20 +29,15 @@ import im.zego.keycenter.KeyCenter;
 import im.zego.zegoexpress.ZegoExpressEngine;
 import im.zego.zegoexpress.callback.IZegoApiCalledEventHandler;
 import im.zego.zegoexpress.callback.IZegoEventHandler;
-import im.zego.zegoexpress.constants.ZegoPlayerState;
 import im.zego.zegoexpress.constants.ZegoPublishChannel;
 import im.zego.zegoexpress.constants.ZegoPublisherState;
 import im.zego.zegoexpress.constants.ZegoRoomState;
 import im.zego.zegoexpress.constants.ZegoScenario;
 import im.zego.zegoexpress.constants.ZegoVideoBufferType;
-import im.zego.zegoexpress.constants.ZegoViewMode;
-import im.zego.zegoexpress.entity.ZegoCanvas;
-import im.zego.zegoexpress.constants.ZegoVideoConfigPreset;
 import im.zego.zegoexpress.entity.ZegoCustomVideoCaptureConfig;
 import im.zego.zegoexpress.entity.ZegoEngineProfile;
 import im.zego.zegoexpress.entity.ZegoRoomConfig;
 import im.zego.zegoexpress.entity.ZegoUser;
-import im.zego.zegoexpress.entity.ZegoVideoConfig;
 
 public class CustomerVideoCaptureActivity extends AppCompatActivity {
 
@@ -97,6 +90,7 @@ public class CustomerVideoCaptureActivity extends AppCompatActivity {
         setBufferTypeSpinner();
         setLogComponent();
         setApiCalledResult();
+
     }
     public void requestPermission() {
         String[] PERMISSIONS_STORAGE = {
@@ -256,6 +250,9 @@ public class CustomerVideoCaptureActivity extends AppCompatActivity {
 
         engine.startPublishingStream(publishStreamID);
         isPublish = true;
+
+        preview.setVisibility(View.VISIBLE);
+//        relativeLayout.addView(preview);
     }
     public void stopPublish(){
         startPublishButton.setText(getString(R.string.start_publishing));
@@ -269,8 +266,9 @@ public class CustomerVideoCaptureActivity extends AppCompatActivity {
         AppLogger.getInstance().callApi("LogoutRoom: %s",roomID);
         engine.enableCustomVideoCapture(false, captureConfig, ZegoPublishChannel.MAIN);
         // Remove the view to initialize the preview.
-        relativeLayout.removeView(preview);
-        relativeLayout.addView(preview);
+//        relativeLayout.removeView(preview);
+//        relativeLayout.addView(preview);
+        preview.setVisibility(View.GONE);
         isPublish = false;
     }
     public static void actionStart(Activity activity) {

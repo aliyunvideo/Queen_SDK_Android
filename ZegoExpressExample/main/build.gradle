@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "im.zego.express.example.video"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 30
         versionCode getAppVersionCode()
         versionName "2.18.0"
@@ -19,11 +19,17 @@ android {
     }
 
     signingConfigs {
+        debug {
+            storeFile file("github_debug.jks")
+            storePassword "Queen@aliyun"
+            keyAlias "queen_sample"
+            keyPassword "Queen@aliyun"
+        }
         release {
-            storeFile file("../../../../../buildscripts/config/android/release_key.jks")
-            storePassword "your_keystore_password"
-            keyAlias "your_key_alias"
-            keyPassword "your_key_password"
+            storeFile file("github_debug.jks")
+            storePassword "Queen@aliyun"
+            keyAlias "queen_sample"
+            keyPassword "Queen@aliyun"
         }
     }
 

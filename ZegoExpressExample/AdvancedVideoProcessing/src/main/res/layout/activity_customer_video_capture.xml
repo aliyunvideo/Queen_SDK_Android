@@ -86,10 +86,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextureView
+        <im.zego.CustomerVideoCapture.queen.surface.GLESTextureView
             android:id="@+id/PreviewView"
             android:layout_width="180dp"
             android:layout_height="250dp"
+            android:visibility="gone"
             android:layout_centerHorizontal="true" />
 
         <TextView
