@@ -166,10 +166,15 @@ public class GLESTextureView extends TextureView {
                 matrix[i] = mOesTransformMatrix[i];
             }
 
-            if (data == null) return mOESTextureId;
+            if (data == null) {
+                mRenderer.updateRenderOesTexture(true);
+                return mOESTextureId;
+            }
 
             // 回调到外面做处理
-            return mRenderCallbackOut.onDrawFramGL(data, mOesTransformMatrix);
+            int textureId = mRenderCallbackOut.onDrawFramGL(data, mOesTransformMatrix);
+            mRenderer.updateRenderOesTexture(textureId == mOESTextureId);
+            return textureId;
         }
 
         @Override

@@ -560,11 +560,8 @@ public class VideoCaptureFromCamera extends ZegoVideoCaptureCallback {
 
         @Override
         public int onDrawFramGL(byte[] data, float[] matrix) {
-
-            // TODO:
             int oesTextureId = mTextureView.getPreviewOESTextureId();
-
-            int ret = oesTextureId;//mQueenRender.onTextureProcess(oesTextureId, true, matrix, mWidth, mHeight);
+            int ret = mQueenRender.onTextureProcess(oesTextureId, true, matrix, mWidth, mHeight);
 
             final ZegoExpressEngine zegoExpressEngine = ZegoExpressEngine.getEngine();
             if (zegoExpressEngine == null || data == null) {
@@ -601,7 +598,6 @@ public class VideoCaptureFromCamera extends ZegoVideoCaptureCallback {
 
 
             if (zegoExpressEngine != null) {
-//            int ret = mQueenRender.onTextureProcess(byteBuffer.array(), ImageFormat.NV21, mWidth, mHeight);
 //                zegoExpressEngine.sendCustomVideoCaptureRawData(byteBuffer, data.length, param, now);
             }
 

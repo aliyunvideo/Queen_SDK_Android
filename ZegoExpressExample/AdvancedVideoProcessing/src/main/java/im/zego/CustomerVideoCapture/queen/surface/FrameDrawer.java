@@ -157,7 +157,6 @@ public class FrameDrawer {
     }
 
     public void draw(float[] transformMatrix, int textureId, final boolean isOesTexture) {
-
         if (isOesTexture != mIsOesDrawer) {
             mIsOesDrawer = isOesTexture;
             initGLContext();

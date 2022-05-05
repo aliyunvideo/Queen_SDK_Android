@@ -9,7 +9,8 @@ import im.zego.CustomerVideoCapture.queen.data.SimpleBytesBufPool;
 public class SampleRender implements IGLESRender, Camera.PreviewCallback, SurfaceTexture.OnFrameAvailableListener {
 
     SimpleBytesBufPool mBytesBufPool;
-    FrameDrawer mFrameOesDrawer;
+    FrameDrawer  mFrameDrawer;
+    private boolean mIsOesTexture = false;
 
     public void onSurfaceAvailableSize(int width, int height) {
         int byteSize = width * height * ImageFormat.getBitsPerPixel(ImageFormat.NV21)/8;
@@ -19,6 +20,10 @@ public class SampleRender implements IGLESRender, Camera.PreviewCallback, Surfac
     public void configCameraPreview(android.hardware.Camera camera) {
         camera.addCallbackBuffer(mBytesBufPool.reusedBuffer());
         camera.setPreviewCallbackWithBuffer(this);
+    }
+
+    public void updateRenderOesTexture(boolean isOes) {
+        mIsOesTexture = isOes;
     }
 
     @Override
@@ -34,7 +39,7 @@ public class SampleRender implements IGLESRender, Camera.PreviewCallback, Surfac
 
     @Override
     public void onSurfaceCreated() {
-        mFrameOesDrawer = new FrameDrawer(true);
+         mFrameDrawer = new FrameDrawer(mIsOesTexture);
 
         mRenderCallback.onSurfaceCreatedGL();
     }
@@ -52,7 +57,7 @@ public class SampleRender implements IGLESRender, Camera.PreviewCallback, Surfac
 
         // DO SOMETHING
         int textureId = mRenderCallback.onDrawFramGL(lastFrame, transformMatrix);
-        mFrameOesDrawer.draw(transformMatrix, textureId, true);
+         mFrameDrawer.draw(transformMatrix, textureId, mIsOesTexture);
 
         if (lastFrame != null) {
             mBytesBufPool.releaseBuffer(lastFrame);
@@ -78,15 +83,6 @@ public class SampleRender implements IGLESRender, Camera.PreviewCallback, Surfac
     private IRenderCallback mRenderCallback;
     public void setRenderCallback(IRenderCallback callback) {
         mRenderCallback = callback;
-    }
-
-    private IRenderNotify mRenderNotify;
-    public void setRenderNotify(IRenderNotify notify) {
-        mRenderNotify = notify;
-    }
-
-    public interface IRenderNotify {
-        void onDrawFrameStart(float[] matrix);
     }
 
     public interface IRenderCallback {

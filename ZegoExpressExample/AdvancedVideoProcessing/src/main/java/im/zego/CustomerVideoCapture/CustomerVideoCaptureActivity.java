@@ -251,9 +251,14 @@ public class CustomerVideoCaptureActivity extends AppCompatActivity {
         engine.startPublishingStream(publishStreamID);
         isPublish = true;
 
-        preview.setVisibility(View.VISIBLE);
-//        relativeLayout.addView(preview);
+        if (isPreviewRemoved) {
+            relativeLayout.addView(preview);
+            isPreviewRemoved = false;
+        } else {
+            preview.setVisibility(View.VISIBLE);
+        }
     }
+    private boolean isPreviewRemoved = false;
     public void stopPublish(){
         startPublishButton.setText(getString(R.string.start_publishing));
         engine.stopPreview();
@@ -266,9 +271,8 @@ public class CustomerVideoCaptureActivity extends AppCompatActivity {
         AppLogger.getInstance().callApi("LogoutRoom: %s",roomID);
         engine.enableCustomVideoCapture(false, captureConfig, ZegoPublishChannel.MAIN);
         // Remove the view to initialize the preview.
-//        relativeLayout.removeView(preview);
-//        relativeLayout.addView(preview);
-        preview.setVisibility(View.GONE);
+        relativeLayout.removeView(preview);
+        isPreviewRemoved = true;
         isPublish = false;
     }
     public static void actionStart(Activity activity) {

@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.aliyun.android.libqueen.QueenEngine;
 import com.aliyun.android.libqueen.Texture2D;
-//import com.aliyunsdk.queen.param.QueenParamHolder;
 import im.zego.CustomerVideoCapture.queen.param.QueenParamHolder;
 
 /**
@@ -113,23 +112,6 @@ public class QueenRendererImpl implements IQueenRender {
         } else {
             return mOutTexture.getTextureId();
         }
-    }
-
-    public int onTextureProcess(byte[] imageData, int format, int width, int height) {
-
-        QueenParamHolder.writeParamToEngine(engine, false);
-
-        int in = QueenCameraHelper.get().inputAngle;
-        int out = QueenCameraHelper.get().outAngle;
-        int flip = QueenCameraHelper.get().flipAxis;
-        engine.renderWithBuffer(imageData, format, width, height, imageData, 0, 0, 0, 0, false, false);
-        // 处理不成功，则返回原始纹理id
-//        if (result != 0) {
-//            return 0;
-//        } else {
-//            return mOutTexture.getTextureId();
-//        }
-        return 0;
     }
 
     @Override

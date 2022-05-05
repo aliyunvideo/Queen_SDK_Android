@@ -42,11 +42,6 @@ public class QueenRender implements IQueenRender {
     }
 
     @Override
-    public int onTextureProcess(byte[] imageData, int format, int width, int height) {
-        return mQueenRenderImpl.onTextureProcess(imageData, format, width, height);
-    }
-
-    @Override
     public int onTextureProcess(int textureId, boolean isOesTexture, float[] matrix, int width, int height) {
         return mQueenRenderImpl.onTextureProcess(textureId, isOesTexture, matrix, width, height);
     }

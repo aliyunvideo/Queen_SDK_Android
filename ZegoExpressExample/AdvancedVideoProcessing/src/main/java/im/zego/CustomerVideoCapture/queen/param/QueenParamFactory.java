@@ -44,7 +44,7 @@ public class QueenParamFactory {
 
     // 默认值为通用场景
     public static QueenParam getDefaultScenesParam() {
-        return Scenes.getScenes(Scenes.ID_GENERAL);
+        return Scenes.getScenes(Scenes.ID_ONLINE);
     }
 
     public static QueenParam getOriginalScenesParam() {

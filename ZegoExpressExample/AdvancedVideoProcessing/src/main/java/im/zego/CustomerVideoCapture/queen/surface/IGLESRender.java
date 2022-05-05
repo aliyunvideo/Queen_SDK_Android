@@ -2,18 +2,18 @@ package im.zego.CustomerVideoCapture.queen.surface;
 
 public interface IGLESRender {
 
-    public void onSurfaceAvailableSize(int width, int height);
+    void onSurfaceAvailableSize(int width, int height);
 
-    public void onSurfaceCreated();
+    void onSurfaceCreated();
 
-    public void onSurfaceChanged(int width, int height);
+    void onSurfaceChanged(int width, int height);
 
-    public void onDrawFrame();
+    void onDrawFrame();
 
-    public void onResume();
+    void onResume();
 
-    public void onPause();
+    void onPause();
 
-    public void onDestroy();
+    void onDestroy();
 
     }
