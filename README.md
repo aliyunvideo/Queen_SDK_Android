@@ -1,7 +1,7 @@
 # Queen_Agora_LiveSDK
 
 ## [简介]</br>
-智能美化特效已集成到七牛直播云SDK中，接入简单、快速。基于智能视觉算法、海量规模的人脸、人体检测和识别技术，智能美化特效为视频创作者提供移动端的人脸美颜、美型、美妆美化、滤镜贴纸等编辑加工能力，满足直播和视频制作时的美颜特效需求。
+智能美化特效已集成到声网直播SDK中，接入简单、快速。基于智能视觉算法、海量规模的人脸、人体检测和识别技术，智能美化特效为视频创作者提供移动端的人脸美颜、美型、美妆美化、滤镜贴纸等编辑加工能力，满足直播和视频制作时的美颜特效需求。
 
 技术优势 自研的人脸关键点定位技术，涵盖106个基础点位、280个高精度点位，效果真实。 持续优化的智能视觉算法和实时渲染技术，保证自然流畅的使用体验。 持续升级的美颜美型、滤镜贴纸玩法，不断扩充的素材库，创造更多乐趣。 完善的开发者支持，快速响应客户需求，提供优质可靠的服务。
 
@@ -14,7 +14,7 @@
 
 
 ## 前言
-1. 本开源工程介绍了，如何在七牛云直播SDK中，接入Queen美颜SDK。本项目Demo来自七牛直播云3.1.0版本,Demo资源名为:[跑通 Agora Live 示例项目
+1. 本开源工程介绍了，如何在声网直播SDK中，接入Queen美颜SDK。本项目Demo来自声网官方版本,Demo资源名为:[跑通 Agora Live 示例项目
 ](https://docs.agora.io/cn/Live-stream%20Shopping/run_agora_live_android),官方下载地址为:[声网Agora Live 的github地址](https://github.com/AgoraIO-Usecase/AgoraLive)
 2. 本工程可直接本地运行，查看美颜效果，并配置好菜单，不用额外配置账号或授权信息
 
@@ -23,7 +23,7 @@
 
 ## 环境配置
 ### 配置LicenseKey
-1. 使用 Android Studio（3.5及以上的版本）打开源码工程`PLDroidMediaStreamingDemo`
+1. 使用 Android Studio（3.5及以上的版本）打开源码工程`AgoraLive`
 2. 找到主工程app，将前提条件2中申请到的License-key文件，xxx.crt文件放到assets目录下，若不存在，则在src/main下新建assets目录。
 3. 找到主工程app，打开AndroidManifest.xml文件，在application标签下，配置好Licensekey信息，如下：
 ```
