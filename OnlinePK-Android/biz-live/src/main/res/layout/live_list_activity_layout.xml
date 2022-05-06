@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  Copyright (c) 2021 NetEase, Inc.  All rights reserved.
+  ~  Use of this source code is governed by a MIT license that can be found in the LICENSE file
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl_root"
+    android:background="@drawable/live_list_bg">
+
+    <RelativeLayout
+        android:id="@+id/rly_title"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="34dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:src="@drawable/left_arrow" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/biz_live_pk_live"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_17" />
+    </RelativeLayout>
+
+    <View
+        android:layout_below="@id/rly_title"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#19ffffff" />
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:layout_marginTop="4dp"
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rly_title">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_live"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lly_new_live"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:background="@drawable/room_start_btn_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_new_live"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:src="@drawable/icon_live" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="@string/biz_live_start_live"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
+</RelativeLayout>

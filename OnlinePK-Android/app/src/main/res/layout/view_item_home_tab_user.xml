@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  Copyright (c) 2021 NetEase, Inc.  All rights reserved.
+  ~  Use of this source code is governed by a MIT license that can be found in the LICENSE file
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="75dp"
+    android:layout_height="54dp"
+    android:gravity="center"
+    android:layout_marginStart="15dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_tab_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/selector_home_user_icon" />
+
+    <TextView
+        android:id="@+id/tv_tab_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="@string/app_user_center"
+        android:textColor="#ffecedef"
+        android:gravity="center"
+        android:textSize="10sp" />
+</LinearLayout>

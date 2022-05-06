@@ -1,0 +1,93 @@
+/*
+ *  Copyright (c) 2021 NetEase, Inc.  All rights reserved.
+ *  Use of this source code is governed by a MIT license that can be found in the LICENSE file
+ */
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = '1.5.21'
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        maven{
+            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
+        google()
+        jcenter()
+        flatDir {
+            dirs '../aars'
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    compileSdkVersion = 30
+    buildToolsVersion = "30.0.0"
+    minSdkVersion = 21
+    targetSdkVersion = 30
+
+    nimVersion = '8.6.2'
+    nertcVersion = '4.2.115'
+    playerVersion = '2.7.1'
+    playerGslbVersion = '1.0.0'
+    lifecycleVersion = '1.1.1'
+    aLogVersion = '1.0.0'
+    seatKitVersion = '0.0.0-SNAPSHOT'
+
+    nertcSdk = "com.netease.yunxin:nertc:$nertcVersion"
+    imSdk = "com.netease.nimlib:basesdk:$nimVersion"
+    chatroomSdk = "com.netease.nimlib:chatroom:$nimVersion"
+    playerSdk = "com.netease.nimlib:neliveplayer:$playerVersion"
+    playerGslbSdk = "com.netease:gslb:$playerGslbVersion"
+    androidUtil =  "com.blankj:utilcodex:1.30.6"
+    liveData = "android.arch.lifecycle:livedata:$lifecycleVersion"
+    aLog = "com.netease.yunxin.kit:alog:$aLogVersion"
+    seatKit = "com.netease.yunxin.kit:seat:$seatKitVersion"
+
+    ndkAbis = [
+            'armeabi-v7a',
+            'x86',
+            'arm64-v8a',
+            'x86_64'
+    ]
+}
+
+ext {
+    versionCode = VERSION_CODE as int
+    versionName = VERSION_NAME
+}
+
+ext {
+    AppKey = ''
+    BaseUrl = ''
+}
+
+def loadLocalConfig() {
+    def propertiesFile = file("config.properties")
+    if (!propertiesFile.exists()) {
+        println "Local properties don't exist."
+        return
+    }
+    Properties config = new Properties()
+    config.load(propertiesFile.newInputStream())
+    this.AppKey = config.getProperty('APP_KEY')
+    this.BaseUrl = config.getProperty('BASE_URL')
+}
+
+loadLocalConfig()

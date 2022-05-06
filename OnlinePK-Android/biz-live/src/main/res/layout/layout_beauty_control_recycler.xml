@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  Copyright (c) 2021 NetEase, Inc.  All rights reserved.
+  ~  Use of this source code is governed by a MIT license that can be found in the LICENSE file
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="@dimen/dp_48"
+        android:layout_height="@dimen/dp_48">
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_48"
+            android:layout_gravity="center_horizontal" />
+
+        <View
+            android:id="@+id/focused_status"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_filter_focused_bg"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/tv_filter_name"
+        android:layout_marginTop="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>

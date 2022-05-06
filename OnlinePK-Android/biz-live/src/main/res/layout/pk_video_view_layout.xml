@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  Copyright (c) 2021 NetEase, Inc.  All rights reserved.
+  ~  Use of this source code is governed by a MIT license that can be found in the LICENSE file
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <com.netease.lava.nertc.sdk.video.NERtcVideoView
+        android:id="@+id/local_video"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <com.netease.lava.nertc.sdk.video.NERtcVideoView
+        android:id="@+id/remote_video"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+</LinearLayout>

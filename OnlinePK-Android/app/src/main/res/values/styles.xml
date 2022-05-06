@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  Copyright (c) 2021 NetEase, Inc.  All rights reserved.
+  ~  Use of this source code is governed by a MIT license that can be found in the LICENSE file
+  -->
+
+<resources>
+    <!-- Base application theme. -->
+    <style name="LaunchTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#00000000</item>
+        <item name="colorPrimaryDark">#00000000</item>
+        <item name="android:windowBackground">@drawable/shape_splash_bg</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+</resources>
