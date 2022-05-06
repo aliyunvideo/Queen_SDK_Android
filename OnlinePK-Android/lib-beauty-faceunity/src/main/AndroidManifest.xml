@@ -3,4 +3,15 @@
   ~  Use of this source code is governed by a MIT license that can be found in the LICENSE file
   -->
 
-<manifest package="com.beautyFaceunity" />
+<manifest package="com.beautyFaceunity"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <meta-data
+            android:name="com.aliyun.alivc_license.licensekey"
+            android:value="vofThXfslB0HBFggh0565821d3be04ab18bc0a8984e54f8aa"/>
+        <meta-data
+            android:name="com.aliyun.alivc_license.licensefile"
+            android:value="assets/AliVideoCert_com_netease_yunxin_app_pklive.crt"/>
+    </application>
+
+</manifest>

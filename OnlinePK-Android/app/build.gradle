@@ -33,6 +33,12 @@ android {
     }
 
     signingConfigs {
+        debug {
+            keyAlias 'netease-im'
+            keyPassword 'yunxin163'
+            storeFile file('release.jks')
+            storePassword 'yunxin163'
+        }
         release {
             keyAlias 'netease-im'
             keyPassword 'yunxin163'

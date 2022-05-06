@@ -9,6 +9,10 @@ import android.hardware.Camera
 import android.hardware.Camera.CameraInfo
 import androidx.fragment.app.FragmentActivity
 import com.beautyFaceunity.FURenderer
+import com.beautyQueen.IQueenRender
+import com.beautyQueen.QueenCameraHelper
+import com.beautyQueen.QueenRender
+import com.beautyQueen.param.QueenParamHolder
 import com.netease.biz_live.yunxin.live.dialog.BeautyDialog
 import com.netease.biz_live.yunxin.live.dialog.BeautyDialog.BeautyValueChangeListener
 import com.netease.biz_live.yunxin.live.dialog.FilterDialog
@@ -19,12 +23,18 @@ import com.netease.yunxin.lib_live_room_service.impl.VideoOption
  * 美颜相关控制
  */
 class BeautyControl(private val activity: FragmentActivity) {
-    private val mFuRender by lazy {
-        FURenderer.Builder(activity)
-            .maxFaces(1)
-            .inputImageOrientation(getCameraOrientation(CameraInfo.CAMERA_FACING_FRONT))
-            .inputTextureType(FURenderer.FU_ADM_FLAG_EXTERNAL_OES_TEXTURE)
-            .build()
+//    private val mFuRender by lazy {
+//        FURenderer.Builder(activity)
+//            .maxFaces(1)
+//            .inputImageOrientation(getCameraOrientation(CameraInfo.CAMERA_FACING_FRONT))
+//            .inputTextureType(FURenderer.FU_ADM_FLAG_EXTERNAL_OES_TEXTURE)
+//            .build()
+//    }
+
+    private var mIsDestroy = false;
+    private var mIsQueenCreated = false;
+    private val mQueenRender by lazy {
+        QueenRender.Builder().build()
     }
 
     //*******************美颜参数*******************
@@ -35,24 +45,42 @@ class BeautyControl(private val activity: FragmentActivity) {
     private var beautyDialog: BeautyDialog? = null
     private var filterDialog: FilterDialog? = null
     fun initFaceUI() {
-        mFuRender.onSurfaceCreated()
-        mFuRender.setBeautificationOn(true)
+//        mFuRender.onSurfaceCreated()
+//        mFuRender.setBeautificationOn(true)
     }
 
     fun openBeauty() {
+//        VideoOption.setVideoCallback({ neRtcVideoFrame: NERtcVideoFrame ->
+//            //此处可自定义第三方的美颜实现
+//            neRtcVideoFrame.textureId = mFuRender.onDrawFrame(
+//                neRtcVideoFrame.data, neRtcVideoFrame.textureId,
+//                neRtcVideoFrame.width, neRtcVideoFrame.height
+//            )
+//            neRtcVideoFrame.format = NERtcVideoFrame.Format.TEXTURE_RGB
+//            true
+//        }, true)
+
         VideoOption.setVideoCallback({ neRtcVideoFrame: NERtcVideoFrame ->
             //此处可自定义第三方的美颜实现
-            neRtcVideoFrame.textureId = mFuRender.onDrawFrame(
-                neRtcVideoFrame.data, neRtcVideoFrame.textureId,
-                neRtcVideoFrame.width, neRtcVideoFrame.height
-            )
-            neRtcVideoFrame.format = NERtcVideoFrame.Format.TEXTURE_RGB
+            if (!mIsQueenCreated) {
+                mIsQueenCreated = true
+                mQueenRender.onTextureCreate(activity)
+            }
+            if (mIsDestroy) {
+                mQueenRender.onTextureDestroy()
+            } else {
+                var textureId = mQueenRender.onTextureProcess(neRtcVideoFrame.textureId, true, QueenRender.MATRIX_IDENTITY, neRtcVideoFrame.width, neRtcVideoFrame.height)
+                if (textureId != neRtcVideoFrame.textureId) {
+                    neRtcVideoFrame.textureId = textureId
+                    neRtcVideoFrame.format = NERtcVideoFrame.Format.TEXTURE_RGB
+                }
+            }
             true
         }, true)
     }
 
     fun switchCamera(cameraFacing: Int) {
-        mFuRender.onCameraChange(cameraFacing, getCameraOrientation(cameraFacing))
+//        mFuRender.onCameraChange(cameraFacing, getCameraOrientation(cameraFacing))
     }
 
     private fun getCameraOrientation(cameraFacing: Int): Int {
@@ -87,19 +115,24 @@ class BeautyControl(private val activity: FragmentActivity) {
                 when (type) {
                     BeautyValueChangeListener.BEAUTY_WHITE -> {
                         mColorLevel = newValue / 100f
-                        mFuRender.onColorLevelSelected(mColorLevel)
+//                        mFuRender.onColorLevelSelected(mColorLevel)
+                        QueenParamHolder.getQueenParam().basicBeautyRecord.skinWhitingParam = mColorLevel;
                     }
                     BeautyValueChangeListener.BEAUTY_SKIN -> {
                         mBlurLevel = newValue / 100f
-                        mFuRender.onBlurLevelSelected(mBlurLevel)
+//                        mFuRender.onBlurLevelSelected(mBlurLevel)
+                        QueenParamHolder.getQueenParam().basicBeautyRecord.skinBuffingLeverParam = 2;
+                        QueenParamHolder.getQueenParam().basicBeautyRecord.skinBuffingParam = mBlurLevel;
                     }
                     BeautyValueChangeListener.THIN_FACE -> {
                         mCheekThinning = newValue / 100f
-                        mFuRender.onCheekThinningSelected(mCheekThinning)
+//                        mFuRender.onCheekThinningSelected(mCheekThinning)
+                        QueenParamHolder.getQueenParam().faceShapeRecord.thinFaceParam = mCheekThinning;
                     }
                     BeautyValueChangeListener.BIG_EYE -> {
                         mEyeEnlarging = newValue / 100f
-                        mFuRender.onEyeEnlargeSelected(mEyeEnlarging)
+//                        mFuRender.onEyeEnlargeSelected(mEyeEnlarging)
+                        QueenParamHolder.getQueenParam().faceShapeRecord.bigEyeParam = mEyeEnlarging;
                     }
                 }
             }
@@ -111,15 +144,15 @@ class BeautyControl(private val activity: FragmentActivity) {
         if (filterDialog == null) {
             filterDialog = FilterDialog()
         }
-        filterDialog?.setOnFUControlListener(mFuRender)
+//        filterDialog?.setOnFUControlListener(mFuRender)
         filterDialog?.show(activity.supportFragmentManager, "filterDialog")
     }
 
     fun onDestroy() {
         VideoOption.setVideoCallback(null, false)
-        if (mFuRender != null) {
-            mFuRender.onSurfaceDestroyed()
-        }
+//        if (mFuRender != null) {
+//            mFuRender.onSurfaceDestroyed()
+//        }
     }
 
     fun dismissAllDialog() {
