@@ -15,12 +15,12 @@ import androidx.annotation.NonNull;
 
 import com.alivc.live.beauty.BeautyInterface;
 import com.alivc.live.beauty.constant.BeautyImageFormat;
+import com.aliyun.android.libqueen.QueenEngine;
+import com.aliyun.android.libqueen.Texture2D;
+import com.aliyun.android.libqueen.exception.InitializationException;
+import com.aliyun.android.libqueen.models.AlgType;
+import com.aliyun.android.libqueen.models.Flip;
 import com.aliyunsdk.queen.param.QueenParamHolder;
-import com.taobao.android.libqueen.QueenEngine;
-import com.taobao.android.libqueen.Texture2D;
-import com.taobao.android.libqueen.exception.InitializationException;
-import com.taobao.android.libqueen.models.AlgType;
-import com.taobao.android.libqueen.models.Flip;
 
 import java.nio.IntBuffer;
 import java.util.LinkedList;
@@ -177,6 +177,7 @@ public class QueenBeautyImpl implements BeautyInterface {
                 mMediaChainEngine.setRenderAndFaceFlip(Flip.kFlipY, Flip.kNone);
                 mMediaChainEngine.updateInputTextureBufferAndRunAlg(outAngle, (outAngle+180)%360, Flip.kFlipY, false);
             } else if (outAngle == 180 || outAngle == 0) {
+                mMediaChainEngine.setSegmentInfoFlipY(true);
                 // 推流的输入纹理经过处理，非原始摄像头采集纹理，这里单独针对角度适配: 正 out = 180 : 倒立 out = 0
                 mMediaChainEngine.setRenderAndFaceFlip(Flip.kFlipY, Flip.kNone);
                 mMediaChainEngine.updateInputTextureBufferAndRunAlg(outAngle, 180-outAngle, Flip.kFlipY, false);
