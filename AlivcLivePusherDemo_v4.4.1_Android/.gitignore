@@ -1,0 +1,16 @@
+.gradle-build/
+.gradle/
+.idea/
+build/
+/*/build/
+/*/*/build/
+/*/out
+local.properties
+*.iml
+*/*.iml
+*/*/*.iml
+**/.cxx
+**/.externalNativeBuild
+*.DS_Store
+out
+outZip

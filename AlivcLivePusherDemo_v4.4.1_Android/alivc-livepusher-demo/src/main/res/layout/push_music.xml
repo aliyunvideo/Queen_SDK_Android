@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/wheel_white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ears_back_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_marginTop="3dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="@string/open_ears_back"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_size_28px" />
+
+        <Switch
+            android:id="@+id/ears_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:checked="false"
+            android:textOff=""
+            android:textOn=""
+            android:layout_marginRight="16dp"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="5dp"
+            android:background="@color/alivc_color_gry"></View>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_marginTop="3dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="@string/open_audio_denoise"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_size_28px" />
+
+        <Switch
+            android:id="@+id/audio_denoise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:checked="true"
+            android:textOff=""
+            android:textOn=""
+            android:layout_marginRight="16dp"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="5dp"
+            android:background="@color/alivc_color_gry"></View>
+    </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/opera"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/av_resolution_music_operations"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_size_28px" />
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/pause"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/left_shape_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/pause"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Button
+                android:id="@+id/stop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/middle_shape_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/start"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Button
+                android:id="@+id/loop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/middle_shape_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/close_loop"
+                android:textSize="@dimen/font_size_28px" />
+
+            <Button
+                android:id="@+id/mute"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/right_shape_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:checked="true"
+                android:text="@string/open_mute"
+                android:textSize="@dimen/font_size_28px" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sound"
+        android:layout_height="65dp"
+        android:layout_width="match_parent"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_above="@+id/opera"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="@string/accompaniment"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <SeekBar
+                android:id="@+id/accompaniment_seekbar"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:maxHeight="5dp"
+                android:minHeight="5dp"
+                android:theme="@style/SeekBarColor"
+                android:progress="50" />
+
+            <TextView
+                android:id="@+id/accompaniment_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="50"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="@string/voice"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_size_28px" />
+
+            <SeekBar
+                android:id="@+id/voice_seekbar"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:maxHeight="5dp"
+                android:minHeight="5dp"
+                android:theme="@style/SeekBarColor"
+                android:progress="50" />
+
+            <TextView
+                android:id="@+id/voice_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="50"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/music_list_layout"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_gravity="center_vertical"
+        android:layout_below="@id/ears_back_layout"
+        android:background="@color/title_bg_grey_color">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/music_list"
+            android:textColor="@color/trackGradient"
+            android:textSize="@dimen/font_size_24px"></TextView>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/music_list"
+        android:layout_below="@id/music_list_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/sound"
+        />
+
+</RelativeLayout>

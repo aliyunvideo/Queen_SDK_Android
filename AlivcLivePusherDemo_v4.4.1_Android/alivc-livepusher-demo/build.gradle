@@ -1,0 +1,94 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        release {
+            keyAlias 'key0'
+            keyPassword 'livepush'
+            storeFile file('livepush.jks')
+            storePassword 'livepush'
+        }
+        debug {
+            keyAlias 'key0'
+            keyPassword 'livepush'
+            storeFile file('livepush.jks')
+            storePassword 'livepush'
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "3g"
+    }
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
+    defaultConfig {
+        applicationId "com.alivc.live.pusher.demo"
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            debuggable false
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        //      解决animoji和queen库so重复问题
+        pickFirst '**/libc++_shared.so'
+        pickFirst '**/libMNN.so'
+        pickFirst '**/libMNN_CL.so'
+    }
+    publishNonDefault true
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        disable 'MissingTranslation'
+    }
+
+    allprojects {
+        repositories {
+            jcenter()
+            flatDir {
+                dirs 'src/main/libs'
+            }
+        }
+    }
+    buildToolsVersion '30.0.3'
+}
+
+dependencies {
+    implementation fileTree(include: ['commons-lang3-3.0.jar'], dir: 'src/main/commonlibs')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.acker:simplezxing:1.5'
+    implementation 'com.google.code.gson:gson:2.6.2'
+    implementation externalAndroidMultiDex
+    implementation project(':beauty')
+    implementation project(':beautyui')
+    implementation project(':imageutil')
+    implementation project(':queenbeauty')
+    implementation 'com.aliyun.animoji:animoji:1.2.1@aar'
+    implementation 'com.aliyun.sdk.android:AliyunPlayer:5.4.4.0-full'
+    implementation 'com.aliyun.sdk.android:AlivcArtc:5.4.4.0'
+    implementation 'com.aliyun.rts.android:RtsSDK:2.1.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.8.1'
+    implementation 'com.alivc.pusher:AlivcLivePusher:4.4.1'
+
+}
