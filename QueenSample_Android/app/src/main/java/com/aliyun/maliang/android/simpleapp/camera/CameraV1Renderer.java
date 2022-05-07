@@ -13,6 +13,8 @@ import com.aliyunsdk.queen.param.QueenRuntime;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import static android.opengl.GLSurfaceView.RENDERMODE_WHEN_DIRTY;
+
 /**
  * Surface.Renderer，用于相机预览数据的回调
  * 美颜或其他需要对展示画面进行后期处理的，均在本Render中指定回调接口中进行处理.
@@ -39,8 +41,11 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
 
     public void init(CameraV1GLSurfaceView glSurfaceView, CameraV1 camera, Context context) {
         mContext = context;
-        mGLSurfaceView = glSurfaceView;
         mCamera = camera;
+
+        mGLSurfaceView = glSurfaceView;
+        mGLSurfaceView.setRenderer(this);
+        mGLSurfaceView.setRenderMode(RENDERMODE_WHEN_DIRTY);
     }
 
     // Surface创建回调

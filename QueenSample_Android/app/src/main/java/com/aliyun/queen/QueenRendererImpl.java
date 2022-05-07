@@ -4,9 +4,6 @@ import android.content.Context;
 
 import com.aliyun.android.libqueen.QueenEngine;
 import com.aliyun.android.libqueen.Texture2D;
-import com.aliyun.queen.IQueenRender;
-import com.aliyun.queen.QueenRender;
-import com.aliyun.queen.utils.QueenCameraHelper;
 import com.aliyunsdk.queen.param.QueenParamHolder;
 
 /**
@@ -35,6 +32,11 @@ public class QueenRendererImpl implements IQueenRender {
 
     public QueenRendererImpl(QueenRender.Builder builder) {
         mBuilder = builder;
+    }
+
+    @Override
+    public QueenEngine getEngine() {
+        return engine;
     }
 
     @Override

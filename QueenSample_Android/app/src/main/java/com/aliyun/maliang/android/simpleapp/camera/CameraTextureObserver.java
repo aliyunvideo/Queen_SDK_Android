@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.aliyun.queen.IQueenRender;
 import com.aliyun.queen.QueenRender;
-import com.aliyun.queen.utils.QueenCameraHelper;
 
 /**
  * 本类模拟常见sdk的纹理回调接口，即纹理开始创建/画面更新/画面结束三个步骤的回调，这三个步骤是多数sdk支持第三方美颜所必须提供的三个接口回调。

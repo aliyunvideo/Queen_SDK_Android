@@ -2,6 +2,8 @@ package com.aliyun.queen;
 
 import android.content.Context;
 
+import com.aliyun.android.libqueen.QueenEngine;
+
 public class QueenRender implements IQueenRender {
 
     public static final float[] MATRIX_IDENTITY = new float[] {
@@ -24,6 +26,11 @@ public class QueenRender implements IQueenRender {
 
     private QueenRender(Builder builder) {
         mQueenRenderImpl = new QueenRendererImpl(builder);
+    }
+
+    @Override
+    public QueenEngine getEngine() {
+        return mQueenRenderImpl.getEngine();
     }
 
     @Override

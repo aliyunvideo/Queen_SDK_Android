@@ -18,8 +18,6 @@ public class CameraV1GLSurfaceView extends GLSurfaceView {
         setEGLContextClientVersion(2);
         mRenderer = new CameraV1Renderer();
         mRenderer.init(this, camera, context);
-        setRenderer(mRenderer);
-        setRenderMode(RENDERMODE_WHEN_DIRTY);
     }
 
     public void reBindCamera(CameraV1 camera) {
