@@ -3,8 +3,7 @@
 本工程接入实现了市面上绝大多数主流直播sdk厂商，以分支的方式进行管理，便于客户对照接入，请根据各自需要，选择并切换相应厂商分支。</br>
 
 **使用步骤：**</br>
-***步骤1、checkout代码到本地：git checkout --depth 1 本git仓库地址***</br>
-***步骤2、切换到指定sdk分支：git checkout 分支名称 （见下表）***</br>
+***checkout代码到本地：git checkout --branch 目标分支名称 --depth 1 本git仓库地址***</br>
 
 支持厂商列表对应分支名称如下：</br>
 ========sdk厂商: 分支名称</br>
