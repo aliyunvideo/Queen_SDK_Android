@@ -39,8 +39,8 @@ dependencies {
     implementation project(':beauty')
 
     // 此处修改：根据自身项目需要，指定依赖的菜单组件sdk
-    api 'com.aliyunsdk.components:queen_menu:2.0.1.full-beta3'
+    api 'com.aliyunsdk.components:queen_menu:2.2.0-menu-full'
     // 此处修改：根据自身项目需要，指定依赖的sdk版本
-    api 'com.aliyun.maliang.android:queen:2.0.0-official-full'
+    api 'com.aliyun.maliang.android:queen:2.2.0-official-full'
 
 }

@@ -187,10 +187,12 @@ public class QueenBeautyImpl implements BeautyInterface {
             mMediaChainEngine.updateInputNativeBufferAndRunAlg(mAlgNativeBufferPtr, mAlgDataFormat, mAlgDataWidth, mAlgDataHeight, nAlgDataStride, inputAngle, outAngle, flipAxis);
             hasRunAlg = true;
         }
+        // 渲染以后，应该要判断渲染返回值，若失败则应使用原始纹理id，成功才用mOutTexture2D的纹理id
         int retCode = mMediaChainEngine.render();
         isAlgDataRendered = true;
         Log.i(TAG, Thread.currentThread().getId() + " - " +"render : " + (SystemClock.uptimeMillis()-now) + "ms, hasRunAlg: " + hasRunAlg + ", textureW: " + textureWidth + ", textureH: " + textureHeight + ", inputAngle: " + inputAngle + ", outAngle: " + outAngle);
         if (retCode == -9 || retCode == -10) {
+            // 渲染失败或无效，应使用原始纹理，保持画面继续渲染
             Log.d(TAG, "queen error code:" + retCode + ",please ensure license valid");
             GLES20.glBindFramebuffer(GL_FRAMEBUFFER, oldFboId[0]);
             return inputTexture;
