@@ -1,4 +1,4 @@
-package com.aliyun.maliang.android.simpleapp;
+package com.aliyun.maliang.android.simpleapp.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.aliyun.maliang.android.simpleapp.R;
 import com.aliyun.maliang.android.simpleapp.utils.FpsHelper;
 import com.aliyunsdk.queen.param.QueenRuntime;
 

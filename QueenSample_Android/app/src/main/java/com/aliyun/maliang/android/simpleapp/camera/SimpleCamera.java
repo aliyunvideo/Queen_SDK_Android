@@ -3,25 +3,24 @@ package com.aliyun.maliang.android.simpleapp.camera;
 import android.app.Activity;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
-import android.hardware.Camera;
 import android.util.Log;
 
 import com.aliyun.maliang.android.simpleapp.camera.data.SimpleBytesBufPool;
-import com.aliyun.maliang.android.simpleapp.utils.ActivityUtil;
+import com.aliyun.maliang.android.simpleapp.utils.QueenCameraHelper;
 
 import java.io.IOException;
 import java.util.List;
 
-public class CameraV1 {
+public class SimpleCamera {
     private Activity mActivity;
     private int mCameraId;
-    private Camera mCamera;
+    private android.hardware.Camera mCamera;
     private int mWidth;
     private int mHeight;
 
     private static String TAG = "CameraV1";
 
-    public CameraV1(Activity activity) {
+    public SimpleCamera(Activity activity) {
         mActivity = activity;
         mWidth = 1280;
         mHeight = 720;
@@ -48,18 +47,18 @@ public class CameraV1 {
     public synchronized boolean openCamera(int screenWidth, int screenHeight, int cameraId) {
         try {
             mCameraId = cameraId;
-            mCamera = Camera.open(mCameraId);
-            Camera.Parameters parameters = mCamera.getParameters();
+            mCamera = android.hardware.Camera.open(mCameraId);
+            android.hardware.Camera.Parameters parameters = mCamera.getParameters();
             parameters.set("orientation", "portrait");
 
             //设置连续对焦
             List<String> supportedFocusModes = mCamera.getParameters().getSupportedFocusModes();
-            boolean hasAutoFocus = supportedFocusModes != null && supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+            boolean hasAutoFocus = supportedFocusModes != null && supportedFocusModes.contains(android.hardware.Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
             if (hasAutoFocus){
-                parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+                parameters.setFocusMode(android.hardware.Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
             }
-            List<Camera.Size> sizeList = mCamera.getParameters().getSupportedPreviewSizes();
-            for(Camera.Size it :sizeList)
+            List<android.hardware.Camera.Size> sizeList = mCamera.getParameters().getSupportedPreviewSizes();
+            for(android.hardware.Camera.Size it :sizeList)
             {
                 Log.i("CameraV1", "getSupportedPreviewSizes: "+it.width + "  " + it.height);
             }
@@ -91,9 +90,9 @@ public class CameraV1 {
 
     private void setCameraPreviewCfg() {
         mCamera.addCallbackBuffer(mBytesBufPool.reusedBuffer());
-        mCamera.setPreviewCallbackWithBuffer(new Camera.PreviewCallback() {
+        mCamera.setPreviewCallbackWithBuffer(new android.hardware.Camera.PreviewCallback() {
             @Override
-            public void onPreviewFrame(byte[] bytes, Camera camera) {
+            public void onPreviewFrame(byte[] bytes, android.hardware.Camera camera) {
                 mBytesBufPool.updateBuffer(bytes);
                 mCamera.addCallbackBuffer(mBytesBufPool.reusedBuffer());
             }
@@ -104,14 +103,14 @@ public class CameraV1 {
     public int getPrevieHeight(){return mHeight;}
 
     public static void setCameraDisplayOrientation(Activity activity,
-                                                   int cameraId, Camera camera) {
-        Camera.CameraInfo info =
-                new Camera.CameraInfo();
-        Camera.getCameraInfo(cameraId, info);
-        int degrees = ActivityUtil.getDegrees(activity);
+                                                   int cameraId, android.hardware.Camera camera) {
+        android.hardware.Camera.CameraInfo info =
+                new android.hardware.Camera.CameraInfo();
+        android.hardware.Camera.getCameraInfo(cameraId, info);
+        int degrees = QueenCameraHelper.getDegrees(activity);
 
         int result;
-        if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+        if (info.facing == android.hardware.Camera.CameraInfo.CAMERA_FACING_FRONT) {
             result = (info.orientation + degrees) % 360;
             result = (360 - result) % 360;  // compensate the mirror
         } else {  // back-facing
@@ -122,11 +121,18 @@ public class CameraV1 {
 
     }
 
-    public void startPreview() {
+    public int startPreview() {
+        int result = -1;
         if (mCamera != null) {
-            setCameraPreviewCfg();
-            mCamera.startPreview();
+            try {
+                setCameraPreviewCfg();
+                mCamera.startPreview();
+                result = 0;
+            } catch (RuntimeException exception) {
+                exception.printStackTrace();
+            }
         }
+        return result;
     }
 
     public void stopPreview() {

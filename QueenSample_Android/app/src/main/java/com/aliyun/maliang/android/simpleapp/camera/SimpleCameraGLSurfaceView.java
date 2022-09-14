@@ -6,21 +6,21 @@ import android.opengl.GLSurfaceView;
 /**
  * GLSurfaceView，用于展示相机camera预览
  */
-public class CameraV1GLSurfaceView extends GLSurfaceView {
+public class SimpleCameraGLSurfaceView extends GLSurfaceView {
 
-    private CameraV1Renderer mRenderer;
+    private SimpleCameraRenderer mRenderer;
 
-    public CameraV1GLSurfaceView(Context context) {
+    public SimpleCameraGLSurfaceView(Context context) {
         super(context);
     }
 
-    public void init(CameraV1 camera, Context context) {
+    public void init(SimpleCamera camera, SimpleCameraRenderer render,  Context context) {
         setEGLContextClientVersion(2);
-        mRenderer = new CameraV1Renderer();
+        mRenderer = render;
         mRenderer.init(this, camera, context);
     }
 
-    public void reBindCamera(CameraV1 camera) {
+    public void reBindCamera(SimpleCamera camera) {
         mRenderer.reBindCamera(camera);
     }
 

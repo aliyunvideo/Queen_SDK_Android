@@ -1,10 +1,6 @@
-package com.aliyun.queen;
+package com.aliyun.maliang.android.simpleapp.utils;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.hardware.SensorManager;
@@ -14,7 +10,6 @@ import android.view.OrientationEventListener;
 import android.view.Surface;
 
 import java.lang.ref.WeakReference;
-import java.security.MessageDigest;
 
 public class QueenCameraHelper {
 
@@ -60,32 +55,18 @@ public class QueenCameraHelper {
                 orientation = (orientation + 45) / 90 * 90;
                 int degree = getDegrees(activity);
 
-                setDeviceOrientation(activity, orientation, degree);
+                setDeviceOrientation(orientation, degree);
             }
         };
         mContext = new WeakReference<>(activity);
     }
 
     //只有4个方向，0是正常方向，其他是顺时针旋转方向
-    public void setDeviceOrientation(final Activity activity, int orientation, int displayOrientation) {
-//        if (mDisplayOrientation != displayOrientation) {
-//            setCameraDisplayOrientation(activity, mCameraId);
-//        }
+    public void setDeviceOrientation(int orientation, int displayOrientation) {
         mDeviceOrientation = orientation;
         mDisplayOrientation = displayOrientation;
         setCameraAngles();
     }
-
-//    public static void setCameraDisplayOrientation(Activity activity, int cameraId) {
-//        Camera.CameraInfo info =
-//                new Camera.CameraInfo();
-//        Camera.getCameraInfo(cameraId, info);
-//        int degrees = getDegrees(activity);
-//
-//        int result = (info.orientation + degrees) % 360;
-//        result = (360 - result) % 360;  // compensate the mirror
-//    }
-
 
     private void setCameraAngles() {
         if (mInfo == null) {
@@ -156,7 +137,7 @@ public class QueenCameraHelper {
         }
     }
 
-    private static int getDegrees(final Activity activity) {
+    public static int getDegrees(final Activity activity) {
         int rotation = activity.getWindowManager().getDefaultDisplay()
                 .getRotation();
         int degrees = 0;
@@ -189,57 +170,4 @@ public class QueenCameraHelper {
         return mCameraId;
     }
 
-    public static void printPkgMd5String(Context context) {
-        String md5 = LicenseHelper.getPackageSignature(context);
-        String pkg = context.getPackageName();
-        android.util.Log.e("QUEEN_DEBUG", "==pkg=" + pkg + ", md5=" + md5);
-    }
-
-    private static final class LicenseHelper {
-
-        public static String getPackageSignature(Context context) {
-            String signature = "";
-            if (null != context) {
-                try {
-                    PackageInfo packageInfo = context.getPackageManager().getPackageInfo(
-                            context.getPackageName(), PackageManager.GET_SIGNATURES);
-                    Signature[] signs = packageInfo.signatures;
-                    if ((null != signs) && (0 < signs.length)) {
-                        signature = hexdigest(signs[0].toByteArray());
-                    }
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-            return signature;
-        }
-
-        private static final char[] HEX_DIGIT = {48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 97, 98, 99, 100, 101, 102};
-
-        private static String hexdigest(byte[] paramArrayOfByte) {
-            try {
-                MessageDigest localMessageDigest = MessageDigest.getInstance("MD5");
-                localMessageDigest.update(paramArrayOfByte);
-                byte[] arrayOfByte = localMessageDigest.digest();
-                char[] arrayOfChar = new char[32];
-                int i = 0;
-                int j = 0;
-                while (true) {
-                    if (i >= 16) {
-                        return new String(arrayOfChar);
-                    }
-                    int k = arrayOfByte[i];
-                    int m = j + 1;
-                    arrayOfChar[j] = HEX_DIGIT[(0xF & k >>> 4)];
-                    j = m + 1;
-                    arrayOfChar[m] = HEX_DIGIT[(k & 0xF)];
-                    i++;
-                }
-            } catch (Exception localException) {
-                localException.printStackTrace();
-            }
-            return null;
-        }
-
-    }
 }

@@ -5,9 +5,9 @@ import android.graphics.SurfaceTexture;
 import android.opengl.GLSurfaceView;
 import android.util.Log;
 
-import com.aliyun.android.libqueen.ImageFormat;
 import com.aliyun.android.libqueen.QueenUtil;
 import com.aliyun.maliang.android.simpleapp.utils.FpsHelper;
+import com.aliyun.maliang.android.simpleapp.QueenBeautyEffecter;
 import com.aliyunsdk.queen.param.QueenRuntime;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -21,31 +21,52 @@ import static android.opengl.GLSurfaceView.RENDERMODE_WHEN_DIRTY;
  * 本render用于实现Queen将处理后的纹理渲染到当前画布，适用于，能直接获取到相机数据，且返回相机OES纹理的场景，
  * 处理后的画面数据，直接渲染到当前纹理中
  */
-public class CameraV1Renderer implements GLSurfaceView.Renderer {
+public class SimpleCameraRenderer implements GLSurfaceView.Renderer {
 
     private static final String TAG = "CameraRenderer";
     private Context mContext;
     protected SurfaceTexture mSurfaceTexture;
-    private CameraV1GLSurfaceView mGLSurfaceView;
+    private SimpleCameraGLSurfaceView mGLSurfaceView;
+    protected SimpleCamera mCamera;
+
     private FrameDrawer mFrameOesDrawer;
     private FrameDrawer mFrameGlTextureDrawer;
-    protected CameraV1 mCamera;
+
     protected int mOESTextureId = -1;
     protected float[] transformMatrix = null;
-    private byte[] mCameraBytes;
 
-    // 是否需要将Queen的结果直接渲染绘制出来，一般都是不需要的，业务交给Queen处理完后，Queen返回处理完后的纹理id给到业务层，业务自行决定是否绘制或交给其他业务处理，例如RTC、直播sdk等。。
-    // 极简单的业务情况下，才由Queen来直接将渲染后就直接渲染上屏，但这里还是展示两种例子。
-    private boolean mIsRenderDirect2Draw = false;
-    private CameraTextureObserver mTextureObserver;
+    protected int mCameraPreviewWidth = 0;
+    protected int mCameraPreviewHeight = 0;
 
-    public void init(CameraV1GLSurfaceView glSurfaceView, CameraV1 camera, Context context) {
+
+    protected QueenBeautyEffecter mQueenEffecter;
+
+    public void init(SimpleCameraGLSurfaceView glSurfaceView, SimpleCamera camera, Context context) {
         mContext = context;
         mCamera = camera;
 
         mGLSurfaceView = glSurfaceView;
         mGLSurfaceView.setRenderer(this);
         mGLSurfaceView.setRenderMode(RENDERMODE_WHEN_DIRTY);
+    }
+
+    private void initSurfaceTexture() {
+        if (mCamera == null || mGLSurfaceView == null) {
+            Log.i(TAG, "mCamera or mGLSurfaceView is null!");
+            return;
+        }
+        mSurfaceTexture = new SurfaceTexture(mOESTextureId);
+        mSurfaceTexture.setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
+            @Override
+            public void onFrameAvailable(SurfaceTexture surfaceTexture) {
+                mGLSurfaceView.requestRender();
+            }
+        });
+        mCamera.setPreviewTexture(mSurfaceTexture);
+        mCamera.startPreview();
+
+        mCameraPreviewWidth = mCamera.getPrevieWidth();
+        mCameraPreviewHeight = mCamera.getPrevieHeight();
     }
 
     // Surface创建回调
@@ -59,16 +80,12 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
         mFrameOesDrawer = new FrameDrawer(true);
         mFrameGlTextureDrawer = new FrameDrawer(false);
 
-        mTextureObserver = new CameraTextureObserver(mIsRenderDirect2Draw);
-        mTextureObserver.onTextureCreated(mContext);
+        onCreateEffector(mContext);
     }
 
     // Surface画面大小方向发生改变时的回调，需要同步进行QueenEngine的调整处理.
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
-        if (mTextureObserver == null) {
-            return;
-        }
 
         float cameraRatio = 1280 / 720.0f;
         final boolean isLandscape = width > height;
@@ -90,10 +107,12 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
                     offsetH = (height - h) / 2;
                 }
 
+                // 非必要，只有显示画面，与纹理传入的size不一致时，才需要设置ViewportSize，
+                // 否则，默认使用输入纹理的size
                 if (isLandscape) {
-                    mTextureObserver.onTextureChanged(offsetH, offsetW, h, w);
+                    onSetViewportSize(offsetH, offsetW, h, w);
                 } else {
-                    mTextureObserver.onTextureChanged(offsetW, offsetH, w, h);
+                    onSetViewportSize(offsetW, offsetH, w, h);
                 }
             }
         }
@@ -111,45 +130,39 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
             mSurfaceTexture.getTransformMatrix(transformMatrix);
         }
 
+        // 关闭美颜特效处理，便于对比原始画面与开启美颜特效画面
         if (!QueenRuntime.isEnableQueen) {
             mFrameOesDrawer.draw(transformMatrix, mOESTextureId);
             return;
         }
 
-        if (mTextureObserver != null) {
-            mCameraBytes = mCamera.getLastUpdateCameraPixels();
-            if (mCameraBytes != null) {
-                int updateTextureId = mTextureObserver.onTextureUpdated(mOESTextureId, true,
-                        transformMatrix, mCameraBytes, ImageFormat.NV21,
-                        mCamera.getPrevieWidth(), mCamera.getPrevieHeight());
-                if (!mIsRenderDirect2Draw) {
-                    mFrameGlTextureDrawer.draw(transformMatrix, updateTextureId);
-                } else if (updateTextureId == mOESTextureId) {
-                    // 原本由Queen内部负责绘制到到屏幕，但若此处返回了原始纹理id，则说明内部处理失败，需将原始纹理绘出
-                    mFrameOesDrawer.draw(transformMatrix, mOESTextureId);
-                }
-                mCamera.releaseData(mCameraBytes);
-            }
+        int updateTextureId = onDrawWithEffectorProcess();
+
+        if (updateTextureId != mOESTextureId) {
+            mFrameGlTextureDrawer.draw(transformMatrix, updateTextureId);
+        } else {
+            // 原本由Queen内部负责绘制到到屏幕，但若此处返回了原始纹理id，则说明内部处理失败，需将原始纹理绘出
+            mFrameOesDrawer.draw(transformMatrix, mOESTextureId);
         }
     }
 
-    private void initSurfaceTexture() {
-        if (mCamera == null || mGLSurfaceView == null) {
-            Log.i(TAG, "mCamera or mGLSurfaceView is null!");
-            return;
-        }
-        mSurfaceTexture = new SurfaceTexture(mOESTextureId);
-        mSurfaceTexture.setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
-            @Override
-            public void onFrameAvailable(SurfaceTexture surfaceTexture) {
-                mGLSurfaceView.requestRender();
-            }
-        });
-        mCamera.setPreviewTexture(mSurfaceTexture);
-        mCamera.startPreview();
+    protected void onCreateEffector(Context context) {
     }
 
-    public void reBindCamera(CameraV1 camera) {
+    protected void onSetViewportSize(int left, int bottom, int width, int height) {
+
+    }
+
+    protected int onDrawWithEffectorProcess() {
+        return mOESTextureId;
+    }
+
+    protected void onReleaseEffector() {
+
+    }
+
+
+    public void reBindCamera(SimpleCamera camera) {
         mCamera = camera;
         mCamera.setPreviewTexture(mSurfaceTexture);
     }
@@ -167,8 +180,6 @@ public class CameraV1Renderer implements GLSurfaceView.Renderer {
         }
         mOESTextureId = -1;
 
-        if (mTextureObserver != null) {
-            mTextureObserver.onTextureDestroy();
-        }
+        onReleaseEffector();
     }
 }

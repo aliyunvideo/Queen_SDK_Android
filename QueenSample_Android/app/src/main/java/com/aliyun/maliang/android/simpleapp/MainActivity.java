@@ -1,6 +1,5 @@
 package com.aliyun.maliang.android.simpleapp;
 
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -12,19 +11,19 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aliyun.maliang.android.simpleapp.camera.CameraV1GLSurfaceView;
-import com.aliyun.maliang.android.simpleapp.camera.CameraV1;
-import com.aliyun.queen.QueenCameraHelper;
+import com.aliyun.maliang.android.simpleapp.camera.SimpleCameraRenderer;
+import com.aliyun.maliang.android.simpleapp.view.MainViewRightPanel;
+import com.aliyun.maliang.android.simpleapp.view.MainViewSurfacePanel;
+import com.aliyun.maliang.android.simpleapp.utils.QueenCameraHelper;
 import com.aliyun.maliang.android.simpleapp.utils.FpsHelper;
 import com.aliyun.maliang.android.simpleapp.utils.PermissionUtils;
 import com.aliyunsdk.queen.menu.BeautyMenuPanel;
+import com.aliyunsdk.queen.param.QueenParamHolder;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private CameraV1GLSurfaceView mGLSurfaceView;
-    private int mCameraId;
-    private CameraV1 mCamera;
     private boolean isDestroyed = false;
+
+    private MainViewSurfacePanel mMainSurfacePanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         boolean checkResult = PermissionUtils.checkAndRunPermissionsGroup(this, PermissionUtils.PERMISSION_CAMERA);
         if (checkResult) {
-            initGlSurfaceView();
+            initMainView();
         }
     }
 
@@ -47,28 +46,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         boolean granted = PermissionUtils.onHandlePermissionRequest(this, requestCode, grantResults);
         if (granted) {
-            initGlSurfaceView();
+            initMainView();
         }
     }
 
-    private void initGlSurfaceView() {
+    private void initMainView() {
         FrameLayout background = new FrameLayout(this);
         background.setLayoutParams(new ViewGroup.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
 
-        mGLSurfaceView = new CameraV1GLSurfaceView(this);
-        mGLSurfaceView.setLayoutParams(new ViewGroup.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
-        //设置相机前后
-        QueenCameraHelper.get().initOrientation(this);
-        mCameraId = QueenCameraHelper.get().getCameraId();
-        mCamera = new CameraV1(this);
-        mGLSurfaceView.init(mCamera, this);
+        mMainSurfacePanel = new MainViewSurfacePanel(this);
+        // 创建采用纹理进行特效处理的方式
+//        SimpleCameraRenderer renderer = new CameraV1TextureRenderer();
+        // 创建采用数据buffer进行特效处理的方式
+        // SimpleCameraRenderer renderer = new CameraV2TextureRenderer();
+        // 创建采用纹理渲染+buffer更新算法进行特效处理的方式
+        SimpleCameraRenderer renderer = new CameraV3TextureAndBufferRenderer();
+        View mainSurfaceView = mMainSurfacePanel.createSurfaceView(renderer);
 
-        if (!mCamera.openCamera(1280,720, mCameraId)) {
-            return;
-        }
+        if (mainSurfaceView == null) return;
 
         // 添加相机预览界面
-        background.addView(mGLSurfaceView);
+        background.addView(mainSurfaceView);
 
         // 添加右侧操控栏
         MainViewRightPanel cameraRightPanel = new MainViewRightPanel(this);
@@ -96,26 +94,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        if (mGLSurfaceView != null) {
-            mGLSurfaceView.queueEvent(new Runnable() {
-                @Override
-                public void run() {
-                    if (mCamera != null) {
-                        mCamera.stopPreview();
-                        mCamera.releaseCamera();
-                        mCamera = null;
-                    }
-
-                    mGLSurfaceView.releaseGLResource();
-                    mGLSurfaceView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            mGLSurfaceView.onPause();
-                        }
-                    });
-                }
-            });
+        if (mMainSurfacePanel != null) {
+            mMainSurfacePanel.onPause();
         }
+
 
         QueenCameraHelper.get().onPause();
     }
@@ -127,66 +109,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        if (mCamera != null) {
-            try {
-                mCamera.startPreview();
-            } catch (RuntimeException exception) {
-                mCamera.reOpenPreview(1280,720, mCameraId);
-                mGLSurfaceView.reBindCamera(mCamera);
-                mCamera.startPreview();
-            }
+        if (mMainSurfacePanel != null) {
+            mMainSurfacePanel.onResume();
+        }
 
-        }
-        if (mGLSurfaceView != null) {
-            mGLSurfaceView.onResume();
-        }
         QueenCameraHelper.get().onResume();
     }
 
     @Override
     protected void onDestroy() {
-        mGLSurfaceView.queueEvent(new Runnable() {
-            @Override
-            public void run() {
-                if (mCamera != null) {
-                    mCamera.stopPreview();
-                    mCamera.releaseCamera();
-                    mCamera = null;
-                }
-
-                mGLSurfaceView.release();
-                mGLSurfaceView.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mGLSurfaceView.onPause();
-                        mGLSurfaceView = null;
-                    }
-                });
-            }
-        });
+        if (mMainSurfacePanel != null) {
+            mMainSurfacePanel.onDestroy();
+        }
         isDestroyed = true;
         FpsHelper.get().release();
+        // 释放美颜特效参数
+        QueenParamHolder.relaseQueenParams();
         super.onDestroy();
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btnSwitchCamera) {
-            switchCamera();
+        if (v.getId() == R.id.btnSwitchCamera && mMainSurfacePanel != null) {
+            mMainSurfacePanel.switchCamera();
         }
-    }
-
-    private void switchCamera() {
-        if (mCameraId == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-            mCameraId = Camera.CameraInfo.CAMERA_FACING_BACK;
-        } else {
-            mCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
-        }
-
-        mCamera.stopPreview();
-        mCamera.reOpenPreview(1280,720, mCameraId);
-        mGLSurfaceView.reBindCamera(mCamera);
-        mCamera.startPreview();
-        QueenCameraHelper.get().setCameraId(mCameraId);
     }
 }

@@ -11,7 +11,6 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a"
         }
@@ -33,11 +32,6 @@ android {
         }
     }
 
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
-    }
     packagingOptions {
         exclude 'META-INF/proguard/androidx-annotations.pro'
         pickFirst '**/libc++_shared.so'
@@ -45,12 +39,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // 此处修改：根据自身项目需要，指定依赖的菜单组件sdk
     implementation 'com.aliyunsdk.components:queen_menu:2.0.1.full-beta3'
