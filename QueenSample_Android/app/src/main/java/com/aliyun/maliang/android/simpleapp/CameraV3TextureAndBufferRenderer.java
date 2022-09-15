@@ -21,15 +21,22 @@ public class CameraV3TextureAndBufferRenderer extends SimpleCameraRenderer {
         // 更新美颜特效参数
         QueenParamHolder.writeParamToEngine(mQueenEffecter.getEngine(), false);
         // 设置抠图参数进行Y轴翻转，否则抠图mask会翻转过来
-        mQueenEffecter.engine.setSegmentInfoFlipY(true);
+        if (mQueenEffecter.getEngine() != null) {
+            mQueenEffecter.getEngine().setSegmentInfoFlipY(true);
+        }
 
-        int in = QueenCameraHelper.get().inputAngle;
-        int out = QueenCameraHelper.get().outAngle;
-        int flip = QueenCameraHelper.get().flipAxis;
-        int updateTextureId = mQueenEffecter.processTextureAndBuffer(mOESTextureId, true,
-                transformMatrix, mCameraPreviewWidth, mCameraPreviewHeight,
-                in, out, flip,
-                mCamera.getLastUpdateCameraPixels(), ImageFormat.NV21);
+        int updateTextureId = mOESTextureId;
+        // buffer数据来源，主要直接来自camera
+        byte[] buffer = mCamera.getLastUpdateCameraPixels();
+        if (buffer != null) {
+            int in = QueenCameraHelper.get().inputAngle;
+            int out = QueenCameraHelper.get().outAngle;
+            int flip = QueenCameraHelper.get().flipAxis;
+            updateTextureId = mQueenEffecter.onProcessTextureAndBuffer(mOESTextureId, true,
+                    transformMatrix, mCameraPreviewWidth, mCameraPreviewHeight,
+                    in, out, flip,
+                    buffer, ImageFormat.NV21);
+        }
 
         return updateTextureId;
     }
@@ -44,6 +51,6 @@ public class CameraV3TextureAndBufferRenderer extends SimpleCameraRenderer {
     // 否则，默认使用输入纹理的size
     @Override
     protected void onSetViewportSize(int left, int bottom, int width, int height) {
-        mQueenEffecter.setOutViewportSize(left, bottom, width, height);
+        mQueenEffecter.onSetOutViewportSize(left, bottom, width, height);
     }
 }

@@ -20,13 +20,15 @@ public class CameraV2BufferRenderer extends SimpleCameraRenderer {
         // 更新美颜特效参数
         QueenParamHolder.writeParamToEngine(mQueenEffecter.getEngine(), false);
         // 设置抠图参数进行Y轴翻转，否则抠图mask会翻转过来
-        mQueenEffecter.engine.setSegmentInfoFlipY(true);
+        if (mQueenEffecter.getEngine() != null) {
+            mQueenEffecter.getEngine().setSegmentInfoFlipY(true);
+        }
 
         int in = QueenCameraHelper.get().inputAngle;
         int out = QueenCameraHelper.get().outAngle;
         int flip = QueenCameraHelper.get().flipAxis;
         // 此处没有使用buffer进行绘制的示例，还是用的纹理表示。
-        int updateTextureId = mQueenEffecter.processTexture(mOESTextureId, true,
+        int updateTextureId = mQueenEffecter.onProcessOesTexture(mOESTextureId,
                 transformMatrix, mCameraPreviewWidth, mCameraPreviewHeight,
                 in, out, flip);
 
@@ -43,6 +45,6 @@ public class CameraV2BufferRenderer extends SimpleCameraRenderer {
     // 否则，默认使用输入纹理的size
     @Override
     protected void onSetViewportSize(int left, int bottom, int width, int height) {
-        mQueenEffecter.setOutViewportSize(left, bottom, width, height);
+        mQueenEffecter.onSetOutViewportSize(left, bottom, width, height);
     }
 }

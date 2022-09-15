@@ -9,7 +9,7 @@ import com.aliyun.android.libqueen.Texture2D;
 public class QueenBeautyEffecter {
 
     private Texture2D mOutTexture;
-    QueenEngine engine;
+    private QueenEngine engine;
 
     public QueenEngine getEngine() { return engine; }
 
@@ -26,24 +26,32 @@ public class QueenBeautyEffecter {
         }
     }
 
-    public void setOutViewportSize(int left, int bottom, int width, int height) {
+    public void onSetOutViewportSize(int left, int bottom, int width, int height) {
         engine.setScreenViewport(left, bottom, width, height);
     }
 
-    public int processTexture(int textureId, boolean isOesTexture, float[] matrix, int width, int height, int inputAngle, int outAngle, int flipAxis) {
+    public int onProcessOesTexture(int textureId, float[] matrix, int width, int height, int inputAngle, int outAngle, int flipAxis) {
+        return processTextureInner(textureId, true, matrix, width, height, inputAngle, outAngle, flipAxis);
+    }
+
+    public int onProcess2DTexture(int textureId, int width, int height, int inputAngle, int outAngle, int flipAxis) {
+        return processTextureInner(textureId, false, null, width, height, inputAngle, outAngle, flipAxis);
+    }
+
+    private int processTextureInner(int textureId, boolean isOesTexture, float[] matrix, int width, int height, int inputAngle, int outAngle, int flipAxis) {
         int w = isOesTexture ? height : width;
         int h = isOesTexture ? width : height;
         engine.setInputTexture(textureId, w, h, isOesTexture);
 
         if (mOutTexture == null) {
             // 是否让Queen保持原纹理方向输出
-            mOutTexture = engine.autoGenOutTexture(true);
+            boolean keepInputDirection = isOesTexture;
+            mOutTexture = engine.autoGenOutTexture(keepInputDirection);
         }
 
         // 根据当前纹理数据到更新
         engine.updateInputTextureBufferAndRunAlg(inputAngle, outAngle, flipAxis, false);
-
-        int result = engine.renderTexture(matrix);
+        int result = matrix != null ? engine.renderTexture(matrix) : engine.render();
         // 处理不成功，则返回原始纹理id
         if (result != 0) {
             return textureId;
@@ -52,11 +60,11 @@ public class QueenBeautyEffecter {
         }
     }
 
-    public void processDataBuf() {
+    public void onProcessDataBuf() {
 
     }
 
-    public int processTextureAndBuffer(int textureId, boolean isOesTexture, float[] matrix, int width, int height, int inputAngle, int outAngle, int flipAxis, byte[] buffer, int dataFormat) {
+    public int onProcessTextureAndBuffer(int textureId, boolean isOesTexture, float[] matrix, int width, int height, int inputAngle, int outAngle, int flipAxis, byte[] buffer, int dataFormat) {
         int w = isOesTexture ? height : width;
         int h = isOesTexture ? width : height;
         engine.setInputTexture(textureId, w, h, isOesTexture);
