@@ -7,7 +7,6 @@ import android.util.Log;
 
 import com.aliyun.android.libqueen.QueenUtil;
 import com.aliyun.maliang.android.simpleapp.utils.FpsHelper;
-import com.aliyun.maliang.android.simpleapp.QueenBeautyEffecter;
 import com.aliyunsdk.queen.param.QueenRuntime;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -37,9 +36,6 @@ public class SimpleCameraRenderer implements GLSurfaceView.Renderer {
 
     protected int mCameraPreviewWidth = 0;
     protected int mCameraPreviewHeight = 0;
-
-
-    protected QueenBeautyEffecter mQueenEffecter;
 
     public void init(SimpleCameraGLSurfaceView glSurfaceView, SimpleCamera camera, Context context) {
         mContext = context;
