@@ -46,6 +46,7 @@ public class CameraV1TextureRenderer extends SimpleCameraRenderer {
     // 否则，默认使用输入纹理的size
     @Override
     protected void onSetViewportSize(int left, int bottom, int width, int height) {
+        super.onSetViewportSize(left, bottom, width, height);
         mQueenEffector.onSetOutViewportSize(left, bottom, width, height);
     }
 }

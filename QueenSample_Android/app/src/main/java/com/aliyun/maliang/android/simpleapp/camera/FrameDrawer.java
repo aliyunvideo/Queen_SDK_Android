@@ -59,6 +59,8 @@ public class FrameDrawer {
     private int mPositionHandle;
     private int mMVPMatrixHandle;
 
+    private final int[] mViewport = new int[4];
+
     private static final int COORDINATE_PER_VERTEX = 2;
     private final static float POSITIONS[] = {
             -1.0f, +1.0f,
@@ -152,8 +154,15 @@ public class FrameDrawer {
         }
     }
 
+    public void setViewport(int x, int y, int width, int height) {
+        mViewport[0] = x;
+        mViewport[1] = y;
+        mViewport[2] = width;
+        mViewport[3] = height;
+    }
+
     public void draw(float[] transformMatrix, int textureId) {
-        draw(transformMatrix, textureId, false);
+        draw(transformMatrix, textureId, mIsOesDrawer);
     }
 
     public void draw(float[] transformMatrix, int textureId, final boolean isOesTexture) {
@@ -162,6 +171,8 @@ public class FrameDrawer {
             mIsOesDrawer = isOesTexture;
             initGLContext();
         }
+
+        GLES20.glViewport(mViewport[0], mViewport[1], mViewport[2], mViewport[3]);
 
         GLES20.glUseProgram(shaderProgram);
 

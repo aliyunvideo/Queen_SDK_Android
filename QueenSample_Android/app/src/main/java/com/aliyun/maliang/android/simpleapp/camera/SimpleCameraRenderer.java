@@ -146,7 +146,8 @@ public class SimpleCameraRenderer implements GLSurfaceView.Renderer {
     }
 
     protected void onSetViewportSize(int left, int bottom, int width, int height) {
-
+        mFrameOesDrawer.setViewport(left, bottom, width, height);
+        mFrameGlTextureDrawer.setViewport(left, bottom, width, height);
     }
 
     protected int onDrawWithEffectorProcess() {
