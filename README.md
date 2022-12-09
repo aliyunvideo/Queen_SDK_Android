@@ -2,7 +2,7 @@
 ***[目录说明]***</br>
 本工程接入实现了市面上绝大多数主流直播sdk厂商，以分支的方式进行管理，便于客户对照接入，请根据各自需要，选择并切换相应厂商分支。</br>
 
-本目录中文件**LicenseHelper.java**为Android应用获取自身签名md5串的工具类，用于申请授权证书时用。</br>
+本目录中**LicenseHelper.java**为Android应用获取自身签名md5串的工具类，用于申请授权证书时用。</br>
 本目录中**assets_resource_pro.zip**为pro版本所需素材资源包，该资源包解压后直接放到工程中assets目录下即可。</br>
 本目录中**assets_resource_ultimate.zip**为ultimate版本所需素材资源包，该资源包解压后直接放到工程中assets目录下即可。</br>
 
