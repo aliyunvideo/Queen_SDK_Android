@@ -95,6 +95,10 @@ public class SimpleCamera {
             public void onPreviewFrame(byte[] bytes, android.hardware.Camera camera) {
                 mBytesBufPool.updateBuffer(bytes);
                 mCamera.addCallbackBuffer(mBytesBufPool.reusedBuffer());
+
+                if (onPreviewCallback != null) {
+                    onPreviewCallback.onPreviewFrameAvailableCallback();
+                }
             }
         });
     }
@@ -165,5 +169,14 @@ public class SimpleCamera {
             mCamera.release();
             mCamera = null;
         }
+    }
+
+    public interface ICameraPreviewCallback {
+        void onPreviewFrameAvailableCallback();
+    }
+
+    private ICameraPreviewCallback onPreviewCallback;
+    public void setCameraPreviewCallback(ICameraPreviewCallback callback) {
+        onPreviewCallback = callback;
     }
 }

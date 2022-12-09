@@ -3,6 +3,7 @@ package com.aliyun.maliang.android.simpleapp.camera;
 import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.opengl.GLSurfaceView;
+import android.os.SystemClock;
 import android.util.Log;
 
 import com.aliyun.android.libqueen.QueenUtil;
@@ -27,6 +28,7 @@ public class SimpleCameraRenderer implements GLSurfaceView.Renderer {
     protected SurfaceTexture mSurfaceTexture;
     private SimpleCameraGLSurfaceView mGLSurfaceView;
     protected SimpleCamera mCamera;
+    private long mLastRequestUptimeMillis = 0l;
 
     private FrameDrawer mFrameOesDrawer;
     private FrameDrawer mFrameGlTextureDrawer;
@@ -56,6 +58,7 @@ public class SimpleCameraRenderer implements GLSurfaceView.Renderer {
             @Override
             public void onFrameAvailable(SurfaceTexture surfaceTexture) {
                 mGLSurfaceView.requestRender();
+                mLastRequestUptimeMillis = SystemClock.uptimeMillis();
             }
         });
         mCamera.setPreviewTexture(mSurfaceTexture);
@@ -63,6 +66,17 @@ public class SimpleCameraRenderer implements GLSurfaceView.Renderer {
 
         mCameraPreviewWidth = mCamera.getPrevieWidth();
         mCameraPreviewHeight = mCamera.getPrevieHeight();
+
+        mCamera.setCameraPreviewCallback(new SimpleCamera.ICameraPreviewCallback() {
+            @Override
+            public void onPreviewFrameAvailableCallback() {
+                long updateCost = SystemClock.uptimeMillis() - mLastRequestUptimeMillis;
+                if (updateCost > 30l) {
+                    // 特殊机型，极端情况下，辅助提升刷新率
+                    mGLSurfaceView.requestRender();
+                }
+            }
+        });
     }
 
     // Surface创建回调
@@ -131,6 +145,11 @@ public class SimpleCameraRenderer implements GLSurfaceView.Renderer {
             mFrameOesDrawer.draw(transformMatrix, mOESTextureId);
             return;
         }
+
+        // sdk内部默认会根据机型硬件情况来判断打分，若为低端机则会自动默认为开启节能模式，则相应会影响一定功能效果。
+        // 例如，磨皮功能固定为强烈模式，自然模式不会开启不可切换。
+        // 若不需要该处理，则此处显示告知不要使用节能模式即可
+        // QueenRuntime.sPowerSaving = false;
 
         int updateTextureId = onDrawWithEffectorProcess();
 
