@@ -22,7 +22,7 @@
             android:value="xoQuEoYgOHs225cwh634fa27df8d3490e88337161a4d5ee92"/>
         <meta-data
             android:name="com.aliyun.alivc_license.licensefile"
-            android:value="assets/AliVideoCert_20220402104703.crt"/>
+            android:value="assets/AliVideoCert_20230324050501.crt"/>
 
         <activity android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
