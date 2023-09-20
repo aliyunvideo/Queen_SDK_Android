@@ -18,6 +18,8 @@ import com.aliyun.maliang.android.simpleapp.utils.QueenCameraHelper;
 import com.aliyun.maliang.android.simpleapp.utils.FpsHelper;
 import com.aliyun.maliang.android.simpleapp.utils.PermissionUtils;
 import com.aliyunsdk.queen.menu.BeautyMenuPanel;
+import com.aliyunsdk.queen.menu.QueenBeautyMenu;
+import com.aliyunsdk.queen.menu.QueenMenuPanel;
 import com.aliyunsdk.queen.param.QueenParamHolder;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -56,11 +58,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mMainSurfacePanel = new MainViewSurfacePanel(this);
         // 创建采用纹理进行特效处理的方式
-//        SimpleCameraRenderer renderer = new CameraV1TextureRenderer();
+        SimpleCameraRenderer renderer = new CameraV1TextureRenderer();
         // 创建采用数据buffer进行特效处理的方式
         // SimpleCameraRenderer renderer = new CameraV2TextureRenderer();
         // 创建采用纹理渲染+buffer更新算法进行特效处理的方式
-        SimpleCameraRenderer renderer = new CameraV3TextureAndBufferRenderer();
+//        SimpleCameraRenderer renderer = new CameraV3TextureAndBufferRenderer();
+//        SimpleCameraRenderer renderer = new CameraV4TextureRenderer();
+//        SimpleCameraRenderer renderer = new CameraV5TextureAndBufferRenderer();
         View mainSurfaceView = mMainSurfacePanel.createSurfaceView(renderer);
 
         if (mainSurfaceView == null) return;
@@ -75,16 +79,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cameraRightPanel.setOnClickListenerProxy(this);
         background.addView(cameraRightPanel, params);
 
-        // 添加底部菜单栏
-        BeautyMenuPanel beautyMenuPanel = new BeautyMenuPanel(this);
+        // 添加底部通用菜单
+        initMenuView(background);
+
+        setContentView(background);
+    }
+
+    private void initMenuView(ViewGroup parentView) {
+        // 老式用法
+        // BeautyMenuPanel menuPanel = new BeautyMenuPanel(this);
+
+        // 新式用法
+        QueenMenuPanel menuPanel = QueenBeautyMenu.getPanel(this);
         final FrameLayout.LayoutParams menuParams = new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
         menuParams.gravity = Gravity.BOTTOM;
-        background.addView(beautyMenuPanel, menuParams);
-
-        setContentView(background);
+        parentView.addView(menuPanel, menuParams);
+        // 隐藏多余不可用的功能选项
+        menuPanel.onHideValidFeatures();
+        // 隐藏copyright显示
+        menuPanel.onHideCopyright();
     }
 
     @Override

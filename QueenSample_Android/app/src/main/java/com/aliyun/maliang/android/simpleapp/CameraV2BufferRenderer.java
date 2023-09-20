@@ -19,7 +19,7 @@ public class CameraV2BufferRenderer extends SimpleCameraRenderer {
     }
 
     protected int onDrawWithEffectorProcess() {
-        // 更新美颜特效参数
+        // 更新美颜特效参数，参数修改，在菜单组件中已完成交互
         QueenParamHolder.writeParamToEngine(mQueenEffector.getEngine(), false);
         // 设置抠图参数进行Y轴翻转，否则抠图mask会翻转过来
         if (mQueenEffector.getEngine() != null) {
@@ -29,7 +29,7 @@ public class CameraV2BufferRenderer extends SimpleCameraRenderer {
         int in = QueenCameraHelper.get().inputAngle;
         int out = QueenCameraHelper.get().outAngle;
         int flip = QueenCameraHelper.get().flipAxis;
-        // 此处没有使用buffer进行绘制的示例，还是用的纹理表示。
+        // TODO：此处没有使用buffer进行绘制的示例，还是用的纹理表示。
         int updateTextureId = mQueenEffector.onProcessOesTexture(mOESTextureId,
                 transformMatrix, mCameraPreviewWidth, mCameraPreviewHeight,
                 in, out, flip);

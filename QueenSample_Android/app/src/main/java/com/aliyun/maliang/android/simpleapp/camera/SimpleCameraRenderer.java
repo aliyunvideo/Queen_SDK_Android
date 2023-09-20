@@ -2,11 +2,12 @@ package com.aliyun.maliang.android.simpleapp.camera;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
+import android.opengl.GLES11Ext;
+import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.os.SystemClock;
 import android.util.Log;
 
-import com.aliyun.android.libqueen.QueenUtil;
 import com.aliyun.maliang.android.simpleapp.utils.FpsHelper;
 import com.aliyunsdk.queen.param.QueenRuntime;
 
@@ -79,10 +80,28 @@ public class SimpleCameraRenderer implements GLSurfaceView.Renderer {
         });
     }
 
+    private static int createTexture2D(boolean isOes) {
+        int[] tex = new int[1];
+        GLES20.glGenTextures(1, tex, 0);
+
+        int target = GLES20.GL_TEXTURE_2D;
+        if (isOes) {
+            target = GLES11Ext.GL_TEXTURE_EXTERNAL_OES;
+        }
+
+        GLES20.glBindTexture(target, tex[0]);
+        GLES20.glTexParameterf(target, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_NEAREST);
+        GLES20.glTexParameterf(target, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR);
+        GLES20.glTexParameterf(target, GL10.GL_TEXTURE_WRAP_S, GL10.GL_CLAMP_TO_EDGE);
+        GLES20.glTexParameterf(target, GL10.GL_TEXTURE_WRAP_T, GL10.GL_CLAMP_TO_EDGE);
+        GLES20.glBindTexture(target, 0);
+        return tex[0];
+    }
+
     // Surface创建回调
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        mOESTextureId = QueenUtil.createTexture2D(true);
+        mOESTextureId = createTexture2D(true);
 
         // 初始化SurfaceTexture
         initSurfaceTexture();
@@ -161,6 +180,7 @@ public class SimpleCameraRenderer implements GLSurfaceView.Renderer {
         }
     }
 
+    /***以下四个protected方法，才是美颜特效sdk需要处理的四个方法****/
     protected void onCreateEffector(Context context) {
     }
 
@@ -176,7 +196,7 @@ public class SimpleCameraRenderer implements GLSurfaceView.Renderer {
     protected void onReleaseEffector() {
 
     }
-
+    /***以上四个protected方法，才是美颜特效sdk需要处理的四个方法-end****/
 
     public void reBindCamera(SimpleCamera camera) {
         mCamera = camera;
