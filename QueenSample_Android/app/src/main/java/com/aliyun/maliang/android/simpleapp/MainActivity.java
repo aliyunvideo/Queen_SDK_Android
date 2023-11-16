@@ -58,13 +58,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mMainSurfacePanel = new MainViewSurfacePanel(this);
         // 创建采用纹理进行特效处理的方式
-        SimpleCameraRenderer renderer = new CameraV1TextureRenderer();
+//        SimpleCameraRenderer renderer = new CameraV1TextureRenderer();
         // 创建采用数据buffer进行特效处理的方式
-        // SimpleCameraRenderer renderer = new CameraV2TextureRenderer();
+//         SimpleCameraRenderer renderer = new CameraV2BufferRenderer();
         // 创建采用纹理渲染+buffer更新算法进行特效处理的方式
 //        SimpleCameraRenderer renderer = new CameraV3TextureAndBufferRenderer();
 //        SimpleCameraRenderer renderer = new CameraV4TextureRenderer();
 //        SimpleCameraRenderer renderer = new CameraV5TextureAndBufferRenderer();
+        SimpleCameraRenderer renderer = new CameraV6AIOTextureRenderer();
         View mainSurfaceView = mMainSurfacePanel.createSurfaceView(renderer);
 
         if (mainSurfaceView == null) return;
