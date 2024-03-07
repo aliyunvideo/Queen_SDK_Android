@@ -12,7 +12,7 @@ import com.aliyunsdk.queen.param.QueenParamHolder;
 /**
  * 按照纹理的回调方式进行处理，直接使用QueenEngine实现
  */
-public class CameraV6AIOTextureRenderer extends SimpleCameraRenderer {
+public class CameraV6AIOOesTextureRenderer extends SimpleCameraRenderer {
     private QueenBeautyInterface mBeautyImpl;
 
     protected void onCreateEffector(Context context) {
@@ -30,9 +30,9 @@ public class CameraV6AIOTextureRenderer extends SimpleCameraRenderer {
         int in = QueenCameraHelper.get().inputAngle;
         int out = QueenCameraHelper.get().outAngle;
         int flip = QueenCameraHelper.get().flipAxis;
-        int updateTextureId = processTextureInner(mOESTextureId, true,
-                transformMatrix, mCameraPreviewWidth, mCameraPreviewHeight,
-                in, out, flip);
+        int updateTextureId = mBeautyImpl.onProcessTexture(mOESTextureId, true,
+                                transformMatrix, mCameraPreviewWidth, mCameraPreviewHeight,
+                            in, out, flip);
 
         return updateTextureId;
     }
@@ -54,7 +54,4 @@ public class CameraV6AIOTextureRenderer extends SimpleCameraRenderer {
 //        mQueenEngine.setScreenViewport(left, bottom, width, height);
     }
 
-    private int processTextureInner(int textureId, boolean isOesTexture, float[] matrix, int width, int height, int inputAngle, int outAngle, int flipAxis) {
-        return mBeautyImpl.onProcessTexture(textureId, isOesTexture, matrix, width, height , inputAngle, outAngle, flipAxis);
-    }
 }

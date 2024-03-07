@@ -34,10 +34,13 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     // 此处修改：根据自身项目需要，指定依赖的菜单组件sdk
-    implementation 'com.aliyun.maliang.android:queen_menu:6.7.0-official-pro-tiny'
+    implementation 'com.aliyun.maliang.android:queen_menu:6.8.0-official-pro-tiny'
     // 此处修改：根据自身项目需要，指定依赖的sdk版本
-    implementation "com.aliyun.maliang.android:queen:6.7.0-official-pro"
+    implementation "com.aliyun.maliang.android:queen:6.8.0-official-pro"
 
     // 可选，若采用AIO方式接入，则需要引入，接入更简单，方式参见CameraV6AIOTextureRender类
     implementation "com.aliyun.maliang.android:queen_aio_framework:6.7.0-official"
+
+//    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+
 }

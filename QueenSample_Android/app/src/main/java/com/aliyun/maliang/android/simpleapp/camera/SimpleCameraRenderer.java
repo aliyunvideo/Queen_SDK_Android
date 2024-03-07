@@ -31,8 +31,8 @@ public class SimpleCameraRenderer implements GLSurfaceView.Renderer {
     protected SimpleCamera mCamera;
     private long mLastRequestUptimeMillis = 0l;
 
-    private FrameDrawer mFrameOesDrawer;
-    private FrameDrawer mFrameGlTextureDrawer;
+    protected FrameDrawer mFrameOesDrawer;
+    protected FrameDrawer mFrameGlTextureDrawer;
 
     protected int mOESTextureId = -1;
     protected float[] transformMatrix = null;

@@ -17,7 +17,6 @@ import com.aliyun.maliang.android.simpleapp.view.MainViewSurfacePanel;
 import com.aliyun.maliang.android.simpleapp.utils.QueenCameraHelper;
 import com.aliyun.maliang.android.simpleapp.utils.FpsHelper;
 import com.aliyun.maliang.android.simpleapp.utils.PermissionUtils;
-import com.aliyunsdk.queen.menu.BeautyMenuPanel;
 import com.aliyunsdk.queen.menu.QueenBeautyMenu;
 import com.aliyunsdk.queen.menu.QueenMenuPanel;
 import com.aliyunsdk.queen.param.QueenParamHolder;
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        SimpleCameraRenderer renderer = new CameraV3TextureAndBufferRenderer();
 //        SimpleCameraRenderer renderer = new CameraV4TextureRenderer();
 //        SimpleCameraRenderer renderer = new CameraV5TextureAndBufferRenderer();
-        SimpleCameraRenderer renderer = new CameraV6AIOTextureRenderer();
+        SimpleCameraRenderer renderer = new CameraV6AIOOesTextureRenderer();
         View mainSurfaceView = mMainSurfacePanel.createSurfaceView(renderer);
 
         if (mainSurfaceView == null) return;
