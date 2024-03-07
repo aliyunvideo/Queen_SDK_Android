@@ -38,6 +38,8 @@ public class CameraV3TextureAndBufferRenderer extends SimpleCameraRenderer {
                     transformMatrix, mCameraPreviewWidth, mCameraPreviewHeight,
                     in, out, flip,
                     buffer, ImageFormat.NV21);
+
+            mCamera.releaseData(buffer);
         }
 
         return updateTextureId;

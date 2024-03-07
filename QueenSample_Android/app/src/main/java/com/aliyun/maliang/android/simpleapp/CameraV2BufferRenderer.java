@@ -1,10 +1,16 @@
 package com.aliyun.maliang.android.simpleapp;
 
 import android.content.Context;
+import android.opengl.GLES20;
 
+import com.aliyun.android.libqueen.ImageFormat;
 import com.aliyun.android.libqueen.QueenBeautyEffector;
+import com.aliyun.android.libqueen.aio.QueenImageFormat;
+import com.aliyun.android.libqueen.models.AlgType;
 import com.aliyun.maliang.android.simpleapp.camera.SimpleCameraRenderer;
+import com.aliyun.maliang.android.simpleapp.utils.GLTextureHelper;
 import com.aliyun.maliang.android.simpleapp.utils.QueenCameraHelper;
+import com.aliyunsdk.queen.menu.utils.BitmapUtils;
 import com.aliyunsdk.queen.param.QueenParamHolder;
 
 /**
@@ -12,27 +18,50 @@ import com.aliyunsdk.queen.param.QueenParamHolder;
  */
 public class CameraV2BufferRenderer extends SimpleCameraRenderer {
     private QueenBeautyEffector mQueenEffector;
+    private byte[] mProcessOutBuffer = null;
+    private int mProcessTextureId = -1;
 
     protected void onCreateEffector(Context context) {
         mQueenEffector = new QueenBeautyEffector();
         mQueenEffector.onCreateEngine(context);
+//        mQueenEffector.getEngine().enableDebugLog();
+//        mQueenEffector.getEngine().enableDetectPointDebug(AlgType.kFaceDetect, true);
     }
 
+    private boolean isSetViewport = false;
     protected int onDrawWithEffectorProcess() {
-        // 更新美颜特效参数，参数修改，在菜单组件中已完成交互
-        QueenParamHolder.writeParamToEngine(mQueenEffector.getEngine(), false);
-        // 设置抠图参数进行Y轴翻转，否则抠图mask会翻转过来
-        if (mQueenEffector.getEngine() != null) {
-            mQueenEffector.getEngine().setSegmentInfoFlipY(true);
-        }
+        int updateTextureId = -1;
+        int w = mCameraPreviewWidth;
+        int h = mCameraPreviewHeight;
+        byte[] buffer = mCamera.getLastUpdateCameraPixels();
+        if (buffer == null)
+            return updateTextureId;
 
-        int in = QueenCameraHelper.get().inputAngle;
-        int out = QueenCameraHelper.get().outAngle;
-        int flip = QueenCameraHelper.get().flipAxis;
-        // TODO：此处没有使用buffer进行绘制的示例，还是用的纹理表示。
-        int updateTextureId = mQueenEffector.onProcessOesTexture(mOESTextureId,
-                transformMatrix, mCameraPreviewWidth, mCameraPreviewHeight,
-                in, out, flip);
+        if (mQueenEffector.getEngine() != null) {
+            // 更新美颜特效参数，参数修改，在菜单组件中已完成交互
+            QueenParamHolder.writeParamToEngine(mQueenEffector.getEngine(), false);
+            // 设置抠图参数进行Y轴翻转，否则抠图mask会翻转过来
+            if (mQueenEffector.getEngine() != null) {
+                mQueenEffector.getEngine().setSegmentInfoFlipY(true);
+            }
+
+            int in = QueenCameraHelper.get().inputAngle;
+            int out = QueenCameraHelper.get().outAngle;
+            int flip = QueenCameraHelper.get().flipAxis;
+            byte[] rgbaBuf = GLTextureHelper.nv21toRGBA(buffer, w, h);
+
+            if (mProcessOutBuffer == null || rgbaBuf.length != mProcessOutBuffer.length) {
+                mProcessOutBuffer = new byte[rgbaBuf.length];
+            }
+            int result = mQueenEffector.onProcessDataBuf(rgbaBuf, mProcessOutBuffer, QueenImageFormat.RGBA, w, h, 0, in, out, flip);
+            updateTextureId = GLTextureHelper.loadRgbaBuf2Texture(mProcessOutBuffer, w, h, mProcessTextureId);
+
+        } else {
+            byte[] rgbaBuf = GLTextureHelper.nv21toRGBA(buffer, w, h);
+            updateTextureId = GLTextureHelper.loadRgbaBuf2Texture(rgbaBuf, w, h, mProcessTextureId);
+        }
+        mCamera.releaseData(buffer);
+        mProcessTextureId = updateTextureId;
 
         return updateTextureId;
     }
@@ -48,6 +77,6 @@ public class CameraV2BufferRenderer extends SimpleCameraRenderer {
     @Override
     protected void onSetViewportSize(int left, int bottom, int width, int height) {
         super.onSetViewportSize(left, bottom, width, height);
-        mQueenEffector.onSetOutViewportSize(left, bottom, width, height);
+//        mQueenEffector.onSetOutViewportSize(left, bottom, width, height);
     }
 }
