@@ -30,9 +30,13 @@ public class CameraV6AIOOesTextureRenderer extends SimpleCameraRenderer {
         int in = QueenCameraHelper.get().inputAngle;
         int out = QueenCameraHelper.get().outAngle;
         int flip = QueenCameraHelper.get().flipAxis;
-        int updateTextureId = mBeautyImpl.onProcessTexture(mOESTextureId, true,
-                                transformMatrix, mCameraPreviewWidth, mCameraPreviewHeight,
-                            in, out, flip);
+
+        int updateTextureId = mOESTextureId;
+        if (mBeautyImpl != null) {
+            updateTextureId = mBeautyImpl.onProcessTexture(mOESTextureId, true,
+                    transformMatrix, mCameraPreviewWidth, mCameraPreviewHeight,
+                    in, out, flip);
+        }
 
         return updateTextureId;
     }

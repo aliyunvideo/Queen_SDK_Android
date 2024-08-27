@@ -1,5 +1,6 @@
 package com.aliyun.maliang.android.simpleapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -22,9 +23,15 @@ import com.aliyunsdk.queen.menu.QueenMenuPanel;
 import com.aliyunsdk.queen.param.QueenParamHolder;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    public static final int REQUEST_CODE_SELECT_IMAGE = 1000;
+
     private boolean isDestroyed = false;
 
+    // 尝试图片模式处理美颜，将本字段修改为true。默认为false，采用相机视频模式处理美颜。
+    private boolean isImageMode = false;
     private MainViewSurfacePanel mMainSurfacePanel;
+
+    private BeautyImagePanel mMainImagePanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,23 +61,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initMainView() {
         FrameLayout background = new FrameLayout(this);
         background.setLayoutParams(new ViewGroup.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+        setContentView(background);
 
-        mMainSurfacePanel = new MainViewSurfacePanel(this);
-        // 创建采用纹理进行特效处理的方式
+        if (isImageMode) {
+            // 图片模式
+            mMainImagePanel = new BeautyImagePanel(this);
+            View view = mMainImagePanel.onCreateImagePanel();
+            background.addView(view);
+        } else {
+            // 视频预览模式
+            mMainSurfacePanel = new MainViewSurfacePanel(this);
+            // 创建采用纹理进行特效处理的方式
 //        SimpleCameraRenderer renderer = new CameraV1TextureRenderer();
-        // 创建采用数据buffer进行特效处理的方式
+            // 创建采用数据buffer进行特效处理的方式
 //         SimpleCameraRenderer renderer = new CameraV2BufferRenderer();
-        // 创建采用纹理渲染+buffer更新算法进行特效处理的方式
+            // 创建采用纹理渲染+buffer更新算法进行特效处理的方式
 //        SimpleCameraRenderer renderer = new CameraV3TextureAndBufferRenderer();
 //        SimpleCameraRenderer renderer = new CameraV4TextureRenderer();
 //        SimpleCameraRenderer renderer = new CameraV5TextureAndBufferRenderer();
-        SimpleCameraRenderer renderer = new CameraV6AIOOesTextureRenderer();
-        View mainSurfaceView = mMainSurfacePanel.createSurfaceView(renderer);
+            SimpleCameraRenderer renderer = new CameraV6AIOOesTextureRenderer();
+            View mainSurfaceView = mMainSurfacePanel.createSurfaceView(renderer);
 
-        if (mainSurfaceView == null) return;
-
-        // 添加相机预览界面
-        background.addView(mainSurfaceView);
+            background.addView(mainSurfaceView);
+        }
 
         // 添加右侧操控栏
         MainViewRightPanel cameraRightPanel = new MainViewRightPanel(this);
@@ -82,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 添加底部通用菜单
         initMenuView(background);
 
-        setContentView(background);
     }
 
     private void initMenuView(ViewGroup parentView) {
@@ -114,6 +126,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mMainSurfacePanel.onPause();
         }
 
+        if (mMainImagePanel != null) {
+            mMainImagePanel.onPause();
+        }
 
         QueenCameraHelper.get().onPause();
     }
@@ -129,6 +144,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mMainSurfacePanel.onResume();
         }
 
+        if (mMainImagePanel != null) {
+            mMainImagePanel.onResume();
+        }
+
         QueenCameraHelper.get().onResume();
     }
 
@@ -136,6 +155,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onDestroy() {
         if (mMainSurfacePanel != null) {
             mMainSurfacePanel.onDestroy();
+        }
+        if (mMainImagePanel != null) {
+            mMainImagePanel.onDestroy();
         }
         isDestroyed = true;
         FpsHelper.get().release();
@@ -148,6 +170,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (v.getId() == R.id.btnSwitchCamera && mMainSurfacePanel != null) {
             mMainSurfacePanel.switchCamera();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_SELECT_IMAGE) {
+            if (mMainImagePanel != null) {
+                mMainImagePanel.onUpdateNewData(data);
+            }
         }
     }
 }
