@@ -2,8 +2,14 @@ package com.aliyun.maliang.android.simpleapp;
 
 import android.content.Context;
 
+import com.aliyun.android.libqueen.Algorithm;
+import com.aliyun.android.libqueen.QueenBeautyEffector;
+import com.aliyun.android.libqueen.QueenConfig;
 import com.aliyun.android.libqueen.QueenEngine;
+import com.aliyun.android.libqueen.models.AlgInputMode;
+import com.aliyun.android.libqueen.models.AlgType;
 import com.aliyun.maliang.android.simpleapp.camera.SimpleCameraRenderer;
+import com.aliyun.maliang.android.simpleapp.utils.DebugHelper;
 import com.aliyun.maliang.android.simpleapp.utils.QueenCameraHelper;
 import com.aliyunsdk.queen.param.QueenParamHolder;
 
@@ -15,8 +21,19 @@ public class CameraV1TextureRenderer extends SimpleCameraRenderer {
 
     protected void onCreateEffector(Context context) {
         try {
-            mQueenEngine = new QueenEngine(context);
+            if (AppRuntime.DEBUG_IS_ALG_AUTO_MODE) {
+                // 如果算法自动检测输入方向模式，则用QueenConfig进行初始化。
+                // 注意开启自动检测模式，性能会下降，因为需要每帧都去检测，有额外运算
+                QueenConfig queenConfig = new QueenConfig();
+//                queenConfig.enableDebugLog = true;
+//                queenConfig.algInputMode = AlgInputMode.kModeAutomatic;
+                mQueenEngine = new QueenEngine(context, queenConfig);
+            } else {
+                mQueenEngine = new QueenEngine(context);
+            }
         } catch (Exception e) { e.printStackTrace(); }
+
+        DebugHelper.afterInitEngine(mQueenEngine);
     }
 
     protected int onDrawWithEffectorProcess() {
@@ -25,6 +42,14 @@ public class CameraV1TextureRenderer extends SimpleCameraRenderer {
         // 设置抠图参数进行Y轴翻转，否则抠图mask会翻转过来
         if (mQueenEngine != null) {
             mQueenEngine.setSegmentInfoFlipY(true);
+            // 调试时可用，开启log日志
+            if (AppRuntime.DEBUG_ENABLE_LOG) {
+                mQueenEngine.enableDebugLog();
+            }
+            // 调试时可用，开启人脸点位
+            if (AppRuntime.DEBUG_SHOW_FACE_POINTS) {
+                mQueenEngine.enableDetectPointDebug(AlgType.kFaceDetect, true);
+            }
         }
 
         int in = QueenCameraHelper.get().inputAngle;
@@ -33,6 +58,9 @@ public class CameraV1TextureRenderer extends SimpleCameraRenderer {
         int updateTextureId = processTextureInner(mQueenEngine, mOESTextureId, true,
                 transformMatrix, mCameraPreviewWidth, mCameraPreviewHeight,
                 in, out, flip);
+
+        // 调试时可用，可用于查看处理前后画面对比
+//        DebugHelper.afterProcessEngine(mQueenEngine, mOESTextureId, true, mCameraPreviewWidth, mCameraPreviewHeight);
 
         return updateTextureId;
     }

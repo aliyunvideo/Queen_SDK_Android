@@ -79,7 +79,7 @@ public class QueenCameraHelper {
         boolean isAngleChanged = newInputAngle != inputAngle || newOutAngle != outAngle;
         inputAngle = newInputAngle;
         outAngle = newOutAngle;
-        Log.i("QueenCameraHelper", "setCameraAngles [inputAngle: " + inputAngle + ", outAngle: " + outAngle + ", isFront: " + isFrontCamera() + "]");
+//        Log.i("QueenCameraHelper", "setCameraAngles [inputAngle: " + inputAngle + ", outAngle: " + outAngle + ", isFront: " + isFrontCamera() + "]");
         setFlipAxis(mInfo);
         if (isAngleChanged || isSystemAutoRotation == null) {
             // 获取是否开启自动旋转的特性

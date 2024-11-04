@@ -10,7 +10,7 @@ import com.aliyun.maliang.android.simpleapp.utils.QueenCameraHelper;
 import com.aliyunsdk.queen.param.QueenParamHolder;
 
 /**
- * 按照纹理的回调方式进行处理，直接使用QueenEngine实现
+ * 按照纹理的回调方式进行处理，使用QueenBeautyWrapper处理，可同时支持一体化sdk和单独接入的美颜sdk来，用这个更为简单
  */
 public class CameraV6AIOOesTextureRenderer extends SimpleCameraRenderer {
     private QueenBeautyInterface mBeautyImpl;

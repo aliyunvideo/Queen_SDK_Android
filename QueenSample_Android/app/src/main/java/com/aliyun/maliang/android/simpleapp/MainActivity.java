@@ -27,11 +27,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private boolean isDestroyed = false;
 
-    // 尝试图片模式处理美颜，将本字段修改为true。默认为false，采用相机视频模式处理美颜。
-    private boolean isImageMode = false;
     private MainViewSurfacePanel mMainSurfacePanel;
 
     private BeautyImagePanel mMainImagePanel;
+//    private BeautyImageTexturePanel mMainImagePanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,23 +62,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         background.setLayoutParams(new ViewGroup.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         setContentView(background);
 
-        if (isImageMode) {
+        if (AppRuntime.IMAGE_MODE) {
             // 图片模式
             mMainImagePanel = new BeautyImagePanel(this);
+//            mMainImagePanel = new BeautyImageTexturePanel(this);
             View view = mMainImagePanel.onCreateImagePanel();
             background.addView(view);
         } else {
             // 视频预览模式
             mMainSurfacePanel = new MainViewSurfacePanel(this);
             // 创建采用纹理进行特效处理的方式
-//        SimpleCameraRenderer renderer = new CameraV1TextureRenderer();
+        SimpleCameraRenderer renderer = new CameraV1TextureRenderer();
             // 创建采用数据buffer进行特效处理的方式
 //         SimpleCameraRenderer renderer = new CameraV2BufferRenderer();
             // 创建采用纹理渲染+buffer更新算法进行特效处理的方式
 //        SimpleCameraRenderer renderer = new CameraV3TextureAndBufferRenderer();
 //        SimpleCameraRenderer renderer = new CameraV4TextureRenderer();
 //        SimpleCameraRenderer renderer = new CameraV5TextureAndBufferRenderer();
-            SimpleCameraRenderer renderer = new CameraV6AIOOesTextureRenderer();
+//            SimpleCameraRenderer renderer = new CameraV6AIOOesTextureRenderer();
             View mainSurfaceView = mMainSurfacePanel.createSurfaceView(renderer);
 
             background.addView(mainSurfaceView);

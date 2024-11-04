@@ -19,10 +19,10 @@
 
         <meta-data
             android:name="com.aliyun.alivc_license.licensekey"
-            android:value=TODO：填入自行申请的证书licensekey（如aabbccdd）/>
+            android:value="xoQuEoYgOHs225cwh634fa27df8d3490e88337161a4d5ee92" />
         <meta-data
             android:name="com.aliyun.alivc_license.licensefile"
-            android:value=TODO：填入自行申请的证书文件路径（如assets/123.crt）/>
+            android:value="just_for_test_queen.crt"/>
 
         <activity android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"

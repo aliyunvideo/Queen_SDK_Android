@@ -14,7 +14,7 @@ import com.aliyunsdk.queen.menu.utils.BitmapUtils;
 import com.aliyunsdk.queen.param.QueenParamHolder;
 
 /**
- * 按照databuffer的回调方式进行处理
+ * 按照databuffer的回调方式，用封装好的QueenBeautyEffector处理，更简单
  */
 public class CameraV2BufferRenderer extends SimpleCameraRenderer {
     private QueenBeautyEffector mQueenEffector;
