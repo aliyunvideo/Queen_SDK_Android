@@ -1,0 +1,164 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "${rootDir.absolutePath}/git-hooks.gradle"
+apply from: 'vendors.gradle'
+
+def agoraSdkVersion = "4.4.1"
+def localSdkPath= "${rootProject.projectDir.absolutePath}/../../sdk"
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://maven.aliyun.com/repository/releases" }
+    }
+}
+
+android {
+    compileSdkVersion 32
+    buildToolsVersion "32.0.0"
+
+    defaultConfig {
+        applicationId "io.agora.api.example"
+        minSdkVersion 21
+        targetSdkVersion 32
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [
+               AppId: "${applicationId}"
+        ]
+        ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86-64'
+    }
+
+    signingConfigs {
+        myConfig {
+            storeFile new File(rootProject.rootDir.absolutePath + "/keystore.key")
+            storePassword "965606"
+            keyAlias "agora"
+            keyPassword "965606"
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.myConfig
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.myConfig
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs += 'src/main/jniLibs'
+            if(new File("${localSdkPath}").exists()){
+                jniLibs.srcDirs += "${localSdkPath}"
+            }
+        }
+    }
+
+    buildFeatures{
+        viewBinding true
+    }
+
+    packagingOptions {
+        pickFirst 'lib/*/libc++_shared.so'
+    }
+
+    buildFeatures{
+        viewBinding true
+    }
+
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all { output ->
+                outputFileName = new File(rootProject.name
+                        + "_" + agoraSdkVersion
+                        + "_" + new Date().format("yyyyMMddHHmm") + ".apk")
+            }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+
+    if(new File("${localSdkPath}").exists()){
+        implementation fileTree(dir: "${localSdkPath}", include: ['*.jar', '*.aar'])
+    }
+    else {
+
+        // case 1: full libs
+        implementation "io.agora.rtc:full-sdk:${agoraSdkVersion}"
+        implementation "io.agora.rtc:full-screen-sharing:${agoraSdkVersion}"
+        // case 2: partial libs
+        // implementation "io.agora.rtc:full-rtc-basic:${agoraSdkVersion}"
+        // implementation "io.agora.rtc:ains:${agoraSdkVersion}"
+        // implementation "io.agora.rtc:full-content-inspect:${agoraSdkVersion}"
+        // implementation "io.agora.rtc:full-virtual-background:${agoraSdkVersion}"
+        // implementation "io.agora.rtc:full-super-resolution:${agoraSdkVersion}"
+        // implementation "io.agora.rtc:spatial-audio:${agoraSdkVersion}"
+        // implementation "io.agora.rtc:audio-beauty:${agoraSdkVersion}"
+        // implementation "io.agora.rtc:clear-vision:${agoraSdkVersion}"
+        // implementation "io.agora.rtc:pvc:${agoraSdkVersion}"
+        // implementation "io.agora.rtc:screen-capture:${agoraSdkVersion}"
+        // implementation "io.agora.rtc:aiaec:${agoraSdkVersion}"
+        // implementation "io.agora.rtc:drm-loader:${agoraSdkVersion}"
+        // implementation "io.agora.rtc:drm:${agoraSdkVersion}"
+        // implementation "io.agora.rtc:full-vqa:${agoraSdkVersion}"
+    }
+
+    // 此处修改：根据自身项目需要，指定依赖的菜单组件sdk
+    implementation 'com.aliyun.maliang.android:queen_menu:6.8.1-official-pro-tiny'
+    // 此处修改：根据自身项目需要，指定依赖的sdk版本
+    implementation "com.aliyun.maliang.android:queen:6.8.2-official-pro"
+
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Java language implementation
+    implementation "androidx.navigation:navigation-fragment:2.5.0"
+    implementation "androidx.navigation:navigation-ui:2.5.0"
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    if (simpleFilter.toBoolean()) {
+        implementation project(path: ':agora-simple-filter')
+    }
+    if (streamEncrypt.toBoolean()) {
+        implementation project(path: ':agora-stream-encrypt')
+    }
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation 'io.github.luizgrp.sectionedrecyclerviewadapter:sectionedrecyclerviewadapter:1.2.0'
+    implementation 'com.yanzhenjie:permission:2.0.3'
+    implementation 'de.javagl:obj:0.2.1'
+
+    implementation "com.squareup.okhttp3:okhttp:4.10.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
+
+    implementation 'com.faceunity:core:8.7.0'
+    implementation 'com.faceunity:model:8.7.0'
+
+    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-arm64:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-x86:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.8.8'
+
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.16.0'
+}

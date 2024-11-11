@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".examples.advanced.LiveStreaming">
+
+    <io.agora.api.example.common.widget.VideoReportLayout
+        android:id="@+id/background_video"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/ll_join"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/foreground_layout"
+        layout="@layout/fragment_live_streaming_video_item"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/video_tracking_layout"
+        layout="@layout/fragment_live_streaming_video_tracking"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/btn_remote_screenshot"
+        app:layout_constraintStart_toStartOf="@id/btn_publish"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_remote_screenshot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+
+        android:text="@string/remote_screenshot"
+        app:layout_constraintBottom_toTopOf="@id/btn_publish"
+        app:layout_constraintStart_toStartOf="@id/btn_publish" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_publish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:enabled="false"
+        android:text="@string/enable_publish"
+        app:layout_constraintBottom_toTopOf="@id/ll_join"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_preload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/preload"
+        app:layout_constraintBottom_toTopOf="@id/ll_join"
+        app:layout_constraintStart_toEndOf="@id/btn_publish" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_switch_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/switch_camera"
+        app:layout_constraintBottom_toTopOf="@id/ll_join"
+        app:layout_constraintStart_toEndOf="@id/btn_preload" />
+
+    <LinearLayout
+        android:id="@+id/ll_join"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_channel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:digits="@string/chanel_support_char"
+            android:hint="@string/channel_id" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_join"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/join" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/setting" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

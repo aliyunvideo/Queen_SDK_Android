@@ -1,0 +1,29 @@
+pluginManagement {
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/public" }
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/public" }
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven {
+            url 'http://maven.faceunity.com/repository/maven-public/'
+            allowInsecureProtocol = true
+        }
+    }
+}
+rootProject.name='APIExample'
+include ':app'
+if (simpleFilter.toBoolean()) {
+    include ':agora-simple-filter'
+}
+if (streamEncrypt.toBoolean()) {
+    include ':agora-stream-encrypt'
+}

@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="audioProfile">
+        <item>DEFAULT</item>
+        <item>SPEECH_STANDARD</item>
+        <item>MUSIC_STANDARD</item>
+        <item>MUSIC_STANDARD_STEREO</item>
+        <item>MUSIC_HIGH_QUALITY</item>
+        <item>MUSIC_HIGH_QUALITY_STEREO</item>
+    </string-array>
+    <string-array name="streamMode">
+        <item>AGORA_CHANNEL</item>
+        <item>CDN_URL</item>
+    </string-array>
+    <string-array name="defaultChannel">
+        <item>Channel1</item>
+    </string-array>
+    <string-array name="audioScenario">
+        <item>DEFAULT</item>
+        <item>GAME_STREAMING</item>
+        <item>CHATROOM</item>
+    </string-array>
+    <string-array name="audioChatBeautifier">
+        <item>OFF</item>
+        <item>CHAT_BEAUTIFIER_VITALITY</item>
+        <item>CHAT_BEAUTIFIER_FRESH</item>
+        <item>CHAT_BEAUTIFIER_MAGNETIC</item>
+    </string-array>
+    <string-array name="audioTimbreTransformation">
+        <item>OFF</item>
+        <item>TIMBRE_TRANSFORMATION_VIGOROUS</item>
+        <item>TIMBRE_TRANSFORMATION_DEEP</item>
+        <item>TIMBRE_TRANSFORMATION_MELLOW</item>
+        <item>TIMBRE_TRANSFORMATION_FALSETTO</item>
+        <item>TIMBRE_TRANSFORMATION_FULL</item>
+        <item>TIMBRE_TRANSFORMATION_CLEAR</item>
+        <item>TIMBRE_TRANSFORMATION_RESOUNDING</item>
+        <item>TIMBRE_TRANSFORMATION_RINGING</item>
+    </string-array>
+    <string-array name="audioVoiceChanger">
+        <item>OFF</item>
+        <item>VOICE_CHANGER_EFFECT_UNCLE</item>
+        <item>VOICE_CHANGER_EFFECT_OLDMAN</item>
+        <item>VOICE_CHANGER_EFFECT_BOY</item>
+        <item>VOICE_CHANGER_EFFECT_SISTER</item>
+        <item>VOICE_CHANGER_EFFECT_GIRL</item>
+        <item>VOICE_CHANGER_EFFECT_PIGKING</item>
+        <item>VOICE_CHANGER_EFFECT_HULK</item>
+    </string-array>
+    <string-array name="audioStyleTransformation">
+        <item>OFF</item>
+        <item>STYLE_TRANSFORMATION_RNB</item>
+        <item>STYLE_TRANSFORMATION_POPULAR</item>
+    </string-array>
+    <string-array name="audioRoomAcoustics">
+        <item>OFF</item>
+        <item>ROOM_ACOUSTICS_KTV</item>
+        <item>ROOM_ACOUSTICS_VOCAL_CONCERT</item>
+        <item>ROOM_ACOUSTICS_STUDIO</item>
+        <item>ROOM_ACOUSTICS_PHONOGRAPH</item>
+        <item>ROOM_ACOUSTICS_VIRTUAL_STEREO</item>
+        <item>ROOM_ACOUSTICS_SPACIAL</item>
+        <item>ROOM_ACOUSTICS_ETHEREAL</item>
+        <item>ROOM_ACOUSTICS_3D_VOICE</item>
+        <item>ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND</item>
+    </string-array>
+    <string-array name="audioVoiceConversion">
+        <item>VOICE_CONVERSION_OFF</item>
+        <item>VOICE_CHANGER_NEUTRAL</item>
+        <item>VOICE_CHANGER_SWEET</item>
+        <item>VOICE_CHANGER_SOLID</item>
+        <item>VOICE_CHANGER_BASS</item>
+        <item>VOICE_CHANGER_CARTOON</item>
+        <item>VOICE_CHANGER_CHILDLIKE</item>
+        <item>VOICE_CHANGER_PHONE_OPERATOR</item>
+        <item>VOICE_CHANGER_MONSTER</item>
+        <item>VOICE_CHANGER_TRANSFORMERS</item>
+        <item>VOICE_CHANGER_GROOT</item>
+        <item>VOICE_CHANGER_DARTH_VADER</item>
+        <item>VOICE_CHANGER_IRON_LADY</item>
+        <item>VOICE_CHANGER_SHIN_CHAN</item>
+        <item>VOICE_CHANGER_GIRLISH_MAN</item>
+        <item>VOICE_CHANGER_CHIPMUNK</item>
+    </string-array>
+    <string-array name="audioBandFreq">
+        <item>AUDIO_EQUALIZATION_BAND_31</item>
+        <item>AUDIO_EQUALIZATION_BAND_62</item>
+        <item>AUDIO_EQUALIZATION_BAND_125</item>
+        <item>AUDIO_EQUALIZATION_BAND_250</item>
+        <item>AUDIO_EQUALIZATION_BAND_500</item>
+        <item>AUDIO_EQUALIZATION_BAND_1K</item>
+        <item>AUDIO_EQUALIZATION_BAND_2K</item>
+        <item>AUDIO_EQUALIZATION_BAND_4K</item>
+        <item>AUDIO_EQUALIZATION_BAND_8K</item>
+        <item>AUDIO_EQUALIZATION_BAND_16K</item>
+    </string-array>
+    <string-array name="audioReverbKey">
+        <item>AUDIO_REVERB_DRY_LEVEL</item>
+        <item>AUDIO_REVERB_WET_LEVEL</item>
+        <item>AUDIO_REVERB_ROOM_SIZE</item>
+        <item>AUDIO_REVERB_WET_DELAY</item>
+        <item>AUDIO_REVERB_STRENGTH</item>
+    </string-array>
+    <string-array name="audioPitchCorrection">
+        <item>OFF</item>
+        <item>PITCH_CORRECTION</item>
+    </string-array>
+    <string-array name="areaCode">
+        <item>GLOBAL</item>
+        <item>CN</item>
+        <item>NA</item>
+        <item>EU</item>
+        <item>AS</item>
+        <item>JP</item>
+        <item>IN</item>
+    </string-array>
+    <string-array name="voiceConversion">
+        <item>VOICE_CONVERSION_OFF</item>
+        <item>VOICE_CHANGER_NEUTRAL</item>
+        <item>VOICE_CHANGER_SWEET</item>
+        <item>VOICE_CHANGER_SOLID</item>
+        <item>VOICE_CHANGER_BASS</item>
+    </string-array>
+    <string-array name="audioPreset">
+        <item>ROOM_ACOUSTICS_KTV</item>
+        <item>ROOM_ACOUSTICS_VOCAL_CONCERT</item>
+        <item>ROOM_ACOUSTICS_STUDIO</item>
+        <item>ROOM_ACOUSTICS_PHONOGRAPH</item>
+        <item>ROOM_ACOUSTICS_VIRTUAL_STEREO</item>
+        <item>ROOM_ACOUSTICS_SPACIAL</item>
+        <item>ROOM_ACOUSTICS_ETHEREAL</item>
+        <item>ROOM_ACOUSTICS_3D_VOICE</item>
+        <item>VOICE_CHANGER_EFFECT_UNCLE</item>
+        <item>VOICE_CHANGER_EFFECT_OLDMAN</item>
+        <item>VOICE_CHANGER_EFFECT_BOY</item>
+        <item>VOICE_CHANGER_EFFECT_SISTER</item>
+        <item>VOICE_CHANGER_EFFECT_GIRL</item>
+        <item>VOICE_CHANGER_EFFECT_PIGKING</item>
+        <item>VOICE_CHANGER_EFFECT_HULK</item>
+        <item>STYLE_TRANSFORMATION_RNB</item>
+        <item>STYLE_TRANSFORMATION_POPULAR</item>
+        <item>PITCH_CORRECTION</item>
+    </string-array>
+    <string-array name="voiceBeautifier">
+        <item>CHAT_BEAUTIFIER_MAGNETIC</item>
+        <item>CHAT_BEAUTIFIER_FRESH</item>
+        <item>CHAT_BEAUTIFIER_VITALITY</item>
+        <item>TIMBRE_TRANSFORMATION_VIGOROUS</item>
+        <item>TIMBRE_TRANSFORMATION_DEEP</item>
+        <item>TIMBRE_TRANSFORMATION_MELLOW</item>
+        <item>TIMBRE_TRANSFORMATION_FALSETTO</item>
+        <item>TIMBRE_TRANSFORMATION_FULL</item>
+        <item>TIMBRE_TRANSFORMATION_CLEAR</item>
+        <item>TIMBRE_TRANSFORMATION_RESOUNDING</item>
+        <item>TIMBRE_TRANSFORMATION_RINGING</item>
+        <item>ULTRA_HIGH_QUALITY_VOICE</item>
+    </string-array>
+    <string-array name="pitchOption1">
+        <item>Natural Major</item>
+        <item>Natural Minor</item>
+        <item>Breeze Minor</item>
+    </string-array>
+    <string-array name="pitchOption2">
+        <item>A Pitch</item>
+        <item>A# Pitch</item>
+        <item>B Pitch</item>
+        <item>C Pitch</item>
+        <item>C# Pitch</item>
+        <item>D Pitch</item>
+        <item>D# Pitch</item>
+        <item>E Pitch</item>
+        <item>F Pitch</item>
+        <item>F# Pitch</item>
+        <item>G Pitch</item>
+        <item>G# Pitch</item>
+    </string-array>
+    <string-array name="encryptionModes">
+        <item>AES_128_XTS</item>
+        <item>AES_128_ECB</item>
+        <item>AES_256_XTS</item>
+        <item>SM4_128_ECB</item>
+        <item>AES_128_GCM</item>
+        <item>AES_256_GCM</item>
+        <item>AES_128_GCM2</item>
+        <item>AES_256_GCM2</item>
+        <item>@string/custom</item>
+    </string-array>
+    <string-array name="dimensions">
+        <item>VD_120x120</item>
+        <item>VD_160x120</item>
+        <item>VD_180x180</item>
+        <item>VD_240x180</item>
+        <item>VD_320x180</item>
+        <item>VD_240x240</item>
+        <item>VD_320x240</item>
+        <item>VD_424x240</item>
+        <item>VD_360x360</item>
+        <item>VD_480x360</item>
+        <item>VD_640x360</item>
+        <item>VD_480x480</item>
+        <item>VD_640x480</item>
+        <item>VD_840x480</item>
+        <item>VD_960x540</item>
+        <item>VD_960x720</item>
+        <item>VD_1280x720</item>
+        <item>VD_1920x1080</item>
+        <item>VD_1920x1080</item>
+        <item>VD_2540x1440</item>
+        <item>VD_3840x2160</item>
+    </string-array>
+    <string-array name="orientations">
+        <item>ORIENTATION_MODE_ADAPTIVE</item>
+        <item>ORIENTATION_MODE_FIXED_LANDSCAPE</item>
+        <item>ORIENTATION_MODE_FIXED_PORTRAIT</item>
+    </string-array>
+    <string-array name="fps">
+        <item>FRAME_RATE_FPS_1</item>
+        <item>FRAME_RATE_FPS_7</item>
+        <item>FRAME_RATE_FPS_10</item>
+        <item>FRAME_RATE_FPS_15</item>
+        <item>FRAME_RATE_FPS_24</item>
+        <item>FRAME_RATE_FPS_30</item>
+        <item>FRAME_RATE_FPS_60</item>
+    </string-array>
+
+    <string-array name="beauty">
+        <item>@string/scenetime_beauty</item>
+        <item>@string/faceunity_beauty</item>
+    </string-array>
+
+    <string-array name="encoder_type" >
+        <item>Auto</item>
+        <item>Hardware</item>
+        <item>Software</item>
+    </string-array>
+    <string-array name="screen_scenario_type" >
+        <item>SCREEN_SCENARIO_DOCUMENT</item>
+        <item>SCREEN_SCENARIO_GAMING</item>
+        <item>SCREEN_SCENARIO_VIDEO</item>
+    </string-array>
+    <string-array name="push_buffer_type" >
+        <item>I420</item>
+        <item>NV21</item>
+        <item>NV12</item>
+        <item>Texture2D</item>
+    </string-array>
+
+    <string-array name="render_mode" >
+        <item>@string/render_mode_hidden</item>
+        <item>@string/render_mode_fit</item>
+        <item>@string/render_mode_adaptive</item>
+    </string-array>
+
+    <string-array name="channel_profile" >
+        <item>@string/channel_profile_communication</item>
+        <item>@string/channel_profile_live_broadcasting</item>
+        <item>@string/channel_profile_game</item>
+        <item>@string/channel_profile_cloud_gaming</item>
+        <item>@string/channel_profile_communication_1v1</item>
+    </string-array>
+    <string-array name="audio_route" >
+        <item>@string/audio_route_speakerphone</item>
+        <item>@string/audio_route_earpiece</item>
+        <item>@string/audio_route_headset</item>
+        <item>@string/audio_route_headset_bluetooth</item>
+    </string-array>
+
+    <string-array name="third_party_players">
+        <item>@string/third_party_player_ijk</item>
+        <item>@string/third_party_player_exo</item>
+        <item>@string/third_party_player_native</item>
+    </string-array>
+
+    <string-array name="audio_ains_mode">
+        <item>OFF</item>
+        <item>AINS_MODE_BALANCED</item>
+        <item>AINS_MODE_AGGRESSIVE</item>
+        <item>AINS_MODE_ULTRALOWLATENCY</item>
+    </string-array>
+
+    <string-array name="voice_ai_tuner">
+        <item>OFF</item>
+        <item>VOICE_AI_TUNER_MATURE_MALE</item>
+        <item>VOICE_AI_TUNER_FRESH_MALE</item>
+        <item>VOICE_AI_TUNER_ELEGANT_FEMALE</item>
+        <item>VOICE_AI_TUNER_SWEET_FEMALE</item>
+        <item>VOICE_AI_TUNER_WARM_MALE_SINGING</item>
+        <item>VOICE_AI_TUNER_GENTLE_FEMALE_SINGING</item>
+        <item>VOICE_AI_TUNER_HUSKY_MALE_SINGING</item>
+        <item>VOICE_AI_TUNER_WARM_ELEGANT_FEMALE_SINGING</item>
+        <item>VOICE_AI_TUNER_POWERFUL_MALE_SINGING</item>
+        <item>VOICE_AI_TUNER_DREAMY_FEMALE_SINGING</item>
+    </string-array>
+
+</resources>

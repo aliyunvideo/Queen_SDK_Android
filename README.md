@@ -14,9 +14,13 @@
 
 
 ## 前言
-1. 本开源工程介绍了，如何在声网直播SDK中，接入Queen美颜SDK。本项目Demo来自声网官方版本,Demo资源名为:[跑通 Agora Live 示例项目
+1. 本开源工程介绍了，如何在声网直播SDK（老版本）中，接入Queen美颜SDK。本项目Demo来自声网官方版本,Demo资源名为:[跑通 Agora Live 示例项目
 ](https://docs.agora.io/cn/Live-stream%20Shopping/run_agora_live_android),官方下载地址为:[声网Agora Live 的github地址](https://github.com/AgoraIO-Usecase/AgoraLive)
 2. 本工程可直接本地运行，查看美颜效果，并配置好菜单，不用额外配置账号或授权信息
+
+3. 因为声网Demo进行了较大版本的升级，此处再次升级针对声网SDK-v4.4.1版本进行适配，所用Demo完全来自于声网官方SDK，仅新增阿里云Queen美颜sdk的适配接入示例，未做其他修改，不可用于。该Demo项目的代码所属版权及可能商用授权，归声网所有，本处仅作接入示例，研究学习用。
+Demo源码见：[声网Demo项目来源](https://gitee.com/agoraio-community/API-Examples/tree/main/Android/APIExample)
+4. 该项目，需要自行向阿里云申请美颜授权证书，按照项目介绍中的配置进行配置后，才可查看美颜效果。
 
 ## 前提条件
 1. 已申请好Queen-SDK的License授权，申请方式参见[License申请](https://help.aliyun.com/document_detail/312036.html)
