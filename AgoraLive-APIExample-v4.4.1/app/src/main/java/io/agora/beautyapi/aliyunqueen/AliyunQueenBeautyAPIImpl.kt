@@ -622,12 +622,23 @@ class AliyunQueenBeautyAPIImpl : AliyunQueenBeautyAPI, IVideoFrameObserver {
         var setInputTextureHeight = w
         var setGenOutTextureKeepDirection = 1
 
-        mMockMatrix = floatArrayOf(
-            0.0f, -1.0f, 0.0f, 0.0f,
-            1.0f, 0.0f, 0.0f, 0.0f,
-            0.0f, 0.0f, 1.0f, 0.0f,
-            0.0f, 1.0f, 0.0f, 1.0f
-        )   // 逆时针90度旋转，同时保持 z 坐标不变
+        if (isFront) {
+            mMockMatrix = floatArrayOf(
+                0.0f, -1.0f, 0.0f, 0.0f,    // 表示把原图像的 x 轴转变为 -y 轴。
+                1.0f, 0.0f, 0.0f, 0.0f,     // 表示把原图像的 y 轴转变为 x 轴。
+                0.0f, 0.0f, 1.0f, 0.0f,
+                0.0f, 1.0f, 0.0f, 1.0f
+            )   // 逆时针90度旋转，同时保持 z 坐标不变
+
+        } else {
+            mMockMatrix = floatArrayOf(
+                0.0f, 1.0f, 0.0f, 0.0f,  // 把原图像的 x 轴转变为 y 轴。
+                -1.0f, 0.0f, 0.0f, 0.0f,  //把原图像的 y 轴转变为 -x 轴。
+                0.0f, 0.0f, 1.0f, 0.0f,
+                1.0f, 0.0f, 0.0f, 1.0f
+            )
+        }
+
 
         // 摄像头正向摆放，实际采集到画面是逆时针270度的，也就是说，手机摆放角度与实际采集画面角度，实际是相差270度。
         var setAlgUpdateInputAngle = if(isFront) {
