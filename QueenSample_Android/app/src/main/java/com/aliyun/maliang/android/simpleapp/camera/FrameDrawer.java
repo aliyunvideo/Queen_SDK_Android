@@ -161,11 +161,23 @@ public class FrameDrawer {
         mViewport[3] = height;
     }
 
-    public void draw(float[] transformMatrix, int textureId) {
-        draw(transformMatrix, textureId, mIsOesDrawer);
+    public void draw(float[] transformMatrix, int textureId, float[] positions) {
+        // 将这些顶点坐标传给OpenGL进行绘制
+        FloatBuffer newVertexBuffer = vertexBuffer;
+        if (positions != null && positions.length == 8) {
+            ByteBuffer.allocateDirect(positions.length * 4)
+                    .order(ByteOrder.nativeOrder())
+                    .asFloatBuffer();
+            newVertexBuffer.put(positions).position(0);
+        }
+        draw(transformMatrix, textureId, mIsOesDrawer, newVertexBuffer);
     }
 
-    public void draw(float[] transformMatrix, int textureId, final boolean isOesTexture) {
+    public void draw(float[] transformMatrix, int textureId) {
+        draw(transformMatrix, textureId, mIsOesDrawer, vertexBuffer);
+    }
+
+    public void draw(float[] transformMatrix, int textureId, final boolean isOesTexture, FloatBuffer newVertexBuffer) {
 
         if (isOesTexture != mIsOesDrawer) {
             mIsOesDrawer = isOesTexture;
@@ -183,7 +195,7 @@ public class FrameDrawer {
         // 设置坐标信息
         mPositionHandle = GLES20.glGetAttribLocation(shaderProgram, "vPosition");
         GLES20.glEnableVertexAttribArray(mPositionHandle);
-        GLES20.glVertexAttribPointer(mPositionHandle, COORDINATE_PER_VERTEX, GLES20.GL_FLOAT, false, vertexStride, vertexBuffer);
+        GLES20.glVertexAttribPointer(mPositionHandle, COORDINATE_PER_VERTEX, GLES20.GL_FLOAT, false, vertexStride, newVertexBuffer);
 
         // 设置纹理和uv
         mTextureCoordinateHandle = GLES20.glGetAttribLocation(shaderProgram, "a_TexCoordinate");

@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private MainViewSurfacePanel mMainSurfacePanel;
 
-    private BeautyImagePanel mMainImagePanel;
-//    private BeautyImageTexturePanel mMainImagePanel;
+//    private BeautyImagePanel mMainImagePanel;
+    private BeautyImageTextureV2Panel mMainImagePanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (AppRuntime.IMAGE_MODE) {
             // 图片模式
-            mMainImagePanel = new BeautyImagePanel(this);
-//            mMainImagePanel = new BeautyImageTexturePanel(this);
+//            mMainImagePanel = new BeautyImagePanel(this);
+            mMainImagePanel = new BeautyImageTextureV2Panel(this);
             View view = mMainImagePanel.onCreateImagePanel();
             background.addView(view);
         } else {
@@ -93,11 +93,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         background.addView(cameraRightPanel, params);
 
         // 添加底部通用菜单
-        initMenuView(background);
-
+        QueenMenuPanel menuPanel = initMenuView(background);
+        // 增加菜单组件参数变化监听
+        menuPanel.setParamChangeListener(mMainImagePanel);
     }
 
-    private void initMenuView(ViewGroup parentView) {
+    private QueenMenuPanel initMenuView(ViewGroup parentView) {
         // 老式用法
         // BeautyMenuPanel menuPanel = new BeautyMenuPanel(this);
 
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menuPanel.onHideValidFeatures();
         // 隐藏copyright显示
         menuPanel.onHideCopyright();
+        return menuPanel;
     }
 
     @Override
@@ -170,6 +172,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (v.getId() == R.id.btnSwitchCamera && mMainSurfacePanel != null) {
             mMainSurfacePanel.switchCamera();
+        } else if (v.getId() == R.id.btnSwitchQueen && mMainImagePanel != null) {
+            mMainImagePanel.onParamChange();
         }
     }
 

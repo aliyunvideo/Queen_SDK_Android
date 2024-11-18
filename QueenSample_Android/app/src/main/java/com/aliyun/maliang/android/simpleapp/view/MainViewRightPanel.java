@@ -31,7 +31,8 @@ public class MainViewRightPanel extends FrameLayout implements View.OnClickListe
         View btnSwitchCamera = findViewById(R.id.btnSwitchCamera);
         btnSwitchCamera.setOnClickListener(this);
 
-        View btnSwitchQueen = findViewById(R.id.btnSwitchQueen);
+        final View btnSwitchQueen = findViewById(R.id.btnSwitchQueen);
+        btnSwitchQueen.setOnClickListener(this);
         btnSwitchQueen.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -42,6 +43,7 @@ public class MainViewRightPanel extends FrameLayout implements View.OnClickListe
                     // 释放了重置
                     QueenRuntime.isEnableQueen = true;
                 }
+                btnSwitchQueen.performClick();
                 return true;
             }
         });
