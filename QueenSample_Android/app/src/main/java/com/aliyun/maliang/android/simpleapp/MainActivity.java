@@ -99,6 +99,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private QueenMenuPanel initMenuView(ViewGroup parentView) {
+        // 注意：菜单面板，如果采用资源动态下载的方式，而非内置资源，则需要自行设置资源下载路径地址。
+        // 不要使用菜单组件自带的默认下载地址，因为默认地址，仅供阿里云Demo进行功能展示使用，不稳定不可靠，存在随时下线风险，请务必请自行设置资源下载地址。
+        // 资源包，请见项目根目录Resource下；务必在菜单组件初始化前设置，设置方式如下：
+        // QueenMaterial.getInstance().setMaterialUrl(QueenMaterial.MaterialType.STICKER, "https://diy.server/sticker.zip");
+
         // 老式用法
         // BeautyMenuPanel menuPanel = new BeautyMenuPanel(this);
 
