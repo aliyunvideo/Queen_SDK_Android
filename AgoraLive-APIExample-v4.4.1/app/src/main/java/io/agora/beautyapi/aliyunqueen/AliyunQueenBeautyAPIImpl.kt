@@ -362,28 +362,33 @@ class AliyunQueenBeautyAPIImpl : AliyunQueenBeautyAPI, IVideoFrameObserver {
             return false
         }
 
-        // 不要作转换，为保障最大适用场景，此处采取方案为，保证输出画面尺寸方向，与输入尺寸方向一致，继续沿用原有的绘制流程。
-        // 因此，此处wrapTextureBuffer时采用标准matrix，且replaceBuffer时的rotation继续使用原rotation。
-        // textureBuffer.transformMatrix的作用是y轴翻转，也就是左右反向，其他不动;若在wrapTextureBuffer()将其设置为标准matrix，则预览为正常。
         val tmpValues = FloatArray(9)
         (videoFrame.buffer as TextureBuffer).transformMatrix.getValues(tmpValues)
         val updateValues = FloatArray(9)
+        var hadFlipY = false   // 判断是否需要y轴翻转，可能部分手机不需要翻转
         for (i in 0 until 9) {
             updateValues[i] = tmpValues[i]
-//            if (i == 4) {   // 第4个代表y轴翻转，
-//                updateValues[i] = abs(updateValues[i])
-//            }
+            if (i == 4 && updateValues[i] < 0.0) {   // i=4的值代表y轴缩放比，小于0代表y轴翻转，这里不使用声网的翻转，因此取绝对值
+                updateValues[i] = abs(updateValues[i])
+                hadFlipY = true
+            } else if (i == 5 && hadFlipY) {   // i=5的值，代表偏移多少，有缩放时，需要调整偏移量，以便裁剪掉一部分
+                updateValues[i] = (1.0f - updateValues[i])
+            }
         }
-        val updateMatrix = Matrix()
-        updateMatrix.setValues(updateValues)
+
+        val frontMatrix = Matrix()
+        frontMatrix.setValues(updateValues)
+
+        val backMatrix = (videoFrame.buffer as TextureBuffer).transformMatrix
+
+        val updateMatrix = if (isFrontCamera) frontMatrix else backMatrix
+
         val processBuffer: TextureBuffer = textureBufferHelper?.wrapTextureBuffer(
             textWidth,
             textHeight,
             TextureBuffer.Type.RGB,
             processTexId,
             updateMatrix
-//            (videoFrame.buffer as TextureBuffer).transformMatrix
-//            Matrix()
         ) ?: return false
 
         videoFrame.replaceBuffer(processBuffer, videoFrame.rotation, videoFrame.timestampNs)
@@ -392,58 +397,8 @@ class AliyunQueenBeautyAPIImpl : AliyunQueenBeautyAPI, IVideoFrameObserver {
     }
 
     private fun processBeautyAuto(videoFrame: VideoFrame): Int {
-//        return processBeautySingleBuffer(videoFrame)
         return processBeautySingleTexture(videoFrame)     // 纹理模式在横放置时，仍有角度问题，采用buffer模式即可，避免纹理读取buffer，性能更高
     }
-
-    private fun processBeautySingleBuffer(videoFrame: VideoFrame): Int {
-        val texBufferHelper = textureBufferHelper ?: return -1
-        val nv21Buffer = getNV21Buffer(videoFrame) ?: return -1
-
-        return texBufferHelper.invoke(Callable {
-            val textureBuffer = videoFrame.buffer as TextureBuffer
-            val srcTextureId = textureBuffer.textureId
-            val transformValues = FloatArray(9)
-            textureBuffer.transformMatrix.getValues(transformValues)
-            val scaledWidth = abs(transformValues[0])       // 取得缩放值
-            val scaledHeight = abs(transformValues[4])      // 取得缩放值
-            val width = round( videoFrame.buffer.width / scaledWidth).toInt()
-            val height = round(videoFrame.buffer.height / scaledHeight).toInt()
-
-            ensureEngine()
-
-            var inputParams = getInputParamsInBuffer(width, height, isFrontCamera, deviceOrientation)
-            queenEngine?.setInputTexture(srcTextureId, height, width,false)
-            if (null == mOutTexture2D) {
-                mOutTexture2D = queenEngine?.autoGenOutTexture(true)
-            }
-
-//            mOutTexture2D?.textureId?.let { queenEngine?.updateOutTexture(it, textureBuffer.height, textureBuffer.width) };
-//            queenEngine?.setScreenViewport((height-textureBuffer.height)/2,(width-textureBuffer.width)/2,  textureBuffer.height, textureBuffer.width)
-            // 显示正常，无人脸，注意update处是缩放后的width, height。
-            // 显示正常，有人脸，注意update处是正确标准的videoFrame.buffer.width, height。但是脸部点位膨胀。推测受到画面拉伸的原始尺寸影响
-//            queenEngine?.setOutputRect((height-textureBuffer.height)/2,(width-textureBuffer.width)/2,  textureBuffer.height, textureBuffer.width)
-
-            QueenParamHolder.writeParamToEngine(queenEngine, false)
-            queenEngine?.enableFacePointDebug(true)
-            queenEngine?.setSegmentInfoFlipY(true)
-            queenEngine?.updateInputDataAndRunAlg(nv21Buffer, ImageFormat.NV21, videoFrame.buffer.width, videoFrame.buffer.height, 0, inputParams[3], 0, 0)
-
-            val retCode: Int = if (mMockMatrix != null) {
-                queenEngine?.renderTexture(mMockMatrix) ?: 0 // 如果为null，返回默认值0
-            } else {
-                queenEngine?.render() ?: 0 // 如果为null，返回默认值0
-            }
-
-            //DebugHelper.afterProcessEngine(queenEngine, srcTextureId, false, width, height);
-            if (retCode == QueenResult.QUEEN_OK) {
-                return@Callable mOutTexture2D?.textureId ?: srcTextureId
-            } else {
-                return@Callable srcTextureId
-            }
-        })
-    }
-
 
     private fun processBeautySingleTexture(videoFrame: VideoFrame): Int {
         val texBufferHelper = textureBufferHelper ?: return -1
@@ -467,10 +422,6 @@ class AliyunQueenBeautyAPIImpl : AliyunQueenBeautyAPI, IVideoFrameObserver {
         }
 
         return texBufferHelper.invoke(Callable {
-//            val textureBuffer = videoFrame.buffer as TextureBuffer
-//            val width = textureBuffer.width
-//            val height = textureBuffer.height
-
             val textureBuffer = videoFrame.buffer as TextureBuffer
             val srcTextureId = textureBuffer.textureId
             val transformValues = FloatArray(9)
@@ -482,8 +433,7 @@ class AliyunQueenBeautyAPIImpl : AliyunQueenBeautyAPI, IVideoFrameObserver {
 
             ensureEngine()
 
-            var inputParams = getInputParamsInTexture2(width, height, isFrontCamera, deviceOrientation)
-
+            var inputParams = getInputParamsInTexture(width, height, isFrontCamera, deviceOrientation)
 
             queenEngine?.setInputTexture(srcTextureId, inputParams[0], inputParams[1],false)
             if (null == mOutTexture2D) {
@@ -502,9 +452,9 @@ class AliyunQueenBeautyAPIImpl : AliyunQueenBeautyAPI, IVideoFrameObserver {
 
 
             val retCode: Int = if (mMockMatrix != null) {
-                queenEngine?.renderTexture(mMockMatrix) ?: 0 // 如果为null，返回默认值0
+                queenEngine?.renderTexture(mMockMatrix) ?: -1 // 如果为null，返回默认值0
             } else {
-                queenEngine?.render() ?: 0 // 如果为null，返回默认值0
+                queenEngine?.render() ?: -1 // 如果为null，返回默认值0
             }
 
 //            DebugHelper.afterProcessEngine(queenEngine, srcTextureId, false, width, height);
@@ -512,46 +462,6 @@ class AliyunQueenBeautyAPIImpl : AliyunQueenBeautyAPI, IVideoFrameObserver {
             val resultTexture2D = mOutTexture2D?.textureId ?: srcTextureId
             if (retCode == QueenResult.QUEEN_OK) {
                 return@Callable resultTexture2D
-            } else {
-                return@Callable srcTextureId
-            }
-        })
-    }
-
-
-    private fun processBeautySingleBuffer2(videoFrame: VideoFrame): Int {
-        val texBufferHelper = textureBufferHelper ?: return -1
-        val nv21Buffer = getNV21Buffer(videoFrame) ?: return -1
-        val outNv21Buffer =  getEmptyNV21Buffer(videoFrame)
-
-        return texBufferHelper.invoke(Callable {
-            val textureBuffer = videoFrame.buffer as TextureBuffer
-            val srcTextureId = textureBuffer.textureId
-            val transformValues = FloatArray(9)
-            textureBuffer.transformMatrix.getValues(transformValues)
-            val scaledWidth = abs(transformValues[0])       // 取得缩放值
-            val scaledHeight = abs(transformValues[4])      // 取得缩放值
-            val width = round( videoFrame.buffer.width / scaledWidth).toInt()
-            val height = round(videoFrame.buffer.height / scaledHeight).toInt()
-
-            ensureEngine()
-
-            var inputParams = getInputParamsInBuffer(width, height, isFrontCamera, deviceOrientation)
-
-            QueenParamHolder.writeParamToEngine(queenEngine, false)
-            queenEngine?.enableFacePointDebug(true)
-            queenEngine?.setSegmentInfoFlipY(true)
-
-            val retCode: Int? = queenEngine?.processBufferData(nv21Buffer, outNv21Buffer, ImageFormat.NV21, videoFrame.buffer.width, videoFrame.buffer.height,
-                0, inputParams[3], 0, 0)
-
-            if (null == mOutTexture2D) {
-                mOutTexture2D = queenEngine?.autoGenOutTexture(true)
-            }
-
-            DebugHelper.afterProcessEngine(queenEngine, srcTextureId, false, width, height);
-            if (retCode == QueenResult.QUEEN_OK) {
-                return@Callable mOutTexture2D?.textureId ?: srcTextureId
             } else {
                 return@Callable srcTextureId
             }
@@ -588,132 +498,86 @@ class AliyunQueenBeautyAPIImpl : AliyunQueenBeautyAPI, IVideoFrameObserver {
         if (orientationListener?.canDetectOrientation() == true) orientationListener?.enable()
     }
 
-    /**
-     * 返回输入所需的参数信息，数组顺序为：[]setInputWidth, setInputHeight, autoGenOutTextureKeepDirection, algUpdateInputAngle]
-     */
     private fun getInputParamsInTexture(w:Int, h:Int, isFront: Boolean, orientation: Int): IntArray {
-        var setInputTextureWidth: Int
-        var setInputTextureHeight: Int
-        var setGenOutTextureKeepDirection: Int
-        var setAlgUpdateInputAngle: Int
-
-        var mockCameraAngle = if (isFront) { orientation }
-                                else { (orientation + 180) % 360 }
-
-        if (mockCameraAngle == 0) {
-            // 手机前置相机+摆放正向 以及 后置相机+摆放倒立，适用本规则
-            // 输入为横屏，（头朝向右，相对正向，在逆时针270度，即w > h），一般前置摄像头，选择此项
-            setGenOutTextureKeepDirection = 1
-            setInputTextureWidth = h
-            setInputTextureHeight = w
-            setAlgUpdateInputAngle = 270
-            mMockMatrix = floatArrayOf(
-                0.0f, -1.0f, 0.0f, 0.0f,
-                1.0f, 0.0f, 0.0f, 0.0f,
-                0.0f, 0.0f, 1.0f, 0.0f,
-                0.0f, 1.0f, 0.0f, 1.0f
-            )
-
-        } else if (mockCameraAngle == 180) {
-            // 手机前置相机+倒立 以及 后置相机+正向，适用本规则
-            // 横屏，（头朝向左，相对正向，逆时针90度，即w > h），一般后置摄像头，选择此项
-            setGenOutTextureKeepDirection = 1
-            setInputTextureWidth = h
-            setInputTextureHeight = w
-            setAlgUpdateInputAngle = 90
-            mMockMatrix = floatArrayOf(
-                0.0f, -1.0f, 0.0f, 0.0f,
-                1.0f, 0.0f, 0.0f, 0.0f,
-                0.0f, 0.0f, 1.0f, 0.0f,
-                0.0f, 1.0f, 0.0f, 1.0f
-            )
-        } else if (mockCameraAngle == 90) {
-            // 输入画面为横屏模式下，头顶正向下。前置相机+手机摆放摄像头在右方，后置相机+手机摆放摄像头在左方
-            setGenOutTextureKeepDirection = 1
-            setInputTextureWidth = h
-            setInputTextureHeight = w
-            setAlgUpdateInputAngle = 180
-            queenEngine?.setRenderAndFaceFlip(Flip.kNone, Flip.kFlipY)  // NOTE, 如果需要贴纸反过来，则设置此处的值为Y
-            mMockMatrix = null
-        } else {
-            // 输入画面为横屏模式下，头顶正向上。前置相机+手机摆放摄像头在左方，后置相机+手机摆放摄像头在右方
-            setGenOutTextureKeepDirection = 1
-            setInputTextureWidth = h
-            setInputTextureHeight = w
-            setAlgUpdateInputAngle = 0
-//            queenEngine?.setRenderAndFaceFlip(Flip.kNone, Flip.kFlipY)  // NOTE, 如果需要贴纸反过来，则设置此处的值为Y
-            mMockMatrix = null
-        }
-
-        return intArrayOf(
-            setInputTextureWidth, setInputTextureHeight, setGenOutTextureKeepDirection, setAlgUpdateInputAngle
-        )
-    }
-
-    private fun getInputParamsInTexture2(w:Int, h:Int, isFront: Boolean, orientation: Int): IntArray {
         var setInputTextureWidth = h
         var setInputTextureHeight = w
         var setGenOutTextureKeepDirection = 1
         var setAlgUpdateInputAngle: Int
 
-        // 上下翻转
-        val flipXMatrix = floatArrayOf(
-            1.0f,  0.0f, 0.0f, 0.0f,  // x' = x
-            0.0f, -1.0f, 0.0f, 0.0f,  // y' = -y
-            0.0f,  0.0f, 1.0f, 0.0f,  // z' = z
-            0.0f,  0.0f, 0.0f, 1.0f   // w' = w (保持齐次坐标不变)
-        )
-
-        val flipYMatrix = floatArrayOf(
-            -1.0f, 0.0f, 0.0f, 0.0f,    // 水平翻转 x 轴（x -> -x）
-            0.0f, 1.0f, 0.0f, 0.0f,     // y 轴保持不变（y -> y）
-            0.0f, 0.0f, 1.0f, 0.0f,     // z 轴保持不变（z -> z）
-            0.0f, 0.0f, 0.0f, 1.0f      // 齐次坐标保持不变
-        )
-
-
-        if (isFront) {
-            mMockMatrix = floatArrayOf(
-                0.0f, -1.0f, 0.0f, 0.0f,    // 表示把原图像的 x 轴转变为 -y 轴。
-                1.0f, 0.0f, 0.0f, 0.0f,     // 表示把原图像的 y 轴转变为 x 轴。
-                0.0f, 0.0f, 1.0f, 0.0f,
-                0.0f, 1.0f, 0.0f, 1.0f
-            )   // 逆时针90度旋转，同时保持 z 坐标不变
-
-        } else {
-            mMockMatrix = floatArrayOf(
-                0.0f, 1.0f, 0.0f, 0.0f,  // 把原图像的 x 轴转变为 y 轴。
-                -1.0f, 0.0f, 0.0f, 0.0f,  //把原图像的 y 轴转变为 -x 轴。
-                0.0f, 0.0f, 1.0f, 0.0f,
-                1.0f, 0.0f, 0.0f, 1.0f
-            )
+        if (!isFront) {
+            // 后置摄像头，需要设置该值，否则贴纸会Y轴翻转
+            queenEngine?.setRenderAndFaceFlip(Flip.kNone, Flip.kFlipY)
         }
 
+//        if (isFront) {
+            if (orientation == 0 || orientation == 180) {
+                // 意义：原图像逆时针旋转90度，而z轴的坐标保持不变。
+                mMockMatrix = floatArrayOf(
+                    0.0f, -1.0f, 0.0f, 0.0f,    // 表示把原图像的 x 轴转变为 -y 轴。
+                    1.0f, 0.0f, 0.0f, 0.0f,     // 表示把原图像的 y 轴转变为 x 轴。
+                    0.0f, 0.0f, 1.0f, 0.0f,     // z 轴（深度）保持不变。
+                    0.0f, 1.0f, 0.0f, 1.0f      // 主要用于平移，表示平移到新位置的坐标偏移，这里是使图像在z轴的某个位置（通常是中心）不变。
+                )   // 逆时针90度旋转，同时保持 z 坐标不变
+                setInputTextureWidth = h
+                setInputTextureHeight = w
+                setGenOutTextureKeepDirection = 1
+            } else {
+                setInputTextureWidth = w
+                setInputTextureHeight = h
+//                setGenOutTextureKeepDirection = 0
+                mMockMatrix = floatArrayOf(
+                    1.0f, 0.0f, 0.0f, 0.0f,    // 将原图像的 x 轴映射到 -x 轴，相当于水平翻转。
+                    0.0f, 1.0f, 0.0f, 0.0f,    // 将原图像的 y 轴映射到 -y 轴，相当于垂直翻转。
+                    0.0f, 0.0f, 1.0f, 0.0f,     // z 轴（深度）保持不变。
+                    0.0f, 0.0f, 0.0f, 1.0f      // 反转平移
+                )
+            }
+
+//        } else {
+//            if (orientation == 0 || orientation == 180) {
+//                // 意义：原图像逆时针旋转90度，而z轴的坐标保持不变。
+//                mMockMatrix = floatArrayOf(
+//                    0.0f, -1.0f, 0.0f, 0.0f,    // 表示把原图像的 x 轴转变为 -y 轴。
+//                    1.0f, 0.0f, 0.0f, 0.0f,     // 表示把原图像的 y 轴转变为 x 轴。
+//                    0.0f, 0.0f, 1.0f, 0.0f,     // z 轴（深度）保持不变。
+//                    0.0f, 1.0f, 0.0f, 1.0f      // 主要用于平移，表示平移到新位置的坐标偏移，这里是使图像在z轴的某个位置（通常是中心）不变。
+//                )   // 逆时针90度旋转，同时保持 z 坐标不变
+//                setInputTextureWidth = h
+//                setInputTextureHeight = w
+//                setGenOutTextureKeepDirection = 1
+//            } else {
+//                setInputTextureWidth = w
+//                setInputTextureHeight = h
+////                setGenOutTextureKeepDirection = 0
+//                // 这是180翻转
+//                mMockMatrix = floatArrayOf(
+//                    -1.0f, 0.0f, 0.0f, 0.0f,    // 将原图像的 x 轴映射到 -x 轴，相当于水平翻转。
+//                    0.0f, -1.0f, 0.0f, 0.0f,    // 将原图像的 y 轴映射到 -y 轴，相当于垂直翻转。
+//                    0.0f, 0.0f, 1.0f, 0.0f,     // z 轴（深度）保持不变。
+//                    1.0f, 1.0f, 0.0f, 1.0f      // 反转平移
+//                )
+//            }
+//        }
+
         var mockCameraAngle = if (isFront) { orientation }
-        else { (orientation + 180) % 360 }
+        else { if ( orientation == 90 || orientation == 270) orientation else ((orientation + 180) % 360) }
+        // 后置：180-0-270；0-180-90；270-x-0【270-0】；90-y-180【90-180】
 
         // 竖屏时，需要左右翻转；横屏时，需要上下翻转
         if (mockCameraAngle == 0) {
-            // 手机前置相机+摆放正向 以及 后置相机+摆放倒立，适用本规则
+            // 手机前置相机+摆放正向 以及 后置相机+摆放倒立正向(or=180)，适用本规则
             // 输入为横屏，（头朝向右，相对正向，在逆时针270度，即w > h），一般前置摄像头，选择此项
             setAlgUpdateInputAngle = 270
-//            mMockMatrix = multiplyMatrices(flipYMatrix, mMockMatrix!!)
         } else if (mockCameraAngle == 180) {
-            // 手机前置相机+倒立 以及 后置相机+正向，适用本规则
+            // 手机前置相机+倒立 以及 后置相机+正向(or=0)，适用本规则
             // 横屏，（头朝向左，相对正向，逆时针90度，即w > h），一般后置摄像头，选择此项
             setAlgUpdateInputAngle = 90
-
         } else if (mockCameraAngle == 90) {
-            // 输入画面为横屏模式下，头顶正向下。前置相机+手机摆放摄像头在右方，后置相机+手机摆放摄像头在左方
-
+            // 输入画面为横屏模式下，头顶正向下。前置相机+手机摆放摄像头在右方，后置相机+手机摆放摄像头在左方(or=270)
             setAlgUpdateInputAngle = 180
-//            queenEngine?.setRenderAndFaceFlip(Flip.kNone, Flip.kFlipY)  // NOTE, 如果需要贴纸反过来，则设置此处的值为Y
         } else {
-            // 输入画面为横屏模式下，头顶正向上。前置相机+手机摆放摄像头在左方，后置相机+手机摆放摄像头在右方
+            // 输入画面为横屏模式下，头顶正向上。前置相机+手机摆放摄像头在左方，后置相机+手机摆放摄像头在右方(or-90)
             setAlgUpdateInputAngle = 0
-//            mMockMatrix = null
-//            queenEngine?.setRenderAndFaceFlip(Flip.kNone, Flip.kFlipY)  // NOTE, 如果需要贴纸反过来，则设置此处的值为Y
-//            queenEngine?.setRenderAndFaceFlip(Flip.kFlipY, Flip.kNone)
         }
 
         return intArrayOf(
@@ -734,83 +598,6 @@ class AliyunQueenBeautyAPIImpl : AliyunQueenBeautyAPI, IVideoFrameObserver {
         }
         return result
     }
-
-    private fun getInputParamsInBuffer(w:Int, h:Int, isFront: Boolean, orientation: Int): IntArray {
-        var setInputTextureWidth = h
-        var setInputTextureHeight = w
-        var setGenOutTextureKeepDirection = 1
-
-        if (isFront) {
-            mMockMatrix = floatArrayOf(
-                0.0f, -1.0f, 0.0f, 0.0f,    // 表示把原图像的 x 轴转变为 -y 轴。
-                1.0f, 0.0f, 0.0f, 0.0f,     // 表示把原图像的 y 轴转变为 x 轴。
-                0.0f, 0.0f, 1.0f, 0.0f,
-                0.0f, 1.0f, 0.0f, 1.0f
-            )   // 逆时针90度旋转，同时保持 z 坐标不变
-
-        } else {
-            mMockMatrix = floatArrayOf(
-                0.0f, 1.0f, 0.0f, 0.0f,  // 把原图像的 x 轴转变为 y 轴。
-                -1.0f, 0.0f, 0.0f, 0.0f,  //把原图像的 y 轴转变为 -x 轴。
-                0.0f, 0.0f, 1.0f, 0.0f,
-                1.0f, 0.0f, 0.0f, 1.0f
-            )
-        }
-
-
-        // 摄像头正向摆放，实际采集到画面是逆时针270度的，也就是说，手机摆放角度与实际采集画面角度，实际是相差270度。
-        var setAlgUpdateInputAngle = if(isFront) {
-                                        270 - orientation
-                                    } else {
-                                        (90 + orientation) % 360
-                                    }
-        return intArrayOf(
-            setInputTextureWidth, setInputTextureHeight, setGenOutTextureKeepDirection, setAlgUpdateInputAngle,
-        )
-    }
-
-    private fun getNV21Buffer(videoFrame: VideoFrame): ByteArray? {
-        val buffer = videoFrame.buffer
-        val i420Buffer = buffer as? I420Buffer ?: buffer.toI420()
-        val width = i420Buffer.width
-        val height = i420Buffer.height
-        val nv21Size = (width * height * 3.0f / 2.0f + 0.5f).toInt()
-        if (nv21ByteBuffer == null || nv21ByteBuffer?.capacity() != nv21Size) {
-            nv21ByteBuffer?.clear()
-            nv21ByteBuffer = ByteBuffer.allocateDirect(nv21Size)
-            return null
-        }
-        val nv21ByteArray = ByteArray(nv21Size)
-
-        YuvHelper.I420ToNV12(
-            i420Buffer.dataY, i420Buffer.strideY,
-            i420Buffer.dataV, i420Buffer.strideV,
-            i420Buffer.dataU, i420Buffer.strideU,
-            nv21ByteBuffer, width, height
-        )
-        nv21ByteBuffer?.position(0)
-        nv21ByteBuffer?.get(nv21ByteArray)
-        if (buffer !is I420Buffer) {
-            i420Buffer.release()
-        }
-        return nv21ByteArray
-    }
-
-    private fun getEmptyNV21Buffer(videoFrame: VideoFrame): ByteArray? {
-        val buffer = videoFrame.buffer
-        val i420Buffer = buffer as? I420Buffer ?: buffer.toI420()
-        val width = i420Buffer.width
-        val height = i420Buffer.height
-        val nv21Size = (width * height * 3.0f / 2.0f + 0.5f).toInt()
-
-        val newNv21ByteArray = ByteArray(nv21Size)
-
-        if (buffer !is I420Buffer) {
-            i420Buffer.release()
-        }
-        return newNv21ByteArray
-    }
-
 
 
     // IVideoFrameObserver implements
